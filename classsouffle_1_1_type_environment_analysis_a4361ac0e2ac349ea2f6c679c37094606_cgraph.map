@@ -1,0 +1,14 @@
+<map id="souffle::TypeEnvironmentAnalysis::updateTypeEnvironment" name="souffle::TypeEnvironmentAnalysis::updateTypeEnvironment">
+<area shape="rect" id="node2" href="$classsouffle_1_1_union_type.html#a980e743dd021a43aa1ab0548a1ad6faf" title="souffle::UnionType::add" alt="" coords="717,20,878,47"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_type_environment.html#af6f82790cb9e31b0efb8583894db3fa3" title="souffle::TypeEnvironment\l::isType" alt="" coords="931,89,1101,130"/>
+<area shape="rect" id="node4" href="$structsouffle_1_1_record_type.html#a44e9c68ca7f7428f44c6f6ac9fd48181" title="souffle::RecordType::add" alt="" coords="494,122,663,148"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_type_environment.html#a75ca22f15fb89bc2bb398065477328f2" title="souffle::TypeEnvironment\l::createNumericType" alt="" coords="275,173,445,214"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1_type_environment.html#ad66cb326f809dc980e7901dfbe1fcdc5" title="souffle::TypeEnvironment\l::getType" alt="" coords="712,202,883,244"/>
+<area shape="rect" id="node8" href="$classsouffle_1_1_type_environment.html#ab13d03070c71d95125cf7002c7baa2eb" title="souffle::TypeEnvironment\l::createRecordType" alt="" coords="275,290,445,332"/>
+<area shape="rect" id="node9" href="$classsouffle_1_1_type_environment.html#ae7f4b70091d5ceb9a0a55342a55e4e8e" title="souffle::TypeEnvironment\l::createSymbolType" alt="" coords="275,356,445,397"/>
+<area shape="rect" id="node11" href="$classsouffle_1_1_type_environment.html#a3cae9e66c638f3721bfd840907208d8d" title="souffle::TypeEnvironment\l::createUnionType" alt="" coords="275,421,445,462"/>
+<area shape="rect" id="node12" href="$classsouffle_1_1_type_environment.html#a89d72d541244b7987dcac2708613cdb9" title="souffle::TypeEnvironment\l::getModifiableType" alt="" coords="275,486,445,528"/>
+<area shape="rect" id="node13" href="$classsouffle_1_1_ast_program.html#adc7c9111feed1c8ce0b72c4bf3b38bed" title="Gets a list of all types in this program. " alt="" coords="291,552,429,593"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_type_environment.html#a3607b9fb617c47df3da5050384b5f635" title="souffle::TypeEnvironment\l::getNumberType" alt="" coords="493,173,664,214"/>
+<area shape="rect" id="node10" href="$classsouffle_1_1_type_environment.html#a66b0c5761bcf5248516f08310f3b0817" title="souffle::TypeEnvironment\l::getSymbolType" alt="" coords="493,322,664,364"/>
+</map>

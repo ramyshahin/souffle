@@ -1,0 +1,5 @@
+<map id="souffle::gzfstream::internal::gzfstreambuf::~gzfstreambuf" name="souffle::gzfstream::internal::gzfstreambuf::~gzfstreambuf">
+<area shape="rect" id="node2" href="$classsouffle_1_1gzfstream_1_1internal_1_1gzfstreambuf.html#a1c18e1c79475ef665ccefd55439c125c" title="souffle::gzfstream\l::internal::gzfstreambuf\l::close" alt="" coords="211,41,367,97"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1gzfstream_1_1internal_1_1gzfstreambuf.html#a7887c7dc05875f3435e82e30d7d32a57" title="souffle::gzfstream\l::internal::gzfstreambuf\l::is_open" alt="" coords="434,5,590,61"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1gzfstream_1_1internal_1_1gzfstreambuf.html#a39e1d8948445e8e186d960a9b4d2cfee" title="souffle::gzfstream\l::internal::gzfstreambuf::sync" alt="" coords="416,85,608,126"/>
+</map>

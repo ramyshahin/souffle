@@ -1,0 +1,8 @@
+<map id="souffle::BddBddBTranslator::visitAtom" name="souffle::BddBddBTranslator::visitAtom">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ast_atom.html#a11ba399d723b5f1135a35e47e51e1bad" title="Provides access to the list of arguments of this atom. " alt="" coords="238,5,447,32"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ast_atom.html#adfaa949dc3e89fa2dc25981963ea5752" title="Return the name of this atom. " alt="" coords="252,56,433,83"/>
+<area shape="rect" id="node5" href="$namespacesouffle.html#abe4e3f19879707216a2758b03f4e2deb" title="Creates an object to be forwarded to some output stream for printing sequences of elements interspers..." alt="" coords="519,175,609,201"/>
+<area shape="rect" id="node6" href="$structsouffle_1_1_ast_visitor.html#ac26669114316a4b0ef0db9427b23bcac" title="The main entry for a visit process conducting the dispatching of a visit to the various sub&#45;types of ..." alt="" coords="273,157,412,213"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1_bdd_bdd_b_translator.html#a7fd19416155030833e635111c37d040b" title="souffle::BddBddBTranslator\l::visitRelationIdentifier" alt="" coords="251,237,434,278"/>
+<area shape="rect" id="node3" href="$namespacesouffle.html#ad62d4e824a9d74c7462da546a21780fe" title="A utility function enabling the creation of a vector of pointers. " alt="" coords="497,5,631,32"/>
+</map>

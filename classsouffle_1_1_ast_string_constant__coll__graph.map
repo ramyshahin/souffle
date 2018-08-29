@@ -1,0 +1,9 @@
+<map id="souffle::AstStringConstant" name="souffle::AstStringConstant">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ast_constant.html" title="Subclass of Argument that represents a datalog constant value. " alt="" coords="217,1058,359,1179"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ast_argument.html" title="Intermediate representation of an argument. " alt="" coords="87,813,232,920"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ast_node.html" title="Abstract class for syntactic elements in a Datalog program. " alt="" coords="96,531,224,755"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_src_location.html" title="A class describing a range in an input file. " alt="" coords="91,360,229,467"/>
+<area shape="rect" id="node6" href="$structsouffle_1_1_src_location_1_1_point.html" title="A class locating a single point in an input file. " alt="" coords="5,161,144,282"/>
+<area shape="rect" id="node10" href="$classsouffle_1_1_symbol_table.html" title="Global pool of re&#45;usable strings. " alt="" coords="431,992,583,1245"/>
+<area shape="rect" id="node12" href="$structsouffle_1_1_lock.html" title="A small utility class for implementing simple locks. " alt="" coords="506,806,603,927"/>
+</map>

@@ -1,0 +1,14 @@
+<map id="souffle::AstSemanticChecker::checkTypes" name="souffle::AstSemanticChecker::checkTypes">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ast_semantic_checker.html#ae3e93a39587655ba9d86ecb5168403b3" title="souffle::AstSemanticChecker\l::checkType" alt="" coords="249,205,442,246"/>
+<area shape="rect" id="node13" href="$classsouffle_1_1_ast_program.html#adc7c9111feed1c8ce0b72c4bf3b38bed" title="Gets a list of all types in this program. " alt="" coords="276,270,415,311"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ast_semantic_checker.html#a2e5de79daf558a1128d8962bd500906e" title="souffle::AstSemanticChecker\l::checkRecordType" alt="" coords="491,173,685,214"/>
+<area shape="rect" id="node10" href="$classsouffle_1_1_ast_semantic_checker.html#a2a7f03668dff6a5f623fc774d5845d9c" title="souffle::AstSemanticChecker\l::checkUnionType" alt="" coords="491,238,685,279"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_error_report.html#a699dc9231cef74ac54573e3c79de7143" title="Adds an error with the given message and location. " alt="" coords="759,70,895,111"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_ast_record_type.html#af3aad0e2e9540f4d0080d717015ddeac" title="Obtains the list of field constituting this record type. " alt="" coords="747,5,907,46"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_ast_type.html#a988b286aa4acd79538540d1705483728" title="Obtains the name of this type. " alt="" coords="737,136,916,163"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1_ast_node.html#a68e6e13cb8d1510e47087447a89cae83" title="Return source location of the AstNode. " alt="" coords="733,187,920,213"/>
+<area shape="rect" id="node8" href="$classsouffle_1_1_ast_program.html#a0fe8485ff00fc379f6ff3d61117e96ba" title="Obtains the type with the given name. " alt="" coords="757,238,896,279"/>
+<area shape="rect" id="node9" href="$namespacesouffle.html#aecc08c83ad9634fc515b7aa094702949" title="A generic function converting strings into strings (trivial case). " alt="" coords="769,304,884,331"/>
+<area shape="rect" id="node11" href="$namespacesouffle.html#a7f93cdf21f1a24b593da6691dc892828" title="A generic factory for constraints of the form. " alt="" coords="781,355,872,381"/>
+<area shape="rect" id="node12" href="$classsouffle_1_1_ast_union_type.html#a2ca7bed6c742a9331a7f521508e08c2b" title="Obtains a reference to the list element types. " alt="" coords="751,406,903,447"/>
+</map>

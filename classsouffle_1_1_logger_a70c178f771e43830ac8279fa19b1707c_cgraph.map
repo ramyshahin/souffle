@@ -1,0 +1,10 @@
+<map id="souffle::Logger::~Logger" name="souffle::Logger::~Logger">
+<area shape="rect" id="node2" href="$classsouffle_1_1_profile_event_singleton.html#adf94d78a9d87272b42a1fe4bc31f918d" title="get instance " alt="" coords="216,5,411,46"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_profile_event_singleton.html#a73f93801476d27cf4b66d719f9fd9f2f" title="create an event for recording start and end times " alt="" coords="216,70,411,111"/>
+<area shape="rect" id="node9" href="$namespacesouffle.html#a1c65551944c7ecf6f44ec851b49bdbb0" title="souffle::now" alt="" coords="267,136,360,163"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1profile_1_1_event_processor_singleton.html#a3a6564631bccb96da84ccad7edfe4dc9" title="get instance " alt="" coords="459,37,664,78"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1profile_1_1_event_processor_singleton.html#a537033bada68e176ff0b09239acd21fe" title="process a profile event " alt="" coords="459,102,664,143"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1profile_1_1_event_processor_singleton.html#a2683498b1eeddf5c2c036b083e9be0d3" title="Escape escape characters. " alt="" coords="712,69,917,110"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1profile_1_1_event_processor_singleton.html#ac29c916b9aef2f553b111dad2df96cf4" title="split string separated by semi&#45;colon " alt="" coords="712,134,917,175"/>
+<area shape="rect" id="node8" href="$classsouffle_1_1profile_1_1_event_processor_singleton.html#a21060e6cba7f78fb9c0f9a43ab84580a" title="split string " alt="" coords="965,134,1171,175"/>
+</map>

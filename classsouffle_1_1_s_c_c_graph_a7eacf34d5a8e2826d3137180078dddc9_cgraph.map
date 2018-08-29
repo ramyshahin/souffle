@@ -1,0 +1,7 @@
+<map id="souffle::SCCGraph::run" name="souffle::SCCGraph::run">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ast_translation_unit.html#a7a1598acb91192e90026763b3b968653" title="get analysis: analysis is generated on the fly if not present " alt="" coords="214,5,391,46"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ast_translation_unit.html#a85862a5fcfecdf63c7367926cdedde23" title="get the AST program " alt="" coords="214,70,391,111"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ast_program.html#a60fcb7d3a21a06be7b48f5849917a22b" title="Get all relations in the program. " alt="" coords="233,135,372,177"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_precedence_graph.html#aaaa7bc2a66bb69fceff4b8e699c87eda" title="souffle::PrecedenceGraph\l::graph" alt="" coords="440,219,613,261"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_s_c_c_graph.html#ae716ce45b2f4cb33f54165f6f6aabd5a" title="Recursive scR method for computing SCC. " alt="" coords="220,252,385,279"/>
+</map>

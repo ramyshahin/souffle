@@ -1,0 +1,7 @@
+<map id="souffle::TopologicallySortedSCCGraph::run" name="souffle::TopologicallySortedSCCGraph::run">
+<area shape="rect" id="node2" href="$classsouffle_1_1_topologically_sorted_s_c_c_graph.html#ac51403142f9690d2dd9df07d2b73787a" title="Recursive component for the forwards algorithm computing the topological ordering of the SCCs..." alt="" coords="237,50,496,91"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_s_c_c_graph.html#a8c99e9b27da3c0aa38407fdca9633fcb" title="Get all predecessor SCCs of a given SCC. " alt="" coords="544,5,693,46"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_s_c_c_graph.html#a2701db781502256c9f63b38def916809" title="Get all successor SCCs of a given SCC. " alt="" coords="548,83,689,125"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_ast_translation_unit.html#a7a1598acb91192e90026763b3b968653" title="get analysis: analysis is generated on the fly if not present " alt="" coords="278,167,455,209"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_s_c_c_graph.html#a542aa05043ef4016ea18bede28179b5d" title="Get the number of SCCs in the graph. " alt="" coords="296,233,437,274"/>
+</map>

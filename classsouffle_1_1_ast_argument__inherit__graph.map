@@ -1,0 +1,18 @@
+<map id="souffle::AstArgument" name="souffle::AstArgument">
+<area shape="rect" id="node3" href="$classsouffle_1_1_ast_aggregator.html" title="An argument aggregating a value from a sub&#45;query. " alt="" coords="175,432,337,715"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ast_constant.html" title="Subclass of Argument that represents a datalog constant value. " alt="" coords="362,513,504,634"/>
+<area shape="rect" id="node8" href="$classsouffle_1_1_ast_counter.html" title="Subclass of Argument that represents a counter (for projections only) " alt="" coords="529,505,663,641"/>
+<area shape="rect" id="node9" href="$classsouffle_1_1_ast_functor.html" title="A common base class for AST functors. " alt="" coords="688,535,821,612"/>
+<area shape="rect" id="node13" href="$classsouffle_1_1_ast_record_init.html" title="An argument that takes a list of values and combines them into a new record. " alt="" coords="845,476,993,671"/>
+<area shape="rect" id="node14" href="$classsouffle_1_1_ast_subroutine_argument.html" title="An argument taking its value from an argument of a RAM subroutine. " alt="" coords="1019,498,1225,649"/>
+<area shape="rect" id="node15" href="$classsouffle_1_1_ast_type_cast.html" title="An argument capable of casting a value of one type into another. " alt="" coords="1251,476,1397,671"/>
+<area shape="rect" id="node16" href="$classsouffle_1_1_ast_unnamed_variable.html" title="Subclass of Argument that represents an unnamed variable. " alt="" coords="1421,505,1613,641"/>
+<area shape="rect" id="node17" href="$classsouffle_1_1_ast_variable.html" title="Subclass of Argument that represents a named variable. " alt="" coords="1637,491,1772,656"/>
+<area shape="rect" id="node2" href="$classsouffle_1_1_ast_node.html" title="Abstract class for syntactic elements in a Datalog program. " alt="" coords="856,5,984,229"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_ast_null_constant.html" title="Subclass of AstConstant that represents a null&#45;constant (no record) " alt="" coords="5,859,169,965"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_ast_number_constant.html" title="Subclass of Argument that represents a datalog constant value. " alt="" coords="195,859,383,965"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1_ast_string_constant.html" title="Subclass of Argument that represents a datalog constant value. " alt="" coords="408,844,584,980"/>
+<area shape="rect" id="node10" href="$classsouffle_1_1_ast_binary_functor.html" title="Subclass of Argument that represents a binary function. " alt="" coords="608,763,779,1061"/>
+<area shape="rect" id="node11" href="$classsouffle_1_1_ast_ternary_functor.html" title="{souffle::AstTernaryFunctor\n|# arg\l# fun\l|+ acceptsNumbers()\l+ acceptsSymbols()\l+ apply()\l+ AstTernaryFunctor()\l+ clone()\l+ getArg()\l+ getChildNodes()\l+ getFunction()\l+ isNumerical()\l+ isSymbolic()\l+ print()\l# equal()\l}" alt="" coords="803,785,980,1039"/>
+<area shape="rect" id="node12" href="$classsouffle_1_1_ast_unary_functor.html" title="Subclass of Argument that represents a unary function. " alt="" coords="1005,778,1173,1046"/>
+</map>

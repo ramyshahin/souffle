@@ -1,0 +1,11 @@
+<map id="souffle::Synthesiser::getRelationType" name="souffle::Synthesiser::getRelationType">
+<area shape="rect" id="node2" href="$classsouffle_1_1_synthesiser.html#a8f7ce62db10648928526d5ebad6a9fb3" title="Check whether indexes are disabled. " alt="" coords="194,5,339,46"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_global.html#a2dcb257b0f98d0b882862427cc965640" title="souffle::Global::config" alt="" coords="192,71,341,97"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_index_set.html#a9960f863d195b38db30aa42231ef612c" title="Get all indexes. " alt="" coords="202,122,331,163"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_ram_relation.html#a988392c3b0724b683628ebbc67dbb021" title="souffle::RamRelation\l::isBrie" alt="" coords="194,187,339,229"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_ram_relation.html#a1bdfc06fa5530a59b8d6739039fe4a41" title="souffle::RamRelation\l::isBTree" alt="" coords="194,253,339,294"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1_ram_relation.html#ac3af25b1af330f5dac4e2e8ab28647a4" title="souffle::RamRelation\l::isEqRel" alt="" coords="194,318,339,359"/>
+<area shape="rect" id="node8" href="$classsouffle_1_1_ram_relation.html#a444c9d2348e55aec5e31c9bb0e0f2ee5" title="souffle::RamRelation\l::isHashset" alt="" coords="194,383,339,425"/>
+<area shape="rect" id="node9" href="$classsouffle_1_1_ram_relation.html#aea69cab51b86fdf7df3a76b612a297f0" title="souffle::RamRelation\l::isRbtset" alt="" coords="194,449,339,490"/>
+<area shape="rect" id="node10" href="$namespacesouffle.html#abe4e3f19879707216a2758b03f4e2deb" title="Creates an object to be forwarded to some output stream for printing sequences of elements interspers..." alt="" coords="222,515,311,541"/>
+</map>

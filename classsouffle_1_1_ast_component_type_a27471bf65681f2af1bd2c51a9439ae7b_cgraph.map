@@ -1,0 +1,5 @@
+<map id="souffle::AstComponentType::clone" name="souffle::AstComponentType::clone">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ast_component_type.html#a35318b0f08a084b99e4e40829f37cc90" title="Creates a new component type based on the given name and parameters. " alt="" coords="241,5,426,46"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ast_node.html#a68e6e13cb8d1510e47087447a89cae83" title="Return source location of the AstNode. " alt="" coords="240,71,427,97"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ast_node.html#a0b664297f0971c6ce32ff2e0e4f2603f" title="Set source location for the AstNode. " alt="" coords="240,121,427,148"/>
+</map>

@@ -1,0 +1,17 @@
+<map id="souffle::RemoveEmptyRelationsTransformer::removeEmptyRelations" name="souffle::RemoveEmptyRelationsTransformer::removeEmptyRelations">
+<area shape="rect" id="node2" href="$namespacesouffle.html#ab18cbb3adc2ab328de0db30a3fddf7e0" title="Returns the relation referenced by the given atom. " alt="" coords="606,41,773,68"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_ast_aggregator.html#a4deb6a8ea2b7d2ef7cd42c9ca668f8a1" title="souffle::AstAggregator\l::getBodyLiterals" alt="" coords="345,333,497,374"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1_ast_translation_unit.html#a85862a5fcfecdf63c7367926cdedde23" title="get the AST program " alt="" coords="601,223,778,265"/>
+<area shape="rect" id="node8" href="$classsouffle_1_1_ast_program.html#a60fcb7d3a21a06be7b48f5849917a22b" title="Get all relations in the program. " alt="" coords="352,398,491,439"/>
+<area shape="rect" id="node9" href="$classsouffle_1_1_remove_empty_relations_transformer.html#a270471ec87fa91736577a1c8721bff4a" title="Eliminate rules that contain empty relations and/or rewrite them. " alt="" coords="291,161,551,202"/>
+<area shape="rect" id="node10" href="$namespacesouffle.html#a4e134334ce89f6ebc4075e1089b1f80d" title="A utility function visiting all nodes within the ast rooted by the given node recursively in a depth&#45;..." alt="" coords="612,289,767,316"/>
+<area shape="rect" id="node16" href="$classsouffle_1_1_ast_program.html#adcb36e001beb9b43bede7b00984e982f" title="Remove a relation from the program. " alt="" coords="352,463,491,505"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ast_atom.html#adfaa949dc3e89fa2dc25981963ea5752" title="Return the name of this atom. " alt="" coords="827,71,1008,97"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ast_program.html#ae4e787ea4d338524ea6b346d5dedc290" title="Find and return the relation in the program given its name. " alt="" coords="848,5,987,46"/>
+<area shape="rect" id="node6" href="$namespacesouffle.html#ad62d4e824a9d74c7462da546a21780fe" title="A utility function enabling the creation of a vector of pointers. " alt="" coords="622,340,757,367"/>
+<area shape="rect" id="node13" href="$classsouffle_1_1_ast_program.html#ac0733345760aab5b6939cd20b228c223" title="Removes a clause from this program. " alt="" coords="620,93,759,134"/>
+<area shape="rect" id="node15" href="$classsouffle_1_1_ast_program.html#a29a37490ca76595a9a8403d3acac8db8" title="append a new clause to this program – after parsing " alt="" coords="620,158,759,199"/>
+<area shape="rect" id="node11" href="$namespacesouffle.html#ae3213abfc9e18e34bb08056ec91f7b86" title="A utility function visiting all nodes within the ast rooted by the given node recursively in a depth&#45;..." alt="" coords="840,282,995,323"/>
+<area shape="rect" id="node12" href="$classsouffle_1_1_ast_node.html#a3726392849b2a07142ba13bbd5fb16d2" title="Obtain a list of all embedded AST child nodes. " alt="" coords="1056,282,1232,323"/>
+<area shape="rect" id="node14" href="$classsouffle_1_1_ast_clause.html#ae9a1e5dd0a7c9781e23a7d9ececd6ae5" title="Return the atom that represents the head of the clause. " alt="" coords="852,122,983,163"/>
+</map>

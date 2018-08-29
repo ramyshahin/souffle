@@ -1,0 +1,5 @@
+<map id="souffle::updateQualifier" name="souffle::updateQualifier">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ast_relation.html#a15a48bcd5bcf6eebbc4bb4ef16e52685" title="Return qualifier associated with this relation. " alt="" coords="211,5,349,46"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ast_relation.html#a96ff8bd588002b8182393d95258c9d66" title="Check whether relation is a equivalence relation. " alt="" coords="211,70,349,111"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ast_relation.html#a9527d30091d612f497c769ca3e87548f" title="Set qualifier associated with this relation. " alt="" coords="211,135,349,177"/>
+</map>

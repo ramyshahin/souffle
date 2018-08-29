@@ -1,0 +1,5 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$structsouffle_1_1ram_1_1detail_1_1_relation_base.html" title="souffle::ram::detail\l::RelationBase\&lt; 0, AutoRelation\l\&lt; 0 \&gt; \&gt;" alt="" coords="5,4,216,60"/>
+<area shape="rect" id="node2" href="$classsouffle_1_1ram_1_1detail_1_1_auto_relation_3_010_01_4.html" title="A specialization of a 0&#45;ary relation. " alt="" coords="264,11,400,53"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1ram_1_1detail_1_1_single_index_type_relation_3_01_index_factory_00_010_01_4.html" title="A specialization for the case of a 0&#45;arity relation. " alt="" coords="449,4,623,60"/>
+</map>

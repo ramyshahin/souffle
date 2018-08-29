@@ -1,0 +1,4 @@
+<map id="souffle::RamNotExists" name="souffle::RamNotExists">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ram_condition.html" title="Abstract Class for RAM condition. " alt="" coords="5,264,157,371"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ram_node.html" title="RamNode is a superclass for all RAM IR classes. " alt="" coords="17,6,145,215"/>
+</map>

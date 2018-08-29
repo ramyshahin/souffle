@@ -1,0 +1,12 @@
+<map id="souffle::AstClause::cloneHead" name="souffle::AstClause::cloneHead">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ast_clause.html#a253d3796df50375b98447daff50200f9" title="Construct an empty clause with empty list of literals and its head set to NULL. " alt="" coords="447,7,577,49"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ast_clause.html#aef9cb574a067db73c83fd9c9f63d297f" title="Creates a clone of this AST sub&#45;structure. " alt="" coords="212,59,343,101"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ast_clause.html#af03a18e982fbce1bb3866c18c5da192e" title="Obtains the execution plan associated to this clause or null if there is none. " alt="" coords="446,78,578,119"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_ast_node.html#a68e6e13cb8d1510e47087447a89cae83" title="Return source location of the AstNode. " alt="" coords="419,155,605,181"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_ast_clause.html#ae9a1e5dd0a7c9781e23a7d9ececd6ae5" title="Return the atom that represents the head of the clause. " alt="" coords="212,227,343,269"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1_ast_clause.html#a9ffbaaeaeac8f4b5a690a7c7bcea748c" title="Determines whether the execution order plan is fixed. " alt="" coords="194,293,361,334"/>
+<area shape="rect" id="node8" href="$classsouffle_1_1_ast_clause.html#ab60415570b29118f4a476bcecb58bc7c" title="Updates the execution plan associated to this clause. " alt="" coords="211,358,343,399"/>
+<area shape="rect" id="node9" href="$classsouffle_1_1_ast_clause.html#a586a48936277bdb61b6fbb5619a7abcb" title="Updates the fixed execution order flag. " alt="" coords="195,423,359,465"/>
+<area shape="rect" id="node10" href="$classsouffle_1_1_ast_clause.html#a07290e1b7b9e4ce73c3a5f0482ce88d3" title="Set the head of clause to h. " alt="" coords="212,489,343,530"/>
+<area shape="rect" id="node11" href="$classsouffle_1_1_ast_node.html#a0b664297f0971c6ce32ff2e0e4f2603f" title="Set source location for the AstNode. " alt="" coords="184,555,371,581"/>
+</map>

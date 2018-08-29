@@ -1,0 +1,5 @@
+<map id="souffle::Synthesiser::getOpContextName" name="souffle::Synthesiser::getOpContextName">
+<area shape="rect" id="node2" href="$classsouffle_1_1_synthesiser.html#a9d43fb66115fc92c323e73592cf2d59d" title="Get relation name. " alt="" coords="200,38,339,79"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_synthesiser.html#a00537219513c769139de7e9db33ce25c" title="Convert RAM identifier. " alt="" coords="391,5,529,46"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ram_relation.html#aff204de1a828d72e6e74337be4885ddd" title="souffle::RamRelation\l::getName" alt="" coords="387,70,533,111"/>
+</map>

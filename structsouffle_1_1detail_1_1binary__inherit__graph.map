@@ -1,0 +1,6 @@
+<map id="souffle::detail::binary" name="souffle::detail::binary">
+<area shape="rect" id="node3" href="$structsouffle_1_1detail_1_1default__strategy.html" title="{souffle::detail::default\l_strategy\&lt; const RamDomain * \&gt;\n||}" alt="" coords="5,273,224,365"/>
+<area shape="rect" id="node4" href="$structsouffle_1_1detail_1_1default__strategy.html" title="{souffle::detail::default\l_strategy\&lt; Tuple \&gt;\n||}" alt="" coords="248,273,395,365"/>
+<area shape="rect" id="node5" href="$structsouffle_1_1detail_1_1default__strategy.html" title="{souffle::detail::default\l_strategy\&lt; Key \&gt;\n||}" alt="" coords="419,273,565,365"/>
+<area shape="rect" id="node2" href="$structsouffle_1_1detail_1_1strategy__selection.html" title="{souffle::detail::strategy\l_selection\&lt; binary_search \&gt;\n||}" alt="" coords="228,6,415,98"/>
+</map>

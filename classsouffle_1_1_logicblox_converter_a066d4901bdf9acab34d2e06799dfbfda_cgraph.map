@@ -1,0 +1,8 @@
+<map id="souffle::LogicbloxConverter::visitAtom" name="souffle::LogicbloxConverter::visitAtom">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ast_atom.html#a11ba399d723b5f1135a35e47e51e1bad" title="Provides access to the list of arguments of this atom. " alt="" coords="235,5,445,32"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ast_atom.html#adfaa949dc3e89fa2dc25981963ea5752" title="Return the name of this atom. " alt="" coords="249,56,431,83"/>
+<area shape="rect" id="node5" href="$namespacesouffle.html#abe4e3f19879707216a2758b03f4e2deb" title="Creates an object to be forwarded to some output stream for printing sequences of elements interspers..." alt="" coords="517,175,606,201"/>
+<area shape="rect" id="node6" href="$structsouffle_1_1_ast_visitor.html#ac26669114316a4b0ef0db9427b23bcac" title="The main entry for a visit process conducting the dispatching of a visit to the various sub&#45;types of ..." alt="" coords="271,157,409,213"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1_logicblox_converter.html#a1410f215a1790beac5934ec0c610789c" title="souffle::LogicbloxConverter\l::visitRelationIdentifier" alt="" coords="249,237,431,278"/>
+<area shape="rect" id="node3" href="$namespacesouffle.html#ad62d4e824a9d74c7462da546a21780fe" title="A utility function enabling the creation of a vector of pointers. " alt="" coords="494,5,629,32"/>
+</map>

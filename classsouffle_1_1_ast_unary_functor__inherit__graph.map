@@ -1,0 +1,5 @@
+<map id="souffle::AstUnaryFunctor" name="souffle::AstUnaryFunctor">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ast_functor.html" title="A common base class for AST functors. " alt="" coords="23,432,156,509"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ast_argument.html" title="Intermediate representation of an argument. " alt="" coords="17,277,161,384"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ast_node.html" title="Abstract class for syntactic elements in a Datalog program. " alt="" coords="25,5,153,229"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="souffle::UniqueAggregationVariablesTransformer::transform" name="souffle::UniqueAggregationVariablesTransformer::transform">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ast_variable.html#a298c753e0d5f0ca5c07536ca304d9086" title="souffle::AstVariable\l::getName" alt="" coords="285,5,421,46"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ast_translation_unit.html#a85862a5fcfecdf63c7367926cdedde23" title="get the AST program " alt="" coords="265,70,442,111"/>
+<area shape="rect" id="node4" href="$namespacesouffle.html#aecc08c83ad9634fc515b7aa094702949" title="A generic function converting strings into strings (trivial case). " alt="" coords="296,136,411,163"/>
+<area shape="rect" id="node5" href="$namespacesouffle.html#a4e134334ce89f6ebc4075e1089b1f80d" title="A utility function visiting all nodes within the ast rooted by the given node recursively in a depth&#45;..." alt="" coords="276,187,431,213"/>
+<area shape="rect" id="node8" href="$namespacesouffle.html#ad9bb9099f19c9e5dcf89e3822728496c" title="A utility function visiting all nodes within the ast rooted by the given node recursively in a depth&#45;..." alt="" coords="276,238,431,279"/>
+<area shape="rect" id="node6" href="$namespacesouffle.html#ae3213abfc9e18e34bb08056ec91f7b86" title="A utility function visiting all nodes within the ast rooted by the given node recursively in a depth&#45;..." alt="" coords="491,179,645,221"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1_ast_node.html#a3726392849b2a07142ba13bbd5fb16d2" title="Obtain a list of all embedded AST child nodes. " alt="" coords="693,209,869,250"/>
+</map>

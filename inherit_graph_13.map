@@ -1,0 +1,9 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$structsouffle_1_1ast__visitor__tag.html" title="A tag type required for the is_ast_visitor type trait to identify AstVisitors. " alt="" coords="5,77,160,104"/>
+<area shape="rect" id="node2" href="$structsouffle_1_1_ast_visitor.html" title="souffle::AstVisitor\l\&lt; void \&gt;" alt="" coords="227,5,354,46"/>
+<area shape="rect" id="node4" href="$structsouffle_1_1_ast_visitor.html" title="souffle::AstVisitor\l\&lt; void, std::ostream &amp; \&gt;" alt="" coords="209,70,373,111"/>
+<area shape="rect" id="node7" href="$structsouffle_1_1_ast_visitor.html" title="The generic base type of all AstVisitors realizing the dispatching of visitor calls. " alt="" coords="227,135,354,177"/>
+<area shape="rect" id="node3" href="$structsouffle_1_1detail_1_1_lambda_ast_visitor.html" title="A specialized visitor wrapping a lambda function – an auxiliary type required for visitor convenience..." alt="" coords="426,5,601,46"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_bdd_bdd_b_translator.html" title="Bddbddb converter class. " alt="" coords="422,75,605,101"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_logicblox_converter.html" title="souffle::LogicbloxConverter" alt="" coords="423,125,604,152"/>
+</map>

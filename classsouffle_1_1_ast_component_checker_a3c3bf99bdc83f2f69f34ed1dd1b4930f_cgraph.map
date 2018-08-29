@@ -1,0 +1,9 @@
+<map id="souffle::AstComponentChecker::checkComponentNamespaces" name="souffle::AstComponentChecker::checkComponentNamespaces">
+<area shape="rect" id="node2" href="$classsouffle_1_1_error_report.html#a699dc9231cef74ac54573e3c79de7143" title="Adds an error with the given message and location. " alt="" coords="293,5,429,46"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ast_program.html#ad468881dd6d1a5a0d9e01ba42e451bfe" title="Obtains a list of all component instantiations. " alt="" coords="265,70,458,111"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_ast_program.html#a326fddd8401f7a90c38a5ce3c2eb43c0" title="Obtains a list of all comprised components. " alt="" coords="292,135,431,177"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_ast_program.html#a60fcb7d3a21a06be7b48f5849917a22b" title="Get all relations in the program. " alt="" coords="292,201,431,242"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1_ast_program.html#adc7c9111feed1c8ce0b72c4bf3b38bed" title="Gets a list of all types in this program. " alt="" coords="292,266,431,307"/>
+<area shape="rect" id="node8" href="$namespacesouffle.html#aecc08c83ad9634fc515b7aa094702949" title="A generic function converting strings into strings (trivial case). " alt="" coords="304,332,419,359"/>
+<area shape="rect" id="node4" href="$namespacesouffle.html#ad62d4e824a9d74c7462da546a21780fe" title="A utility function enabling the creation of a vector of pointers. " alt="" coords="507,111,642,137"/>
+</map>

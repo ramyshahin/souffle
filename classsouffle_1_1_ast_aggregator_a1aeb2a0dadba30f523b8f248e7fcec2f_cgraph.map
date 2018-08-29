@@ -1,0 +1,4 @@
+<map id="souffle::AstAggregator::clone" name="souffle::AstAggregator::clone">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ast_aggregator.html#a942f05f22216921b6639e4672e15bd5e" title="Creates a new aggregation node. " alt="" coords="223,5,375,46"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ast_node.html#a68e6e13cb8d1510e47087447a89cae83" title="Return source location of the AstNode. " alt="" coords="205,71,392,97"/>
+</map>

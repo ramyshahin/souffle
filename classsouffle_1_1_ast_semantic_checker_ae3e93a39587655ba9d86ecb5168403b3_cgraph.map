@@ -1,0 +1,12 @@
+<map id="souffle::AstSemanticChecker::checkType" name="souffle::AstSemanticChecker::checkType">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ast_semantic_checker.html#a2e5de79daf558a1128d8962bd500906e" title="souffle::AstSemanticChecker\l::checkRecordType" alt="" coords="249,173,442,214"/>
+<area shape="rect" id="node9" href="$classsouffle_1_1_ast_semantic_checker.html#a2a7f03668dff6a5f623fc774d5845d9c" title="souffle::AstSemanticChecker\l::checkUnionType" alt="" coords="249,238,442,279"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_error_report.html#a699dc9231cef74ac54573e3c79de7143" title="Adds an error with the given message and location. " alt="" coords="516,70,652,111"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ast_record_type.html#af3aad0e2e9540f4d0080d717015ddeac" title="Obtains the list of field constituting this record type. " alt="" coords="504,5,664,46"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_ast_type.html#a988b286aa4acd79538540d1705483728" title="Obtains the name of this type. " alt="" coords="495,136,673,163"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_ast_node.html#a68e6e13cb8d1510e47087447a89cae83" title="Return source location of the AstNode. " alt="" coords="491,187,677,213"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1_ast_program.html#a0fe8485ff00fc379f6ff3d61117e96ba" title="Obtains the type with the given name. " alt="" coords="515,238,653,279"/>
+<area shape="rect" id="node8" href="$namespacesouffle.html#aecc08c83ad9634fc515b7aa094702949" title="A generic function converting strings into strings (trivial case). " alt="" coords="527,304,641,331"/>
+<area shape="rect" id="node10" href="$namespacesouffle.html#a7f93cdf21f1a24b593da6691dc892828" title="A generic factory for constraints of the form. " alt="" coords="539,355,629,381"/>
+<area shape="rect" id="node11" href="$classsouffle_1_1_ast_union_type.html#a2ca7bed6c742a9331a7f521508e08c2b" title="Obtains a reference to the list element types. " alt="" coords="508,406,660,447"/>
+</map>

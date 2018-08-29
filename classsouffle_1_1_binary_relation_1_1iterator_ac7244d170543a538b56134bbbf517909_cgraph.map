@@ -1,0 +1,7 @@
+<map id="souffle::BinaryRelation::iterator::iterator" name="souffle::BinaryRelation::iterator::iterator">
+<area shape="rect" id="node2" href="$namespacesouffle.html#a34f8eecb81c090fca9e58d3357b63ed9" title="A generic test checking whether any elements within a container satisfy a certain predicate..." alt="" coords="242,5,350,32"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_binary_relation_1_1iterator.html#a265f668c0c7d76e926e8e2117bf374d4" title="Single Trie Version of initIterators Only initialise one trie iterator. " alt="" coords="219,57,373,98"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_sparse_disjoint_set.html#abc2a2d83d952f34b84faa563d739c235" title="souffle::SparseDisjointSet\l::nodeExists" alt="" coords="209,122,383,163"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_binary_relation_1_1iterator.html#a024230019dda0d70d642e7d802669b7f" title="yield the current iterator value to update to what the iterator is currently pointing at ..." alt="" coords="219,187,373,229"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_trie.html#afb7b5ef0d2ae6269597277fe890fff15" title="Obtains an iterator referencing the first element stored within this trie. " alt="" coords="432,64,563,91"/>
+</map>

@@ -1,0 +1,10 @@
+<map id="souffle::isNumberType" name="souffle::isNumberType">
+<area shape="rect" id="node2" href="$namespacesouffle.html#a14b5f9eb9ec09c40e558b242e75de872" title="A generic test checking whether all elements within a container satisfy a certain predicate..." alt="" coords="239,5,339,32"/>
+<area shape="rect" id="node3" href="$structsouffle_1_1_type_set.html#ab8550c260bf67005ef909fa4ad164509" title="Emptiness check. " alt="" coords="208,56,371,83"/>
+<area shape="rect" id="node4" href="$structsouffle_1_1_type_set.html#ad06daeb492b593d454e1e85a5a81d8eb" title="Universality check. " alt="" coords="214,107,365,133"/>
+<area shape="rect" id="node5" href="$namespacesouffle.html#a4e502e6abb9a3e9a8e4c1168dbf23743" title="Determines whether the given type is a number type. " alt="" coords="212,157,367,184"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_type_environment.html#a3607b9fb617c47df3da5050384b5f635" title="souffle::TypeEnvironment\l::getNumberType" alt="" coords="447,121,617,162"/>
+<area shape="rect" id="node9" href="$classsouffle_1_1_type.html#ac0e65ae3329b48ff0f0ad4c1b179b438" title="souffle::Type::getTypeEnvironment" alt="" coords="419,187,645,213"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1_type_environment.html#ad66cb326f809dc980e7901dfbe1fcdc5" title="souffle::TypeEnvironment\l::getType" alt="" coords="693,121,864,162"/>
+<area shape="rect" id="node8" href="$classsouffle_1_1_type_environment.html#af6f82790cb9e31b0efb8583894db3fa3" title="souffle::TypeEnvironment\l::isType" alt="" coords="912,121,1083,162"/>
+</map>

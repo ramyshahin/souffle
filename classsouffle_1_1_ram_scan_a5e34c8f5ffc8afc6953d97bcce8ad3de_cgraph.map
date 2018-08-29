@@ -1,0 +1,5 @@
+<map id="souffle::RamScan::clone" name="souffle::RamScan::clone">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ram_operation.html#a39e8b29bf74f410018e8a951696ebc70" title="Create clone. " alt="" coords="242,5,395,46"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ram_search.html#a500b2227d0a6398c507ab596b21b2f75" title="get nested operation " alt="" coords="245,70,392,111"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ram_scan.html#aaf7a330dae60f9a73fab2f8139ae8d6c" title="souffle::RamScan::RamScan" alt="" coords="222,136,415,163"/>
+</map>

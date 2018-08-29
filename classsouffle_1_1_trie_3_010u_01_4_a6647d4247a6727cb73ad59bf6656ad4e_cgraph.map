@@ -1,0 +1,7 @@
+<map id="souffle::Trie&lt; 0u &gt;::partition" name="souffle::Trie&lt; 0u &gt;::partition">
+<area shape="rect" id="node2" href="$classsouffle_1_1_trie.html#afb7b5ef0d2ae6269597277fe890fff15" title="Obtains an iterator referencing the first element stored within this trie. " alt="" coords="189,5,320,32"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_trie.html#ae570177fd435e24f542b3a1be19d07fb" title="Determines whether this trie is empty or not. " alt="" coords="187,56,322,83"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_trie.html#a6de0fa19881721f6d58c9f67a1a9f0b8" title="Obtains an iterator referencing the position after the last element stored within this trie..." alt="" coords="195,107,315,133"/>
+<area shape="rect" id="node5" href="$namespacesouffle.html#acea8a37cc1681f657054f3b30af55003" title="A utility function enabling the construction of ranges without explicitly specifying the iterator typ..." alt="" coords="185,157,325,184"/>
+<area shape="rect" id="node6" href="$namespacesouffle.html#ab2822ded4e7fd1466479b3fd6a1345a0" title="A utility function enabling the creation of a vector with a fixed set of elements within a single exp..." alt="" coords="195,208,314,235"/>
+</map>

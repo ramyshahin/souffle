@@ -1,0 +1,10 @@
+<map id="souffle::InterpreterRelInterface::iterator_base::operator*" name="souffle::InterpreterRelInterface::iterator_base::operator*">
+<area shape="rect" id="node2" href="$classsouffle_1_1_interpreter_rel_interface.html#af6ae75be958d6b71c493733f09febfc9" title="Get arity. " alt="" coords="502,7,701,48"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_interpreter_rel_interface.html#aff9c4aedae21f4668406bf0268faba13" title="Get attribute type. " alt="" coords="254,36,453,77"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_interpreter_rel_interface.html#a3fadc78b4d8644b280cffe161eed75d6" title="Get symbol table. " alt="" coords="254,101,453,143"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_symbol_table.html#a4f93dea7a8e4af02f28070548a652660" title="Find a symbol in the table by its index, note that this gives an error if the index is out of bounds..." alt="" coords="281,167,426,208"/>
+<area shape="rect" id="node9" href="$classsouffle_1_1tuple.html#a178e16d502713964b96c2346592255a1" title="reset stream pointer to first element of tuple " alt="" coords="282,233,425,259"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_interpreter_relation.html#a48005d1ab2f3cfb5606e3beb6148d9d2" title="Get arity of relation. " alt="" coords="749,7,925,48"/>
+<area shape="rect" id="node7" href="$structsouffle_1_1_lock.html#a0fe2edd3ac13a141851fa021716bae04" title="souffle::Lock::acquire" alt="" coords="528,145,675,171"/>
+<area shape="rect" id="node8" href="$classsouffle_1_1_symbol_table.html#aedae4abdfc5f4d8aaa6fdd1ac3fb1f91" title="souffle::SymbolTable\l::size" alt="" coords="529,196,674,237"/>
+</map>

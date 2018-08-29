@@ -1,0 +1,12 @@
+<map id="souffle::AstAnalysis" name="souffle::AstAnalysis">
+<area shape="rect" id="node2" href="$classsouffle_1_1_adornment.html" title="{souffle::Adornment\n|+ name\l&#45; adornmentClauses\l&#45; adornmentEdb\l&#45; adornmentIdb\l&#45; adornmentRelations\l&#45; bindings\l&#45; ignoredAtoms\l&#45; negatedAtoms\l|+ getAdornedClauses()\l+ getBindings()\l+ getEDB()\l+ getIDB()\l+ getIgnoredAtoms()\l+ getNegatedAtoms()\l+ getRelations()\l+ print()\l+ run()\l+ ~Adornment()\l}" alt="" coords="5,189,160,501"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_component_lookup.html" title="{souffle::ComponentLookup\n|+ name\l&#45; enclosingComponent\l&#45; globalScopeComponents\l&#45; nestedComponents\l|+ getComponent()\l+ run()\l}" alt="" coords="185,277,364,413"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_precedence_graph.html" title="Analysis pass computing the precedence graph of the relations of the datalog progam. " alt="" coords="388,285,561,406"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_recursive_clauses.html" title="Analysis pass identifying clauses which are recursive. " alt="" coords="585,277,761,413"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_redundant_relations.html" title="Analysis pass identifying relations which do not contribute to the computation of the output relation..." alt="" coords="785,277,972,413"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1_relation_schedule.html" title="Analysis pass computing a schedule for computing relations. " alt="" coords="996,263,1223,428"/>
+<area shape="rect" id="node8" href="$classsouffle_1_1_s_c_c_graph.html" title="Analysis pass computing the strongly connected component (SCC) graph for the datalog program..." alt="" coords="1247,160,1483,531"/>
+<area shape="rect" id="node9" href="$classsouffle_1_1_topologically_sorted_s_c_c_graph.html" title="Analysis pass computing a topologically sorted strongly connected component (SCC) graph..." alt="" coords="1508,233,1711,457"/>
+<area shape="rect" id="node10" href="$classsouffle_1_1_type_analysis.html" title="{souffle::TypeAnalysis\n|+ name\l&#45; annotatedClauses\l&#45; argumentTypes\l|+ getTypes()\l+ print()\l+ run()\l+ analyseTypes()\l}" alt="" coords="1735,270,1883,421"/>
+<area shape="rect" id="node11" href="$classsouffle_1_1_type_environment_analysis.html" title="{souffle::TypeEnvironment\lAnalysis\n|+ name\l&#45; env\l|+ getTypeEnvironment()\l+ run()\l&#45; updateTypeEnvironment()\l}" alt="" coords="1908,277,2087,413"/>
+</map>

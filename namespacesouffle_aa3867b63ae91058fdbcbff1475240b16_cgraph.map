@@ -1,0 +1,12 @@
+<map id="souffle::isValidPermutation" name="souffle::isValidPermutation">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ast_clause.html#aef9cb574a067db73c83fd9c9f63d297f" title="Creates a clone of this AST sub&#45;structure. " alt="" coords="244,63,375,105"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_ast_clause.html#a9918f4fb19dd6f152d784512853b447a" title="Obtains a copy of the internally maintained body literals. " alt="" coords="244,129,375,170"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1_ast_clause.html#ae9a1e5dd0a7c9781e23a7d9ececd6ae5" title="Return the atom that represents the head of the clause. " alt="" coords="244,194,375,235"/>
+<area shape="rect" id="node8" href="$classsouffle_1_1_ast_variable.html#a298c753e0d5f0ca5c07536ca304d9086" title="souffle::AstVariable\l::getName" alt="" coords="241,259,377,301"/>
+<area shape="rect" id="node9" href="$namespacesouffle.html#a4e134334ce89f6ebc4075e1089b1f80d" title="A utility function visiting all nodes within the ast rooted by the given node recursively in a depth&#45;..." alt="" coords="232,325,387,352"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ast_clause.html#a253d3796df50375b98447daff50200f9" title="Construct an empty clause with empty list of literals and its head set to NULL. " alt="" coords="463,5,593,46"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ast_node.html#a68e6e13cb8d1510e47087447a89cae83" title="Return source location of the AstNode. " alt="" coords="435,71,621,97"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_ast_clause.html#af03a18e982fbce1bb3866c18c5da192e" title="Obtains the execution plan associated to this clause or null if there is none. " alt="" coords="462,122,594,163"/>
+<area shape="rect" id="node10" href="$namespacesouffle.html#ae3213abfc9e18e34bb08056ec91f7b86" title="A utility function visiting all nodes within the ast rooted by the given node recursively in a depth&#45;..." alt="" coords="451,318,605,359"/>
+<area shape="rect" id="node11" href="$classsouffle_1_1_ast_node.html#a3726392849b2a07142ba13bbd5fb16d2" title="Obtain a list of all embedded AST child nodes. " alt="" coords="669,318,845,359"/>
+</map>

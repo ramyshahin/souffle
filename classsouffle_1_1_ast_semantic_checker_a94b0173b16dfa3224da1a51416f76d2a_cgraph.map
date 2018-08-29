@@ -1,0 +1,6 @@
+<map id="souffle::AstSemanticChecker::checkNamespaces" name="souffle::AstSemanticChecker::checkNamespaces">
+<area shape="rect" id="node2" href="$classsouffle_1_1_error_report.html#a699dc9231cef74ac54573e3c79de7143" title="Adds an error with the given message and location. " alt="" coords="249,5,385,46"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ast_program.html#a60fcb7d3a21a06be7b48f5849917a22b" title="Get all relations in the program. " alt="" coords="248,70,387,111"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ast_program.html#adc7c9111feed1c8ce0b72c4bf3b38bed" title="Gets a list of all types in this program. " alt="" coords="248,135,387,177"/>
+<area shape="rect" id="node5" href="$namespacesouffle.html#aecc08c83ad9634fc515b7aa094702949" title="A generic function converting strings into strings (trivial case). " alt="" coords="260,201,375,228"/>
+</map>

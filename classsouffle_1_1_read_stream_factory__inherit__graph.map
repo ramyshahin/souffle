@@ -1,0 +1,5 @@
+<map id="souffle::ReadStreamFactory" name="souffle::ReadStreamFactory">
+<area shape="rect" id="node2" href="$classsouffle_1_1_read_cin_c_s_v_factory.html" title="{souffle::ReadCinCSVFactory\n||+ getName()\l+ getReader()\l+ ~ReadCinCSVFactory()\l}" alt="" coords="5,160,197,267"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_read_file_c_s_v_factory.html" title="{souffle::ReadFileCSVFactory\n||+ getName()\l+ getReader()\l+ ~ReadFileCSVFactory()\l}" alt="" coords="222,160,415,267"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_read_s_q_lite_factory.html" title="{souffle::ReadSQLiteFactory\n||+ getName()\l+ getReader()\l+ ~ReadSQLiteFactory()\l}" alt="" coords="440,160,624,267"/>
+</map>

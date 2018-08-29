@@ -1,0 +1,7 @@
+<map id="souffle::profile::Tui::setupTabCompletion" name="souffle::profile::Tui::setupTabCompletion">
+<area shape="rect" id="node2" href="$classsouffle_1_1profile_1_1_input_reader.html#aab746fdf89ff2a8b7b009efe515a2d96" title="souffle::profile::InputReader\l::appendTabCompletion" alt="" coords="206,5,389,46"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1profile_1_1_input_reader.html#ae5691d46e4148e6593f1de31ef9525dd" title="souffle::profile::InputReader\l::clearTabCompletion" alt="" coords="206,70,389,111"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1profile_1_1_output_processor.html#a4a4f93851e27f7202de0f1a99c5114ca" title="souffle::profile::Output\lProcessor::formatTable" alt="" coords="218,135,377,177"/>
+<area shape="rect" id="node5" href="$namespacesouffle_1_1profile_1_1_tools.html#afe466b09ae5ee2e1c7c64d55a0ae0c21" title="souffle::profile::Tools\l::formatTable" alt="" coords="437,135,581,177"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1profile_1_1_table.html#ad5808507021b6f9cdd5641aac825f29e" title="souffle::profile::Table\l::getRows" alt="" coords="629,135,773,177"/>
+</map>

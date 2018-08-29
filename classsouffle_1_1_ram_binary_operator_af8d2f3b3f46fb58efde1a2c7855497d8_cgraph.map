@@ -1,0 +1,5 @@
+<map id="souffle::RamBinaryOperator::equal" name="souffle::RamBinaryOperator::equal">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ram_binary_operator.html#a044169516f1d80a3f2489636ecb4ecf9" title="souffle::RamBinaryOperator\l::getLHSArgument" alt="" coords="237,5,421,46"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ram_binary_operator.html#a3cc2aa1516c908a2467a129183e0ee07" title="Get operator symbol. " alt="" coords="237,70,421,111"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ram_binary_operator.html#aa0723c196687d4e204d6c323193e381d" title="souffle::RamBinaryOperator\l::getRHSArgument" alt="" coords="237,135,421,177"/>
+</map>

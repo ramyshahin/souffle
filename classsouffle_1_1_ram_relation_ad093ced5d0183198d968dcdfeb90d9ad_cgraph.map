@@ -1,0 +1,8 @@
+<map id="souffle::RamRelation::print" name="souffle::RamRelation::print">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ram_relation.html#acd6760acf6b69232fe1c138428ef803a" title="souffle::RamRelation\l::getArg" alt="" coords="201,5,346,46"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ram_relation.html#a988392c3b0724b683628ebbc67dbb021" title="souffle::RamRelation\l::isBrie" alt="" coords="201,70,346,111"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ram_relation.html#a1bdfc06fa5530a59b8d6739039fe4a41" title="souffle::RamRelation\l::isBTree" alt="" coords="201,135,346,177"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_ram_relation.html#ac3af25b1af330f5dac4e2e8ab28647a4" title="souffle::RamRelation\l::isEqRel" alt="" coords="201,201,346,242"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_ram_relation.html#a444c9d2348e55aec5e31c9bb0e0f2ee5" title="souffle::RamRelation\l::isHashset" alt="" coords="201,266,346,307"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1_ram_relation.html#aea69cab51b86fdf7df3a76b612a297f0" title="souffle::RamRelation\l::isRbtset" alt="" coords="201,331,346,373"/>
+</map>

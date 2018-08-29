@@ -1,0 +1,7 @@
+<map id="souffle::profile::Reader::addRelation" name="souffle::profile::Reader::addRelation">
+<area shape="rect" id="node2" href="$classsouffle_1_1profile_1_1_entry.html#a8d174967b4fcccc70fbba9a85f422c6c" title="souffle::profile::Entry\l::accept" alt="" coords="219,5,362,46"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1profile_1_1_reader.html#a80667c17e45fe8dd228a6f6388b169dc" title="souffle::profile::Reader\l::createId" alt="" coords="213,70,368,111"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1profile_1_1_entry.html#a60365ae811236c628293ecb4a435ccdf" title="souffle::profile::Entry\l::getKey" alt="" coords="219,135,362,177"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1profile_1_1_directory_entry.html#a2a8aca961218ffd945e5d681bf410821" title="souffle::profile::Directory\lEntry::getKeys" alt="" coords="208,201,373,242"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1profile_1_1_directory_entry.html#aa10394557bb93e33990186c9a11f45dc" title="souffle::profile::Directory\lEntry::readEntry" alt="" coords="208,266,373,307"/>
+</map>

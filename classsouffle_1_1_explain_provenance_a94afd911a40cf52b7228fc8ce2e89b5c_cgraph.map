@@ -1,0 +1,6 @@
+<map id="souffle::ExplainProvenance::argsToNums" name="souffle::ExplainProvenance::argsToNums">
+<area shape="rect" id="node2" href="$classsouffle_1_1_souffle_program.html#a8d60868a2e93de1ccc7b09d140542d0d" title="souffle::SouffleProgram\l::getRelation" alt="" coords="235,5,394,46"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_souffle_program.html#a5b6441c2593ac35ddb9b0a770bb3771f" title="souffle::SouffleProgram\l::getSymbolTable" alt="" coords="235,70,394,111"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_symbol_table.html#a1313606eabb515cd46aec43cfb191da3" title="Finds the index of a symbol in the table, giving an error if it&#39;s not found. " alt="" coords="242,135,387,177"/>
+<area shape="rect" id="node5" href="$structsouffle_1_1_lock.html#a0fe2edd3ac13a141851fa021716bae04" title="souffle::Lock::acquire" alt="" coords="443,143,589,169"/>
+</map>

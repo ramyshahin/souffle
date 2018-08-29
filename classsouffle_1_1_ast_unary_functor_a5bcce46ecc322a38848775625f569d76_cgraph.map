@@ -1,0 +1,4 @@
+<map id="souffle::AstUnaryFunctor::isSymbolic" name="souffle::AstUnaryFunctor::isSymbolic">
+<area shape="rect" id="node2" href="$namespacesouffle.html#ae4786045b9e6b3d5543115981971eb89" title="Returns whether the given operator has a symbolic return value. " alt="" coords="222,12,407,39"/>
+<area shape="rect" id="node3" href="$namespacesouffle.html#abd31efb9f808712dfee9a892ec1dc08e" title="Returns whether the given operator has a numeric return value. " alt="" coords="457,12,637,39"/>
+</map>

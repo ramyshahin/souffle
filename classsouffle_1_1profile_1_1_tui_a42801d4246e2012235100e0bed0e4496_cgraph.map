@@ -1,0 +1,27 @@
+<map id="souffle::profile::Tui::usageRule" name="souffle::profile::Tui::usageRule">
+<area shape="rect" id="node2" href="$classsouffle_1_1profile_1_1_output_processor.html#a4a4f93851e27f7202de0f1a99c5114ca" title="souffle::profile::Output\lProcessor::formatTable" alt="" coords="431,134,590,175"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1profile_1_1_output_processor.html#a6bb671aa2410a26617bf762934edf00d" title="souffle::profile::Output\lProcessor::getProgramRun" alt="" coords="185,285,365,326"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1profile_1_1_tui.html#abacdb739200be5888a87f4b3132acbef" title="souffle::profile::Tui::rel" alt="" coords="199,233,351,260"/>
+<area shape="rect" id="node15" href="$classsouffle_1_1profile_1_1_tui.html#ab4dc2fc73794c99f3448b7ab0f9f5b47" title="souffle::profile::Tui::rul" alt="" coords="199,183,351,209"/>
+<area shape="rect" id="node16" href="$classsouffle_1_1profile_1_1_tui.html#a3c2c35a1f82bea79923aec820fbff582" title="souffle::profile::Tui\l::usage" alt="" coords="209,501,340,542"/>
+<area shape="rect" id="node3" href="$namespacesouffle_1_1profile_1_1_tools.html#afe466b09ae5ee2e1c7c64d55a0ae0c21" title="souffle::profile::Tools\l::formatTable" alt="" coords="705,5,849,46"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1profile_1_1_table.html#ad5808507021b6f9cdd5641aac825f29e" title="souffle::profile::Table\l::getRows" alt="" coords="957,5,1101,46"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1profile_1_1_table.html#ad4cd261b758bcc2bc223b1b8d9aaa94e" title="souffle::profile::Table\l::sort" alt="" coords="439,217,583,258"/>
+<area shape="rect" id="node8" href="$classsouffle_1_1profile_1_1_data_comparator.html#a734aaeddd3c8a7952ac75358d9cdfe5d" title="Sort by copy time. " alt="" coords="657,121,898,148"/>
+<area shape="rect" id="node9" href="$classsouffle_1_1profile_1_1_data_comparator.html#a76f98b6d43dc528c8f8bddb3746e8269" title="Sort by ID. " alt="" coords="662,172,893,199"/>
+<area shape="rect" id="node10" href="$classsouffle_1_1profile_1_1_data_comparator.html#ac520aeef0437cb4a54c57b83bfc7af82" title="Sort by name. " alt="" coords="673,223,881,265"/>
+<area shape="rect" id="node11" href="$classsouffle_1_1profile_1_1_data_comparator.html#af08f9cf841481752c50d2483027f0a07" title="Sort by non&#45;recursive time. " alt="" coords="673,289,881,330"/>
+<area shape="rect" id="node12" href="$classsouffle_1_1profile_1_1_data_comparator.html#a286b840ac5b9694c711f384e3edc0914" title="Sort by recursive time. " alt="" coords="657,355,898,381"/>
+<area shape="rect" id="node13" href="$classsouffle_1_1profile_1_1_data_comparator.html#a48b1c57f77017e9ae5a301526ca4a438" title="Sort by total time. " alt="" coords="673,406,881,447"/>
+<area shape="rect" id="node14" href="$classsouffle_1_1profile_1_1_data_comparator.html#ae89cb5ff565853d5eb8c5a6299f8774a" title="Sort by tuple count. " alt="" coords="656,71,899,97"/>
+<area shape="rect" id="node17" href="$namespacesouffle_1_1profile_1_1_tools.html#a1559d42a6fa12539abc7744726a7eaa4" title="souffle::profile::Tools\l::formatNum" alt="" coords="439,647,583,689"/>
+<area shape="rect" id="node19" href="$namespacesouffle_1_1profile_1_1_tools.html#ad0ed94a1bddc0f50beba321548460743" title="souffle::profile::Tools\l::formatTime" alt="" coords="439,713,583,754"/>
+<area shape="rect" id="node20" href="$classsouffle_1_1_profile_event_singleton.html#a637d45b9714bb164623bda9df474bc85" title="souffle::ProfileEventSingleton\l::getDB" alt="" coords="413,778,608,819"/>
+<area shape="rect" id="node21" href="$classsouffle_1_1profile_1_1_directory_entry.html#a2a8aca961218ffd945e5d681bf410821" title="souffle::profile::Directory\lEntry::getKeys" alt="" coords="428,282,593,323"/>
+<area shape="rect" id="node22" href="$classsouffle_1_1profile_1_1_tui.html#a5ba0d3f8a71af6e8b0d2e669aa610b5d" title="souffle::profile::Tui\l::getTermWidth" alt="" coords="445,347,576,389"/>
+<area shape="rect" id="node23" href="$classsouffle_1_1_profile_event_singleton.html#adf94d78a9d87272b42a1fe4bc31f918d" title="get instance " alt="" coords="413,413,608,454"/>
+<area shape="rect" id="node24" href="$classsouffle_1_1profile_1_1_profile_database.html#ae5a098b1d32229911d5d3b960472ccd8" title="Return the entry at the given path. " alt="" coords="433,530,588,571"/>
+<area shape="rect" id="node25" href="$classsouffle_1_1profile_1_1_directory_entry.html#ad1dba1259e3d6435662024428904eac5" title="souffle::profile::Directory\lEntry::readDirectoryEntry" alt="" coords="692,581,863,622"/>
+<area shape="rect" id="node26" href="$classsouffle_1_1profile_1_1_directory_entry.html#aa10394557bb93e33990186c9a11f45dc" title="souffle::profile::Directory\lEntry::readEntry" alt="" coords="947,522,1112,563"/>
+<area shape="rect" id="node18" href="$namespacesouffle_1_1profile_1_1_tools.html#a2bece208942313bcd12c80a8d5cba2ba" title="souffle::profile::Tools\l::abbreviations" alt="" coords="705,647,849,689"/>
+</map>

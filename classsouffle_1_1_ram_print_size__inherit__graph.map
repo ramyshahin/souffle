@@ -1,0 +1,5 @@
+<map id="souffle::RamPrintSize" name="souffle::RamPrintSize">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ram_relation_statement.html" title="RAM Statements with a single relation. " alt="" coords="5,435,211,571"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ram_statement.html" title="Abstract class for RAM statements. " alt="" coords="29,265,187,386"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ram_node.html" title="RamNode is a superclass for all RAM IR classes. " alt="" coords="44,6,172,215"/>
+</map>

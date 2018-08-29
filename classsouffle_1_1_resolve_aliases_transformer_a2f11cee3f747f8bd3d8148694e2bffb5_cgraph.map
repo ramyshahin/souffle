@@ -1,0 +1,6 @@
+<map id="souffle::ResolveAliasesTransformer::removeComplexTermsInAtoms" name="souffle::ResolveAliasesTransformer::removeComplexTermsInAtoms">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ast_clause.html#aa9da90d931189d440bbe7b256e554f8d" title="Add a Literal to the body of the clause. " alt="" coords="285,5,416,46"/>
+<area shape="rect" id="node3" href="$namespacesouffle.html#a34f8eecb81c090fca9e58d3357b63ed9" title="A generic test checking whether any elements within a container satisfy a certain predicate..." alt="" coords="297,71,405,97"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ast_clause.html#a9918f4fb19dd6f152d784512853b447a" title="Obtains a copy of the internally maintained body literals. " alt="" coords="285,122,416,163"/>
+<area shape="rect" id="node5" href="$namespacesouffle.html#aecc08c83ad9634fc515b7aa094702949" title="A generic function converting strings into strings (trivial case). " alt="" coords="293,188,408,215"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="souffle::AstUnaryFunctor::acceptsSymbols" name="souffle::AstUnaryFunctor::acceptsSymbols">
+<area shape="rect" id="node2" href="$namespacesouffle.html#a3523c0cffbdbed0fabf4ad2f298f9c51" title="Returns whether the given operator takes a symbolic argument. " alt="" coords="222,12,439,39"/>
+<area shape="rect" id="node3" href="$namespacesouffle.html#ac9af2eda2dd88cc60de32a89c4dc891c" title="Returns whether the given operator takes a numeric argument. " alt="" coords="488,12,707,39"/>
+</map>

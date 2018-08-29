@@ -1,0 +1,11 @@
+<map id="souffle::RamRelation::equal" name="souffle::RamRelation::equal">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ram_relation.html#a988392c3b0724b683628ebbc67dbb021" title="souffle::RamRelation\l::isBrie" alt="" coords="201,5,346,46"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ram_relation.html#a1bdfc06fa5530a59b8d6739039fe4a41" title="souffle::RamRelation\l::isBTree" alt="" coords="201,70,346,111"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ram_relation.html#a76e6ddb656d8729ba7a2c821fda33acd" title="souffle::RamRelation\l::isComputed" alt="" coords="201,135,346,177"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_ram_relation.html#ac3af25b1af330f5dac4e2e8ab28647a4" title="souffle::RamRelation\l::isEqRel" alt="" coords="201,201,346,242"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_ram_relation.html#a444c9d2348e55aec5e31c9bb0e0f2ee5" title="souffle::RamRelation\l::isHashset" alt="" coords="201,266,346,307"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1_ram_relation.html#a0f7ed74ece7772cb43eac9dc72d137df" title="souffle::RamRelation\l::isInput" alt="" coords="201,331,346,373"/>
+<area shape="rect" id="node8" href="$classsouffle_1_1_ram_relation.html#a2a6ee7faacfd4a16db8f7ce496da7fe7" title="souffle::RamRelation\l::isOutput" alt="" coords="201,397,346,438"/>
+<area shape="rect" id="node9" href="$classsouffle_1_1_ram_relation.html#aea69cab51b86fdf7df3a76b612a297f0" title="souffle::RamRelation\l::isRbtset" alt="" coords="201,462,346,503"/>
+<area shape="rect" id="node10" href="$classsouffle_1_1_ram_relation.html#a0f7f14f139dc77983c4cd535cd7daa5b" title="souffle::RamRelation\l::isTemp" alt="" coords="201,527,346,569"/>
+</map>

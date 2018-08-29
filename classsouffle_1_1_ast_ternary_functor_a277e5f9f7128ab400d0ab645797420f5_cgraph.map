@@ -1,0 +1,4 @@
+<map id="souffle::AstTernaryFunctor::acceptsSymbols" name="souffle::AstTernaryFunctor::acceptsSymbols">
+<area shape="rect" id="node2" href="$namespacesouffle.html#a7778845f2059dbeb6e09b524cf45fca1" title="Determines whether an argument has a symbolic value. " alt="" coords="233,5,407,46"/>
+<area shape="rect" id="node3" href="$namespacesouffle.html#a529b2e542971d474c9d97b1546001dcf" title="Determines whether an argument has a number value. " alt="" coords="457,5,631,46"/>
+</map>

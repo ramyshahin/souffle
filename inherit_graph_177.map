@@ -1,0 +1,4 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$structsouffle_1_1ram_1_1detail_1_1_relation_base.html" title="souffle::ram::detail\l::RelationBase\&lt; arity,\l GenericRelation\&lt; config,\l arity, Indices...\&gt; \&gt;" alt="" coords="5,5,176,75"/>
+<area shape="rect" id="node2" href="$classsouffle_1_1ram_1_1detail_1_1_generic_relation.html" title="A generic relation type to customizable by some data structure configuration struct. " alt="" coords="225,12,399,68"/>
+</map>

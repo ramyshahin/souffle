@@ -1,0 +1,6 @@
+<map id="souffle::RamCreate::print" name="souffle::RamCreate::print">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ram_relation.html#acd6760acf6b69232fe1c138428ef803a" title="souffle::RamRelation\l::getArg" alt="" coords="219,5,365,46"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ram_relation.html#a4b8c28fa5818f930e0d3149cd4a50b8b" title="souffle::RamRelation\l::getArity" alt="" coords="219,70,365,111"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ram_relation.html#aff204de1a828d72e6e74337be4885ddd" title="souffle::RamRelation\l::getName" alt="" coords="219,135,365,177"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_ram_relation_statement.html#a93110734f0f992a2f9b1a1d492cef3ad" title="Get RAM relation. " alt="" coords="189,201,395,242"/>
+</map>

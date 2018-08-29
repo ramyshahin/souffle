@@ -1,0 +1,24 @@
+<map id="souffle_prof.cpp" name="souffle_prof.cpp">
+<area shape="rect" id="node2" href="$_cli_8h.html" title="profile/Cli.h" alt="" coords="1263,80,1351,107"/>
+<area shape="rect" id="node3" href="$_string_utils_8h.html" title="StringUtils.h" alt="" coords="670,304,764,331"/>
+<area shape="rect" id="node20" href="$_tui_8h.html" title="Tui.h" alt="" coords="1180,155,1231,181"/>
+<area shape="rect" id="node4" href="$_cell_interface_8h.html" title="CellInterface.h" alt="" coords="460,603,567,629"/>
+<area shape="rect" id="node6" href="$_row_8h.html" title="Row.h" alt="" coords="687,528,747,555"/>
+<area shape="rect" id="node10" href="$profile_2_table_8h.html" title="Table.h" alt="" coords="398,379,463,405"/>
+<area shape="rect" id="node11" href="$_data_comparator_8h.html" title="DataComparator.h" alt="" coords="449,453,577,480"/>
+<area shape="rect" id="node21" href="$_profile_event_8h.html" title="../ProfileEvent.h" alt="" coords="2195,304,2311,331"/>
+<area shape="rect" id="node38" href="$_html_string_8h.html" title="HtmlString.h" alt="" coords="3558,528,3652,555"/>
+<area shape="rect" id="node46" href="$_output_processor_8h.html" title="OutputProcessor.h" alt="" coords="715,229,844,256"/>
+<area shape="rect" id="node47" href="$_reader_8h.html" title="Reader.h" alt="" coords="1724,229,1797,256"/>
+<area shape="rect" id="node49" href="$_user_input_reader_8h.html" title="UserInputReader.h" alt="" coords="1441,528,1572,555"/>
+<area shape="rect" id="node22" href="$_event_processor_8h.html" title="EventProcessor.h" alt="" coords="3001,379,3127,405"/>
+<area shape="rect" id="node26" href="$_profile_database_8h.html" title="ProfileDatabase.h" alt="" coords="2595,453,2721,480"/>
+<area shape="rect" id="node27" href="$_util_8h.html" title="Util.h" alt="" coords="2189,528,2243,555"/>
+<area shape="rect" id="node39" href="$html_css_chartist_8h.html" title="htmlCssChartist.h" alt="" coords="3915,603,4043,629"/>
+<area shape="rect" id="node40" href="$html_css_style_8h.html" title="htmlCssStyle.h" alt="" coords="2993,603,3104,629"/>
+<area shape="rect" id="node41" href="$html_js_chartist_min_8h.html" title="htmlJsChartistMin.h" alt="" coords="3129,603,3268,629"/>
+<area shape="rect" id="node42" href="$html_js_chartist_plugin_8h.html" title="htmlJsChartistPlugin.h" alt="" coords="3292,603,3445,629"/>
+<area shape="rect" id="node43" href="$html_js_main_8h.html" title="htmlJsMain.h" alt="" coords="3470,603,3569,629"/>
+<area shape="rect" id="node44" href="$html_js_table_sort_8h.html" title="htmlJsTableSort.h" alt="" coords="3595,603,3723,629"/>
+<area shape="rect" id="node45" href="$html_js_util_8h.html" title="htmlJsUtil.h" alt="" coords="3747,603,3839,629"/>
+</map>

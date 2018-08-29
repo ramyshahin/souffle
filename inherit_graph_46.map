@@ -1,0 +1,4 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$classsouffle_1_1detail_1_1btree.html" title="souffle::detail::btree\l\&lt; const RamDomain *, comparator,\l std::allocator\&lt; const RamDomain\l * \&gt;, blockSize, typename detail\l::default_strategy\&lt; const RamDomain\l * \&gt;::type, false \&gt;" alt="" coords="6,5,250,105"/>
+<area shape="rect" id="node2" href="$classsouffle_1_1btree__multiset.html" title="souffle::btree_multiset\l\&lt; const RamDomain *, comparator,\l std::allocator\&lt; const RamDomain\l * \&gt;, 512 \&gt;" alt="" coords="299,19,528,90"/>
+</map>

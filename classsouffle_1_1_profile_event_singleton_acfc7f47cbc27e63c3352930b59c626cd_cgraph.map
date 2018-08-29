@@ -1,0 +1,14 @@
+<map id="souffle::ProfileEventSingleton::startTimer" name="souffle::ProfileEventSingleton::startTimer">
+<area shape="rect" id="node2" href="$classsouffle_1_1_profile_event_singleton_1_1_profile_timer.html#a8a0e3b73d5cf8e6a0dad89cbe70a01e3" title="start timer on the thread th " alt="" coords="248,103,443,145"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_profile_event_singleton_1_1_profile_timer.html#a93ba8071064539710392db26064308da" title="run method for thread th " alt="" coords="491,70,685,111"/>
+<area shape="rect" id="node13" href="$classsouffle_1_1_profile_event_singleton_1_1_profile_timer.html#a90feb2eb068f21efa899bdbf6add148a" title="souffle::ProfileEventSingleton\l::ProfileTimer::getInterval" alt="" coords="491,135,685,177"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_profile_event_singleton.html#adf94d78a9d87272b42a1fe4bc31f918d" title="get instance " alt="" coords="736,5,931,46"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_profile_event_singleton.html#a4f777f41665db2077465cd8c0ab2d834" title="create utilisation event " alt="" coords="736,70,931,111"/>
+<area shape="rect" id="node12" href="$classsouffle_1_1_profile_event_singleton_1_1_profile_timer.html#a9207248f953f6684e442243b5f4d4515" title="Increase value of time interval by factor of 2. " alt="" coords="733,135,933,177"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1profile_1_1_event_processor_singleton.html#a3a6564631bccb96da84ccad7edfe4dc9" title="get instance " alt="" coords="981,11,1187,53"/>
+<area shape="rect" id="node7" href="$namespacesouffle.html#a1c65551944c7ecf6f44ec851b49bdbb0" title="souffle::now" alt="" coords="1037,77,1131,104"/>
+<area shape="rect" id="node8" href="$classsouffle_1_1profile_1_1_event_processor_singleton.html#a537033bada68e176ff0b09239acd21fe" title="process a profile event " alt="" coords="981,129,1187,170"/>
+<area shape="rect" id="node9" href="$classsouffle_1_1profile_1_1_event_processor_singleton.html#a2683498b1eeddf5c2c036b083e9be0d3" title="Escape escape characters. " alt="" coords="1235,95,1440,137"/>
+<area shape="rect" id="node10" href="$classsouffle_1_1profile_1_1_event_processor_singleton.html#ac29c916b9aef2f553b111dad2df96cf4" title="split string separated by semi&#45;colon " alt="" coords="1235,161,1440,202"/>
+<area shape="rect" id="node11" href="$classsouffle_1_1profile_1_1_event_processor_singleton.html#a21060e6cba7f78fb9c0f9a43ab84580a" title="split string " alt="" coords="1488,161,1693,202"/>
+</map>

@@ -1,0 +1,8 @@
+<map id="souffle::tuple::operator&lt;&lt;" name="souffle::tuple::operator&lt;&lt;">
+<area shape="rect" id="node2" href="$classsouffle_1_1_relation.html#a2607e76650b5045cd84babfdd0bd64f3" title="souffle::Relation::\lgetAttrType" alt="" coords="232,5,357,46"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_relation.html#aafe66b5dd0bb775432f884bc47741a52" title="souffle::Relation::\lgetSymbolTable" alt="" coords="232,70,357,111"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_symbol_table.html#ada9d8afe1219bf54d16507b424f512c6" title="Find the index of a symbol in the table, inserting a new symbol if it does not exist there already..." alt="" coords="222,135,367,177"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1tuple.html#a7a2a91980e45540b7a3db630838373bc" title="return number of elements in the tuple " alt="" coords="230,201,359,228"/>
+<area shape="rect" id="node5" href="$structsouffle_1_1_lock.html#a0fe2edd3ac13a141851fa021716bae04" title="souffle::Lock::acquire" alt="" coords="416,113,563,140"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_symbol_table.html#a3ada80bb01130f70001918c386d3ab21" title="Convenience method to place a new symbol in the table, if it does not exist, and return the index of ..." alt="" coords="417,165,562,206"/>
+</map>

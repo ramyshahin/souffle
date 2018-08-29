@@ -1,0 +1,5 @@
+<map id="souffle::PrimitiveType" name="souffle::PrimitiveType">
+<area shape="rect" id="node2" href="$classsouffle_1_1_type.html" title="An abstract base class for types to be covered within a type environment. " alt="" coords="120,509,283,704"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ast_type_identifier.html" title="The type of identifier utilized for referencing types. " alt="" coords="5,163,173,445"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_type_environment.html" title="A type environment is a set of types. " alt="" coords="200,185,371,423"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="souffle::BinaryRelation::iterator::iterator" name="souffle::BinaryRelation::iterator::iterator">
+<area shape="rect" id="node2" href="$classsouffle_1_1_binary_relation_1_1iterator.html#a668b99dad8e723ae66d8b08b401a1f52" title="special fn to set endVal = true only set when the current iterator actually cannot iterate anymore sh..." alt="" coords="209,5,365,46"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_binary_relation_1_1iterator.html#af7b8f18b691badb8814eb9cdda49a0ab" title="Adjust the iterators to point to the beginning of each trie. " alt="" coords="209,70,364,111"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_binary_relation_1_1iterator.html#a024230019dda0d70d642e7d802669b7f" title="yield the current iterator value to update to what the iterator is currently pointing at ..." alt="" coords="209,135,364,177"/>
+</map>

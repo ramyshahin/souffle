@@ -1,0 +1,11 @@
+<map id="souffle::InterpreterProgInterface" name="souffle::InterpreterProgInterface">
+<area shape="rect" id="node2" href="$classsouffle_1_1_souffle_program.html" title="Abstract base class for generated Datalog programs. " alt="" coords="219,864,377,1147"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_ram_program.html" title="{souffle::RamProgram\n||+ addRelation()\l+ addSubroutine()\l+ apply()\l+ clone()\l+ getChildNodes()\l+ getMain()\l+ getRelation()\l+ getSubroutine()\l+ getSubroutines()\l+ print()\l+ RamProgram()\l# equal()\l}" alt="" coords="723,886,869,1125"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1_ram_node.html" title="RamNode is a superclass for all RAM IR classes. " alt="" coords="405,531,533,741"/>
+<area shape="rect" id="node12" href="$classsouffle_1_1_symbol_table.html" title="Global pool of re&#45;usable strings. " alt="" coords="1968,192,2120,445"/>
+<area shape="rect" id="node20" href="$classsouffle_1_1_ram_translation_unit.html" title="Class for RamTranslationUnit. " alt="" coords="1693,509,1877,763"/>
+<area shape="rect" id="node14" href="$structsouffle_1_1_lock.html" title="A small utility class for implementing simple locks. " alt="" coords="1995,6,2092,127"/>
+<area shape="rect" id="node16" href="$classsouffle_1_1_interpreter.html" title="Interpreter executing a RAM translation unit. " alt="" coords="1381,857,1533,1154"/>
+<area shape="rect" id="node21" href="$classsouffle_1_1_debug_report.html" title="Class representing a HTML report, consisting of a list of sections. " alt="" coords="1305,265,1452,372"/>
+<area shape="rect" id="node24" href="$classsouffle_1_1_error_report.html" title="{souffle::ErrorReport\n||+ addDiagnostic()\l+ addError()\l+ addWarning()\l+ ErrorReport()\l+ ErrorReport()\l+ getNumErrors()\l+ getNumIssues()\l+ getNumWarnings()\l+ print()\l}" alt="" coords="1643,221,1785,416"/>
+</map>

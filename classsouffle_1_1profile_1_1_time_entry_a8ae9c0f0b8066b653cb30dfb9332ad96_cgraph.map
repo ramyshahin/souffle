@@ -1,0 +1,7 @@
+<map id="souffle::profile::TimeEntry::accept" name="souffle::profile::TimeEntry::accept">
+<area shape="rect" id="node2" href="$classsouffle_1_1profile_1_1_visitor.html#a963567d10153168dad7356bbe0f3b968" title="souffle::profile::Visitor\l::visit" alt="" coords="227,103,376,145"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1profile_1_1_entry.html#a60365ae811236c628293ecb4a435ccdf" title="souffle::profile::Entry\l::getKey" alt="" coords="435,5,578,46"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1profile_1_1_directory_entry.html#a2a8aca961218ffd945e5d681bf410821" title="souffle::profile::Directory\lEntry::getKeys" alt="" coords="424,70,589,111"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1profile_1_1_directory_entry.html#aa10394557bb93e33990186c9a11f45dc" title="souffle::profile::Directory\lEntry::readEntry" alt="" coords="424,135,589,177"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1profile_1_1_entry.html#a8d174967b4fcccc70fbba9a85f422c6c" title="souffle::profile::Entry\l::accept" alt="" coords="435,201,578,242"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="souffle::RamCondition" name="souffle::RamCondition">
+<area shape="rect" id="node3" href="$classsouffle_1_1_ram_and.html" title="Conjunction. " alt="" coords="5,463,133,673"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ram_binary_relation.html" title="Binary constraint. " alt="" coords="158,419,340,717"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_ram_empty.html" title="Emptiness check for a relation. " alt="" coords="365,478,499,658"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_ram_not_exists.html" title="Not existence check for a relation. " alt="" coords="524,441,677,695"/>
+<area shape="rect" id="node2" href="$classsouffle_1_1_ram_node.html" title="RamNode is a superclass for all RAM IR classes. " alt="" coords="276,6,404,215"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="souffle::ProgramFactory::newInstance" name="souffle::ProgramFactory::newInstance">
+<area shape="rect" id="node2" href="$classsouffle_1_1_program_factory.html#ad2b41c03dbad20406048a9504d89c0c1" title="Find a factory by its name. " alt="" coords="216,5,379,46"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_program_factory.html#aeeb8c8fa86018f5f19cf6d419acdec54" title="Create new instance (abstract) " alt="" coords="216,70,379,111"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_program_factory.html#a54d972f9aa07931cf31582d35560d84b" title="souffle::ProgramFactory\l::getFactoryRegistry" alt="" coords="427,5,589,46"/>
+</map>

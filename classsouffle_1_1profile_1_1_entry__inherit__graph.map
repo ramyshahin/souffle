@@ -1,0 +1,7 @@
+<map id="souffle::profile::Entry" name="souffle::profile::Entry">
+<area shape="rect" id="node2" href="$classsouffle_1_1profile_1_1_directory_entry.html" title="DirectoryEntry entry. " alt="" coords="5,189,169,384"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1profile_1_1_duration_entry.html" title="Duration Entry. " alt="" coords="195,204,356,369"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1profile_1_1_size_entry.html" title="SizeEntry. " alt="" coords="381,226,549,347"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1profile_1_1_text_entry.html" title="TextEntry. " alt="" coords="574,226,743,347"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1profile_1_1_time_entry.html" title="Time Entry. " alt="" coords="767,226,939,347"/>
+</map>

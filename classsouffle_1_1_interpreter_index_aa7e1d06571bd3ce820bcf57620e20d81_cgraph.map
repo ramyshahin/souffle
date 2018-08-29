@@ -1,0 +1,4 @@
+<map id="souffle::InterpreterIndex::lowerUpperBound" name="souffle::InterpreterIndex::lowerUpperBound">
+<area shape="rect" id="node2" href="$classsouffle_1_1detail_1_1btree.html#afd9032b4c60b4885f6bddc07684e03a7" title="Obtains a lower boundary for the given key – hence an iterator referencing the smallest value that is..." alt="" coords="214,5,351,46"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1detail_1_1btree.html#ab5cbea6c5a0621a1be868918de10b897" title="Obtains an upper boundary for the given key – hence an iterator referencing the first element that th..." alt="" coords="214,70,351,111"/>
+</map>

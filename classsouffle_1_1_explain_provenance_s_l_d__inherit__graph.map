@@ -1,0 +1,3 @@
+<map id="souffle::ExplainProvenanceSLD" name="souffle::ExplainProvenanceSLD">
+<area shape="rect" id="node2" href="$classsouffle_1_1_explain_provenance.html" title="{souffle::ExplainProvenance\n|# prog\l|+ explain()\l+ ExplainProvenance()\l+ explainSubproof()\l+ getRelationOutput()\l+ getRule()\l+ printRulesJSON()\l+ setup()\l+ ~ExplainProvenance()\l# argsToNums()\l# numsToArgs()\l# printRelationOutput()\l}" alt="" coords="17,5,199,229"/>
+</map>

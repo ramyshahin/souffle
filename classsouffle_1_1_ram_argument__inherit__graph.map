@@ -1,0 +1,4 @@
+<map id="souffle::RamArgument" name="souffle::RamArgument">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ram_value.html" title="Abstract class for describing scalar values in RAM. " alt="" coords="16,265,145,386"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ram_node.html" title="RamNode is a superclass for all RAM IR classes. " alt="" coords="17,6,145,215"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="souffle::InterpreterRelation::getIndex" name="souffle::InterpreterRelation::getIndex">
+<area shape="rect" id="node2" href="$structsouffle_1_1_lock.html#a0fe2edd3ac13a141851fa021716bae04" title="souffle::Lock::acquire" alt="" coords="244,5,391,32"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_interpreter_relation.html#ac38a7ef1e0d01a99d5d96c7c0479f92e" title="get iterator begin of relation " alt="" coords="229,57,405,98"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_interpreter_relation.html#ae016a864942bb8693682380ac7276bbd" title="get iterator begin of relation " alt="" coords="453,123,659,149"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_interpreter_relation.html#a5de54d32362b1ee2b22318e055833e22" title="Check whether relation is empty. " alt="" coords="468,57,644,98"/>
+</map>

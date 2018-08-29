@@ -1,0 +1,5 @@
+<map id="souffle::AstClause::clone" name="souffle::AstClause::clone">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ast_clause.html#a253d3796df50375b98447daff50200f9" title="Construct an empty clause with empty list of literals and its head set to NULL. " alt="" coords="212,5,343,46"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ast_clause.html#af03a18e982fbce1bb3866c18c5da192e" title="Obtains the execution plan associated to this clause or null if there is none. " alt="" coords="211,70,343,111"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ast_node.html#a68e6e13cb8d1510e47087447a89cae83" title="Return source location of the AstNode. " alt="" coords="184,136,371,163"/>
+</map>

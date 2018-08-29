@@ -1,0 +1,15 @@
+<map id="souffle::RecursiveClauses::run" name="souffle::RecursiveClauses::run">
+<area shape="rect" id="node2" href="$classsouffle_1_1_recursive_clauses.html#a7cb3e09bbba3d9794df2794e3a6d23de" title="Determines whether the given clause is recursive within the given program. " alt="" coords="256,154,432,195"/>
+<area shape="rect" id="node11" href="$classsouffle_1_1_ast_translation_unit.html#a85862a5fcfecdf63c7367926cdedde23" title="get the AST program " alt="" coords="481,238,658,279"/>
+<area shape="rect" id="node12" href="$namespacesouffle.html#a4e134334ce89f6ebc4075e1089b1f80d" title="A utility function visiting all nodes within the ast rooted by the given node recursively in a depth&#45;..." alt="" coords="267,303,421,329"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ast_clause.html#a349d1209cf619aaf6250c91e2cb0041d" title="Obtains a list of contained body&#45;atoms. " alt="" coords="504,5,635,46"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_ast_relation.html#a0a748962a9a2151a2fabe585346fb0d7" title="Obtains a list of the associated clauses. " alt="" coords="501,70,638,111"/>
+<area shape="rect" id="node6" href="$namespacesouffle.html#ae5266d9360a88847a65d1c581f778d89" title="Returns the relation referenced by the head of the given clause. " alt="" coords="486,136,653,163"/>
+<area shape="rect" id="node9" href="$classsouffle_1_1_ast_program.html#ae4e787ea4d338524ea6b346d5dedc290" title="Find and return the relation in the program given its name. " alt="" coords="952,150,1091,191"/>
+<area shape="rect" id="node4" href="$namespacesouffle.html#ad62d4e824a9d74c7462da546a21780fe" title="A utility function enabling the creation of a vector of pointers. " alt="" coords="727,16,862,43"/>
+<area shape="rect" id="node7" href="$namespacesouffle.html#ab18cbb3adc2ab328de0db30a3fddf7e0" title="Returns the relation referenced by the given atom. " alt="" coords="711,69,878,96"/>
+<area shape="rect" id="node10" href="$classsouffle_1_1_ast_clause.html#ae9a1e5dd0a7c9781e23a7d9ececd6ae5" title="Return the atom that represents the head of the clause. " alt="" coords="729,121,860,162"/>
+<area shape="rect" id="node8" href="$classsouffle_1_1_ast_atom.html#adfaa949dc3e89fa2dc25981963ea5752" title="Return the name of this atom. " alt="" coords="931,69,1112,96"/>
+<area shape="rect" id="node13" href="$namespacesouffle.html#ae3213abfc9e18e34bb08056ec91f7b86" title="A utility function visiting all nodes within the ast rooted by the given node recursively in a depth&#45;..." alt="" coords="492,303,647,345"/>
+<area shape="rect" id="node14" href="$classsouffle_1_1_ast_node.html#a3726392849b2a07142ba13bbd5fb16d2" title="Obtain a list of all embedded AST child nodes. " alt="" coords="707,303,883,345"/>
+</map>

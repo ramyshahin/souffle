@@ -1,0 +1,6 @@
+<map id="souffle::ReadStreamCSV" name="souffle::ReadStreamCSV">
+<area shape="rect" id="node2" href="$classsouffle_1_1_read_stream.html" title="{souffle::ReadStream\n||+ readAll()\l+ ReadStream()\l+ ~ReadStream()\l# readNextTuple()\l}" alt="" coords="150,510,292,631"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_symbol_mask.html" title="{souffle::SymbolMask\n||+ getArity()\l+ isSymbol()\l+ operator!=()\l+ operator==()\l+ print()\l+ setSymbol()\l+ SymbolMask()\l+ SymbolMask()\l}" alt="" coords="5,229,149,409"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_symbol_table.html" title="Global pool of re&#45;usable strings. " alt="" coords="281,192,433,445"/>
+<area shape="rect" id="node8" href="$structsouffle_1_1_lock.html" title="A small utility class for implementing simple locks. " alt="" coords="311,6,408,127"/>
+</map>

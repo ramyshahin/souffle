@@ -1,0 +1,6 @@
+<map id="souffle::isBoundComposite" name="souffle::isBoundComposite">
+<area shape="rect" id="node2" href="$classsouffle_1_1_binding_store.html#a0da8360ecba6d9b26e9d075a0b285740" title="souffle::BindingStore\l::addVariableBoundComposite" alt="" coords="233,5,431,46"/>
+<area shape="rect" id="node3" href="$namespacesouffle.html#a6f53082a60ed5593022bde81dc619ac9" title="souffle::contains" alt="" coords="273,71,391,97"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ast_variable.html#a298c753e0d5f0ca5c07536ca304d9086" title="souffle::AstVariable\l::getName" alt="" coords="264,122,400,163"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_binding_store.html#a08058db98053df04128550fadda81875" title="souffle::BindingStore\l::getVariableDependencies" alt="" coords="243,187,421,229"/>
+</map>

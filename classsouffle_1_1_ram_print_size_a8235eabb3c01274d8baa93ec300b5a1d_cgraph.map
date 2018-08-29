@@ -1,0 +1,5 @@
+<map id="souffle::RamPrintSize::print" name="souffle::RamPrintSize::print">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ram_relation.html#aff204de1a828d72e6e74337be4885ddd" title="souffle::RamRelation\l::getName" alt="" coords="235,5,381,46"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ram_relation_statement.html#a93110734f0f992a2f9b1a1d492cef3ad" title="Get RAM relation. " alt="" coords="205,70,411,111"/>
+<area shape="rect" id="node4" href="$namespacesouffle.html#a06f428910159c119c1dcdcab76ab7dfa" title="Stringify a string using escapes for newline, tab, double&#45;quotes and semicolons. " alt="" coords="251,136,365,163"/>
+</map>

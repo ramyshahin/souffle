@@ -1,0 +1,7 @@
+<map id="souffle::RelationSchedule" name="souffle::RelationSchedule">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ast_analysis.html" title="Abstract class for a AST Analysis. " alt="" coords="228,300,367,407"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_precedence_graph.html" title="Analysis pass computing the precedence graph of the relations of the datalog progam. " alt="" coords="705,552,879,659"/>
+<area shape="rect" id="node9" href="$classsouffle_1_1_topologically_sorted_s_c_c_graph.html" title="Analysis pass computing a topologically sorted strongly connected component (SCC) graph..." alt="" coords="717,1099,920,1293"/>
+<area shape="rect" id="node11" href="$classsouffle_1_1_s_c_c_graph.html" title="Analysis pass computing the strongly connected component (SCC) graph for the datalog program..." alt="" coords="354,737,589,1034"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_graph.html" title="{souffle::Graph\&lt; const\l souffle::AstRelation\l *, souffle::AstNameComparison \&gt;\n||+ clique()\l+ contains()\l+ contains()\l+ insert()\l+ insert()\l+ predecessors()\l+ print()\l+ reaches()\l+ successors()\l+ vertices()\l+ visitDepthFirst()\l&#45; visitDepthFirst()\l}" alt="" coords="634,219,856,487"/>
+</map>

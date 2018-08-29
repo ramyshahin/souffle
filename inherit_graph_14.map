@@ -1,0 +1,13 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$classsouffle_1_1_ast_analysis.html" title="Abstract class for a AST Analysis. " alt="" coords="5,233,144,260"/>
+<area shape="rect" id="node2" href="$classsouffle_1_1_adornment.html" title="souffle::Adornment" alt="" coords="219,5,351,32"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_component_lookup.html" title="souffle::ComponentLookup" alt="" coords="196,56,375,83"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_precedence_graph.html" title="Analysis pass computing the precedence graph of the relations of the datalog progam. " alt="" coords="199,107,372,133"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_recursive_clauses.html" title="Analysis pass identifying clauses which are recursive. " alt="" coords="197,157,373,184"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_redundant_relations.html" title="Analysis pass identifying relations which do not contribute to the computation of the output relation..." alt="" coords="192,208,379,235"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1_relation_schedule.html" title="Analysis pass computing a schedule for computing relations. " alt="" coords="200,259,371,285"/>
+<area shape="rect" id="node8" href="$classsouffle_1_1_s_c_c_graph.html" title="Analysis pass computing the strongly connected component (SCC) graph for the datalog program..." alt="" coords="219,309,352,336"/>
+<area shape="rect" id="node9" href="$classsouffle_1_1_topologically_sorted_s_c_c_graph.html" title="Analysis pass computing a topologically sorted strongly connected component (SCC) graph..." alt="" coords="194,361,377,402"/>
+<area shape="rect" id="node10" href="$classsouffle_1_1_type_analysis.html" title="souffle::TypeAnalysis" alt="" coords="211,427,359,453"/>
+<area shape="rect" id="node11" href="$classsouffle_1_1_type_environment_analysis.html" title="souffle::TypeEnvironment\lAnalysis" alt="" coords="200,478,371,519"/>
+</map>

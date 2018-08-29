@@ -1,0 +1,5 @@
+<map id="souffle::profile::Tui" name="souffle::profile::Tui">
+<area shape="rect" id="node2" href="$classsouffle_1_1profile_1_1_table.html" title="{souffle::profile::Table\n||+ addRow()\l+ getRows()\l+ sort()\l+ Table()\l}" alt="" coords="28,307,172,429"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1profile_1_1_input_reader.html" title="{souffle::profile::InputReader\n||+ addHistory()\l+ appendTabCompletion()\l+ appendTabCompletion()\l+ backspace()\l+ clearHistory()\l+ clearPrompt()\l+ clearTabCompletion()\l+ getch()\l+ getInput()\l+ hasReceivedInput()\land 10 more...\l}" alt="" coords="458,256,640,480"/>
+<area shape="rect" id="node11" href="$classsouffle_1_1profile_1_1_output_processor.html" title="{souffle::profile::Output\lProcessor\n||+ formatNum()\l+ formatTable()\l+ formatTime()\l+ getAtomTable()\l+ getProgramRun()\l+ getRelTable()\l+ getRulTable()\l+ getSubrulTable()\l+ getVersionAtoms()\l+ getVersions()\l+ OutputProcessor()\l}" alt="" coords="1006,249,1156,487"/>
+</map>

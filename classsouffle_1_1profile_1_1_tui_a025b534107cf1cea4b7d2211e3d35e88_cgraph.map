@@ -1,0 +1,7 @@
+<map id="souffle::profile::Tui::Tui" name="souffle::profile::Tui::Tui">
+<area shape="rect" id="node2" href="$classsouffle_1_1profile_1_1_output_processor.html#a6bb671aa2410a26617bf762934edf00d" title="souffle::profile::Output\lProcessor::getProgramRun" alt="" coords="211,5,391,46"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1profile_1_1_tui.html#a1363b47af57fafc31bf413b37395b0f6" title="souffle::profile::Tui\l::updateDB" alt="" coords="236,70,367,111"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1profile_1_1_output_processor.html#adbc3e1d96b327057fb7bccf1f17bb1dc" title="souffle::profile::Output\lProcessor::getRulTable" alt="" coords="441,37,599,78"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1profile_1_1_output_processor.html#a24de4c2c8f62a576ea75d78f5c87c1c1" title="souffle::profile::Output\lProcessor::getRelTable" alt="" coords="441,102,599,143"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1profile_1_1_table.html#ac99e71fd2b566a2e68a72da291a86aa5" title="souffle::profile::Table\l::addRow" alt="" coords="648,70,792,111"/>
+</map>

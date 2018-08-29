@@ -1,0 +1,5 @@
+<map id="souffle::profile::NonRecursiveRelationTimingProcessor::process" name="souffle::profile::NonRecursiveRelationTimingProcessor::process">
+<area shape="rect" id="node2" href="$classsouffle_1_1profile_1_1_profile_database.html#a8bb35db9a929f30e32ad5aa87665efaa" title="souffle::profile::Profile\lDatabase::addDurationEntry" alt="" coords="248,5,435,46"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1profile_1_1_profile_database.html#ae8c07801fafac14d6572a19c886a4e95" title="souffle::profile::Profile\lDatabase::addSizeEntry" alt="" coords="259,70,423,111"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1profile_1_1_profile_database.html#a9b3e77e050e86fca536d161a4a54e455" title="souffle::profile::Profile\lDatabase::addTextEntry" alt="" coords="259,135,423,177"/>
+</map>

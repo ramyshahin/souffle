@@ -1,0 +1,13 @@
+<map id="souffle::profile::Tui::id" name="souffle::profile::Tui::id">
+<area shape="rect" id="node2" href="$classsouffle_1_1profile_1_1_output_processor.html#a4a4f93851e27f7202de0f1a99c5114ca" title="souffle::profile::Output\lProcessor::formatTable" alt="" coords="203,57,362,98"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1profile_1_1_table.html#ad4cd261b758bcc2bc223b1b8d9aaa94e" title="souffle::profile::Table\l::sort" alt="" coords="211,206,355,247"/>
+<area shape="rect" id="node3" href="$namespacesouffle_1_1profile_1_1_tools.html#afe466b09ae5ee2e1c7c64d55a0ae0c21" title="souffle::profile::Tools\l::formatTable" alt="" coords="460,5,604,46"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1profile_1_1_table.html#ad5808507021b6f9cdd5641aac825f29e" title="souffle::profile::Table\l::getRows" alt="" coords="701,5,845,46"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1profile_1_1_data_comparator.html#a734aaeddd3c8a7952ac75358d9cdfe5d" title="Sort by copy time. " alt="" coords="411,71,653,97"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1profile_1_1_data_comparator.html#a76f98b6d43dc528c8f8bddb3746e8269" title="Sort by ID. " alt="" coords="417,121,647,148"/>
+<area shape="rect" id="node8" href="$classsouffle_1_1profile_1_1_data_comparator.html#ac520aeef0437cb4a54c57b83bfc7af82" title="Sort by name. " alt="" coords="428,173,636,214"/>
+<area shape="rect" id="node9" href="$classsouffle_1_1profile_1_1_data_comparator.html#af08f9cf841481752c50d2483027f0a07" title="Sort by non&#45;recursive time. " alt="" coords="428,238,636,279"/>
+<area shape="rect" id="node10" href="$classsouffle_1_1profile_1_1_data_comparator.html#a286b840ac5b9694c711f384e3edc0914" title="Sort by recursive time. " alt="" coords="411,304,653,331"/>
+<area shape="rect" id="node11" href="$classsouffle_1_1profile_1_1_data_comparator.html#a48b1c57f77017e9ae5a301526ca4a438" title="Sort by total time. " alt="" coords="428,355,636,397"/>
+<area shape="rect" id="node12" href="$classsouffle_1_1profile_1_1_data_comparator.html#ae89cb5ff565853d5eb8c5a6299f8774a" title="Sort by tuple count. " alt="" coords="411,421,653,448"/>
+</map>

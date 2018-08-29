@@ -1,0 +1,7 @@
+<map id="souffle::ExplainProvenance::getRelationOutput" name="souffle::ExplainProvenance::getRelationOutput">
+<area shape="rect" id="node2" href="$classsouffle_1_1_souffle_program.html#a8d60868a2e93de1ccc7b09d140542d0d" title="souffle::SouffleProgram\l::getRelation" alt="" coords="246,5,405,46"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_explain_provenance.html#a117ef6b6c90008a386e0e6b3800d0ce8" title="souffle::ExplainProvenance\l::printRelationOutput" alt="" coords="235,70,416,111"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_i_o_directives.html#abef5a3f9b0d3393b17f2493c6769df63" title="souffle::IODirectives\l::setRelationName" alt="" coords="254,135,397,177"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_symbol_mask.html#a8f5dd51f70faaf206bc3bedad2a4e8c7" title="souffle::SymbolMask\l::setSymbol" alt="" coords="253,201,398,242"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_symbol_mask.html#a73093d37902fa812dc5db128ab9ed85e" title="souffle::SymbolMask\l::getArity" alt="" coords="465,201,610,242"/>
+</map>

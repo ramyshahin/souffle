@@ -1,0 +1,5 @@
+<map id="souffle::AstStringConstant" name="souffle::AstStringConstant">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ast_constant.html" title="Subclass of Argument that represents a datalog constant value. " alt="" coords="22,433,164,554"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ast_argument.html" title="Intermediate representation of an argument. " alt="" coords="21,277,165,384"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ast_node.html" title="Abstract class for syntactic elements in a Datalog program. " alt="" coords="29,5,157,229"/>
+</map>

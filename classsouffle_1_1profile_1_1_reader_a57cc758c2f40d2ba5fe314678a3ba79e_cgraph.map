@@ -1,0 +1,12 @@
+<map id="souffle::profile::Reader::processFile" name="souffle::profile::Reader::processFile">
+<area shape="rect" id="node2" href="$classsouffle_1_1profile_1_1_reader.html#ae8c8d5bdca4424587a134a0739d91b5f" title="souffle::profile::Reader\l::addRelation" alt="" coords="217,158,372,199"/>
+<area shape="rect" id="node8" href="$classsouffle_1_1profile_1_1_time_entry.html#ac4464f17241987031b193289d034376d" title="souffle::profile::TimeEntry\l::getTime" alt="" coords="209,245,381,286"/>
+<area shape="rect" id="node9" href="$classsouffle_1_1profile_1_1_profile_database.html#ae5a098b1d32229911d5d3b960472ccd8" title="Return the entry at the given path. " alt="" coords="217,310,372,351"/>
+<area shape="rect" id="node11" href="$namespacesouffle.html#a1c65551944c7ecf6f44ec851b49bdbb0" title="souffle::now" alt="" coords="248,376,341,403"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1profile_1_1_entry.html#a8d174967b4fcccc70fbba9a85f422c6c" title="souffle::profile::Entry\l::accept" alt="" coords="443,5,586,46"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1profile_1_1_reader.html#a80667c17e45fe8dd228a6f6388b169dc" title="souffle::profile::Reader\l::createId" alt="" coords="437,70,592,111"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1profile_1_1_entry.html#a60365ae811236c628293ecb4a435ccdf" title="souffle::profile::Entry\l::getKey" alt="" coords="443,135,586,177"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1profile_1_1_directory_entry.html#a2a8aca961218ffd945e5d681bf410821" title="souffle::profile::Directory\lEntry::getKeys" alt="" coords="432,201,597,242"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1profile_1_1_directory_entry.html#aa10394557bb93e33990186c9a11f45dc" title="souffle::profile::Directory\lEntry::readEntry" alt="" coords="648,310,813,351"/>
+<area shape="rect" id="node10" href="$classsouffle_1_1profile_1_1_directory_entry.html#ad1dba1259e3d6435662024428904eac5" title="souffle::profile::Directory\lEntry::readDirectoryEntry" alt="" coords="429,369,600,410"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="souffle::Type" name="souffle::Type">
+<area shape="rect" id="node2" href="$structsouffle_1_1_predefined_type.html" title="A special, internal type for the predefined symbolic and numeric types. " alt="" coords="5,287,164,364"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_primitive_type.html" title="A primitive type. " alt="" coords="189,272,337,379"/>
+<area shape="rect" id="node4" href="$structsouffle_1_1_record_type.html" title="A record type combining a list of fields into a new, aggregated type. " alt="" coords="363,265,503,386"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_union_type.html" title="A union type combining a list of types into a new, aggregated type. " alt="" coords="528,265,672,386"/>
+</map>

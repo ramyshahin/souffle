@@ -1,0 +1,17 @@
+<map id="souffle::AstSemanticChecker::checkRelationDeclaration" name="souffle::AstSemanticChecker::checkRelationDeclaration">
+<area shape="rect" id="node2" href="$classsouffle_1_1_error_report.html#a699dc9231cef74ac54573e3c79de7143" title="Adds an error with the given message and location. " alt="" coords="273,5,409,46"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_error_report.html#aafbdd26e7ec9ee493c536c48062659dd" title="Adds a warning with the given message and location. " alt="" coords="273,70,409,111"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_global.html#a2dcb257b0f98d0b882862427cc965640" title="souffle::Global::config" alt="" coords="267,136,416,163"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_ast_relation.html#a855b01ad5e4a0871ef6c6f6bb1e95d13" title="Return the arity of this relation. " alt="" coords="273,187,410,229"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_ast_relation.html#adb5cd82c692fa627cf2c0ce2e8a482ad" title="Return the declared type at position idx. " alt="" coords="273,253,410,294"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1_ast_attribute.html#a3a2801035b0b68be4c3cc30bc5b6737f" title="souffle::AstAttribute\l::getAttributeName" alt="" coords="272,318,411,359"/>
+<area shape="rect" id="node8" href="$classsouffle_1_1_ast_node.html#a68e6e13cb8d1510e47087447a89cae83" title="Return source location of the AstNode. " alt="" coords="248,384,435,411"/>
+<area shape="rect" id="node9" href="$classsouffle_1_1_ast_program.html#a0fe8485ff00fc379f6ff3d61117e96ba" title="Obtains the type with the given name. " alt="" coords="272,435,411,477"/>
+<area shape="rect" id="node10" href="$classsouffle_1_1_type_environment.html#ad66cb326f809dc980e7901dfbe1fcdc5" title="souffle::TypeEnvironment\l::getType" alt="" coords="256,501,427,542"/>
+<area shape="rect" id="node11" href="$classsouffle_1_1_type_environment.html#af6f82790cb9e31b0efb8583894db3fa3" title="souffle::TypeEnvironment\l::isType" alt="" coords="483,530,653,571"/>
+<area shape="rect" id="node12" href="$classsouffle_1_1_ast_attribute.html#a40684d365644542287c88ea74d68d799" title="souffle::AstAttribute\l::getTypeName" alt="" coords="272,618,411,659"/>
+<area shape="rect" id="node13" href="$classsouffle_1_1_ast_relation.html#aa333dd84cbf78b723d3532baf2aaaaea" title="Check whether relation is an input relation. " alt="" coords="273,683,410,725"/>
+<area shape="rect" id="node14" href="$classsouffle_1_1_ast_relation.html#ae8a38221aa94f0df83f602fd1d1d0eb8" title="Check whether relation is an output relation. " alt="" coords="273,749,410,790"/>
+<area shape="rect" id="node15" href="$namespacesouffle.html#a34c8a82b8d9ed840b32e93186002d18c" title="Determines whether the given type is a record type. " alt="" coords="266,815,417,841"/>
+<area shape="rect" id="node16" href="$namespacesouffle.html#aecc08c83ad9634fc515b7aa094702949" title="A generic function converting strings into strings (trivial case). " alt="" coords="284,865,399,892"/>
+</map>

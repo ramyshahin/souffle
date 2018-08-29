@@ -1,0 +1,15 @@
+<map id="souffle::ExplainProvenanceSLD::explain" name="souffle::ExplainProvenanceSLD::explain">
+<area shape="rect" id="node2" href="$classsouffle_1_1_explain_provenance.html#a94afd911a40cf52b7228fc8ce2e89b5c" title="souffle::ExplainProvenance\l::argsToNums" alt="" coords="464,71,645,113"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1_explain_provenance_s_l_d.html#a0e8b7407e84dd8124180aa4fe1e19281" title="souffle::ExplainProvenance\lSLD::explain" alt="" coords="235,221,416,262"/>
+<area shape="rect" id="node14" href="$classsouffle_1_1_explain_provenance_s_l_d.html#adfe8fa3b57f609577f8b475dc54773e4" title="souffle::ExplainProvenance\lSLD::findTuple" alt="" coords="464,6,645,47"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_souffle_program.html#a8d60868a2e93de1ccc7b09d140542d0d" title="souffle::SouffleProgram\l::getRelation" alt="" coords="694,209,853,250"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_souffle_program.html#a5b6441c2593ac35ddb9b0a770bb3771f" title="souffle::SouffleProgram\l::getSymbolTable" alt="" coords="694,105,853,146"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_symbol_table.html#a1313606eabb515cd46aec43cfb191da3" title="Finds the index of a symbol in the table, giving an error if it&#39;s not found. " alt="" coords="701,39,846,81"/>
+<area shape="rect" id="node6" href="$structsouffle_1_1_lock.html#a0fe2edd3ac13a141851fa021716bae04" title="souffle::Lock::acquire" alt="" coords="901,149,1048,176"/>
+<area shape="rect" id="node8" href="$classsouffle_1_1_souffle_program.html#ad6101f590d4771ddbe712f9d3f5bbdd1" title="souffle::SouffleProgram\l::executeSubroutine" alt="" coords="475,305,634,346"/>
+<area shape="rect" id="node9" href="$classsouffle_1_1_relation.html#a8e8e6b38e1d621e9cccd365eaedbd7e1" title="souffle::Relation::\lgetArity" alt="" coords="492,137,617,178"/>
+<area shape="rect" id="node10" href="$namespacesouffle.html#abe4e3f19879707216a2758b03f4e2deb" title="Creates an object to be forwarded to some output stream for printing sequences of elements interspers..." alt="" coords="510,203,599,229"/>
+<area shape="rect" id="node11" href="$classsouffle_1_1_explain_provenance.html#afcc886b098657afde5caf5933816ec6c" title="souffle::ExplainProvenance\l::numsToArgs" alt="" coords="464,370,645,411"/>
+<area shape="rect" id="node12" href="$classsouffle_1_1_symbol_table.html#a4f93dea7a8e4af02f28070548a652660" title="Find a symbol in the table by its index, note that this gives an error if the index is out of bounds..." alt="" coords="701,303,846,345"/>
+<area shape="rect" id="node13" href="$classsouffle_1_1_symbol_table.html#aedae4abdfc5f4d8aaa6fdd1ac3fb1f91" title="souffle::SymbolTable\l::size" alt="" coords="902,303,1047,345"/>
+</map>

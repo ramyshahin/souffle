@@ -1,0 +1,9 @@
+<map id="souffle::RamScan::equal" name="souffle::RamScan::equal">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ram_search.html#a5ff13a839d418fd0d02607ba4599c909" title="Check equality. " alt="" coords="253,70,392,111"/>
+<area shape="rect" id="node6" href="$namespacesouffle.html#a961b0d79be71a35f0b60aeedf212fe4a" title="A function testing whether two vector of pointers are referencing to equivalent targets. " alt="" coords="249,136,396,163"/>
+<area shape="rect" id="node8" href="$classsouffle_1_1_ram_scan.html#afb9628e8531b10ee7d6a0938788979cf" title="Get search relation. " alt="" coords="222,187,423,213"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ram_operation.html#a0522db1c7e4284938dfebfef4a64b361" title="Check equality. " alt="" coords="473,5,626,46"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_ram_search.html#ac5d9570106c3a5dd5de00c95672f0c48" title="get nested operation " alt="" coords="480,70,619,111"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ram_operation.html#a5fc1821d246b4d54d75bdd485bd411b4" title="Get condition. " alt="" coords="675,5,829,46"/>
+<area shape="rect" id="node7" href="$namespacesouffle.html#ab0083e5ad86e88ff726ea4e3c7ef23c1" title="A function testing whether two vectors are equal (same vector of elements). " alt="" coords="499,136,599,163"/>
+</map>

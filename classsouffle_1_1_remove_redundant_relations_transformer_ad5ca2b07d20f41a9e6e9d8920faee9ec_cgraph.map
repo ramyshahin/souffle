@@ -1,0 +1,6 @@
+<map id="souffle::RemoveRedundantRelationsTransformer::transform" name="souffle::RemoveRedundantRelationsTransformer::transform">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ast_translation_unit.html#a7a1598acb91192e90026763b3b968653" title="get analysis: analysis is generated on the fly if not present " alt="" coords="239,5,417,46"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ast_translation_unit.html#a85862a5fcfecdf63c7367926cdedde23" title="get the AST program " alt="" coords="239,70,417,111"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_redundant_relations.html#a685f13df98b0fd9a6a082632f488fd8f" title="souffle::RedundantRelations\l::getRedundantRelations" alt="" coords="235,135,421,177"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_ast_program.html#adcb36e001beb9b43bede7b00984e982f" title="Remove a relation from the program. " alt="" coords="259,201,397,242"/>
+</map>

@@ -1,0 +1,20 @@
+<map id="souffle::DebugReporter::transform" name="souffle::DebugReporter::transform">
+<area shape="rect" id="node2" href="$classsouffle_1_1_debug_report.html#a4e6fe0a6d9854ce570d008772daa9aba" title="souffle::DebugReport\l::addSection" alt="" coords="443,5,589,46"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_meta_transformer.html#adb680335d9dd617a58b9850bd7931899" title="souffle::MetaTransformer\l::applySubtransformer" alt="" coords="211,546,379,587"/>
+<area shape="rect" id="node4" href="$namespacesouffle.html#a1c65551944c7ecf6f44ec851b49bdbb0" title="souffle::now" alt="" coords="469,463,563,489"/>
+<area shape="rect" id="node11" href="$classsouffle_1_1_debug_reporter.html#a044d7261d829ad1de6ec6a92067e2c47" title="Generate a debug report section for the current state of the given translation unit with the given id..." alt="" coords="216,234,373,275"/>
+<area shape="rect" id="node14" href="$classsouffle_1_1_ast_translation_unit.html#a2c05c0d93e34800167034b1aa423c4a0" title="get debug report " alt="" coords="427,397,605,438"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_ast_transformer.html#a32236031d6b2f0f8dc4bbe0a7aa90b43" title="souffle::AstTransformer\l::apply" alt="" coords="437,514,595,555"/>
+<area shape="rect" id="node8" href="$classsouffle_1_1_ast_transformer.html#a5f0905c069a0a2cf54e46e92499ba95c" title="souffle::AstTransformer\l::getName" alt="" coords="437,579,595,621"/>
+<area shape="rect" id="node9" href="$classsouffle_1_1_ast_translation_unit.html#aec4a1cc2e03286db878a5d2f0377f894" title="get error report " alt="" coords="427,645,605,686"/>
+<area shape="rect" id="node10" href="$classsouffle_1_1_error_report.html#abf08564b0cca7ee2f64cb6ba88ea6f3b" title="souffle::ErrorReport\l::getNumErrors" alt="" coords="448,710,584,751"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_ast_translation_unit.html#aa98655ac4e6bdd1a20d0c882c47508c8" title="destroy all cached analyses of translation unit " alt="" coords="654,482,831,523"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1_ast_transformer.html#a6f2bde49dc0c328e8ef86918322282dc" title="souffle::AstTransformer\l::transform" alt="" coords="663,547,822,589"/>
+<area shape="rect" id="node12" href="$classsouffle_1_1_ast_translation_unit.html#a7a1598acb91192e90026763b3b968653" title="get analysis: analysis is generated on the fly if not present " alt="" coords="427,70,605,111"/>
+<area shape="rect" id="node13" href="$classsouffle_1_1_debug_reporter.html#ae6706724f0ac529fd011e0309d8899b0" title="Generate a debug report section for code (preserving formatting), with the given id and title..." alt="" coords="437,135,595,177"/>
+<area shape="rect" id="node15" href="$classsouffle_1_1_debug_reporter.html#a9059af2a8623fd47dbbf2d35760bd621" title="Generated a debug report section for a dot graph specification, with the given id and title..." alt="" coords="437,201,595,242"/>
+<area shape="rect" id="node17" href="$classsouffle_1_1_ast_translation_unit.html#a85862a5fcfecdf63c7367926cdedde23" title="get the AST program " alt="" coords="427,266,605,307"/>
+<area shape="rect" id="node18" href="$classsouffle_1_1_ast_program.html#a41b95b3179fc737c70c7b957220146c4" title="Output the program to a given output stream. " alt="" coords="447,331,585,373"/>
+<area shape="rect" id="node16" href="$namespacesouffle.html#a8c34a673a2789dc433a0b642e4aa9d97" title="souffle::toBase64" alt="" coords="681,208,805,235"/>
+<area shape="rect" id="node19" href="$namespacesouffle.html#abe4e3f19879707216a2758b03f4e2deb" title="Creates an object to be forwarded to some output stream for printing sequences of elements interspers..." alt="" coords="698,339,787,365"/>
+</map>

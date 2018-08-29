@@ -1,0 +1,5 @@
+<map id="souffle::AstNegation::clone" name="souffle::AstNegation::clone">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ast_negation.html#aba0c307b440bdb0d5be03cbdd4f5105a" title="souffle::AstNegation\l::AstNegation" alt="" coords="217,5,359,46"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ast_node.html#a68e6e13cb8d1510e47087447a89cae83" title="Return source location of the AstNode. " alt="" coords="195,71,381,97"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ast_node.html#a0b664297f0971c6ce32ff2e0e4f2603f" title="Set source location for the AstNode. " alt="" coords="195,121,381,148"/>
+</map>

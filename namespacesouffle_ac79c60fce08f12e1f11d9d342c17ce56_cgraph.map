@@ -1,0 +1,5 @@
+<map id="souffle::isRecursiveType" name="souffle::isRecursiveType">
+<area shape="rect" id="node2" href="$namespacesouffle.html#a34f8eecb81c090fca9e58d3357b63ed9" title="A generic test checking whether any elements within a container satisfy a certain predicate..." alt="" coords="238,5,346,32"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_union_type.html#abb58ef00e41f6e961f51c34e3d44fa68" title="souffle::UnionType\l::getElementTypes" alt="" coords="226,57,358,98"/>
+<area shape="rect" id="node4" href="$structsouffle_1_1_record_type.html#afe02aad8492cb87cc7524798151a34d3" title="souffle::RecordType\l::getFields" alt="" coords="222,122,362,163"/>
+</map>

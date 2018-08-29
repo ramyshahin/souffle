@@ -1,0 +1,5 @@
+<map id="souffle::DisjointSet::clear" name="souffle::DisjointSet::clear">
+<area shape="rect" id="node2" href="$classsouffle_1_1_block_list.html#a03481c6d7db152725482d352682be6f6" title="Clear all elements from the BlockList. " alt="" coords="201,5,324,46"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1shared__mutex.html#ad60e7af48bb6dce582527e3519d90e2f" title="souffle::shared_mutex\l::lock" alt="" coords="187,70,338,111"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1shared__mutex.html#aceeffa2b25aeae562ce70fe4e17ab1ce" title="souffle::shared_mutex\l::unlock" alt="" coords="187,135,338,177"/>
+</map>

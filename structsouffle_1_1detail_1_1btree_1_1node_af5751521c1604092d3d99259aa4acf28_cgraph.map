@@ -1,0 +1,6 @@
+<map id="souffle::detail::btree::node::collectChunks" name="souffle::detail::btree::node::collectChunks">
+<area shape="rect" id="node2" href="$structsouffle_1_1detail_1_1btree_1_1node.html#a882ba7105b5a4f6652fe21b6ab924950" title="Obtains a reference to the child of the given index. " alt="" coords="203,5,341,46"/>
+<area shape="rect" id="node4" href="$structsouffle_1_1detail_1_1btree_1_1node.html#a36f0e86d293ab34848c0dac420aec038" title="Checks whether this node is empty – can happen due to biased insertion. " alt="" coords="203,70,341,111"/>
+<area shape="rect" id="node5" href="$structsouffle_1_1detail_1_1btree_1_1base.html#ae25ba8f7d319e6a3649b96987a877205" title="souffle::detail::btree\l::base::isLeaf" alt="" coords="203,135,341,177"/>
+<area shape="rect" id="node3" href="$structsouffle_1_1detail_1_1btree_1_1node.html#ab0fcaa7f9f2329d2ff8ad3fe7c580788" title="A utility function providing a reference to this node as an inner node. " alt="" coords="390,5,530,46"/>
+</map>

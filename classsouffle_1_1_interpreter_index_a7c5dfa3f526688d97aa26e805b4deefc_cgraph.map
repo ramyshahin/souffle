@@ -1,0 +1,5 @@
+<map id="souffle::InterpreterIndex::equalRange" name="souffle::InterpreterIndex::equalRange">
+<area shape="rect" id="node2" href="$classsouffle_1_1_interpreter_index.html#aa7e1d06571bd3ce820bcf57620e20d81" title="return start and end iterator of a range " alt="" coords="213,38,373,79"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1detail_1_1btree.html#afd9032b4c60b4885f6bddc07684e03a7" title="Obtains a lower boundary for the given key – hence an iterator referencing the smallest value that is..." alt="" coords="422,5,559,46"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1detail_1_1btree.html#ab5cbea6c5a0621a1be868918de10b897" title="Obtains an upper boundary for the given key – hence an iterator referencing the first element that th..." alt="" coords="422,70,559,111"/>
+</map>

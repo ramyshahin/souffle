@@ -1,0 +1,7 @@
+<map id="souffle::BinaryRelation::iterator::iterator" name="souffle::BinaryRelation::iterator::iterator">
+<area shape="rect" id="node2" href="$classsouffle_1_1_binary_relation_1_1iterator.html#a3839ef1f7d30c72b0ee88ccc800ee2bd" title="Fast forward the iterators in iterList (and also frontIter and backIter) s.t. " alt="" coords="219,5,373,46"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_binary_relation_1_1iterator.html#a668b99dad8e723ae66d8b08b401a1f52" title="special fn to set endVal = true only set when the current iterator actually cannot iterate anymore sh..." alt="" coords="218,70,374,111"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_binary_relation_1_1iterator.html#af7b8f18b691badb8814eb9cdda49a0ab" title="Adjust the iterators to point to the beginning of each trie. " alt="" coords="219,135,373,177"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_sparse_disjoint_set.html#abc2a2d83d952f34b84faa563d739c235" title="souffle::SparseDisjointSet\l::nodeExists" alt="" coords="209,201,383,242"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_binary_relation_1_1iterator.html#a024230019dda0d70d642e7d802669b7f" title="yield the current iterator value to update to what the iterator is currently pointing at ..." alt="" coords="219,266,373,307"/>
+</map>

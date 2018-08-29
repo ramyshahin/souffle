@@ -1,0 +1,7 @@
+<map id="souffle::Interpreter" name="souffle::Interpreter">
+<area shape="rect" id="node5" href="$classsouffle_1_1_ram_translation_unit.html" title="Class for RamTranslationUnit. " alt="" coords="470,509,655,763"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_debug_report.html" title="Class representing a HTML report, consisting of a list of sections. " alt="" coords="151,265,297,372"/>
+<area shape="rect" id="node9" href="$classsouffle_1_1_error_report.html" title="{souffle::ErrorReport\n||+ addDiagnostic()\l+ addError()\l+ addWarning()\l+ ErrorReport()\l+ ErrorReport()\l+ getNumErrors()\l+ getNumIssues()\l+ getNumWarnings()\l+ print()\l}" alt="" coords="491,221,633,416"/>
+<area shape="rect" id="node12" href="$classsouffle_1_1_symbol_table.html" title="Global pool of re&#45;usable strings. " alt="" coords="659,192,811,445"/>
+<area shape="rect" id="node14" href="$structsouffle_1_1_lock.html" title="A small utility class for implementing simple locks. " alt="" coords="775,6,872,127"/>
+</map>

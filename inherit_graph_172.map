@@ -1,0 +1,6 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$structsouffle_1_1ram_1_1detail_1_1_relation_base.html" title="souffle::ram::detail\l::RelationBase\&lt; arity,\l AutoRelation\&lt; arity,\l Indices...\&gt; \&gt;" alt="" coords="5,49,155,119"/>
+<area shape="rect" id="node2" href="$classsouffle_1_1ram_1_1detail_1_1_auto_relation.html" title="souffle::ram::detail\l::AutoRelation\&lt; arity,\l index_utils::get_full\l_index\&lt; arity \&gt;::type \&gt;" alt="" coords="203,5,357,75"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1ram_1_1detail_1_1_auto_relation.html" title="The relation implementing the type if relation utilizing a mixture of different types of data structu..." alt="" coords="207,100,353,156"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1ram_1_1detail_1_1_auto_relation_3_01arity_01_4.html" title="A specialization of a relation for which no indices are required. " alt="" coords="405,19,560,61"/>
+</map>

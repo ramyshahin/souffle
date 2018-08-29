@@ -1,0 +1,11 @@
+<map id="souffle::LogicbloxConverter::visitRelation" name="souffle::LogicbloxConverter::visitRelation">
+<area shape="rect" id="node2" href="$classsouffle_1_1_logicblox_converter.html#a2413a19e028efaf8ec8cd456393ebe05" title="souffle::LogicbloxConverter\l::convertTypeName" alt="" coords="235,5,416,46"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ast_relation.html#adf9ccc5b4924918ea95bd64898196b66" title="Obtains a list of the contained attributes. " alt="" coords="257,70,394,111"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_ast_relation.html#a6ae505289ecfc8e40c9f4e47689f5ee8" title="Return the name of the relation. " alt="" coords="257,135,394,177"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_ast_relation.html#aa333dd84cbf78b723d3532baf2aaaaea" title="Check whether relation is an input relation. " alt="" coords="257,201,394,242"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1_ast_relation.html#ae8a38221aa94f0df83f602fd1d1d0eb8" title="Check whether relation is an output relation. " alt="" coords="257,266,394,307"/>
+<area shape="rect" id="node8" href="$classsouffle_1_1_ast_relation.html#a5de0a60f392fd55905d648894f62f4ab" title="Check whether relation is an input relation. " alt="" coords="257,331,394,373"/>
+<area shape="rect" id="node9" href="$namespacesouffle.html#abe4e3f19879707216a2758b03f4e2deb" title="Creates an object to be forwarded to some output stream for printing sequences of elements interspers..." alt="" coords="487,427,577,453"/>
+<area shape="rect" id="node10" href="$classsouffle_1_1_logicblox_converter.html#a1410f215a1790beac5934ec0c610789c" title="souffle::LogicbloxConverter\l::visitRelationIdentifier" alt="" coords="235,449,416,490"/>
+<area shape="rect" id="node4" href="$namespacesouffle.html#ad62d4e824a9d74c7462da546a21780fe" title="A utility function enabling the creation of a vector of pointers. " alt="" coords="465,77,599,104"/>
+</map>

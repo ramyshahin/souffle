@@ -1,0 +1,9 @@
+<map id="souffle::combineNegatedLiterals" name="souffle::combineNegatedLiterals">
+<area shape="rect" id="node2" href="$namespacesouffle.html#a72ca390c0235d50be215fdc25bb24e4d" title="Returns the negated version of a given literal. " alt="" coords="265,85,407,112"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ast_atom.html#a6dd961f511124f842623aaeef7bc59da" title="Returns this class as the referenced atom. " alt="" coords="457,5,634,32"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ast_atom.html#a274d22e3c57da222d244c26f5937dd8a" title="Creates a clone of this AST sub&#45;structure. " alt="" coords="466,56,625,83"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1_ast_constraint.html#a4bc070302396ff2bee073f62c00b5e21" title="Creates a clone of this AST sub&#45;structure. " alt="" coords="471,107,620,149"/>
+<area shape="rect" id="node8" href="$classsouffle_1_1_ast_constraint.html#a4b8ded47db31a8aa07c30079c1a27725" title="Negates the constraint. " alt="" coords="471,173,620,214"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_ast_atom.html#a83a883b45da6862eb20186cd61b7a859" title="souffle::AstAtom::AstAtom" alt="" coords="687,31,865,57"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_ast_node.html#a68e6e13cb8d1510e47087447a89cae83" title="Return source location of the AstNode. " alt="" coords="683,81,869,108"/>
+</map>

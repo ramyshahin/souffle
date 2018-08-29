@@ -1,0 +1,8 @@
+<map id="souffle::MetaTransformer" name="souffle::MetaTransformer">
+<area shape="rect" id="node3" href="$classsouffle_1_1_conditional_transformer.html" title="Transformer that executes a sub&#45;transformer iff a condition holds. " alt="" coords="5,331,208,511"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_debug_reporter.html" title="Transformation pass which wraps another transformation pass and generates a debug report section for ..." alt="" coords="233,331,401,511"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_fixpoint_transformer.html" title="Transformer that repeatedly executes a sub&#45;transformer until no changes are made. ..." alt="" coords="426,353,611,489"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_pipeline_transformer.html" title="Transformer that holds an arbitrary number of sub&#45;transformations. " alt="" coords="635,353,820,489"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1_while_transformer.html" title="Transformer that repeatedly executes a sub&#45;transformer while a condition is met. " alt="" coords="845,331,1016,511"/>
+<area shape="rect" id="node2" href="$classsouffle_1_1_ast_transformer.html" title="{souffle::AstTransformer\n||+ apply()\l+ getName()\l+ ~AstTransformer()\l&#45; transform()\l}" alt="" coords="439,6,597,127"/>
+</map>

@@ -1,0 +1,12 @@
+<map id="profile/DataComparator.h" name="profile/DataComparator.h">
+<area shape="rect" id="node2" href="$profile_2_table_8h.html" title="profile/Table.h" alt="" coords="180,80,284,107"/>
+<area shape="rect" id="node3" href="$_string_utils_8h.html" title="profile/StringUtils.h" alt="" coords="101,155,235,181"/>
+<area shape="rect" id="node5" href="$_output_processor_8h.html" title="profile/OutputProcessor.h" alt="" coords="53,304,224,331"/>
+<area shape="rect" id="node6" href="$_tui_8h.html" title="profile/Tui.h" alt="" coords="176,379,267,405"/>
+<area shape="rect" id="node10" href="$_program_run_8h.html" title="profile/ProgramRun.h" alt="" coords="269,229,413,256"/>
+<area shape="rect" id="node4" href="$_cell_8h.html" title="profile/Cell.h" alt="" coords="98,229,192,256"/>
+<area shape="rect" id="node8" href="$_cli_8h.html" title="profile/Cli.h" alt="" coords="19,453,107,480"/>
+<area shape="rect" id="node11" href="$_reader_8h.html" title="profile/Reader.h" alt="" coords="248,304,363,331"/>
+<area shape="rect" id="node7" href="$main_8cpp.html" title="main.cpp" alt="" coords="184,453,257,480"/>
+<area shape="rect" id="node9" href="$souffle__prof_8cpp.html" title="souffle_prof.cpp" alt="" coords="5,528,120,555"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="souffle::normaliseInlinedHeads" name="souffle::normaliseInlinedHeads">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ast_program.html#a60fcb7d3a21a06be7b48f5849917a22b" title="Get all relations in the program. " alt="" coords="216,5,355,46"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ast_program.html#ac0733345760aab5b6939cd20b228c223" title="Removes a clause from this program. " alt="" coords="216,70,355,111"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ast_clause.html#ae9a1e5dd0a7c9781e23a7d9ececd6ae5" title="Return the atom that represents the head of the clause. " alt="" coords="428,41,559,82"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_ast_atom.html#adfaa949dc3e89fa2dc25981963ea5752" title="Return the name of this atom. " alt="" coords="403,107,584,133"/>
+</map>

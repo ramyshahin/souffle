@@ -1,0 +1,11 @@
+<map id="profile/Rule.h" name="profile/Rule.h">
+<area shape="rect" id="node2" href="$_iteration_8h.html" title="profile/Iteration.h" alt="" coords="93,80,211,107"/>
+<area shape="rect" id="node3" href="$_relation_8h.html" title="profile/Relation.h" alt="" coords="141,155,261,181"/>
+<area shape="rect" id="node5" href="$_output_processor_8h.html" title="profile/OutputProcessor.h" alt="" coords="5,304,176,331"/>
+<area shape="rect" id="node10" href="$_reader_8h.html" title="profile/Reader.h" alt="" coords="255,304,369,331"/>
+<area shape="rect" id="node4" href="$_program_run_8h.html" title="profile/ProgramRun.h" alt="" coords="129,229,273,256"/>
+<area shape="rect" id="node6" href="$_tui_8h.html" title="profile/Tui.h" alt="" coords="156,379,247,405"/>
+<area shape="rect" id="node7" href="$main_8cpp.html" title="main.cpp" alt="" coords="112,453,185,480"/>
+<area shape="rect" id="node8" href="$_cli_8h.html" title="profile/Cli.h" alt="" coords="211,453,299,480"/>
+<area shape="rect" id="node9" href="$souffle__prof_8cpp.html" title="souffle_prof.cpp" alt="" coords="197,528,312,555"/>
+</map>

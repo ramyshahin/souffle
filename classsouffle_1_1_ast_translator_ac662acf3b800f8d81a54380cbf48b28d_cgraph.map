@@ -1,0 +1,37 @@
+<map id="souffle::AstTranslator::translateClause" name="souffle::AstTranslator::translateClause">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ram_not_exists.html#a036989f13ff553f953c3d37d4075e15e" title="Add argument. " alt="" coords="228,5,383,46"/>
+<area shape="rect" id="node3" href="$namespacesouffle.html#a34f8eecb81c090fca9e58d3357b63ed9" title="A generic test checking whether any elements within a container satisfy a certain predicate..." alt="" coords="251,71,359,97"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ast_execution_order.html#a56ae6c1e5637cc58e60fcbf4e78b2562" title="souffle::AstExecutionOrder\l::begin" alt="" coords="216,122,395,163"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_ast_clause.html#aef9cb574a067db73c83fd9c9f63d297f" title="Creates a clone of this AST sub&#45;structure. " alt="" coords="240,187,371,229"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1_ast_clause.html#af03a18e982fbce1bb3866c18c5da192e" title="Obtains the execution plan associated to this clause or null if there is none. " alt="" coords="486,250,618,291"/>
+<area shape="rect" id="node9" href="$classsouffle_1_1_global.html#a2dcb257b0f98d0b882862427cc965640" title="souffle::Global::config" alt="" coords="231,304,380,331"/>
+<area shape="rect" id="node10" href="$classsouffle_1_1_ast_execution_order.html#a5934a4b847f1d2be18e38ff998546e6e" title="souffle::AstExecutionOrder::end" alt="" coords="201,355,409,381"/>
+<area shape="rect" id="node11" href="$classsouffle_1_1_ast_atom.html#a11c5d1489f18c4981e9f4956fa2155de" title="Return the i&#45;th argument of the atom. " alt="" coords="204,405,407,432"/>
+<area shape="rect" id="node12" href="$classsouffle_1_1_ast_atom.html#a11ba399d723b5f1135a35e47e51e1bad" title="Provides access to the list of arguments of this atom. " alt="" coords="201,456,410,483"/>
+<area shape="rect" id="node14" href="$classsouffle_1_1_ast_atom.html#aad70ba585b02eac7a0038f8cdcee2c18" title="Return the arity of the atom. " alt="" coords="219,507,392,533"/>
+<area shape="rect" id="node15" href="$classsouffle_1_1_ast_atom.html#a6dd961f511124f842623aaeef7bc59da" title="Returns this class as the referenced atom. " alt="" coords="217,557,394,584"/>
+<area shape="rect" id="node16" href="$namespacesouffle.html#ab18cbb3adc2ab328de0db30a3fddf7e0" title="Returns the relation referenced by the given atom. " alt="" coords="222,740,389,767"/>
+<area shape="rect" id="node17" href="$classsouffle_1_1_ast_atom.html#adfaa949dc3e89fa2dc25981963ea5752" title="Return the name of this atom. " alt="" coords="461,828,643,855"/>
+<area shape="rect" id="node19" href="$classsouffle_1_1_ast_clause.html#a349d1209cf619aaf6250c91e2cb0041d" title="Obtains a list of contained body&#45;atoms. " alt="" coords="240,609,371,650"/>
+<area shape="rect" id="node20" href="$classsouffle_1_1_ast_clause.html#a9918f4fb19dd6f152d784512853b447a" title="Obtains a copy of the internally maintained body literals. " alt="" coords="240,791,371,833"/>
+<area shape="rect" id="node21" href="$classsouffle_1_1_ast_aggregator.html#a4deb6a8ea2b7d2ef7cd42c9ca668f8a1" title="souffle::AstAggregator\l::getBodyLiterals" alt="" coords="229,674,381,715"/>
+<area shape="rect" id="node22" href="$classsouffle_1_1_ast_clause.html#ae9a1e5dd0a7c9781e23a7d9ececd6ae5" title="Return the atom that represents the head of the clause. " alt="" coords="240,909,371,950"/>
+<area shape="rect" id="node23" href="$classsouffle_1_1_ast_aggregator.html#a6f1134ff25405d6a6521fd5bbba85aef" title="souffle::AstAggregator\l::getOperator" alt="" coords="229,974,381,1015"/>
+<area shape="rect" id="node24" href="$classsouffle_1_1_ast_execution_plan.html#ab19ae4c30d251bdc5081087a65694928" title="Obtains the order defined for the given version. " alt="" coords="219,1091,392,1133"/>
+<area shape="rect" id="node25" href="$classsouffle_1_1_ast_execution_plan.html#ac45ab077c553f59a7455cc92200cd06b" title="Determines whether for the given version a plan has been specified. " alt="" coords="465,1062,639,1103"/>
+<area shape="rect" id="node26" href="$classsouffle_1_1_ast_aggregator.html#a59e520e92b927956903439a375c9ce62" title="souffle::AstAggregator\l::getTargetExpression" alt="" coords="229,1157,381,1198"/>
+<area shape="rect" id="node27" href="$classsouffle_1_1_ast_clause.html#a42c4fc12f87937711a0305183d699853" title="Return true if the clause is a fact. " alt="" coords="487,1281,617,1322"/>
+<area shape="rect" id="node32" href="$classsouffle_1_1_ast_clause.html#a16848e69741f7ea9c85985c11fa2b645" title="Return true if the clause is a rule. " alt="" coords="240,1222,371,1263"/>
+<area shape="rect" id="node33" href="$classsouffle_1_1_ast_execution_order.html#a4a5679116dac4e4bbbaf8752f3db49ec" title="The length of this order. " alt="" coords="216,1339,395,1381"/>
+<area shape="rect" id="node34" href="$namespacesouffle.html#a06f428910159c119c1dcdcab76ab7dfa" title="Stringify a string using escapes for newline, tab, double&#45;quotes and semicolons. " alt="" coords="248,1405,363,1432"/>
+<area shape="rect" id="node35" href="$namespacesouffle.html#aecc08c83ad9634fc515b7aa094702949" title="A generic function converting strings into strings (trivial case). " alt="" coords="248,1456,363,1483"/>
+<area shape="rect" id="node36" href="$namespacesouffle.html#ad9bb9099f19c9e5dcf89e3822728496c" title="A utility function visiting all nodes within the ast rooted by the given node recursively in a depth&#45;..." alt="" coords="693,1451,848,1493"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_ast_clause.html#a253d3796df50375b98447daff50200f9" title="Construct an empty clause with empty list of literals and its head set to NULL. " alt="" coords="487,185,617,226"/>
+<area shape="rect" id="node8" href="$classsouffle_1_1_ast_node.html#a68e6e13cb8d1510e47087447a89cae83" title="Return source location of the AstNode. " alt="" coords="459,133,645,160"/>
+<area shape="rect" id="node13" href="$namespacesouffle.html#ad62d4e824a9d74c7462da546a21780fe" title="A utility function enabling the creation of a vector of pointers. " alt="" coords="485,616,619,643"/>
+<area shape="rect" id="node18" href="$classsouffle_1_1_ast_program.html#ae4e787ea4d338524ea6b346d5dedc290" title="Find and return the relation in the program given its name. " alt="" coords="483,733,621,774"/>
+<area shape="rect" id="node28" href="$classsouffle_1_1_ast_clause.html#af474f0a79851dc870309c1eac1db4005" title="Return the number of elements in the body of the Clause. " alt="" coords="705,1339,836,1381"/>
+<area shape="rect" id="node29" href="$namespacesouffle.html#a4e134334ce89f6ebc4075e1089b1f80d" title="A utility function visiting all nodes within the ast rooted by the given node recursively in a depth&#45;..." alt="" coords="693,1288,848,1315"/>
+<area shape="rect" id="node30" href="$namespacesouffle.html#ae3213abfc9e18e34bb08056ec91f7b86" title="A utility function visiting all nodes within the ast rooted by the given node recursively in a depth&#45;..." alt="" coords="896,1393,1051,1434"/>
+<area shape="rect" id="node31" href="$classsouffle_1_1_ast_node.html#a3726392849b2a07142ba13bbd5fb16d2" title="Obtain a list of all embedded AST child nodes. " alt="" coords="1099,1422,1275,1463"/>
+</map>

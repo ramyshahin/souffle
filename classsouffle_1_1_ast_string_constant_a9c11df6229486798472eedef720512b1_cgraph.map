@@ -1,0 +1,5 @@
+<map id="souffle::AstStringConstant::clone" name="souffle::AstStringConstant::clone">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ast_string_constant.html#a6fe92d246aa634f5e22a9a27baf53749" title="souffle::AstStringConstant\l::AstStringConstant" alt="" coords="235,5,411,46"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ast_constant.html#a6be83d66a2d89303298134d5c0d89d15" title="souffle::AstConstant\l::getIndex" alt="" coords="251,70,394,111"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ast_node.html#a68e6e13cb8d1510e47087447a89cae83" title="Return source location of the AstNode. " alt="" coords="229,136,416,163"/>
+</map>

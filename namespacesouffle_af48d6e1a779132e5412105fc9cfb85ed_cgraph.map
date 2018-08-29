@@ -1,0 +1,8 @@
+<map id="souffle::containsInlinedAtom" name="souffle::containsInlinedAtom">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ast_atom.html#adfaa949dc3e89fa2dc25981963ea5752" title="Return the name of this atom. " alt="" coords="240,5,421,32"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ast_program.html#ae4e787ea4d338524ea6b346d5dedc290" title="Find and return the relation in the program given its name. " alt="" coords="261,57,400,98"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ast_relation.html#a337a8e26fdf7e036a3be3b20b7f04880" title="Check whether relation is an inlined relation. " alt="" coords="262,122,399,163"/>
+<area shape="rect" id="node5" href="$namespacesouffle.html#a4e134334ce89f6ebc4075e1089b1f80d" title="A utility function visiting all nodes within the ast rooted by the given node recursively in a depth&#45;..." alt="" coords="253,188,408,215"/>
+<area shape="rect" id="node6" href="$namespacesouffle.html#ae3213abfc9e18e34bb08056ec91f7b86" title="A utility function visiting all nodes within the ast rooted by the given node recursively in a depth&#45;..." alt="" coords="469,181,624,222"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1_ast_node.html#a3726392849b2a07142ba13bbd5fb16d2" title="Obtain a list of all embedded AST child nodes. " alt="" coords="672,181,848,222"/>
+</map>

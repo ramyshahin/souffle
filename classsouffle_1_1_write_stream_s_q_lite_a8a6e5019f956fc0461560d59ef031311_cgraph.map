@@ -1,0 +1,5 @@
+<map id="souffle::WriteStreamSQLite::createRelationView" name="souffle::WriteStreamSQLite::createRelationView">
+<area shape="rect" id="node2" href="$classsouffle_1_1_write_stream_s_q_lite.html#a153d8ef90077834746b1e5a76c6420a5" title="souffle::WriteStreamSQLite\l::executeSQL" alt="" coords="238,5,421,46"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_symbol_mask.html#a7f121bec340d5825d3ebef7abe1a81a0" title="souffle::SymbolMask\l::isSymbol" alt="" coords="257,70,402,111"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_symbol_mask.html#a73093d37902fa812dc5db128ab9ed85e" title="souffle::SymbolMask\l::getArity" alt="" coords="470,70,615,111"/>
+</map>

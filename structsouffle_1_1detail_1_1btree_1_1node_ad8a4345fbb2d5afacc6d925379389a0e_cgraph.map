@@ -1,0 +1,4 @@
+<map id="souffle::detail::btree::node::~node" name="souffle::detail::btree::node::~node">
+<area shape="rect" id="node2" href="$structsouffle_1_1detail_1_1btree_1_1node.html#ab0fcaa7f9f2329d2ff8ad3fe7c580788" title="A utility function providing a reference to this node as an inner node. " alt="" coords="195,5,335,46"/>
+<area shape="rect" id="node3" href="$structsouffle_1_1detail_1_1btree_1_1inner__node.html#af10849a841840e31bed06b56c9862fc8" title="souffle::detail::btree\l::inner_node::cleanup" alt="" coords="192,70,339,111"/>
+</map>

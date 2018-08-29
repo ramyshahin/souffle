@@ -1,0 +1,10 @@
+<map id="souffle::InterpreterRelation::exists" name="souffle::InterpreterRelation::exists">
+<area shape="rect" id="node2" href="$classsouffle_1_1_interpreter_relation.html#a5de54d32362b1ee2b22318e055833e22" title="Check whether relation is empty. " alt="" coords="229,5,405,46"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_interpreter_index.html#a74368b5a5941538c09c473efc76ec85a" title="check whether tuple exists in index " alt="" coords="237,70,397,111"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_interpreter_relation.html#a48005d1ab2f3cfb5606e3beb6148d9d2" title="Get arity of relation. " alt="" coords="453,162,629,203"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1_interpreter_relation.html#a44077cb5db1e32f26de870fa505b2da9" title="get index for a given set of keys using a cached index as a helper. " alt="" coords="229,253,405,294"/>
+<area shape="rect" id="node9" href="$classsouffle_1_1_interpreter_relation.html#a1ab081df1a11459996086cb0813a5364" title="Obtains a full index&#45;key for this relation. " alt="" coords="229,187,405,229"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1detail_1_1btree.html#aa74fc221df82ac178012af0523719b1f" title="souffle::detail::btree::end" alt="" coords="458,32,625,59"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1detail_1_1btree.html#a1e4c807c12024e3b3b9eb59e1ffb9081" title="Locates the given key within this tree and returns an iterator referencing its position. " alt="" coords="473,83,610,125"/>
+<area shape="rect" id="node8" href="$classsouffle_1_1_interpreter_index.html#a8358d5485aa79a5eaec2a0529ca7b2e1" title="souffle::InterpreterIndex\l::order" alt="" coords="461,253,621,294"/>
+</map>

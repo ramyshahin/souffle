@@ -1,0 +1,12 @@
+<map id="souffle::RemoveEmptyRelationsTransformer::removeEmptyRelationUses" name="souffle::RemoveEmptyRelationsTransformer::removeEmptyRelationUses">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ast_program.html#a29a37490ca76595a9a8403d3acac8db8" title="append a new clause to this program – after parsing " alt="" coords="335,5,473,46"/>
+<area shape="rect" id="node3" href="$namespacesouffle.html#ab18cbb3adc2ab328de0db30a3fddf7e0" title="Returns the relation referenced by the given atom. " alt="" coords="321,71,487,97"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_ast_translation_unit.html#a85862a5fcfecdf63c7367926cdedde23" title="get the AST program " alt="" coords="315,122,493,163"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1_ast_program.html#ac0733345760aab5b6939cd20b228c223" title="Removes a clause from this program. " alt="" coords="335,187,473,229"/>
+<area shape="rect" id="node9" href="$namespacesouffle.html#a4e134334ce89f6ebc4075e1089b1f80d" title="A utility function visiting all nodes within the ast rooted by the given node recursively in a depth&#45;..." alt="" coords="327,256,481,283"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ast_atom.html#adfaa949dc3e89fa2dc25981963ea5752" title="Return the name of this atom. " alt="" coords="541,129,723,156"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_ast_program.html#ae4e787ea4d338524ea6b346d5dedc290" title="Find and return the relation in the program given its name. " alt="" coords="563,63,701,105"/>
+<area shape="rect" id="node8" href="$classsouffle_1_1_ast_clause.html#ae9a1e5dd0a7c9781e23a7d9ececd6ae5" title="Return the atom that represents the head of the clause. " alt="" coords="567,185,697,226"/>
+<area shape="rect" id="node10" href="$namespacesouffle.html#ae3213abfc9e18e34bb08056ec91f7b86" title="A utility function visiting all nodes within the ast rooted by the given node recursively in a depth&#45;..." alt="" coords="555,250,709,291"/>
+<area shape="rect" id="node11" href="$classsouffle_1_1_ast_node.html#a3726392849b2a07142ba13bbd5fb16d2" title="Obtain a list of all embedded AST child nodes. " alt="" coords="771,250,947,291"/>
+</map>

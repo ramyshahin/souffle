@@ -1,0 +1,5 @@
+<map id="souffle::RuleBody::toClauseBodies" name="souffle::RuleBody::toClauseBodies">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ast_clause.html#aa9da90d931189d440bbe7b256e554f8d" title="Add a Literal to the body of the clause. " alt="" coords="217,5,348,46"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_rule_body.html#a2ff0877b29836e4a4552fe1fddb62523" title="souffle::RuleBody::atom" alt="" coords="201,71,364,97"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ast_node.html#a0b664297f0971c6ce32ff2e0e4f2603f" title="Set source location for the AstNode. " alt="" coords="189,121,376,148"/>
+</map>

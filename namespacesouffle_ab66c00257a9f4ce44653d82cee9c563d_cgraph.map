@@ -1,0 +1,6 @@
+<map id="souffle::unifyAtoms" name="souffle::unifyAtoms">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ast_atom.html#a11ba399d723b5f1135a35e47e51e1bad" title="Provides access to the list of arguments of this atom. " alt="" coords="190,5,399,32"/>
+<area shape="rect" id="node4" href="$namespacesouffle.html#a08f3e2bc00f4340336a0f9a9dc4e9955" title="Reduces a vector of substitutions. " alt="" coords="206,56,383,83"/>
+<area shape="rect" id="node3" href="$namespacesouffle.html#ad62d4e824a9d74c7462da546a21780fe" title="A utility function enabling the creation of a vector of pointers. " alt="" coords="449,5,583,32"/>
+<area shape="rect" id="node5" href="$namespacesouffle.html#a7f93cdf21f1a24b593da6691dc892828" title="A generic factory for constraints of the form. " alt="" coords="471,56,561,83"/>
+</map>

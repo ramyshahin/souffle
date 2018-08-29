@@ -1,0 +1,9 @@
+<map id="souffle::BddBddBTranslator::visitRelation" name="souffle::BddBddBTranslator::visitRelation">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ast_relation.html#adf9ccc5b4924918ea95bd64898196b66" title="Obtains a list of the contained attributes. " alt="" coords="261,5,398,46"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ast_relation.html#a6ae505289ecfc8e40c9f4e47689f5ee8" title="Return the name of the relation. " alt="" coords="261,70,398,111"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_ast_relation.html#aa333dd84cbf78b723d3532baf2aaaaea" title="Check whether relation is an input relation. " alt="" coords="261,135,398,177"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_ast_relation.html#ae8a38221aa94f0df83f602fd1d1d0eb8" title="Check whether relation is an output relation. " alt="" coords="261,201,398,242"/>
+<area shape="rect" id="node7" href="$namespacesouffle.html#abe4e3f19879707216a2758b03f4e2deb" title="Creates an object to be forwarded to some output stream for printing sequences of elements interspers..." alt="" coords="493,296,582,323"/>
+<area shape="rect" id="node8" href="$classsouffle_1_1_bdd_bdd_b_translator.html#a7fd19416155030833e635111c37d040b" title="souffle::BddBddBTranslator\l::visitRelationIdentifier" alt="" coords="238,318,421,359"/>
+<area shape="rect" id="node3" href="$namespacesouffle.html#ad62d4e824a9d74c7462da546a21780fe" title="A utility function enabling the creation of a vector of pointers. " alt="" coords="470,12,605,39"/>
+</map>

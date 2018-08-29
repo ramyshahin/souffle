@@ -1,0 +1,8 @@
+<map id="souffle::ProfileEventSingleton::makeTimeEvent" name="souffle::ProfileEventSingleton::makeTimeEvent">
+<area shape="rect" id="node2" href="$classsouffle_1_1profile_1_1_event_processor_singleton.html#a3a6564631bccb96da84ccad7edfe4dc9" title="get instance " alt="" coords="248,5,453,46"/>
+<area shape="rect" id="node3" href="$namespacesouffle.html#a1c65551944c7ecf6f44ec851b49bdbb0" title="souffle::now" alt="" coords="304,71,397,97"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1profile_1_1_event_processor_singleton.html#a537033bada68e176ff0b09239acd21fe" title="process a profile event " alt="" coords="248,122,453,163"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1profile_1_1_event_processor_singleton.html#a2683498b1eeddf5c2c036b083e9be0d3" title="Escape escape characters. " alt="" coords="501,89,707,130"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1profile_1_1_event_processor_singleton.html#ac29c916b9aef2f553b111dad2df96cf4" title="split string separated by semi&#45;colon " alt="" coords="501,154,707,195"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1profile_1_1_event_processor_singleton.html#a21060e6cba7f78fb9c0f9a43ab84580a" title="split string " alt="" coords="755,154,960,195"/>
+</map>

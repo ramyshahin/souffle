@@ -1,0 +1,4 @@
+<map id="souffle::AstClause::equal" name="souffle::AstClause::equal">
+<area shape="rect" id="node2" href="$namespacesouffle.html#a961b0d79be71a35f0b60aeedf212fe4a" title="A function testing whether two vector of pointers are referencing to equivalent targets. " alt="" coords="184,12,331,39"/>
+<area shape="rect" id="node3" href="$namespacesouffle.html#ab0083e5ad86e88ff726ea4e3c7ef23c1" title="A function testing whether two vectors are equal (same vector of elements). " alt="" coords="379,12,479,39"/>
+</map>

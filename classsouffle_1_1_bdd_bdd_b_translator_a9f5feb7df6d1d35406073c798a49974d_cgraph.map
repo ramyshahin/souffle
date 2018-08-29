@@ -1,0 +1,4 @@
+<map id="souffle::BddBddBTranslator::visitTypeCast" name="souffle::BddBddBTranslator::visitTypeCast">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ast_type_cast.html#a13a2b8ee122b85714ecbde42bb7e1595" title="souffle::AstTypeCast\l::getValue" alt="" coords="237,5,384,46"/>
+<area shape="rect" id="node3" href="$structsouffle_1_1_ast_visitor.html#ac26669114316a4b0ef0db9427b23bcac" title="The main entry for a visit process conducting the dispatching of a visit to the various sub&#45;types of ..." alt="" coords="241,69,380,125"/>
+</map>

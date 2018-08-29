@@ -1,0 +1,17 @@
+<map id="souffle::IndexSet::solve" name="souffle::IndexSet::solve">
+<area shape="rect" id="node2" href="$classsouffle_1_1_max_matching.html#ac3dd726cde8bb080da933aa75604bf20" title="Add edge. " alt="" coords="193,5,340,46"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_index_set.html#a4b1f9e1595f7b31e71d35e78431107a3" title="count the number of bits in key " alt="" coords="189,71,344,97"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_global.html#a2dcb257b0f98d0b882862427cc965640" title="souffle::Global::config" alt="" coords="192,121,341,148"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_index_set.html#ab9ac1011b2933d21444b565ae5472945" title="get all chains from the matching " alt="" coords="185,223,349,265"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1_index_set.html#a75dd083ad9d3f03b7cce11a95c2108ce" title="convert from a representation of A verticies to B verticies " alt="" coords="592,201,741,228"/>
+<area shape="rect" id="node9" href="$classsouffle_1_1_index_set.html#ae9ffc411bbb7d326c10169e0bc45b5b4" title="insert an index based on the delta " alt="" coords="202,289,331,330"/>
+<area shape="rect" id="node10" href="$classsouffle_1_1_index_set.html#a0db06130b3f096d37d84481ce5f58387" title="determine if key a is a strict subset of key b " alt="" coords="202,354,331,395"/>
+<area shape="rect" id="node11" href="$classsouffle_1_1_index_set.html#aa2c6d5c6162371af92c71c0468874979" title="maps search columns to an lexicographical order (labeled by a number) " alt="" coords="189,420,344,447"/>
+<area shape="rect" id="node12" href="$classsouffle_1_1_max_matching.html#a4cd24259875831e6d3f82aaa3840a4ab" title="Solve. " alt="" coords="193,471,340,513"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_index_set.html#a553ee01f9f9a1e346cc403bb9b995e05" title="given an unmapped node from set A we follow it from set B until it cannot be matched from B if not ma..." alt="" coords="406,223,535,265"/>
+<area shape="rect" id="node8" href="$classsouffle_1_1_index_set.html#a90f83fdd092fdc519d7ed78be40f4e0f" title="get all nodes which are unmated from A&#45;&gt; B " alt="" coords="402,289,539,330"/>
+<area shape="rect" id="node13" href="$classsouffle_1_1_max_matching.html#a8ddaeeb5af558ffc94bb54d7b3bc1734" title="breadth first search " alt="" coords="397,471,544,513"/>
+<area shape="rect" id="node14" href="$classsouffle_1_1_max_matching.html#a0a86567f140cab81c0a76b763552402f" title="Get match. " alt="" coords="593,471,740,513"/>
+<area shape="rect" id="node16" href="$classsouffle_1_1_max_matching.html#a799ace56dd22769e9b7114fa7928e4c0" title="depth first search " alt="" coords="397,537,544,578"/>
+<area shape="rect" id="node15" href="$classsouffle_1_1_max_matching.html#a20efdbbbf7d3492c3c721ee43e70a1c6" title="Get distance. " alt="" coords="593,537,740,578"/>
+</map>

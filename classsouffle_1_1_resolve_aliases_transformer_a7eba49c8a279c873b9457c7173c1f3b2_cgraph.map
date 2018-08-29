@@ -1,0 +1,14 @@
+<map id="souffle::ResolveAliasesTransformer::removeTrivialEquality" name="souffle::ResolveAliasesTransformer::removeTrivialEquality">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ast_clause.html#a6c598326d12aa0ca9af63282c0f1fe23" title="clone head generates a new clause with the same head but empty body " alt="" coords="285,261,416,302"/>
+<area shape="rect" id="node13" href="$classsouffle_1_1_ast_clause.html#a9918f4fb19dd6f152d784512853b447a" title="Obtains a copy of the internally maintained body literals. " alt="" coords="285,326,416,367"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ast_clause.html#a253d3796df50375b98447daff50200f9" title="Construct an empty clause with empty list of literals and its head set to NULL. " alt="" coords="727,7,857,49"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ast_clause.html#aef9cb574a067db73c83fd9c9f63d297f" title="Creates a clone of this AST sub&#45;structure. " alt="" coords="492,59,623,101"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_ast_clause.html#af03a18e982fbce1bb3866c18c5da192e" title="Obtains the execution plan associated to this clause or null if there is none. " alt="" coords="726,78,858,119"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_ast_node.html#a68e6e13cb8d1510e47087447a89cae83" title="Return source location of the AstNode. " alt="" coords="699,155,885,181"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1_ast_clause.html#ae9a1e5dd0a7c9781e23a7d9ececd6ae5" title="Return the atom that represents the head of the clause. " alt="" coords="492,227,623,269"/>
+<area shape="rect" id="node8" href="$classsouffle_1_1_ast_clause.html#a9ffbaaeaeac8f4b5a690a7c7bcea748c" title="Determines whether the execution order plan is fixed. " alt="" coords="474,293,641,334"/>
+<area shape="rect" id="node9" href="$classsouffle_1_1_ast_clause.html#ab60415570b29118f4a476bcecb58bc7c" title="Updates the execution plan associated to this clause. " alt="" coords="491,358,623,399"/>
+<area shape="rect" id="node10" href="$classsouffle_1_1_ast_clause.html#a586a48936277bdb61b6fbb5619a7abcb" title="Updates the fixed execution order flag. " alt="" coords="475,423,639,465"/>
+<area shape="rect" id="node11" href="$classsouffle_1_1_ast_clause.html#a07290e1b7b9e4ce73c3a5f0482ce88d3" title="Set the head of clause to h. " alt="" coords="492,489,623,530"/>
+<area shape="rect" id="node12" href="$classsouffle_1_1_ast_node.html#a0b664297f0971c6ce32ff2e0e4f2603f" title="Set source location for the AstNode. " alt="" coords="464,555,651,581"/>
+</map>

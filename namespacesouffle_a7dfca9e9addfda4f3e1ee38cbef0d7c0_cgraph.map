@@ -1,0 +1,16 @@
+<map id="souffle::inlineBodyLiterals" name="souffle::inlineBodyLiterals">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ast_clause.html#ab7a5b630d02cd69873aab066c2bd9c46" title="Mutates this node. " alt="" coords="236,5,367,46"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ast_clause.html#aef9cb574a067db73c83fd9c9f63d297f" title="Creates a clone of this AST sub&#45;structure. " alt="" coords="236,70,367,111"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1_ast_clause.html#a9918f4fb19dd6f152d784512853b447a" title="Obtains a copy of the internally maintained body literals. " alt="" coords="236,135,367,177"/>
+<area shape="rect" id="node8" href="$classsouffle_1_1_ast_clause.html#ae9a1e5dd0a7c9781e23a7d9ececd6ae5" title="Return the atom that represents the head of the clause. " alt="" coords="236,201,367,242"/>
+<area shape="rect" id="node9" href="$classsouffle_1_1_nullable_vector.html#aa79f48ef3a2b9cdc53e316aecf978aa2" title="souffle::NullableVector\l::getVector" alt="" coords="224,266,379,307"/>
+<area shape="rect" id="node10" href="$classsouffle_1_1_nullable_vector.html#a1e5e9114c77f302e8800421d2dd7c717" title="souffle::NullableVector\l::isValid" alt="" coords="224,331,379,373"/>
+<area shape="rect" id="node11" href="$namespacesouffle.html#ab66c00257a9f4ce44653d82cee9c563d" title="Returns the nullable vector of substitutions needed to unify the two given atoms. ..." alt="" coords="234,397,369,424"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ast_clause.html#a253d3796df50375b98447daff50200f9" title="Construct an empty clause with empty list of literals and its head set to NULL. " alt="" coords="467,11,597,53"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_ast_node.html#a68e6e13cb8d1510e47087447a89cae83" title="Return source location of the AstNode. " alt="" coords="439,77,625,104"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_ast_clause.html#af03a18e982fbce1bb3866c18c5da192e" title="Obtains the execution plan associated to this clause or null if there is none. " alt="" coords="466,129,598,170"/>
+<area shape="rect" id="node12" href="$classsouffle_1_1_ast_atom.html#a11ba399d723b5f1135a35e47e51e1bad" title="Provides access to the list of arguments of this atom. " alt="" coords="427,372,637,399"/>
+<area shape="rect" id="node14" href="$namespacesouffle.html#a08f3e2bc00f4340336a0f9a9dc4e9955" title="Reduces a vector of substitutions. " alt="" coords="443,423,621,449"/>
+<area shape="rect" id="node13" href="$namespacesouffle.html#ad62d4e824a9d74c7462da546a21780fe" title="A utility function enabling the creation of a vector of pointers. " alt="" coords="686,372,821,399"/>
+<area shape="rect" id="node15" href="$namespacesouffle.html#a7f93cdf21f1a24b593da6691dc892828" title="A generic factory for constraints of the form. " alt="" coords="708,423,799,449"/>
+</map>

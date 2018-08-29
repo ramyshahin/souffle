@@ -1,0 +1,6 @@
+<map id="souffle::ram::detail::GenericRelation::partition" name="souffle::ram::detail::GenericRelation::partition">
+<area shape="rect" id="node2" href="$classsouffle_1_1ram_1_1detail_1_1_generic_relation.html#a26ec757c3597b29dce32c5960998467e" title="souffle::ram::detail\l::GenericRelation::begin" alt="" coords="232,5,395,46"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1ram_1_1detail_1_1_generic_relation.html#a377a3c35407ce78876053b1963881c9c" title="souffle::ram::detail\l::GenericRelation::end" alt="" coords="237,70,389,111"/>
+<area shape="rect" id="node5" href="$structsouffle_1_1range.html#a2f4d5a2bf3e29d0d7a87d278cc17fced" title="souffle::range::partition" alt="" coords="236,136,391,163"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1ram_1_1detail_1_1_generic_relation.html#aca22076bc6b5ed8464aa7159ec99e4aa" title="souffle::ram::detail\l::GenericRelation::getMainIndex" alt="" coords="443,38,653,79"/>
+</map>

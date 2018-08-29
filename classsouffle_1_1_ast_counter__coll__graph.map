@@ -1,0 +1,6 @@
+<map id="souffle::AstCounter" name="souffle::AstCounter">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ast_argument.html" title="Intermediate representation of an argument. " alt="" coords="87,805,232,912"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ast_node.html" title="Abstract class for syntactic elements in a Datalog program. " alt="" coords="96,531,224,755"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_src_location.html" title="A class describing a range in an input file. " alt="" coords="91,360,229,467"/>
+<area shape="rect" id="node5" href="$structsouffle_1_1_src_location_1_1_point.html" title="A class locating a single point in an input file. " alt="" coords="5,161,144,282"/>
+</map>

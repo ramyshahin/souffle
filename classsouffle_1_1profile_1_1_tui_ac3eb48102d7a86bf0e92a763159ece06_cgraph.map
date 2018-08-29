@@ -1,0 +1,14 @@
+<map id="souffle::profile::Tui::top" name="souffle::profile::Tui::top">
+<area shape="rect" id="node2" href="$classsouffle_1_1profile_1_1_output_processor.html#a6bb671aa2410a26617bf762934edf00d" title="souffle::profile::Output\lProcessor::getProgramRun" alt="" coords="211,187,391,229"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1profile_1_1_tui.html#a3c2c35a1f82bea79923aec820fbff582" title="souffle::profile::Tui\l::usage" alt="" coords="236,253,367,294"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1profile_1_1_tui.html#a5ba0d3f8a71af6e8b0d2e669aa610b5d" title="souffle::profile::Tui\l::getTermWidth" alt="" coords="472,5,603,46"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_profile_event_singleton.html#adf94d78a9d87272b42a1fe4bc31f918d" title="get instance " alt="" coords="440,70,635,111"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_profile_event_singleton.html#a637d45b9714bb164623bda9df474bc85" title="souffle::ProfileEventSingleton\l::getDB" alt="" coords="440,135,635,177"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1profile_1_1_profile_database.html#ae5a098b1d32229911d5d3b960472ccd8" title="Return the entry at the given path. " alt="" coords="460,253,615,294"/>
+<area shape="rect" id="node8" href="$classsouffle_1_1profile_1_1_directory_entry.html#ad1dba1259e3d6435662024428904eac5" title="souffle::profile::Directory\lEntry::readDirectoryEntry" alt="" coords="683,198,853,239"/>
+<area shape="rect" id="node9" href="$classsouffle_1_1profile_1_1_directory_entry.html#aa10394557bb93e33990186c9a11f45dc" title="souffle::profile::Directory\lEntry::readEntry" alt="" coords="901,257,1067,298"/>
+<area shape="rect" id="node10" href="$classsouffle_1_1profile_1_1_directory_entry.html#a2a8aca961218ffd945e5d681bf410821" title="souffle::profile::Directory\lEntry::getKeys" alt="" coords="455,370,620,411"/>
+<area shape="rect" id="node11" href="$namespacesouffle_1_1profile_1_1_tools.html#ad0ed94a1bddc0f50beba321548460743" title="souffle::profile::Tools\l::formatTime" alt="" coords="465,435,609,477"/>
+<area shape="rect" id="node12" href="$namespacesouffle_1_1profile_1_1_tools.html#a1559d42a6fa12539abc7744726a7eaa4" title="souffle::profile::Tools\l::formatNum" alt="" coords="465,501,609,542"/>
+<area shape="rect" id="node13" href="$namespacesouffle_1_1profile_1_1_tools.html#a2bece208942313bcd12c80a8d5cba2ba" title="souffle::profile::Tools\l::abbreviations" alt="" coords="696,501,840,542"/>
+</map>

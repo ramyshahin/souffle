@@ -1,0 +1,4 @@
+<map id="souffle::AstRelation::isComputed" name="souffle::AstRelation::isComputed">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ast_relation.html#ae8a38221aa94f0df83f602fd1d1d0eb8" title="Check whether relation is an output relation. " alt="" coords="193,5,330,46"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ast_relation.html#a5de0a60f392fd55905d648894f62f4ab" title="Check whether relation is an input relation. " alt="" coords="193,70,330,111"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="souffle::profile::Tui::verGraph" name="souffle::profile::Tui::verGraph">
+<area shape="rect" id="node2" href="$classsouffle_1_1profile_1_1_output_processor.html#a57c2906e426e0a91f668ba2e07a4533e" title="souffle::profile::Output\lProcessor::getVersions" alt="" coords="185,5,343,46"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1profile_1_1_tui.html#affd406f1131c7c308b21b2c72c7d302e" title="souffle::profile::Tui\l::graphD" alt="" coords="199,70,329,111"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1profile_1_1_tui.html#a0739b09eb9b04ec1df342c25e7bb899e" title="souffle::profile::Tui\l::graphL" alt="" coords="199,135,329,177"/>
+<area shape="rect" id="node9" href="$namespacesouffle_1_1profile_1_1_tools.html#af066460f14a270ae3871cd18a8cf423d" title="souffle::profile::Tools\l::split" alt="" coords="192,201,336,242"/>
+<area shape="rect" id="node10" href="$namespacesouffle.html#aecc08c83ad9634fc515b7aa094702949" title="A generic function converting strings into strings (trivial case). " alt="" coords="207,267,321,293"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1profile_1_1_table.html#ac99e71fd2b566a2e68a72da291a86aa5" title="souffle::profile::Table\l::addRow" alt="" coords="397,5,541,46"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1profile_1_1_output_processor.html#a2f89164cf4e3f321c8c00d901c5e0137" title="souffle::profile::Output\lProcessor::formatNum" alt="" coords="392,135,547,177"/>
+<area shape="rect" id="node7" href="$namespacesouffle_1_1profile_1_1_tools.html#a1559d42a6fa12539abc7744726a7eaa4" title="souffle::profile::Tools\l::formatNum" alt="" coords="595,135,739,177"/>
+<area shape="rect" id="node8" href="$namespacesouffle_1_1profile_1_1_tools.html#a2bece208942313bcd12c80a8d5cba2ba" title="souffle::profile::Tools\l::abbreviations" alt="" coords="787,135,931,177"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="souffle::AstSemanticChecker::checkIODirectives" name="souffle::AstSemanticChecker::checkIODirectives">
+<area shape="rect" id="node2" href="$classsouffle_1_1_error_report.html#a699dc9231cef74ac54573e3c79de7143" title="Adds an error with the given message and location. " alt="" coords="255,5,391,46"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_global.html#a2dcb257b0f98d0b882862427cc965640" title="souffle::Global::config" alt="" coords="248,71,397,97"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ast_program.html#a6bac686da21c46c5173a9875763dbba8" title="Get all io directives in the program. " alt="" coords="253,122,392,163"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_ast_program.html#ae4e787ea4d338524ea6b346d5dedc290" title="Find and return the relation in the program given its name. " alt="" coords="253,187,392,229"/>
+<area shape="rect" id="node6" href="$namespacesouffle.html#aecc08c83ad9634fc515b7aa094702949" title="A generic function converting strings into strings (trivial case). " alt="" coords="265,253,380,280"/>
+</map>

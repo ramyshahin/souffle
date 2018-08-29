@@ -1,0 +1,10 @@
+<map id="souffle::createNewRelation" name="souffle::createNewRelation">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ast_relation.html#adf9ccc5b4924918ea95bd64898196b66" title="Obtains a list of the contained attributes. " alt="" coords="259,5,397,46"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ast_node.html#a68e6e13cb8d1510e47087447a89cae83" title="Return source location of the AstNode. " alt="" coords="235,71,421,97"/>
+<area shape="rect" id="node5" href="$namespacesouffle.html#a70f903ef77f947a3123c891794322534" title="souffle::nextSrcLoc" alt="" coords="261,121,395,148"/>
+<area shape="rect" id="node6" href="$namespacesouffle.html#aee69f1913bc5a4f49deeca2b10c8323b" title="souffle::updateQualifier" alt="" coords="250,172,406,199"/>
+<area shape="rect" id="node3" href="$namespacesouffle.html#ad62d4e824a9d74c7462da546a21780fe" title="A utility function enabling the creation of a vector of pointers. " alt="" coords="471,12,606,39"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1_ast_relation.html#a15a48bcd5bcf6eebbc4bb4ef16e52685" title="Return qualifier associated with this relation. " alt="" coords="470,99,607,141"/>
+<area shape="rect" id="node8" href="$classsouffle_1_1_ast_relation.html#a96ff8bd588002b8182393d95258c9d66" title="Check whether relation is a equivalence relation. " alt="" coords="470,165,607,206"/>
+<area shape="rect" id="node9" href="$classsouffle_1_1_ast_relation.html#a9527d30091d612f497c769ca3e87548f" title="Set qualifier associated with this relation. " alt="" coords="470,230,607,271"/>
+</map>

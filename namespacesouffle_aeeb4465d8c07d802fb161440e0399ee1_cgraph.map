@@ -1,0 +1,5 @@
+<map id="souffle::containsAggregators" name="souffle::containsAggregators">
+<area shape="rect" id="node2" href="$namespacesouffle.html#a4e134334ce89f6ebc4075e1089b1f80d" title="A utility function visiting all nodes within the ast rooted by the given node recursively in a depth&#45;..." alt="" coords="243,12,397,39"/>
+<area shape="rect" id="node3" href="$namespacesouffle.html#ae3213abfc9e18e34bb08056ec91f7b86" title="A utility function visiting all nodes within the ast rooted by the given node recursively in a depth&#45;..." alt="" coords="445,5,600,46"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ast_node.html#a3726392849b2a07142ba13bbd5fb16d2" title="Obtain a list of all embedded AST child nodes. " alt="" coords="648,5,824,46"/>
+</map>

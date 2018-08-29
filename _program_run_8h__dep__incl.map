@@ -1,0 +1,8 @@
+<map id="profile/ProgramRun.h" name="profile/ProgramRun.h">
+<area shape="rect" id="node2" href="$_output_processor_8h.html" title="profile/OutputProcessor.h" alt="" coords="5,80,176,107"/>
+<area shape="rect" id="node7" href="$_reader_8h.html" title="profile/Reader.h" alt="" coords="200,80,315,107"/>
+<area shape="rect" id="node3" href="$_tui_8h.html" title="profile/Tui.h" alt="" coords="128,155,219,181"/>
+<area shape="rect" id="node4" href="$main_8cpp.html" title="main.cpp" alt="" coords="84,229,157,256"/>
+<area shape="rect" id="node5" href="$_cli_8h.html" title="profile/Cli.h" alt="" coords="183,229,271,256"/>
+<area shape="rect" id="node6" href="$souffle__prof_8cpp.html" title="souffle_prof.cpp" alt="" coords="169,304,284,331"/>
+</map>

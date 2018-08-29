@@ -1,0 +1,6 @@
+<map id="souffle::ReadStreamCSV::readNextTuple" name="souffle::ReadStreamCSV::readNextTuple">
+<area shape="rect" id="node2" href="$classsouffle_1_1_symbol_mask.html#a73093d37902fa812dc5db128ab9ed85e" title="souffle::SymbolMask\l::getArity" alt="" coords="419,5,565,46"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_symbol_mask.html#a7f121bec340d5825d3ebef7abe1a81a0" title="souffle::SymbolMask\l::isSymbol" alt="" coords="225,34,370,75"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_symbol_table.html#a46a7fcfb933d111b38bc474415c5c986" title="Find the index of a symbol in the table, inserting a new symbol if it does not exist there already..." alt="" coords="225,99,370,141"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_symbol_table.html#a3ada80bb01130f70001918c386d3ab21" title="Convenience method to place a new symbol in the table, if it does not exist, and return the index of ..." alt="" coords="419,99,565,141"/>
+</map>

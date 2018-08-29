@@ -1,0 +1,6 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$structsouffle_1_1detail_1_1strategy__selection.html" title="souffle::detail::strategy\l_selection\&lt; linear_search \&gt;" alt="" coords="6,41,189,82"/>
+<area shape="rect" id="node2" href="$structsouffle_1_1detail_1_1linear.html" title="souffle::detail::linear" alt="" coords="237,48,376,75"/>
+<area shape="rect" id="node3" href="$structsouffle_1_1detail_1_1default__strategy_3_01int_01_4.html" title="souffle::detail::default\l_strategy\&lt; int \&gt;" alt="" coords="427,5,573,46"/>
+<area shape="rect" id="node4" href="$structsouffle_1_1detail_1_1default__strategy_3_01std_1_1tuple_3_01_ts_8_8_8_4_01_4.html" title="souffle::detail::default\l_strategy\&lt; std::tuple\&lt;\l Ts...\&gt; \&gt;" alt="" coords="425,69,575,125"/>
+</map>

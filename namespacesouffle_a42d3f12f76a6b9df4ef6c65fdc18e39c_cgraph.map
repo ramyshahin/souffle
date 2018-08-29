@@ -1,0 +1,9 @@
+<map id="souffle::transformEqrelRelation" name="souffle::transformEqrelRelation">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ast_atom.html#a0c2e151bc853490e6210c33c8fd127be" title="Add argument to the atom. " alt="" coords="256,5,461,32"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ast_relation.html#ac1c9cc395384b02288abcd189d2e6631" title="Add a clause to the relation. " alt="" coords="290,57,427,98"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ast_relation.html#a855b01ad5e4a0871ef6c6f6bb1e95d13" title="Return the arity of this relation. " alt="" coords="290,122,427,163"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_ast_relation.html#a6ae505289ecfc8e40c9f4e47689f5ee8" title="Return the name of the relation. " alt="" coords="290,187,427,229"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_ast_relation.html#a15a48bcd5bcf6eebbc4bb4ef16e52685" title="Return qualifier associated with this relation. " alt="" coords="290,253,427,294"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1_ast_relation.html#a96ff8bd588002b8182393d95258c9d66" title="Check whether relation is a equivalence relation. " alt="" coords="290,318,427,359"/>
+<area shape="rect" id="node8" href="$classsouffle_1_1_ast_relation.html#a9527d30091d612f497c769ca3e87548f" title="Set qualifier associated with this relation. " alt="" coords="290,383,427,425"/>
+</map>

@@ -1,0 +1,28 @@
+<map id="AstPragma.h" name="AstPragma.h">
+<area shape="rect" id="node2" href="$_ast_program_8h.html" title="AstProgram.h" alt="" coords="1307,80,1409,107"/>
+<area shape="rect" id="node5" href="$_ast_pragma_8cpp.html" title="AstPragma.cpp" alt="" coords="68,229,179,256"/>
+<area shape="rect" id="node17" href="$souffle2bdd_8cpp.html" title="souffle2bdd.cpp" alt="" coords="1888,304,2003,331"/>
+<area shape="rect" id="node18" href="$souffle2lb_8cpp.html" title="souffle2lb.cpp" alt="" coords="2137,304,2239,331"/>
+<area shape="rect" id="node23" href="$main_8cpp.html" title="main.cpp" alt="" coords="2475,304,2548,331"/>
+<area shape="rect" id="node26" href="$_parser_driver_8cpp.html" title="ParserDriver.cpp" alt="" coords="2755,229,2875,256"/>
+<area shape="rect" id="node3" href="$_ast_visitor_8h.html" title="AstVisitor.h" alt="" coords="620,155,711,181"/>
+<area shape="rect" id="node6" href="$_ast_semantic_checker_8cpp.html" title="AstSemanticChecker.cpp" alt="" coords="823,229,993,256"/>
+<area shape="rect" id="node7" href="$_ast_transforms_8cpp.html" title="AstTransforms.cpp" alt="" coords="147,304,280,331"/>
+<area shape="rect" id="node8" href="$_ast_translator_8cpp.html" title="AstTranslator.cpp" alt="" coords="1017,229,1143,256"/>
+<area shape="rect" id="node9" href="$_ast_type_analysis_8cpp.html" title="AstTypeAnalysis.cpp" alt="" coords="1167,229,1313,256"/>
+<area shape="rect" id="node10" href="$_ast_utils_8cpp.html" title="AstUtils.cpp" alt="" coords="703,229,797,256"/>
+<area shape="rect" id="node11" href="$_component_model_8cpp.html" title="ComponentModel.cpp" alt="" coords="1337,229,1485,256"/>
+<area shape="rect" id="node12" href="$_inline_relations_transformer_8cpp.html" title="InlineRelationsTransformer.cpp" alt="" coords="304,304,507,331"/>
+<area shape="rect" id="node14" href="$_magic_set_8cpp.html" title="MagicSet.cpp" alt="" coords="1143,304,1245,331"/>
+<area shape="rect" id="node15" href="$_minimise_program_transformer_8cpp.html" title="MinimiseProgramTransformer.cpp" alt="" coords="531,304,749,331"/>
+<area shape="rect" id="node16" href="$_precedence_graph_8cpp.html" title="PrecedenceGraph.cpp" alt="" coords="1511,229,1661,256"/>
+<area shape="rect" id="node19" href="$_ast_component_checker_8cpp.html" title="AstComponentChecker.cpp" alt="" coords="2446,229,2628,256"/>
+<area shape="rect" id="node20" href="$_ast_translation_unit_8h.html" title="AstTranslationUnit.h" alt="" coords="1729,155,1869,181"/>
+<area shape="rect" id="node24" href="$_provenance_transformer_8cpp.html" title="ProvenanceTransformer.cpp" alt="" coords="2264,304,2451,331"/>
+<area shape="rect" id="node27" href="$_ast_program_8cpp.html" title="AstProgram.cpp" alt="" coords="2606,155,2721,181"/>
+<area shape="rect" id="node4" href="$_ast_clause_8cpp.html" title="AstClause.cpp" alt="" coords="255,229,363,256"/>
+<area shape="rect" id="node13" href="$_magic_set_8h.html" title="MagicSet.h" alt="" coords="489,229,577,256"/>
+<area shape="rect" id="node21" href="$_ast_transformer_8cpp.html" title="AstTransformer.cpp" alt="" coords="1983,229,2120,256"/>
+<area shape="rect" id="node22" href="$_ast_transforms_8h.html" title="AstTransforms.h" alt="" coords="1789,229,1907,256"/>
+<area shape="rect" id="node25" href="$_debug_report_8cpp.html" title="DebugReport.cpp" alt="" coords="2145,229,2268,256"/>
+</map>

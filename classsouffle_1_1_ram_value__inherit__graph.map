@@ -1,0 +1,11 @@
+<map id="souffle::RamValue" name="souffle::RamValue">
+<area shape="rect" id="node3" href="$classsouffle_1_1_ram_argument.html" title="Access argument of a subroutine. " alt="" coords="5,479,157,659"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ram_auto_increment.html" title="Counter. " alt="" coords="182,487,364,652"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_ram_binary_operator.html" title="Binary function. " alt="" coords="389,435,573,703"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_ram_element_access.html" title="Access element from the current tuple in a tuple environment. " alt="" coords="597,457,787,681"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1_ram_number.html" title="Number Constant. " alt="" coords="811,479,953,659"/>
+<area shape="rect" id="node8" href="$classsouffle_1_1_ram_pack.html" title="Record pack operation. " alt="" coords="979,465,1107,674"/>
+<area shape="rect" id="node9" href="$classsouffle_1_1_ram_ternary_operator.html" title="Ternary Function. " alt="" coords="1131,523,1321,615"/>
+<area shape="rect" id="node10" href="$classsouffle_1_1_ram_unary_operator.html" title="Unary function. " alt="" coords="1346,457,1528,681"/>
+<area shape="rect" id="node2" href="$classsouffle_1_1_ram_node.html" title="RamNode is a superclass for all RAM IR classes. " alt="" coords="723,6,851,215"/>
+</map>

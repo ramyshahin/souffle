@@ -1,0 +1,10 @@
+<map id="souffle::InterpreterRelation::getIndex" name="souffle::InterpreterRelation::getIndex">
+<area shape="rect" id="node2" href="$structsouffle_1_1_lock.html#a0fe2edd3ac13a141851fa021716bae04" title="souffle::Lock::acquire" alt="" coords="244,5,391,32"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_interpreter_index_order.html#ab06764e638e27b20f1d05905fe62ab70" title="Append an additional column to the end of this order. " alt="" coords="237,57,397,98"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_interpreter_relation.html#a48005d1ab2f3cfb5606e3beb6148d9d2" title="Get arity of relation. " alt="" coords="229,122,405,163"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_interpreter_relation.html#a44077cb5db1e32f26de870fa505b2da9" title="get index for a given set of keys using a cached index as a helper. " alt="" coords="229,318,405,359"/>
+<area shape="rect" id="node8" href="$classsouffle_1_1_interpreter_index_order.html#ac60510befb8a9c07fe435ce421792ddd" title="Tests whether this order is compatible with the given order. " alt="" coords="237,187,397,229"/>
+<area shape="rect" id="node9" href="$classsouffle_1_1_interpreter_index_order.html#aa8dc403538659f05cc0f17b62d210821" title="Tests whether the given order covers a complete list of columns. " alt="" coords="237,253,397,294"/>
+<area shape="rect" id="node4" href="$namespacesouffle.html#a6f53082a60ed5593022bde81dc619ac9" title="souffle::contains" alt="" coords="474,195,593,221"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1_interpreter_index.html#a8358d5485aa79a5eaec2a0529ca7b2e1" title="souffle::InterpreterIndex\l::order" alt="" coords="453,318,613,359"/>
+</map>

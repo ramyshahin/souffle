@@ -1,0 +1,6 @@
+<map id="souffle::AstTranslationUnit" name="souffle::AstTranslationUnit">
+<area shape="rect" id="node2" href="$classsouffle_1_1_debug_report.html" title="Class representing a HTML report, consisting of a list of sections. " alt="" coords="33,265,180,372"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_error_report.html" title="{souffle::ErrorReport\n||+ addDiagnostic()\l+ addError()\l+ addWarning()\l+ ErrorReport()\l+ ErrorReport()\l+ getNumErrors()\l+ getNumIssues()\l+ getNumWarnings()\l+ print()\l}" alt="" coords="370,221,512,416"/>
+<area shape="rect" id="node8" href="$classsouffle_1_1_symbol_table.html" title="Global pool of re&#45;usable strings. " alt="" coords="537,192,689,445"/>
+<area shape="rect" id="node10" href="$structsouffle_1_1_lock.html" title="A small utility class for implementing simple locks. " alt="" coords="657,6,753,127"/>
+</map>

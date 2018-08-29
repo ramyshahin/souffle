@@ -1,0 +1,9 @@
+<map id="souffle::RamOperation" name="souffle::RamOperation">
+<area shape="rect" id="node3" href="$classsouffle_1_1_ram_project.html" title="Projection. " alt="" coords="5,566,144,863"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ram_return.html" title="A statement for returning from a ram subroutine. " alt="" coords="168,617,303,812"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_ram_search.html" title="Abstract class for relation scans and lookups. " alt="" coords="329,610,487,819"/>
+<area shape="rect" id="node2" href="$classsouffle_1_1_ram_node.html" title="RamNode is a superclass for all RAM IR classes. " alt="" coords="172,6,300,215"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_ram_aggregate.html" title="Aggregation. " alt="" coords="115,912,300,1195"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1_ram_lookup.html" title="Record lookup. " alt="" coords="325,949,491,1158"/>
+<area shape="rect" id="node8" href="$classsouffle_1_1_ram_scan.html" title="Relation Scan. " alt="" coords="515,919,700,1187"/>
+</map>

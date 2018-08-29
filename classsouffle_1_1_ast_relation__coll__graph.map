@@ -1,0 +1,6 @@
+<map id="souffle::AstRelation" name="souffle::AstRelation">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ast_node.html" title="Abstract class for syntactic elements in a Datalog program. " alt="" coords="67,545,195,769"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_src_location.html" title="A class describing a range in an input file. " alt="" coords="87,360,225,467"/>
+<area shape="rect" id="node4" href="$structsouffle_1_1_src_location_1_1_point.html" title="A class locating a single point in an input file. " alt="" coords="43,161,181,282"/>
+<area shape="rect" id="node10" href="$classsouffle_1_1_ast_relation_identifier.html" title="The type of identifier utilized for referencing relations. " alt="" coords="889,531,1076,784"/>
+</map>

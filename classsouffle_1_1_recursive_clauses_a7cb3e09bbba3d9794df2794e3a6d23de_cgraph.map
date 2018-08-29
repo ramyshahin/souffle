@@ -1,0 +1,11 @@
+<map id="souffle::RecursiveClauses::computeIsRecursive" name="souffle::RecursiveClauses::computeIsRecursive">
+<area shape="rect" id="node2" href="$classsouffle_1_1_ast_clause.html#a349d1209cf619aaf6250c91e2cb0041d" title="Obtains a list of contained body&#45;atoms. " alt="" coords="253,5,384,46"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ast_relation.html#a0a748962a9a2151a2fabe585346fb0d7" title="Obtains a list of the associated clauses. " alt="" coords="250,70,387,111"/>
+<area shape="rect" id="node5" href="$namespacesouffle.html#ae5266d9360a88847a65d1c581f778d89" title="Returns the relation referenced by the head of the given clause. " alt="" coords="235,136,402,163"/>
+<area shape="rect" id="node8" href="$classsouffle_1_1_ast_program.html#ae4e787ea4d338524ea6b346d5dedc290" title="Find and return the relation in the program given its name. " alt="" coords="693,154,832,195"/>
+<area shape="rect" id="node10" href="$classsouffle_1_1_ast_translation_unit.html#a85862a5fcfecdf63c7367926cdedde23" title="get the AST program " alt="" coords="230,242,407,283"/>
+<area shape="rect" id="node3" href="$namespacesouffle.html#ad62d4e824a9d74c7462da546a21780fe" title="A utility function enabling the creation of a vector of pointers. " alt="" coords="473,17,607,44"/>
+<area shape="rect" id="node6" href="$namespacesouffle.html#ab18cbb3adc2ab328de0db30a3fddf7e0" title="Returns the relation referenced by the given atom. " alt="" coords="457,73,623,100"/>
+<area shape="rect" id="node9" href="$classsouffle_1_1_ast_clause.html#ae9a1e5dd0a7c9781e23a7d9ececd6ae5" title="Return the atom that represents the head of the clause. " alt="" coords="475,125,605,166"/>
+<area shape="rect" id="node7" href="$classsouffle_1_1_ast_atom.html#adfaa949dc3e89fa2dc25981963ea5752" title="Return the name of this atom. " alt="" coords="672,73,853,100"/>
+</map>

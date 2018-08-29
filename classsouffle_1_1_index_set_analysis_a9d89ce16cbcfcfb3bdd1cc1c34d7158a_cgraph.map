@@ -1,0 +1,7 @@
+<map id="souffle::IndexSetAnalysis::print" name="souffle::IndexSetAnalysis::print">
+<area shape="rect" id="node2" href="$classsouffle_1_1_index_set.html#a9960f863d195b38db30aa42231ef612c" title="Get all indexes. " alt="" coords="233,5,362,46"/>
+<area shape="rect" id="node3" href="$classsouffle_1_1_ram_relation.html#acd6760acf6b69232fe1c138428ef803a" title="souffle::RamRelation\l::getArg" alt="" coords="225,70,370,111"/>
+<area shape="rect" id="node4" href="$classsouffle_1_1_ram_relation.html#a4b8c28fa5818f930e0d3149cd4a50b8b" title="souffle::RamRelation\l::getArity" alt="" coords="225,135,370,177"/>
+<area shape="rect" id="node5" href="$classsouffle_1_1_index_set.html#a8e750708f7600c9fc21418fb76545b1c" title="Get relation. " alt="" coords="233,201,362,242"/>
+<area shape="rect" id="node6" href="$classsouffle_1_1_index_set.html#a9b3b5a257bcd17f235608ed20e716c40" title="Get searches. " alt="" coords="233,266,362,307"/>
+</map>
