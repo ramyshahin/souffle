@@ -57,5 +57,36 @@ TEST(AstProgram, Parse) {
     EXPECT_FALSE(prog->getProgram()->getRelation("n"));
 }
 
+TEST(AstProgram, ParseWithPCs) {
+    SymbolTable sym;
+    SymbolTable featSymTab;
+    ErrorReport e;
+    DebugReport d;
+
+    // check something simple
+    std::unique_ptr<AstTranslationUnit> prog = ParserDriver::parseTranslationUnit(
+            R"(
+                .type D = number
+                .decl a(a:D,b:D)
+                .decl b(a:D,b:D)
+                .decl c(a:D,b:D) output
+                .decl d(a:D,b:D)
+
+                a(1,2) @ A /\ B.
+                b(x,y) :- a(x,y).
+                c(x,y) :- b(x,y).
+
+                d(x,y) :- b(x,y), c(y,x).
+
+            )",
+            sym, featSymTab, e, d);
+
+    std::cout << prog->getProgram() << "\n";
+
+    AstProgram& program = *prog->getProgram();
+
+    EXPECT_EQ(4, program.getRelations().size());
+}
+
 }  // end namespace test
 }  // end namespace souffle
