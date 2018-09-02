@@ -26,10 +26,11 @@ namespace test {
 
 TEST(AstProgram, Parse) {
     SymbolTable sym;
+    SymbolTable featSymTab;
     ErrorReport e;
     DebugReport d;
     // check the empty program
-    std::unique_ptr<AstTranslationUnit> empty = ParserDriver::parseTranslationUnit("", sym, e, d);
+    std::unique_ptr<AstTranslationUnit> empty = ParserDriver::parseTranslationUnit("", sym, featSymTab, e, d);
 
     EXPECT_TRUE(empty->getProgram()->getTypes().empty());
     EXPECT_TRUE(empty->getProgram()->getRelations().empty());
@@ -44,7 +45,7 @@ TEST(AstProgram, Parse) {
                    r(X,Y) :- e(X,Y).
                    r(X,Z) :- r(X,Y), r(Y,Z).
             )",
-            sym, e, d);
+            sym, featSymTab, e, d);
 
     std::cout << prog->getProgram() << "\n";
 

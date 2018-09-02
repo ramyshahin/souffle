@@ -391,10 +391,11 @@ int main(int argc, char** argv) {
 
         // parse file
         SymbolTable symTab;
+        SymbolTable featSymTab;
         ErrorReport errReport(Global::config().has("no-warn"));
         DebugReport debugReport;
         std::unique_ptr<AstTranslationUnit> astTranslationUnit =
-                ParserDriver::parseTranslationUnit("<stdin>", in, symTab, errReport, debugReport);
+                ParserDriver::parseTranslationUnit("<stdin>", in, symTab, featSymTab, errReport, debugReport);
 
         // close input pipe
         int preprocessor_status = pclose(in);

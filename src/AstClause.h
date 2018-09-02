@@ -19,6 +19,7 @@
 
 #include "AstLiteral.h"
 #include "AstNode.h"
+#include "AstPresenceCondition.h"
 #include "Util.h"
 #include <cassert>
 #include <cstddef>
@@ -231,6 +232,8 @@ protected:
     }
 };
 
+static const AstPresenceConditionPrimitive TT(true);
+
 /**
  * Intermediate representation of a datalog clause.
  *
@@ -269,10 +272,13 @@ protected:
     /** Stores a unique number for each clause in a relation */
     size_t clauseNum = 0;
 
+    const AstPresenceCondition& pc;
 public:
     /** Construct an empty clause with empty list of literals and
         its head set to NULL */
-    AstClause() : head(nullptr), plan(nullptr) {}
+    AstClause() : head(nullptr), plan(nullptr), pc(TT) {}
+
+    AstClause(const AstPresenceCondition& _pc) : head(nullptr), plan(nullptr), pc(_pc) {}
 
     ~AstClause() override = default;
 

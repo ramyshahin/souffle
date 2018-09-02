@@ -61,17 +61,18 @@ public:
     void addPragma(std::unique_ptr<AstPragma> p);
 
     souffle::SymbolTable& getSymbolTable();
+    souffle::SymbolTable& getFeatureSymbolTable();
 
     bool trace_scanning = false;
 
     std::unique_ptr<AstTranslationUnit> parse(const std::string& filename, FILE* in, SymbolTable& symbolTable,
-            ErrorReport& errorReport, DebugReport& debugReport);
+            SymbolTable& featureSymbolTable, ErrorReport& errorReport, DebugReport& debugReport);
     std::unique_ptr<AstTranslationUnit> parse(const std::string& code, SymbolTable& symbolTable,
-            ErrorReport& errorReport, DebugReport& debugReport);
+            SymbolTable& featureSymbolTable, ErrorReport& errorReport, DebugReport& debugReport);
     static std::unique_ptr<AstTranslationUnit> parseTranslationUnit(const std::string& filename, FILE* in,
-            SymbolTable& symbolTable, ErrorReport& errorReport, DebugReport& debugReport);
+            SymbolTable& symbolTable, SymbolTable& featureSymbolTable, ErrorReport& errorReport, DebugReport& debugReport);
     static std::unique_ptr<AstTranslationUnit> parseTranslationUnit(const std::string& code,
-            SymbolTable& symbolTable, ErrorReport& errorReport, DebugReport& debugReport);
+            SymbolTable& symbolTable, SymbolTable& featureSymbolTable, ErrorReport& errorReport, DebugReport& debugReport);
 
     bool trace_parsing = false;
 

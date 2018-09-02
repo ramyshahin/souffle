@@ -46,6 +46,7 @@
     #include "BinaryFunctorOps.h"
     #include "UnaryFunctorOps.h"
     #include "Util.h"
+    #include "AstPresenceCondition.h"
 
     using namespace souffle;
 
@@ -152,6 +153,9 @@
 %token RBRACE                    "}"
 %token LT                        "<"
 %token GT                        ">"
+%token LOGICAND                  "&&"
+%token LOGICOR                   "||"
+%token AT                        "@"
 %token BW_AND                    "band"
 %token BW_OR                     "bor"
 %token BW_XOR                    "bxor"
@@ -173,6 +177,7 @@
 %type <AstAtom *>                        arg_list non_empty_arg_list atom
 %type <std::vector<AstAtom*>>            head
 %type <RuleBody *>                       literal term disjunction conjunction body
+%type <AstPresenceCondition *>           presenceCondition
 %type <AstClause *>                      fact
 %type <AstPragma *>                      pragma
 %type <std::vector<AstClause*>>          rule rule_def
@@ -198,6 +203,9 @@
 %precedence BW_NOT L_NOT
 %precedence NEG
 %left CARET
+%precedence EXCLAMATION
+%left LOGICOR
+%left LOGICAND
 
 %%
 %start program;
@@ -817,6 +825,27 @@ literal
         $$ = new RuleBody(RuleBody::constraint(res));
     }
 
+/* Presence Condition */
+presenceCondition
+  : IDENT {
+        $$ = new AstPresenceConditionFeat(driver.getFeatureSymbolTable(), $1);
+        $$->setSrcLoc(@$);
+    }
+  | EXCLAMATION presenceCondition {
+      $$ = new AstPresenceConditionNeg(*$2);
+      $$->setSrcLoc(@$);
+    }
+  | LPAREN presenceCondition RPAREN {
+      $$ = $2;
+    } 
+  | presenceCondition LOGICOR presenceCondition {
+      $$ = new AstPresenceConditionBin(OP_OR, *$1, *$3);
+      $$->setSrcLoc(@$);
+    }   
+  | presenceCondition LOGICAND presenceCondition {
+      $$ = new AstPresenceConditionBin(OP_AND, *$1, *$3);
+      $$->setSrcLoc(@$);
+    } 
 /* Fact */
 fact
   : atom DOT {
@@ -824,7 +853,11 @@ fact
         $$->setHead(std::unique_ptr<AstAtom>($1));
         $$->setSrcLoc(@$);
     }
-
+  | atom AT presenceCondition DOT {
+        $$ = new AstClause(*$3);
+        $$->setHead(std::unique_ptr<AstAtom>($1));
+        $$->setSrcLoc(@$);
+    } 
 /* Head */
 head
   : atom {

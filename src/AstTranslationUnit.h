@@ -44,6 +44,9 @@ private:
     /** Symbol table of AST program */
     SymbolTable& symbolTable;
 
+    /** Symbol table of the program features*/
+    SymbolTable& featureSymbolTable;
+
     /** Error report capturing errors while compiling */
     ErrorReport& errorReport;
 
@@ -51,9 +54,9 @@ private:
     DebugReport& debugReport;
 
 public:
-    AstTranslationUnit(std::unique_ptr<AstProgram> program, SymbolTable& s, ErrorReport& e, DebugReport& d,
-            bool nowarn = false)
-            : program(std::move(program)), symbolTable(s), errorReport(e), debugReport(d) {}
+    AstTranslationUnit(std::unique_ptr<AstProgram> program, SymbolTable& s, SymbolTable& fs, 
+            ErrorReport& e, DebugReport& d, bool nowarn = false)
+            : program(std::move(program)), symbolTable(s), featureSymbolTable(fs), errorReport(e), debugReport(d) {}
 
     virtual ~AstTranslationUnit() = default;
 
@@ -88,6 +91,16 @@ public:
     /** get symbol table */
     const souffle::SymbolTable& getSymbolTable() const {
         return symbolTable;
+    }
+
+    /** get feature symbol table */
+    souffle::SymbolTable& getFeatureSymbolTable() {
+        return featureSymbolTable;
+    }
+
+    /** get feature symbol table */
+    const souffle::SymbolTable& getFeatureSymbolTable() const {
+        return featureSymbolTable;
     }
 
     /** get error report */

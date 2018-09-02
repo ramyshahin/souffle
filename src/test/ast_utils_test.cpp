@@ -29,6 +29,7 @@ namespace test {
 TEST(Ast, CloneAndEquals) {
     // TODO: add test for records
     SymbolTable sym;
+    SymbolTable featSymTab;
     ErrorReport e;
     DebugReport d;
 
@@ -38,7 +39,7 @@ TEST(Ast, CloneAndEquals) {
                  .decl r(a:number,b:number,c:number,d:number)
                  r(X,Y,Z,W) :- a(X), 10 = Y, Y = Z, 8 + W = 12 + 14. 
             )",
-            sym, e, d);
+            sym, featSymTab, e, d);
     AstProgram& program = *tu->getProgram();
 
     EXPECT_EQ(program, program);
@@ -54,6 +55,7 @@ TEST(AstUtils, Const) {
     // TODO: add test for records
 
     SymbolTable sym;
+    SymbolTable featSymTab;
     ErrorReport e;
     DebugReport d;
     // load some test program
@@ -62,7 +64,7 @@ TEST(AstUtils, Const) {
                  .decl r(a:number,b:number,c:number,d:number)
                  r(X,Y,Z,W) :- a(X), 10 = Y, Y = Z, 8 + W = 12 + 14. 
             )",
-            sym, e, d);
+            sym, featSymTab, e, d);
 
     AstProgram& program = *tu->getProgram();
 
@@ -129,6 +131,7 @@ TEST(AstUtils, Grounded) {
 
 TEST(AstUtils, GroundedRecords) {
     SymbolTable sym;
+    SymbolTable featSymTab;
     ErrorReport e;
     DebugReport d;
     std::unique_ptr<AstTranslationUnit> tu = ParserDriver::parseTranslationUnit(
@@ -143,7 +146,7 @@ TEST(AstUtils, GroundedRecords) {
                  s(x) :- r([x,y]). 
 
             )",
-            sym, e, d);
+            sym, featSymTab, e, d);
 
     AstProgram& program = *tu->getProgram();
 
@@ -168,6 +171,7 @@ TEST(AstUtils, GroundedRecords) {
 
 TEST(AstUtils, SimpleTypes) {
     SymbolTable sym;
+    SymbolTable featSymTab;
     ErrorReport e;
     DebugReport d;
     // load some test program
@@ -189,7 +193,7 @@ TEST(AstUtils, SimpleTypes) {
                  a(X) :- b(Y).
 
             )",
-            sym, e, d);
+            sym, featSymTab, e, d);
 
     AstProgram& program = *tu->getProgram();
 
@@ -215,6 +219,7 @@ TEST(AstUtils, SimpleTypes) {
 
 TEST(AstUtils, NumericTypes) {
     SymbolTable sym;
+    SymbolTable featSymTab;
     ErrorReport e;
     DebugReport d;
     // load some test program
@@ -233,7 +238,7 @@ TEST(AstUtils, NumericTypes) {
                  u(X) :- X < 10.
 
             )",
-            sym, e, d);
+            sym, featSymTab, e, d);
 
     AstProgram& program = *tu->getProgram();
 
@@ -253,6 +258,7 @@ TEST(AstUtils, NumericTypes) {
 
 TEST(AstUtils, SubtypeChain) {
     SymbolTable sym;
+    SymbolTable featSymTab;
     ErrorReport e;
     DebugReport d;
     // load some test program
@@ -269,7 +275,7 @@ TEST(AstUtils, SubtypeChain) {
             
                 R4(x) :- R2(x,x),R1(x,x).
             )",
-            sym, e, d);
+            sym, featSymTab, e, d);
 
     AstProgram& program = *tu->getProgram();
 
@@ -297,6 +303,7 @@ TEST(AstUtils, SubtypeChain) {
 
 TEST(AstUtils, FactTypes) {
     SymbolTable sym;
+    SymbolTable featSymTab;
     ErrorReport e;
     DebugReport d;
     // load some test program
@@ -317,7 +324,7 @@ TEST(AstUtils, FactTypes) {
                  u("World").
 
             )",
-            sym, e, d);
+            sym, featSymTab, e, d);
 
     AstProgram& program = *tu->getProgram();
 
@@ -337,6 +344,7 @@ TEST(AstUtils, FactTypes) {
 
 TEST(AstUtils, NestedFunctions) {
     SymbolTable sym;
+    SymbolTable featSymTab;
     ErrorReport e;
     DebugReport d;
     // load some test program
@@ -347,7 +355,7 @@ TEST(AstUtils, NestedFunctions) {
             
                 r(x) :- r(y), x=cat(cat(x,x),x).
             )",
-            sym, e, d);
+            sym, featSymTab, e, d);
 
     AstProgram& program = *tu->getProgram();
 
@@ -362,6 +370,7 @@ TEST(AstUtils, NestedFunctions) {
 
 TEST(AstUtils, GroundTermPropagation) {
     SymbolTable sym;
+    SymbolTable featSymTab;
     ErrorReport e;
     DebugReport d;
     // load some test program
@@ -372,7 +381,7 @@ TEST(AstUtils, GroundTermPropagation) {
 
                 p(a,b) :- p(x,y), r = [x,y], s = r, s = [w,v], [w,v] = [a,b].
             )",
-            sym, e, d);
+            sym, featSymTab, e, d);
 
     AstProgram& program = *tu->getProgram();
 
@@ -394,6 +403,7 @@ TEST(AstUtils, GroundTermPropagation) {
 
 TEST(AstUtils, GroundTermPropagation2) {
     SymbolTable sym;
+    SymbolTable featSymTab;
     ErrorReport e;
     DebugReport d;
     // load some test program
@@ -404,7 +414,7 @@ TEST(AstUtils, GroundTermPropagation2) {
 
                p(a,b) :- p(x,y), x = y, x = a, y = b.
            )",
-            sym, e, d);
+            sym, featSymTab, e, d);
 
     AstProgram& program = *tu->getProgram();
 
@@ -423,6 +433,7 @@ TEST(AstUtils, GroundTermPropagation2) {
 TEST(AstUtils, ResolveGroundedAliases) {
     // load some test program
     SymbolTable sym;
+    SymbolTable featSymTab;
     ErrorReport e;
     DebugReport d;
     std::unique_ptr<AstTranslationUnit> tu = ParserDriver::parseTranslationUnit(
@@ -432,7 +443,7 @@ TEST(AstUtils, ResolveGroundedAliases) {
 
                 p(a,b) :- p(x,y), r = [x,y], s = r, s = [w,v], [w,v] = [a,b].
             )",
-            sym, e, d);
+            sym, featSymTab, e, d);
 
     AstProgram& program = *tu->getProgram();
 
@@ -447,6 +458,7 @@ TEST(AstUtils, ResolveGroundedAliases) {
 TEST(AstUtils, ResolveAliasesWithTermsInAtoms) {
     // load some test program
     SymbolTable sym;
+    SymbolTable featSymTab;
     ErrorReport e;
     DebugReport d;
     std::unique_ptr<AstTranslationUnit> tu = ParserDriver::parseTranslationUnit(
@@ -456,7 +468,7 @@ TEST(AstUtils, ResolveAliasesWithTermsInAtoms) {
 
                 p(x,c) :- p(x,b), p(b,c), c = b+1, x=c+2.
             )",
-            sym, e, d);
+            sym, featSymTab, e, d);
 
     AstProgram& program = *tu->getProgram();
 
@@ -473,6 +485,7 @@ TEST(AstUtils, ResolveAliasesWithTermsInAtoms) {
 
 TEST(AstUtils, RemoveRelationCopies) {
     SymbolTable sym;
+    SymbolTable featSymTab;
     ErrorReport e;
     DebugReport d;
     // load some test program
@@ -491,7 +504,7 @@ TEST(AstUtils, RemoveRelationCopies) {
                 d(x,y) :- b(x,y), c(y,x).
 
             )",
-            sym, e, d);
+            sym, featSymTab, e, d);
 
     AstProgram& program = *tu->getProgram();
 
@@ -504,6 +517,7 @@ TEST(AstUtils, RemoveRelationCopies) {
 
 TEST(AstUtils, RemoveRelationCopiesOutput) {
     SymbolTable sym;
+    SymbolTable featSymTab;
     ErrorReport e;
     DebugReport d;
     // load some test program
@@ -522,7 +536,7 @@ TEST(AstUtils, RemoveRelationCopiesOutput) {
                 d(x,y) :- b(x,y), c(y,x).
 
             )",
-            sym, e, d);
+            sym, featSymTab, e, d);
 
     AstProgram& program = *tu->getProgram();
 
