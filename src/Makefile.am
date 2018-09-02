@@ -66,6 +66,7 @@ souffle_sources = \
               AstIODirective.h                          \
               AstLiteral.h                              \
               AstNode.h                                 \
+              AstPresenceCondition.h                    \
               AstParserUtils.cpp    AstParserUtils.h    \
               AstPragma.cpp         AstPragma.h         \
               AstProgram.cpp        AstProgram.h        \
@@ -129,6 +130,7 @@ souffle_sources = \
               UnaryFunctorOps.h                         \
               WriteStream.h                             \
               WriteStreamCSV.h                          \
+              PresenceCondition.h PresenceCondition.cpp \
               parser.cc             parser.hh           \
               scanner.cc            stack.hh            \
               $(sqlite_sources)                         \
