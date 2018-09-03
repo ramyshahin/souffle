@@ -20,20 +20,25 @@ void PresenceCondition::init(SymbolTable& st) {
     assert(bddMgr);
 }
 
+PresenceCondition::PresenceCondition() {}
+
 PresenceCondition::PresenceCondition(const AstPresenceCondition& pc) {
    pcBDD = pc.toBDD(bddMgr); 
 }
 
 PresenceCondition::~PresenceCondition() {
     Cudd_RecursiveDeref(bddMgr, pcBDD);
+    free(pcBDD);
 }
 
-PresenceCondition& PresenceCondition::operator&&(const PresenceCondition& other) const {
-    PresenceCondition ret;
-    ret.pcBDD = Cudd_bddAnd(bddMgr, pcBDD, other.pcBDD);
-    Cudd_Ref(ret.pcBDD);
+bool PresenceCondition::conjSat(const PresenceCondition& other) const {
+    DdNode* tmp = Cudd_bddAnd(bddMgr, pcBDD, other.pcBDD);
+    
+    return tmp != Cudd_ReadZero(bddMgr);
+}
 
-    return ret;
+bool PresenceCondition::operator==(const PresenceCondition& other) const {
+    return pcBDD == other.pcBDD;
 }
 
 bool PresenceCondition::isSAT() const {

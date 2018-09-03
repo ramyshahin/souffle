@@ -127,6 +127,10 @@ AS_IF([test "x$enable_host_packaging" = "xyes"], [SOUFFLE_PACKAGING=1],
   [test "x$enable_host_packaging" != "xyes"], [unset SOUFFLE_PACKAGING]
 )
 
+# check for CUDD
+AC_CHECK_HEADER(cudd.h,,[AC_MSG_ERROR([required library cudd missing.])])
+AC_CHECK_LIB(cudd, Cudd_Init,,[AC_MSG_ERROR([required library cudd missing.])])
+
 # Disable libz
 AC_ARG_ENABLE(
   [libz],
@@ -335,7 +339,7 @@ AM_MISSING_PROG([AUTOM4TE], [autom4te])
 
 # Checks for header files.
 AC_FUNC_ALLOCA
-AC_CHECK_HEADERS([arpa/inet.h fcntl.h float.h inttypes.h libintl.h limits.h malloc.h memory.h netdb.h stddef.h stdint.h stdlib.h string.h strings.h sys/time.h sys/timeb.h unistd.h wchar.h wctype.h])
+AC_CHECK_HEADERS([arpa/inet.h fcntl.h float.h inttypes.h libintl.h limits.h malloc.h memory.h netdb.h stddef.h stdint.h stdlib.h string.h strings.h sys/time.h sys/timeb.h unistd.h wchar.h wctype.h cudd.h])
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_C_INLINE

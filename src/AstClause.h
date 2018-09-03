@@ -391,7 +391,7 @@ public:
 
     /** Creates a clone of this AST sub-structure */
     AstClause* clone() const override {
-        auto res = new AstClause();
+        auto res = new AstClause(pc);
         res->setSrcLoc(getSrcLoc());
         if (getExecutionPlan()) {
             res->setExecutionPlan(std::unique_ptr<AstExecutionPlan>(plan->clone()));
@@ -427,7 +427,7 @@ public:
 
     /** clone head generates a new clause with the same head but empty body */
     AstClause* cloneHead() const {
-        auto* clone = new AstClause();
+        auto* clone = new AstClause(pc);
         clone->setSrcLoc(getSrcLoc());
         clone->setHead(std::unique_ptr<AstAtom>(getHead()->clone()));
         if (getExecutionPlan()) {
@@ -452,13 +452,17 @@ public:
         return res;
     }
 
+    const AstPresenceCondition& getPC() const {
+        return pc;
+    }
+
 protected:
     /** Implements the node comparison for this node type */
     bool equal(const AstNode& node) const override {
         assert(nullptr != dynamic_cast<const AstClause*>(&node));
         const auto& other = static_cast<const AstClause&>(node);
         return *head == *other.head && equal_targets(atoms, other.atoms) &&
-               equal_targets(negations, other.negations) && equal_targets(constraints, other.constraints);
+               equal_targets(negations, other.negations) && equal_targets(constraints, other.constraints) && (pc == other.pc);
     }
 };
 

@@ -21,6 +21,7 @@
 #include "RamOperation.h"
 #include "RamRelation.h"
 #include "RamValue.h"
+#include "PresenceCondition.h"
 #include "Util.h"
 
 #include <algorithm>
@@ -354,10 +355,10 @@ protected:
     // TODO (#541): Reoccuring type -> push to RamValue.h
     using value_list = std::vector<std::unique_ptr<RamValue>>;
     value_list values;
-
+    const std::unique_ptr<PresenceCondition> pc;
 public:
-    RamFact(std::unique_ptr<RamRelation> rel, value_list&& v)
-            : RamRelationStatement(RN_Fact, std::move(rel)), values(std::move(v)) {}
+    RamFact(std::unique_ptr<RamRelation> rel, value_list&& v, PresenceCondition* _pc)
+            : RamRelationStatement(RN_Fact, std::move(rel)), values(std::move(v)), pc(_pc) {}
 
     /** Get arguments of fact */
     std::vector<RamValue*> getValues() const {
@@ -382,7 +383,8 @@ public:
 
     /** Create clone */
     RamFact* clone() const override {
-        RamFact* res = new RamFact(std::unique_ptr<RamRelation>(relation->clone()), {});
+        RamFact* res = new RamFact(std::unique_ptr<RamRelation>(relation->clone()), {}, 
+                                   new PresenceCondition(*pc));
         for (auto& cur : values) {
             res->values.push_back(std::unique_ptr<RamValue>(cur->clone()));
         }
@@ -402,7 +404,7 @@ protected:
     bool equal(const RamNode& node) const override {
         assert(nullptr != dynamic_cast<const RamFact*>(&node));
         const auto& other = static_cast<const RamFact&>(node);
-        return RamRelationStatement::equal(other) && equal_targets(values, other.values);
+        return RamRelationStatement::equal(other) && equal_targets(values, other.values) && (*pc == *(other.pc));
     }
 };
 

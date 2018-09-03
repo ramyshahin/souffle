@@ -20,10 +20,12 @@ public:
     static void init(SymbolTable& st);
 
     PresenceCondition(const AstPresenceCondition& pc);
-
+    
     ~PresenceCondition();
 
-    PresenceCondition& operator&&(const PresenceCondition& other) const;
+    bool conjSat(const PresenceCondition& other) const;
+
+    bool operator==(const PresenceCondition& other) const;
 
     bool isSAT() const;
 }; // PresenceCondition
