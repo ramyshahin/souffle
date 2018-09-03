@@ -1,11 +1,13 @@
 #pragma once
 
 #include "AstNode.h"
+#include <cudd.h>
 
 namespace souffle {
 
 class AstPresenceCondition : public AstNode {
-
+public:
+    virtual DdNode* toBDD(DdManager* bddMgr) const = 0;
 }; // AstPresenceCondition
 
 class AstPresenceConditionPrimitive : public AstPresenceCondition {
@@ -22,6 +24,12 @@ protected:
 
 public:
     AstPresenceConditionPrimitive(bool v) : val(v) {};
+
+    virtual DdNode* toBDD(DdManager* bddMgr) const override {
+        DdNode* ret = val ? Cudd_ReadOne(bddMgr) : Cudd_ReadZero(bddMgr);
+        Cudd_Ref(ret);
+        return ret;
+    }
 
     /** Creates a clone of this AST sub-structure */
     AstPresenceConditionPrimitive* clone() const override {
@@ -63,6 +71,12 @@ public:
     AstPresenceConditionFeat(SymbolTable& _st, const std::string& sym) : 
         st(_st), index(st.lookup(sym)) {}
 
+    virtual DdNode* toBDD(DdManager* bddMgr) const override {
+        DdNode* ret = Cudd_bddIthVar(bddMgr, index);
+        Cudd_Ref(ret);
+        return ret;
+    }
+
     /** Creates a clone of this AST sub-structure */
     AstPresenceConditionFeat* clone() const override {
         auto res = new AstPresenceConditionFeat(*this);
@@ -100,6 +114,13 @@ protected:
 
 public:
     AstPresenceConditionNeg(AstPresenceCondition& _pc) : pc(&_pc) {}
+
+    virtual DdNode* toBDD(DdManager* bddMgr) const override {
+        DdNode* pcBDD = pc->toBDD(bddMgr);
+        DdNode* ret = Cudd_Not(pcBDD);
+        Cudd_Ref(ret);
+        return ret;
+    }
 
     /** Creates a clone of this AST sub-structure */
     AstPresenceConditionNeg* clone() const override {
@@ -152,6 +173,19 @@ public:
         BIN_OP _op, AstPresenceCondition& _pc1, AstPresenceCondition& _pc2
         ) : op(_op), pc1(&_pc1), pc2(&_pc2) {};
 
+    virtual DdNode* toBDD(DdManager* bddMgr) const override {
+        DdNode* ret = nullptr;
+        auto bdd1 = pc1->toBDD(bddMgr);
+        auto bdd2 = pc2->toBDD(bddMgr);
+
+        switch (op) {
+            case OP_AND: ret = Cudd_bddAnd(bddMgr, bdd1, bdd2); break;
+            case OP_OR:  ret = Cudd_bddOr(bddMgr, bdd1, bdd2);
+        }
+        Cudd_Ref(ret);
+        return ret;
+    }
+
     /** Creates a clone of this AST sub-structure */
     AstPresenceConditionBin* clone() const override {
         auto _pc1 = (AstPresenceCondition*)pc1->clone();
@@ -181,8 +215,8 @@ public:
         os << "(";
         pc1->print(os);
         switch (op) {
-            case OP_AND: os << " && "; break;
-            case OP_OR:  os << " || "; break;
+            case OP_AND: os << " /\\ "; break;
+            case OP_OR:  os << " \\/ "; break;
         };
         pc2->print(os);
         os << ")";
