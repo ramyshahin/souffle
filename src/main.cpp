@@ -458,6 +458,9 @@ int main(int argc, char** argv) {
 
     // ------- execution -------------
 
+    // initialize the PresenceCondition library (and Cudd)
+    PresenceCondition::init(featSymTab);
+
     /* translate AST to RAM */
     std::unique_ptr<RamTranslationUnit> ramTranslationUnit =
             AstTranslator().translateUnit(*astTranslationUnit);

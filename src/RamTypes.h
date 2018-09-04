@@ -17,8 +17,10 @@
 #pragma once
 
 #include <limits>
-
+#include <cassert>
 #include <cstdint>
+
+#include "PresenceCondition.h"
 
 namespace souffle {
 
@@ -38,6 +40,28 @@ using RamDomain = int64_t;
 #else
 using RamDomain = int32_t;
 #endif
+
+struct RamRecord {
+    RamDomain* field;
+
+    const PresenceCondition* pc;
+
+#ifdef DEBUG
+    std::size_t size;
+#endif //DEBUG
+
+    RamRecord(std::size_t s, const PresenceCondition* _pc): pc(_pc) {
+        field = new RamDomain[s];
+#ifdef DEBUG
+        size = s;
+#endif
+    }
+
+    RamDomain operator[](std::size_t index) const {
+        assert(index < size);
+        return field[index];
+    }
+}; //RamRecord
 
 /** lower and upper boundaries for the ram domain **/
 #define MIN_RAM_DOMAIN (std::numeric_limits<RamDomain>::min())

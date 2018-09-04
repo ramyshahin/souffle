@@ -1,9 +1,14 @@
 #include "PresenceCondition.h"
+#include "SymbolTable.h"
+#include "AstPresenceCondition.h"
 
 #include <cassert>
 
 using namespace std;
-using namespace souffle;
+
+#include <cudd.h>
+
+namespace souffle {
 
 SymbolTable* PresenceCondition::featSymTab = nullptr;
 DdManager*   PresenceCondition::bddMgr = nullptr;
@@ -28,7 +33,7 @@ PresenceCondition::PresenceCondition(const AstPresenceCondition& pc) {
 
 PresenceCondition::~PresenceCondition() {
     Cudd_RecursiveDeref(bddMgr, pcBDD);
-    free(pcBDD);
+    //free(pcBDD);
 }
 
 bool PresenceCondition::conjSat(const PresenceCondition& other) const {
@@ -44,3 +49,5 @@ bool PresenceCondition::operator==(const PresenceCondition& other) const {
 bool PresenceCondition::isSAT() const {
     return (pcBDD != Cudd_ReadZero(bddMgr));
 }
+
+} // namespace souffle

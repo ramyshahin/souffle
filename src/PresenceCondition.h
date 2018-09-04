@@ -1,10 +1,12 @@
 #pragma once
 
-#include "SymbolTable.h"
-#include "AstPresenceCondition.h"
-#include <cudd.h>
+class DdManager;
+class DdNode;
 
 namespace souffle {
+
+class SymbolTable;
+class AstPresenceCondition;
 
 class PresenceCondition {
 private:
