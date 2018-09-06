@@ -740,7 +740,7 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
                 tuple[i] = interpreter.evalVal(*values[i]);
             }
 
-            interpreter.getRelation(fact.getRelation()).insert(tuple);
+            interpreter.getRelation(fact.getRelation()).insert(tuple, fact.getPC());
             return true;
         }
 

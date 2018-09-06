@@ -3,6 +3,8 @@
 #include "AstPresenceCondition.h"
 
 #include <cassert>
+#include <strstream>
+#include <string>
 
 using namespace std;
 
@@ -28,12 +30,20 @@ void PresenceCondition::init(SymbolTable& st) {
 PresenceCondition::PresenceCondition() {}
 
 PresenceCondition::PresenceCondition(const AstPresenceCondition& pc) {
-   pcBDD = pc.toBDD(bddMgr); 
+   pcBDD = pc.toBDD(bddMgr);
+   std::stringstream ostr; 
+   pc.print(ostr);
+   text = ostr.str();
+}
+
+PresenceCondition::PresenceCondition(const PresenceCondition& other) :
+    pcBDD(other.pcBDD), text(other.text)
+{
+    Cudd_Ref(pcBDD);
 }
 
 PresenceCondition::~PresenceCondition() {
     Cudd_RecursiveDeref(bddMgr, pcBDD);
-    //free(pcBDD);
 }
 
 bool PresenceCondition::conjSat(const PresenceCondition& other) const {
@@ -50,4 +60,7 @@ bool PresenceCondition::isSAT() const {
     return (pcBDD != Cudd_ReadZero(bddMgr));
 }
 
+std::ostream& operator<<(std::ostream& out, const PresenceCondition& pc) {
+    out << pc.text;
+}
 } // namespace souffle

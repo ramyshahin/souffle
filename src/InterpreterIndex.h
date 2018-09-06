@@ -26,6 +26,8 @@
 
 namespace souffle {
 
+typedef std::pair<const RamDomain*, const PresenceCondition*> RamRecord;
+
 /**
  * A class describing the sorting order of tuples within an index.
  */
@@ -143,7 +145,12 @@ protected:
         comparator(const InterpreterIndexOrder& order) : order(order) {}
 
         /* comparison function */
-        int operator()(const RamDomain* x, const RamDomain* y) const {
+        int operator()(const RamRecord& _x, const RamRecord& _y) const {
+            auto x = _x.first;
+            auto y = _y.first;
+            assert(x);
+            assert(y);
+
             for (size_t i = 0; i < order.size(); i++) {
                 if (x[order[i]] < y[order[i]]) {
                     return -1;
@@ -152,27 +159,44 @@ protected:
                     return 1;
                 }
             }
+
+            if (_x.second < _y.second) {
+                return -1;
+            }
+
+            if (_x.second > _y.second) {
+                return 1;
+            }
+
             return 0;
         }
 
         /* less comparison */
-        bool less(const RamDomain* x, const RamDomain* y) const {
+        bool less(const RamRecord& x, const RamRecord& y) const {
             return operator()(x, y) < 0;
         }
 
         /* equal comparison */
-        bool equal(const RamDomain* x, const RamDomain* y) const {
+        bool equal(const RamRecord& _x, const RamRecord& _y) const {
+            auto x = _x.first;
+            auto y = _y.first;
+
             for (size_t i = 0; i < order.size(); i++) {
                 if (x[order[i]] != y[order[i]]) {
                     return false;
                 }
             }
+
+            if (((u_long)_x.second ^ (u_long)_y.second) != 0) {
+                return false;
+            }
+
             return true;
         }
     };
 
     /* btree for storing tuple pointers with a given lexicographical order */
-    using index_set = btree_multiset<const RamDomain*, comparator, std::allocator<const RamDomain*>, 512>;
+    using index_set = btree_multiset<const RamRecord, comparator, std::allocator<const RamRecord>, 512>;
 
 public:
     using iterator = index_set::iterator;
@@ -193,8 +217,8 @@ public:
      *
      * precondition: tuple does not exist in the index
      */
-    void insert(const RamDomain* tuple) {
-        set.insert(tuple);
+    void insert(const RamDomain* tuple, PresenceCondition* pc) {
+        set.insert(std::make_pair(tuple, pc));
     }
 
     /**
@@ -208,8 +232,8 @@ public:
     };
 
     /** check whether tuple exists in index */
-    bool exists(const RamDomain* value) {
-        return set.find(value) != set.end();
+    bool exists(const RamDomain* value, const PresenceCondition* pc) {
+        return set.find(std::make_pair(value, pc)) != set.end();
     }
 
     /** purge all hashes of index */
@@ -225,12 +249,12 @@ public:
     }
 
     /** return start and end iterator of an equal range */
-    inline std::pair<iterator, iterator> equalRange(const RamDomain* value) const {
+    inline std::pair<iterator, iterator> equalRange(const RamRecord& value) const {
         return lowerUpperBound(value, value);
     }
 
     /** return start and end iterator of a range */
-    inline std::pair<iterator, iterator> lowerUpperBound(const RamDomain* low, const RamDomain* high) const {
+    inline std::pair<iterator, iterator> lowerUpperBound(const RamRecord& low, const RamRecord& high) const {
         return std::pair<iterator, iterator>(set.lower_bound(low), set.upper_bound(high));
     }
 

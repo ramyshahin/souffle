@@ -399,6 +399,10 @@ public:
         }
     }
 
+    const PresenceCondition& getPC() const {
+        return *pc;
+    }
+    
 protected:
     /** Check equality */
     bool equal(const RamNode& node) const override {
