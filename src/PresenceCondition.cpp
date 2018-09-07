@@ -29,6 +29,10 @@ void PresenceCondition::init(SymbolTable& st) {
 
 PresenceCondition::PresenceCondition() {}
 
+PresenceCondition::PresenceCondition(DdNode* bdd, const std::string& t) :
+    pcBDD(bdd), text(t)
+{}
+
 PresenceCondition::PresenceCondition(const AstPresenceCondition& pc) {
    pcBDD = pc.toBDD(bddMgr);
    std::stringstream ostr; 
@@ -52,6 +56,10 @@ bool PresenceCondition::conjSat(const PresenceCondition& other) const {
     return tmp != Cudd_ReadZero(bddMgr);
 }
 
+PresenceCondition PresenceCondition::conjoin(const PresenceCondition& other) const {
+    DdNode* tmp = Cudd_bddAnd(bddMgr, pcBDD, other.pcBDD);
+    return PresenceCondition(tmp, "(" + text + " /\\ " + other.text + ")");
+}
 bool PresenceCondition::operator==(const PresenceCondition& other) const {
     return pcBDD == other.pcBDD;
 }

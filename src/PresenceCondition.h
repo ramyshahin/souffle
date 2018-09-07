@@ -19,6 +19,7 @@ private:
     std::string text;
 protected:
     PresenceCondition();
+    PresenceCondition(DdNode* bdd, const std::string& t);
 
 public:
     static void init(SymbolTable& st);
@@ -31,6 +32,8 @@ public:
     bool conjSat(const PresenceCondition& other) const;
 
     bool operator==(const PresenceCondition& other) const;
+
+    PresenceCondition conjoin(const PresenceCondition& other) const;
 
     bool isSAT() const;
 

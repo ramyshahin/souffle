@@ -24,9 +24,9 @@
 #include "RamTypes.h"
 #include "Util.h"
 
-namespace souffle {
+#define ULONG (unsigned long)
 
-typedef std::pair<const RamDomain*, const PresenceCondition*> RamRecord;
+namespace souffle {
 
 /**
  * A class describing the sorting order of tuples within an index.
@@ -145,9 +145,12 @@ protected:
         comparator(const InterpreterIndexOrder& order) : order(order) {}
 
         /* comparison function */
-        int operator()(const RamRecord& _x, const RamRecord& _y) const {
-            auto x = _x.first;
-            auto y = _y.first;
+        int operator()(const RamRecord* _x, const RamRecord* _y) const {
+            assert(_x);
+            assert(_y);
+
+            auto x = _x->field;
+            auto y = _y->field;
             assert(x);
             assert(y);
 
@@ -160,11 +163,11 @@ protected:
                 }
             }
 
-            if (_x.second < _y.second) {
+            if (_x->pc.get() < _y->pc.get()) {
                 return -1;
             }
 
-            if (_x.second > _y.second) {
+            if (_x->pc.get() > _y->pc.get()) {
                 return 1;
             }
 
@@ -172,14 +175,14 @@ protected:
         }
 
         /* less comparison */
-        bool less(const RamRecord& x, const RamRecord& y) const {
+        bool less(const RamRecord* x, const RamRecord* y) const {
             return operator()(x, y) < 0;
         }
 
         /* equal comparison */
-        bool equal(const RamRecord& _x, const RamRecord& _y) const {
-            auto x = _x.first;
-            auto y = _y.first;
+        bool equal(const RamRecord* _x, const RamRecord* _y) const {
+            auto x = _x->field;
+            auto y = _y->field;
 
             for (size_t i = 0; i < order.size(); i++) {
                 if (x[order[i]] != y[order[i]]) {
@@ -187,7 +190,7 @@ protected:
                 }
             }
 
-            if (((u_long)_x.second ^ (u_long)_y.second) != 0) {
+            if (ULONG(_x->pc.get()) ^ ULONG(_y->pc.get())) {
                 return false;
             }
 
@@ -196,7 +199,7 @@ protected:
     };
 
     /* btree for storing tuple pointers with a given lexicographical order */
-    using index_set = btree_multiset<const RamRecord, comparator, std::allocator<const RamRecord>, 512>;
+    using index_set = btree_multiset<const RamRecord*, comparator, std::allocator<const RamRecord*>, 512>;
 
 public:
     using iterator = index_set::iterator;
@@ -217,8 +220,8 @@ public:
      *
      * precondition: tuple does not exist in the index
      */
-    void insert(const RamDomain* tuple, PresenceCondition* pc) {
-        set.insert(std::make_pair(tuple, pc));
+    void insert(const RamRecord* rec) {
+        set.insert(rec);
     }
 
     /**
@@ -232,8 +235,8 @@ public:
     };
 
     /** check whether tuple exists in index */
-    bool exists(const RamDomain* value, const PresenceCondition* pc) {
-        return set.find(std::make_pair(value, pc)) != set.end();
+    bool exists(const RamRecord* rec) {
+        return set.find(rec) != set.end();
     }
 
     /** purge all hashes of index */
@@ -249,12 +252,12 @@ public:
     }
 
     /** return start and end iterator of an equal range */
-    inline std::pair<iterator, iterator> equalRange(const RamRecord& value) const {
+    inline std::pair<iterator, iterator> equalRange(const RamRecord* value) const {
         return lowerUpperBound(value, value);
     }
 
     /** return start and end iterator of a range */
-    inline std::pair<iterator, iterator> lowerUpperBound(const RamRecord& low, const RamRecord& high) const {
+    inline std::pair<iterator, iterator> lowerUpperBound(const RamRecord* low, const RamRecord* high) const {
         return std::pair<iterator, iterator>(set.lower_bound(low), set.upper_bound(high));
     }
 
