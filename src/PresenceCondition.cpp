@@ -60,6 +60,13 @@ bool PresenceCondition::conjSat(const PresenceCondition& other) const {
     return tmp != Cudd_ReadZero(bddMgr);
 }
 
+void PresenceCondition::conjWith(const PresenceCondition& other) {
+    DdNode* tmp = Cudd_bddAnd(bddMgr, pcBDD, other.pcBDD);
+    Cudd_RecursiveDeref(bddMgr, pcBDD);
+    pcBDD = tmp;
+    text = "(" + text + " /\\ " + other.text + ")";
+}
+
 PresenceCondition PresenceCondition::conjoin(const PresenceCondition& other) const {
     DdNode* tmp = Cudd_bddAnd(bddMgr, pcBDD, other.pcBDD);
     return PresenceCondition(tmp, "(" + text + " /\\ " + other.text + ")");

@@ -33,7 +33,9 @@ class InterpreterContext {
     const std::vector<RamDomain>* args = nullptr;
 
 public:
-    InterpreterContext(size_t size = 0) : data(size) {}
+    PresenceCondition pc;
+
+    InterpreterContext(size_t size = 0) : data(size), pc(PresenceCondition::makeTrue()) {}
     virtual ~InterpreterContext() = default;
 
     const RamRecord*& operator[](size_t index) {

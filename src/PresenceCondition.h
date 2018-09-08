@@ -32,12 +32,14 @@ public:
 
     bool conjSat(const PresenceCondition& other) const;
 
+    void conjWith(const PresenceCondition& other);
+
     bool operator==(const PresenceCondition& other) const;
 
     bool operator!=(const PresenceCondition& other) const {
         return !(*this == other);
     }
-    
+
     bool operator<(const PresenceCondition& other) const;
     
     bool operator>(const PresenceCondition& other) const;

@@ -57,6 +57,7 @@ struct RamRecord {
         , size(s)
 #endif
     {
+        assert(pc);
     }
 
     RamDomain operator[](std::size_t index) const {
