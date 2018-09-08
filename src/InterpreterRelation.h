@@ -28,11 +28,6 @@
 
 namespace souffle {
 
-std::ostream& operator<<(std::ostream& out, const RamRecord& record) {
-    out << "[" << record.field << " @ " << *(record.pc) << "]";
-    return out;
-}
-
 /**
  * Interpreter Relation
  */
@@ -112,12 +107,12 @@ public:
         }
 
         PresenceCondition* newPC = new PresenceCondition(pc);
-        std::unique_ptr<const RamRecord> rec(new RamRecord(arity, newTuple, newPC));
-        records.push_back(rec);
+        const RamRecord* rec(new RamRecord(arity, newTuple, newPC));
+        records.push_back(std::unique_ptr<const RamRecord>(rec));
 
         // update all indexes with new tuple
         for (const auto& cur : indices) {
-            cur.second->insert(rec.get());
+            cur.second->insert(rec);
         }
 
         // increment relation size
@@ -133,15 +128,13 @@ public:
     }
     */
     /** Merge another relation into this relation */
-    /*
     void insert(const InterpreterRelation& other) {
         assert(getArity() == other.getArity());
-        size_t index = 0;
         for (const auto& cur : other) {
-            insert(cur);
+            insert(cur->field, *cur->pc);
         }
     }
-    */
+    
     /** Purge table */
     void purge() {
         blockList.clear();
@@ -246,70 +239,43 @@ public:
     // --- iterator ---
 
     /** Iterator for relation */
-    /*
-    class iterator : public std::iterator<std::forward_iterator_tag, RamRecord*> {
-        const InterpreterRelation* const relation = nullptr;
-        size_t index = 0;
-        RamDomain* tuple = nullptr;
+    
+    class iterator : public std::iterator<std::forward_iterator_tag, const RamRecord*> {
+        //const InterpreterRelation* const relation = nullptr;
+        std::list<std::unique_ptr<const RamRecord>>::const_iterator tuple;
 
     public:
         iterator() = default;
 
-        iterator(const InterpreterRelation* const relation)
-                : relation(relation), tuple(relation->arity == 0 ? reinterpret_cast<RamDomain*>(this)
-                                                                 : &relation->blockList[0][0]) {}
+        iterator(const std::list<std::unique_ptr<const RamRecord>>::const_iterator& it)
+                : tuple(it) {}
 
-        const RamDomain* operator*() {
-            return tuple;
+        const RamRecord* operator*() {
+            return tuple->get();
         }
 
         bool operator==(const iterator& other) const {
-            return tuple == other.tuple;
+            return tuple->get() == other.tuple->get();
         }
 
         bool operator!=(const iterator& other) const {
-            return (tuple != other.tuple);
+            return (tuple->get() != other.tuple->get());
         }
 
         iterator& operator++() {
-            // support 0-arity
-            if (relation->arity == 0) {
-                tuple = nullptr;
-                return *this;
-            }
-
-            // support all other arities
-            ++index;
-            if (index == relation->num_tuples) {
-                tuple = nullptr;
-                return *this;
-            }
-
-            int blockIndex = index / (BLOCK_SIZE / relation->arity);
-            int tupleIndex = (index % (BLOCK_SIZE / relation->arity)) * relation->arity;
-
-            tuple = &relation->blockList[blockIndex][tupleIndex];
+            tuple++;
             return *this;
         }
     };
-    */
-    typedef std::list<std::unique_ptr<const RamRecord>>::const_iterator iterator;
 
     /** get iterator begin of relation */
     inline iterator begin() const {
-        // check for emptiness
-        //if (empty()) {
-        //    return end();
-        //}
-
-        //return iterator(this);
-        return records.begin();
+        return iterator(records.begin());
     }
 
     /** get iterator begin of relation */
     inline iterator end() const {
-        //return iterator();
-        return records.end();
+        return iterator(records.end());
     }
 
     /** Extend tuple */
@@ -365,26 +331,27 @@ public:
         newTuples.push_back(new RamRecord(2, new RamDomain[2]{tuple[1], tuple[1]}, &pc));
 
         std::vector<const RamRecord*> relevantStored;
-        for (auto& rec : *this) {
+        for (auto rec : *this) {
             if (!pc.conjSat(*rec->pc)) {
                 continue;
             }
             const RamDomain* vals = rec->field;
             if (vals[0] == tuple[0] || vals[0] == tuple[1] || vals[1] == tuple[0] || vals[1] == tuple[1]) {
-                relevantStored.push_back(rec.get());
+                relevantStored.push_back(rec);
             }
         }
 
         for (const auto rec : relevantStored) {
             const RamDomain* vals = rec->field;
-            newTuples.push_back(new RamRecord(2, new RamDomain[2]{vals[0], tuple[0]}, &(pc.conjoin(*rec->pc))));
-            newTuples.push_back(new RamRecord(2, new RamDomain[2]{vals[0], tuple[1]}, &(pc.conjoin(*rec->pc))));
-            newTuples.push_back(new RamRecord(2, new RamDomain[2]{vals[1], tuple[0]}, &(pc.conjoin(*rec->pc))));
-            newTuples.push_back(new RamRecord(2, new RamDomain[2]{vals[1], tuple[1]}, &(pc.conjoin(*rec->pc))));
-            newTuples.push_back(new RamRecord(2, new RamDomain[2]{tuple[0], vals[0]}, &(pc.conjoin(*rec->pc))));
-            newTuples.push_back(new RamRecord(2, new RamDomain[2]{tuple[0], vals[1]}, &(pc.conjoin(*rec->pc))));
-            newTuples.push_back(new RamRecord(2, new RamDomain[2]{tuple[1], vals[0]}, &(pc.conjoin(*rec->pc))));
-            newTuples.push_back(new RamRecord(2, new RamDomain[2]{tuple[1], vals[1]}, &(pc.conjoin(*rec->pc))));
+            auto conjunction = pc.conjoin(*rec->pc);
+            newTuples.push_back(new RamRecord(2, new RamDomain[2]{vals[0], tuple[0]}, new PresenceCondition(conjunction)));
+            newTuples.push_back(new RamRecord(2, new RamDomain[2]{vals[0], tuple[1]}, new PresenceCondition(conjunction)));
+            newTuples.push_back(new RamRecord(2, new RamDomain[2]{vals[1], tuple[0]}, new PresenceCondition(conjunction)));
+            newTuples.push_back(new RamRecord(2, new RamDomain[2]{vals[1], tuple[1]}, new PresenceCondition(conjunction)));
+            newTuples.push_back(new RamRecord(2, new RamDomain[2]{tuple[0], vals[0]}, new PresenceCondition(conjunction)));
+            newTuples.push_back(new RamRecord(2, new RamDomain[2]{tuple[0], vals[1]}, new PresenceCondition(conjunction)));
+            newTuples.push_back(new RamRecord(2, new RamDomain[2]{tuple[1], vals[0]}, new PresenceCondition(conjunction)));
+            newTuples.push_back(new RamRecord(2, new RamDomain[2]{tuple[1], vals[1]}, new PresenceCondition(conjunction)));
         }
 
         return newTuples;
@@ -393,7 +360,7 @@ public:
     void extend(const InterpreterRelation& rel) override {
         std::vector<RamRecord*> newTuples;
         // store all values that will be implicitly relevant to the those that we will insert
-        for (auto& rec : rel) {
+        for (auto rec : rel) {
             for (auto* newTuple : extend(rec->field, *rec->pc)) {
                 newTuples.push_back(newTuple);
             }

@@ -163,11 +163,11 @@ protected:
                 }
             }
 
-            if (_x->pc.get() < _y->pc.get()) {
+            if (*(_x->pc.get()) < *(_y->pc.get())) {
                 return -1;
             }
 
-            if (_x->pc.get() > _y->pc.get()) {
+            if (*(_x->pc.get()) > *(_y->pc.get())) {
                 return 1;
             }
 
@@ -190,7 +190,7 @@ protected:
                 }
             }
 
-            if (ULONG(_x->pc.get()) ^ ULONG(_y->pc.get())) {
+            if (*(_x->pc.get()) != *(_y->pc.get())) {
                 return false;
             }
 

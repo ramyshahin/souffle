@@ -53,11 +53,13 @@ public:
     }
 
 protected:
-    void writeNextTuple(const RamDomain* tuple) override {
+    void writeNextTuple(const RamRecord* record) override {
         if (arity == 0) {
             return;
         }
 
+        const RamDomain* tuple = record->field;
+        
         for (size_t i = 0; i < arity; i++) {
             RamDomain value;
             if (symbolMask.isSymbol(i)) {

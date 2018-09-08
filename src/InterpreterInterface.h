@@ -97,10 +97,10 @@ protected:
             // construct the tuple to return
             for (size_t i = 0; i < ramRelationInterface->getArity(); i++) {
                 if (*(ramRelationInterface->getAttrType(i)) == 's') {
-                    std::string s = ramRelationInterface->getSymbolTable().resolve((*it)[i]);
+                    std::string s = ramRelationInterface->getSymbolTable().resolve((*it)->field[i]);
                     tup << s;
                 } else {
-                    tup << (*it)[i];
+                    tup << (*it)->field[i];
                 }
             }
             tup.rewind();
@@ -133,12 +133,14 @@ public:
 
     /** Insert tuple */
     void insert(const tuple& t) override {
-        relation.insert(convertTupleToNums(t));
+        PresenceCondition tt = PresenceCondition::makeTrue();
+        relation.insert(convertTupleToNums(t), tt);
     }
 
     /** Check whether tuple exists */
     bool contains(const tuple& t) const override {
-        return relation.exists(convertTupleToNums(t));
+        PresenceCondition tt = PresenceCondition::makeTrue();
+        return relation.exists(convertTupleToNums(t), tt);
     }
 
     /** Iterator to first tuple */

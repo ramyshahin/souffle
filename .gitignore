@@ -49,3 +49,8 @@ stamp-h1
 
 DebugBuild/
 ReleaseBuild/
+
+*.html
+*.csv
+*.facts
+

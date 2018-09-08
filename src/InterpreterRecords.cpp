@@ -19,6 +19,7 @@
 #include <limits>
 #include <map>
 #include <vector>
+#include <iostream>
 
 namespace souffle {
 
@@ -121,6 +122,11 @@ RamDomain getNull() {
 
 bool isNull(RamDomain ref) {
     return ref == 0;
+}
+
+std::ostream& operator<<(std::ostream& out, const RamRecord& record) {
+    out << "[" << record.field << " @ " << *(record.pc) << "]";
+    return out;
 }
 
 }  // end of namespace souffle

@@ -18,7 +18,7 @@
 #include "RamTypes.h"
 #include "SymbolMask.h"
 #include "SymbolTable.h"
-
+#include "PresenceCondition.h"
 #include <memory>
 
 namespace souffle {
@@ -31,9 +31,10 @@ public:
     void readAll(T& relation) {
         auto lease = symbolTable.acquireLock();
         (void)lease;
+        PresenceCondition tt = PresenceCondition::makeTrue();
         while (const auto next = readNextTuple()) {
             const RamDomain* ramDomain = next.get();
-            relation.insert(ramDomain);
+            relation.insert(ramDomain, tt);
         }
     }
 

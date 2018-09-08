@@ -62,6 +62,8 @@ private:
     /** iteration number (in a fix-point calculation) */
     size_t iteration;
 
+    PresenceCondition tt;
+
 protected:
     /** Evaluate value */
     RamDomain evalVal(const RamValue& value, const InterpreterContext& ctxt = InterpreterContext());
@@ -151,7 +153,7 @@ protected:
     }
 
 public:
-    Interpreter(RamTranslationUnit& tUnit) : translationUnit(tUnit), counter(0), iteration(0) {}
+    Interpreter(RamTranslationUnit& tUnit) : translationUnit(tUnit), counter(0), iteration(0), tt(PresenceCondition::makeTrue()) {}
     virtual ~Interpreter() {
         for (auto& x : environment) {
             delete x.second;

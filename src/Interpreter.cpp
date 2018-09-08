@@ -66,7 +66,7 @@ RamDomain Interpreter::evalVal(const RamValue& value, const InterpreterContext& 
         }
 
         RamDomain visitElementAccess(const RamElementAccess& access) override {
-            return ctxt[access.getLevel()][access.getElement()];
+            return ctxt[access.getLevel()]->field[access.getElement()];
         }
 
         RamDomain visitAutoIncrement(const RamAutoIncrement&) override {
@@ -250,7 +250,7 @@ bool Interpreter::evalCond(const RamCondition& cond, const InterpreterContext& c
                     tuple[i] = (values[i]) ? interpreter.evalVal(*values[i], ctxt) : MIN_RAM_DOMAIN;
                 }
 
-                return !rel.exists(tuple);
+                return !rel.exists(tuple, interpreter.tt);
             }
 
             // for partial we search for lower and upper boundaries
@@ -261,9 +261,15 @@ bool Interpreter::evalCond(const RamCondition& cond, const InterpreterContext& c
                 high[i] = (values[i]) ? low[i] : MAX_RAM_DOMAIN;
             }
 
+            RamRecord* lowRec = new RamRecord(arity, low, new PresenceCondition(interpreter.tt));
+            RamRecord* highRec = new RamRecord(arity, high, new PresenceCondition(interpreter.tt));
+
             // obtain index
             auto idx = rel.getIndex(ne.getKey());
-            auto range = idx->lowerUpperBound(low, high);
+            auto range = idx->lowerUpperBound(lowRec, highRec);
+            delete lowRec;
+            delete highRec;
+
             return range.first == range.second;  // if there are none => done
         }
 
@@ -379,7 +385,7 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
                 }
 
                 // if scan is unrestricted => use simple iterator
-                for (const RamDomain* cur : rel) {
+                for (auto cur : rel) {
                     ctxt[scan.getLevel()] = cur;
                     visitSearch(scan);
                 }
@@ -404,8 +410,14 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
             // obtain index
             auto idx = rel.getIndex(scan.getRangeQueryColumns(), nullptr);
 
+            RamRecord* lowRec = new RamRecord(arity, low, new PresenceCondition(interpreter.tt));
+            RamRecord* highRec = new RamRecord(arity, hig, new PresenceCondition(interpreter.tt));
+
             // get iterator range
-            auto range = idx->lowerUpperBound(low, hig);
+            auto range = idx->lowerUpperBound(lowRec, highRec);
+
+            delete lowRec;
+            delete highRec;
 
             // if this scan is not binding anything ...
             if (scan.isPureExistenceCheck()) {
@@ -420,7 +432,7 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
 
             // conduct range query
             for (auto ip = range.first; ip != range.second; ++ip) {
-                const RamDomain* data = *(ip);
+                const RamRecord* data = *(ip);
                 ctxt[scan.getLevel()] = data;
                 visitSearch(scan);
             }
@@ -428,19 +440,19 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
 
         void visitLookup(const RamLookup& lookup) override {
             // get reference
-            RamDomain ref = ctxt[lookup.getReferenceLevel()][lookup.getReferencePosition()];
+            auto& ref = ctxt[lookup.getReferenceLevel()][lookup.getReferencePosition()];
 
             // check for null
-            if (isNull(ref)) {
+            if (isNull(*ref.field)) {
                 return;
             }
 
             // update environment variable
             auto arity = lookup.getArity();
-            const RamDomain* tuple = unpack(ref, arity);
+            const RamDomain* tuple = unpack(*ref.field, arity);
 
             // save reference to temporary value
-            ctxt[lookup.getLevel()] = tuple;
+            ctxt[lookup.getLevel()] = new RamRecord(arity, tuple, ref.pc.get()); // TODO: where is it deallocated?
 
             // run nested part - using base class visitor
             visitSearch(lookup);
@@ -488,8 +500,13 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
             // obtain index
             auto idx = rel.getIndex(aggregate.getRangeQueryColumns());
 
+            RamRecord* lowRec = new RamRecord(arity, low, new PresenceCondition(interpreter.tt));
+            RamRecord* highRec = new RamRecord(arity, hig, new PresenceCondition(interpreter.tt));
+
             // get iterator range
-            auto range = idx->lowerUpperBound(low, hig);
+            auto range = idx->lowerUpperBound(lowRec, highRec);
+            delete lowRec;
+            delete highRec;
 
             // check for emptiness
             if (aggregate.getFunction() != RamAggregate::COUNT) {
@@ -501,7 +518,7 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
             // iterate through values
             for (auto ip = range.first; ip != range.second; ++ip) {
                 // link tuple
-                const RamDomain* data = *(ip);
+                const RamRecord* data = *(ip);
                 ctxt[aggregate.getLevel()] = data;
 
                 // count is easy
@@ -534,7 +551,7 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
             // write result to environment
             RamDomain tuple[1];
             tuple[0] = res;
-            ctxt[aggregate.getLevel()] = tuple;
+            ctxt[aggregate.getLevel()] = new RamRecord(1, tuple, &interpreter.tt); // TODO: where is this deallocated?
 
             // check whether result is used in a condition
             auto condition = aggregate.getCondition();
@@ -563,13 +580,13 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
             }
 
             // check filter relation
-            if (project.hasFilter() && interpreter.getRelation(project.getFilter()).exists(tuple)) {
+            if (project.hasFilter() && interpreter.getRelation(project.getFilter()).exists(tuple, interpreter.tt)) {
                 return;
             }
 
             // insert in target relation
             InterpreterRelation& rel = interpreter.getRelation(project.getRelation());
-            rel.insert(tuple);
+            rel.insert(tuple, interpreter.tt);
         }
 
         // -- return from subroutine --

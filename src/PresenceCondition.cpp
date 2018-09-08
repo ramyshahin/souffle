@@ -3,7 +3,7 @@
 #include "AstPresenceCondition.h"
 
 #include <cassert>
-#include <strstream>
+#include <sstream>
 #include <string>
 
 using namespace std;
@@ -25,6 +25,10 @@ void PresenceCondition::init(SymbolTable& st) {
         CUDD_CACHE_SLOTS, 
         0);
     assert(bddMgr);
+}
+
+PresenceCondition PresenceCondition::makeTrue() {
+    return PresenceCondition(Cudd_ReadOne(bddMgr), "True");
 }
 
 PresenceCondition::PresenceCondition() {}
@@ -64,11 +68,22 @@ bool PresenceCondition::operator==(const PresenceCondition& other) const {
     return pcBDD == other.pcBDD;
 }
 
+#define ULONG unsigned long
+
+bool PresenceCondition::operator<(const PresenceCondition& other) const {
+    return (((ULONG)pcBDD) < ((ULONG)(other.pcBDD)));
+}
+    
+bool PresenceCondition::operator>(const PresenceCondition& other) const {
+    return (((ULONG)pcBDD) > ((ULONG)(other.pcBDD)));
+}
+
 bool PresenceCondition::isSAT() const {
     return (pcBDD != Cudd_ReadZero(bddMgr));
 }
 
 std::ostream& operator<<(std::ostream& out, const PresenceCondition& pc) {
     out << pc.text;
+    return out;
 }
 } // namespace souffle

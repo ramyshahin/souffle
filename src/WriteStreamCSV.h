@@ -53,7 +53,8 @@ public:
     ~WriteFileCSV() override = default;
 
 protected:
-    void writeNextTuple(const RamDomain* tuple) override {
+    void writeNextTuple(const RamRecord* record) override {
+        const RamDomain* tuple = record->field;
         size_t arity = symbolMask.getArity();
         if (isProvenance) {
             arity -= 2;
@@ -77,7 +78,8 @@ protected:
                 file << tuple[col];
             }
         }
-        file << "\n";
+
+        file << " @ " << *(record->pc.get()) << "\n";
     }
 
 protected:
@@ -100,7 +102,8 @@ public:
     ~WriteGZipFileCSV() override = default;
 
 protected:
-    void writeNextTuple(const RamDomain* tuple) override {
+    void writeNextTuple(const RamRecord* record) override {
+        const RamDomain* tuple = record->field;
         size_t arity = symbolMask.getArity();
 
         // do not print last two provenance columns if provenance
@@ -126,7 +129,7 @@ protected:
                 file << tuple[col];
             }
         }
-        file << "\n";
+        file << " @ " << *(record->pc.get()) << "\n";
     }
 
     const std::string delimiter;
@@ -151,7 +154,8 @@ public:
     }
 
 protected:
-    void writeNextTuple(const RamDomain* tuple) override {
+    void writeNextTuple(const RamRecord* record) override {
+        const RamDomain* tuple = record->field;
         size_t arity = symbolMask.getArity();
 
         if (isProvenance) {
@@ -176,7 +180,7 @@ protected:
                 std::cout << tuple[col];
             }
         }
-        std::cout << "\n";
+        std::cout << " @ " << *(record->pc.get()) << "\n";
     }
 
     const std::string delimiter;

@@ -23,6 +23,7 @@ protected:
 
 public:
     static void init(SymbolTable& st);
+    static PresenceCondition makeTrue();
 
     PresenceCondition(const PresenceCondition& other);
     PresenceCondition(const AstPresenceCondition& pc);
@@ -33,11 +34,19 @@ public:
 
     bool operator==(const PresenceCondition& other) const;
 
+    bool operator!=(const PresenceCondition& other) const {
+        return !(*this == other);
+    }
+    
+    bool operator<(const PresenceCondition& other) const;
+    
+    bool operator>(const PresenceCondition& other) const;
+
     PresenceCondition conjoin(const PresenceCondition& other) const;
 
     bool isSAT() const;
 
-    friend std::ostream& operator<<(std::ostream& out, PresenceCondition pc);
+    friend std::ostream& operator<<(std::ostream& out, const PresenceCondition& pc);
 }; // PresenceCondition
 
 }; // souffle
