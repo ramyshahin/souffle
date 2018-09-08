@@ -27,6 +27,7 @@ public:
 
     PresenceCondition(const PresenceCondition& other);
     PresenceCondition(const AstPresenceCondition& pc);
+    PresenceCondition& operator=(const PresenceCondition& other);
     
     ~PresenceCondition();
 

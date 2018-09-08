@@ -73,7 +73,6 @@ public:
 
     virtual DdNode* toBDD(DdManager* bddMgr) const override {
         DdNode* ret = Cudd_bddIthVar(bddMgr, index);
-        Cudd_Ref(ret);
         return ret;
     }
 
@@ -118,7 +117,6 @@ public:
     virtual DdNode* toBDD(DdManager* bddMgr) const override {
         DdNode* pcBDD = pc->toBDD(bddMgr);
         DdNode* ret = Cudd_Not(pcBDD);
-        Cudd_Ref(ret);
         return ret;
     }
 
@@ -180,7 +178,7 @@ public:
 
         switch (op) {
             case OP_AND: ret = Cudd_bddAnd(bddMgr, bdd1, bdd2); break;
-            case OP_OR:  ret = Cudd_bddOr(bddMgr, bdd1, bdd2);
+            case OP_OR:  ret = Cudd_bddOr(bddMgr, bdd1, bdd2);  break;
         }
         Cudd_Ref(ret);
         return ret;

@@ -67,7 +67,8 @@ RamDomain Interpreter::evalVal(const RamValue& value, const InterpreterContext& 
 
         RamDomain visitElementAccess(const RamElementAccess& access) override {
             const PresenceCondition& pc = *ctxt[access.getLevel()]->pc.get();
-            ((InterpreterContext&)ctxt).pc.conjWith(pc);
+            const PresenceCondition& ctxtPC = ctxt.pc;
+            const_cast<PresenceCondition&>(ctxtPC).conjWith(pc);
             return ctxt[access.getLevel()]->field[access.getElement()];
         }
 
@@ -250,6 +251,10 @@ bool Interpreter::evalCond(const RamCondition& cond, const InterpreterContext& c
                 RamDomain tuple[arity];
                 for (size_t i = 0; i < arity; i++) {
                     tuple[i] = (values[i]) ? interpreter.evalVal(*values[i], ctxt) : MIN_RAM_DOMAIN;
+                }
+
+                if (!(ctxt.pc).isSAT()) {
+                    return true;
                 }
 
                 return !rel.exists(tuple, ctxt.pc);

@@ -89,6 +89,10 @@ public:
 
         assert(tuple);
 
+        if (!pc.isSAT()) {
+            return;
+        }
+        
         // make existence check
         if (exists(tuple, pc)) {
             return;
