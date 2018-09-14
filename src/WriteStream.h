@@ -37,10 +37,11 @@ public:
     virtual ~WriteStream() = default;
 
 protected:
+    virtual void writeNextTuple(const RamDomain* record) = 0;
     virtual void writeNextTuple(const RamRecord* record) = 0;
     template <typename Tuple>
     void writeNext(const Tuple tuple) {
-        writeNextTuple(tuple);
+        writeNextTuple(tuple.data);
     }
     const SymbolMask& symbolMask;
     const SymbolTable& symbolTable;
@@ -56,8 +57,12 @@ public:
 };
 
 template <>
+inline void WriteStream::writeNext(const RamDomain* tuple) {
+    writeNextTuple(tuple);
+}
+
+template <>
 inline void WriteStream::writeNext(const RamRecord* record) {
     writeNextTuple(record);
 }
-
 } /* namespace souffle */

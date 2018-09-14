@@ -125,7 +125,11 @@ bool isNull(RamDomain ref) {
 }
 
 std::ostream& operator<<(std::ostream& out, const RamRecord& record) {
-    out << "[" << record.field << " @ " << *(record.pc) << "]";
+    out << "[" << record.field;
+    if (!record.pc->isTrue()) {
+        out << " @ " << *(record.pc);
+    } 
+    out << "]";
     return out;
 }
 

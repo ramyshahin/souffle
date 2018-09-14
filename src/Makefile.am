@@ -112,7 +112,7 @@ souffle_sources = \
               RamNode.h                                 \
               RamOperation.cpp      RamOperation.h      \
               RamProgram.h                              \
-              RamRelation.h                             \
+              RamRelation.h         RamRecord.h         \
               RamSemanticChecker.h                      \
               RamStatement.h                            \
               RamTransformer.cpp    RamTransformer.h    \
@@ -165,7 +165,9 @@ soufflepublicdir = $(includedir)/souffle
 soufflepublic_HEADERS = \
 						CompiledOptions.h       \
                         AstTypes.h              \
-                        BTree.h                 \
+                        AstNode.h				\
+						AstPresenceCondition.h  \
+						BTree.h                 \
                         BinaryRelation.h        \
                         BlockList.h             \
                         CompiledIndexUtils.h    \
@@ -183,13 +185,16 @@ soufflepublic_HEADERS = \
                         IterUtils.h             \
                         Logger.h                \
                         ParallelUtils.h         \
+                        PresenceCondition.h		\
                         ProfileDatabase.h       \
                         ProfileEvent.h          \
                         RamTypes.h              \
+						RamRecord.h				\
                         ReadStream.h            \
                         ReadStreamCSV.h         \
                         SignalHandler.h         \
                         SouffleInterface.h      \
+						SrcLocation.h			\
                         SymbolMask.h            \
                         SymbolTable.h           \
                         Table.h                 \

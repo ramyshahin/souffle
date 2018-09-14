@@ -23,8 +23,11 @@
 #include "BTree.h"
 #include "RamTypes.h"
 #include "Util.h"
+#include "RamRecord.h"
 
+#ifndef ULONG
 #define ULONG (unsigned long)
+#endif
 
 namespace souffle {
 

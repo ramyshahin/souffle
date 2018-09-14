@@ -17,6 +17,7 @@
 #pragma once
 
 #include "souffle/AstTypes.h"
+#include "souffle/RamRecord.h"
 #include "souffle/CompiledIndexUtils.h"
 #include "souffle/CompiledOptions.h"
 #include "souffle/CompiledRecord.h"
@@ -64,6 +65,12 @@ inline souffle::SouffleProgram* getInstance(const char* p) {
     return souffle::ProgramFactory::newInstance(p);
 }
 }
+
+SymbolTable* PresenceCondition::featSymTab = nullptr;
+DdManager*   PresenceCondition::bddMgr = nullptr;
+
+DdNode* PresenceCondition::FF;
+DdNode* PresenceCondition::TT;
 
 /**
  * Relation wrapper used internally in the generated Datalog program

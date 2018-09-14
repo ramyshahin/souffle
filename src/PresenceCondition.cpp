@@ -15,8 +15,10 @@ namespace souffle {
 SymbolTable* PresenceCondition::featSymTab = nullptr;
 DdManager*   PresenceCondition::bddMgr = nullptr;
 
-static DdNode* FF;
-static DdNode* TT;
+DdNode* PresenceCondition::FF;
+DdNode* PresenceCondition::TT;
+
+#if 0
 
 void PresenceCondition::init(SymbolTable& st) {
     featSymTab = &st;
@@ -127,8 +129,14 @@ bool PresenceCondition::isSAT() const {
     return (pcBDD != FF);
 }
 
+bool PresenceCondition::isTrue() const {
+    return (pcBDD == TT);
+}
+
 std::ostream& operator<<(std::ostream& out, const PresenceCondition& pc) {
     out << pc.text;
     return out;
 }
+#endif
+
 } // namespace souffle

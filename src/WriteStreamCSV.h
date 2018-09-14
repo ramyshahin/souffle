@@ -18,6 +18,7 @@
 #include "SymbolMask.h"
 #include "SymbolTable.h"
 #include "WriteStream.h"
+#include "PresenceCondition.h"
 #ifdef USE_LIBZ
 #include "gzfstream.h"
 #endif
@@ -53,6 +54,34 @@ public:
     ~WriteFileCSV() override = default;
 
 protected:
+    void writeNextTuple(const RamDomain* tuple) override {
+        size_t arity = symbolMask.getArity();
+        if (isProvenance) {
+            arity -= 2;
+        }
+
+        if (arity == 0) {
+            file << "()\n";
+            return;
+        }
+
+        if (symbolMask.isSymbol(0)) {
+            file << symbolTable.unsafeResolve(tuple[0]);
+        } else {
+            file << tuple[0];
+        }
+        for (size_t col = 1; col < arity; ++col) {
+            file << delimiter;
+            if (symbolMask.isSymbol(col)) {
+                file << symbolTable.unsafeResolve(tuple[col]);
+            } else {
+                file << tuple[col];
+            }
+        }
+        
+        file << "\n";
+    }
+
     void writeNextTuple(const RamRecord* record) override {
         const RamDomain* tuple = record->field;
         size_t arity = symbolMask.getArity();
@@ -79,7 +108,11 @@ protected:
             }
         }
 
-        file << " @ " << *(record->pc.get()) << "\n";
+        if (!record->pc->isTrue()) {
+            file << " @ " << *(record->pc.get());
+        } 
+        
+        file << "\n";
     }
 
 protected:
@@ -102,6 +135,36 @@ public:
     ~WriteGZipFileCSV() override = default;
 
 protected:
+    void writeNextTuple(const RamDomain* tuple) override {
+        size_t arity = symbolMask.getArity();
+
+        // do not print last two provenance columns if provenance
+        if (isProvenance) {
+            arity -= 2;
+        }
+
+        if (arity == 0) {
+            file << "()\n";
+            return;
+        }
+
+        if (symbolMask.isSymbol(0)) {
+            file << symbolTable.unsafeResolve(tuple[0]);
+        } else {
+            file << tuple[0];
+        }
+        for (size_t col = 1; col < arity; ++col) {
+            file << delimiter;
+            if (symbolMask.isSymbol(col)) {
+                file << symbolTable.unsafeResolve(tuple[col]);
+            } else {
+                file << tuple[col];
+            }
+        }
+
+        file << "\n";
+    }
+
     void writeNextTuple(const RamRecord* record) override {
         const RamDomain* tuple = record->field;
         size_t arity = symbolMask.getArity();
@@ -129,7 +192,11 @@ protected:
                 file << tuple[col];
             }
         }
-        file << " @ " << *(record->pc.get()) << "\n";
+
+        if (!record->pc->isTrue()) {
+            file << " @ " << *(record->pc.get());
+        }
+        file << "\n";
     }
 
     const std::string delimiter;
@@ -154,6 +221,35 @@ public:
     }
 
 protected:
+    void writeNextTuple(const RamDomain* tuple) override {
+        size_t arity = symbolMask.getArity();
+
+        if (isProvenance) {
+            arity -= 2;
+        }
+
+        if (arity == 0) {
+            std::cout << "()\n";
+            return;
+        }
+
+        if (symbolMask.isSymbol(0)) {
+            std::cout << symbolTable.unsafeResolve(tuple[0]);
+        } else {
+            std::cout << tuple[0];
+        }
+        for (size_t col = 1; col < arity; ++col) {
+            std::cout << delimiter;
+            if (symbolMask.isSymbol(col)) {
+                std::cout << symbolTable.unsafeResolve(tuple[col]);
+            } else {
+                std::cout << tuple[col];
+            }
+        }
+
+        std::cout << "\n";
+    }
+
     void writeNextTuple(const RamRecord* record) override {
         const RamDomain* tuple = record->field;
         size_t arity = symbolMask.getArity();
@@ -180,7 +276,11 @@ protected:
                 std::cout << tuple[col];
             }
         }
-        std::cout << " @ " << *(record->pc.get()) << "\n";
+
+        if (!record->pc->isTrue()) {
+            std::cout << " @ " << *(record->pc.get());
+        }
+        std::cout << "\n";
     }
 
     const std::string delimiter;

@@ -53,6 +53,33 @@ public:
     }
 
 protected:
+    void writeNextTuple(const RamDomain* tuple) override {
+        if (arity == 0) {
+            return;
+        }
+
+        for (size_t i = 0; i < arity; i++) {
+            RamDomain value;
+            if (symbolMask.isSymbol(i)) {
+                value = getSymbolTableID(tuple[i]);
+            } else {
+                value = tuple[i];
+            }
+#if RAM_DOMAIN_SIZE == 64
+            if (sqlite3_bind_int64(insertStatement, i + 1, value) != SQLITE_OK) {
+#else
+            if (sqlite3_bind_int(insertStatement, i + 1, value) != SQLITE_OK) {
+#endif
+                throwError("SQLite error in sqlite3_bind_text: ");
+            }
+        }
+        if (sqlite3_step(insertStatement) != SQLITE_DONE) {
+            throwError("SQLite error in sqlite3_step: ");
+        }
+        sqlite3_clear_bindings(insertStatement);
+        sqlite3_reset(insertStatement);
+    }
+
     void writeNextTuple(const RamRecord* record) override {
         if (arity == 0) {
             return;

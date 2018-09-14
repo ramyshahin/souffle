@@ -239,12 +239,13 @@ struct RelationBase {
     // -- insert wrapper --
 
     template <typename... Args>
-    bool insert(Args... args) {
+    bool insert(Args... args) { //, const PresenceCondition& pc) {
         RamDomain data[arity] = {RamDomain(args)...};
         return static_cast<Derived*>(this)->insert(reinterpret_cast<const tuple_type&>(data));
     }
 
-    bool insert(const RamDomain* ramDomain) {
+    bool insert(const RamRecord* record) {
+        const RamDomain* ramDomain = record->field;
         RamDomain data[arity];
         std::copy(ramDomain, ramDomain + arity, data);
         const auto& tuple = reinterpret_cast<const tuple_type&>(data);

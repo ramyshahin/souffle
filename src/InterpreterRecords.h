@@ -17,6 +17,7 @@
 #pragma once
 
 #include "RamTypes.h"
+#include "RamRecord.h"
 
 namespace souffle {
 

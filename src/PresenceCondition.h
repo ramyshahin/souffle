@@ -1,55 +1,150 @@
 #pragma once
 
 #include <string>
+#include <cassert>
+#include <sstream>
+#include <cudd.h>
 
-class DdManager;
-class DdNode;
+#include "SymbolTable.h"
+#include "AstPresenceCondition.h"
 
 namespace souffle {
-
-class SymbolTable;
-class AstPresenceCondition;
 
 class PresenceCondition {
 private:
     static SymbolTable* featSymTab;
     static DdManager*   bddMgr;
-
+    static DdNode* FF;
+    static DdNode* TT;
+    
     DdNode* pcBDD;
     std::string text;
 protected:
-    PresenceCondition();
-    PresenceCondition(DdNode* bdd, const std::string& t);
+    PresenceCondition() {}
+
+    PresenceCondition(DdNode* bdd, const std::string& t) :
+        pcBDD(bdd), text(t)
+    {}
 
 public:
-    static void init(SymbolTable& st);
-    static PresenceCondition makeTrue();
+    static void init(SymbolTable& st) {
+        featSymTab = &st;
 
-    PresenceCondition(const PresenceCondition& other);
-    PresenceCondition(const AstPresenceCondition& pc);
-    PresenceCondition& operator=(const PresenceCondition& other);
+        bddMgr = Cudd_Init(
+            featSymTab->size(), 
+            0, 
+            CUDD_UNIQUE_SLOTS, 
+            CUDD_CACHE_SLOTS, 
+            0);
+        assert(bddMgr);
+
+        FF = Cudd_ReadLogicZero(bddMgr);
+        TT = Cudd_ReadOne(bddMgr);
+    }
+
+    static PresenceCondition makeTrue() {
+        return PresenceCondition(TT, "True");
+    }
+
+    PresenceCondition(const PresenceCondition& other) :
+        pcBDD(other.pcBDD), text(other.text)
+    {
+        Cudd_Ref(pcBDD);
+    }
+
+    PresenceCondition(const AstPresenceCondition& pc) {
+        pcBDD = pc.toBDD(bddMgr);
+        std::stringstream ostr; 
+        pc.print(ostr);
+        text = ostr.str();
+    }
+
+    PresenceCondition& operator=(const PresenceCondition& other) {
+        Cudd_RecursiveDeref(bddMgr, pcBDD);
+        pcBDD = other.pcBDD;
+        Cudd_Ref(pcBDD);
+        text = other.text;
+
+        return *this;
+    }
+
+    ~PresenceCondition() {
+        Cudd_RecursiveDeref(bddMgr, pcBDD);
+    }
+
+    bool conjSat(const PresenceCondition& other) const {
+        DdNode* tmp = Cudd_bddAnd(bddMgr, pcBDD, other.pcBDD);
     
-    ~PresenceCondition();
+        return tmp != Cudd_ReadZero(bddMgr);
+    }
 
-    bool conjSat(const PresenceCondition& other) const;
+    void conjWith(const PresenceCondition& other) {
+        if (pcBDD == other.pcBDD) {
+            return;
+        }
 
-    void conjWith(const PresenceCondition& other);
+        if (other.pcBDD == TT) {
+            return;
+        }
 
-    bool operator==(const PresenceCondition& other) const;
+        if (pcBDD == TT) {
+            pcBDD = other.pcBDD;
+            Cudd_Ref(pcBDD);
+            text = other.text;
+            return;
+        }
+
+        DdNode* tmp = Cudd_bddAnd(bddMgr, pcBDD, other.pcBDD);
+        Cudd_Ref(tmp);
+        Cudd_RecursiveDeref(bddMgr, pcBDD);
+        pcBDD = tmp;
+        if (pcBDD == FF) {
+            text = "False";
+        } else if (pcBDD == TT) {
+            text = "True";
+        } else {
+            text = "(" + text + " /\\ " + other.text + ")";
+        }
+    }
+
+#ifndef ULONG
+#define ULONG unsigned long
+#endif
+
+    bool operator==(const PresenceCondition& other) const {
+        return pcBDD == other.pcBDD;
+    }
 
     bool operator!=(const PresenceCondition& other) const {
         return !(*this == other);
     }
 
-    bool operator<(const PresenceCondition& other) const;
+    bool operator<(const PresenceCondition& other) const {
+        return (((ULONG)pcBDD) < ((ULONG)(other.pcBDD)));
+    }
     
-    bool operator>(const PresenceCondition& other) const;
+    bool operator>(const PresenceCondition& other) const {
+        return (((ULONG)pcBDD) > ((ULONG)(other.pcBDD)));
+    }
 
-    PresenceCondition conjoin(const PresenceCondition& other) const;
+    PresenceCondition conjoin(const PresenceCondition& other) const {
+        DdNode* tmp = Cudd_bddAnd(bddMgr, pcBDD, other.pcBDD);
+        Cudd_Ref(tmp);
+        return PresenceCondition(tmp, "(" + text + " /\\ " + other.text + ")");
+    }
 
-    bool isSAT() const;
+    bool isSAT() const {
+        return (pcBDD != FF);
+    }
 
-    friend std::ostream& operator<<(std::ostream& out, const PresenceCondition& pc);
+    bool isTrue() const {
+        return (pcBDD == TT);
+    }
+    
+    friend std::ostream& operator<<(std::ostream& out, const PresenceCondition& pc) {
+        out << pc.text;
+        return out;
+    }
 }; // PresenceCondition
 
 }; // souffle

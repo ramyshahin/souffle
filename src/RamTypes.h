@@ -21,8 +21,6 @@
 #include <cassert>
 #include <cstdint>
 
-#include "PresenceCondition.h"
-
 namespace souffle {
 
 /**
@@ -41,32 +39,6 @@ using RamDomain = int64_t;
 #else
 using RamDomain = int32_t;
 #endif
-
-struct RamRecord {
-    const RamDomain* field; 
-    const std::unique_ptr<const PresenceCondition> pc;
-
-#ifdef DEBUG
-    std::size_t size;
-#endif //DEBUG
-
-    RamRecord(std::size_t s, const RamDomain* f, const PresenceCondition* _pc) :
-        field(f)
-        , pc(_pc)
-#ifdef DEBUG
-        , size(s)
-#endif
-    {
-        assert(pc);
-    }
-
-    RamDomain operator[](std::size_t index) const {
-#ifdef DEBUG
-        assert(index < size);
-#endif
-        return field[index];
-    }
-}; //RamRecord
 
 /** lower and upper boundaries for the ram domain **/
 #define MIN_RAM_DOMAIN (std::numeric_limits<RamDomain>::min())

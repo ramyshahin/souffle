@@ -130,6 +130,10 @@ ADD_EXECUTABLE(souffle
         ./src/InlineRelationsTransformer.cpp
         ./src/DebugReport.cpp
         ./src/AstSemanticChecker.cpp
+        ./src/AstPresenceCondition.h
+        ./src/PresenceCondition.h
+        ./src/PresenceCondition.cpp
+        ./src/RamRecord.h
         ./src/test/ram_relation_stats_test.cpp
         ./src/test/compiled_index_utils_test.cpp
         ./src/test/matching_test.cpp

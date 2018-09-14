@@ -23,6 +23,7 @@
 #include "RamStatement.h"
 #include "RamTranslationUnit.h"
 #include "RamTypes.h"
+#include "RamRecord.h"
 
 #include <cassert>
 #include <map>

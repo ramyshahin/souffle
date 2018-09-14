@@ -71,7 +71,7 @@ TEST(AstUtils, Const) {
     AstClause* clause = program.getRelation("r")->getClause(0);
 
     // check construction
-    EXPECT_EQ("r(X,Y,Z,W) :- \n   a(X),\n   10 = Y,\n   Y = Z,\n   (8+W) = (12+14) @ True.", toString(*clause));
+    EXPECT_EQ("r(X,Y,Z,W) :- \n   a(X),\n   10 = Y,\n   Y = Z,\n   (8+W) = (12+14).", toString(*clause));
 
     // obtain analyse constness
     auto isConst = getConstTerms(*clause);
@@ -115,7 +115,7 @@ TEST(AstUtils, Grounded) {
     clause->addToBody(std::unique_ptr<AstLiteral>(neg));
 
     // check construction
-    EXPECT_EQ("r(X,Y,Z) :- \n   a(X),\n   !b(Z),\n   X = Y @ True.", toString(*clause));
+    EXPECT_EQ("r(X,Y,Z) :- \n   a(X),\n   !b(Z),\n   X = Y.", toString(*clause));
 
     // obtain groundness
     auto isGrounded = getGroundedTerms(*clause);
@@ -153,7 +153,7 @@ TEST(AstUtils, GroundedRecords) {
     auto clause = program.getRelation("s")->getClause(0);
 
     // check construction
-    EXPECT_EQ("s(x) :- \n   r([x,y]) @ True.", toString(*clause));
+    EXPECT_EQ("s(x) :- \n   r([x,y]).", toString(*clause));
 
     // obtain groundness
     auto isGrounded = getGroundedTerms(*clause);
@@ -388,7 +388,7 @@ TEST(AstUtils, GroundTermPropagation) {
     // check types in clauses
     AstClause* a = program.getRelation("p")->getClause(0);
 
-    EXPECT_EQ("p(a,b) :- \n   p(x,y),\n   r = [x,y],\n   s = r,\n   s = [w,v],\n   [w,v] = [a,b] @ True.",
+    EXPECT_EQ("p(a,b) :- \n   p(x,y),\n   r = [x,y],\n   s = r,\n   s = [w,v],\n   [w,v] = [a,b].",
             toString(*a));
 
     std::unique_ptr<AstClause> res = ResolveAliasesTransformer::resolveAliases(*a);
@@ -396,9 +396,9 @@ TEST(AstUtils, GroundTermPropagation) {
 
     EXPECT_EQ(
             "p(x,y) :- \n   p(x,y),\n   [x,y] = [x,y],\n   [x,y] = [x,y],\n   [x,y] = [x,y],\n   [x,y] = "
-            "[x,y] @ True.",
+            "[x,y].",
             toString(*res));
-    EXPECT_EQ("p(x,y) :- \n   p(x,y) @ True.", toString(*cleaned));
+    EXPECT_EQ("p(x,y) :- \n   p(x,y).", toString(*cleaned));
 }
 
 TEST(AstUtils, GroundTermPropagation2) {
@@ -421,13 +421,13 @@ TEST(AstUtils, GroundTermPropagation2) {
     // check types in clauses
     AstClause* a = program.getRelation("p")->getClause(0);
 
-    EXPECT_EQ("p(a,b) :- \n   p(x,y),\n   x = y,\n   x = a,\n   y = b @ True.", toString(*a));
+    EXPECT_EQ("p(a,b) :- \n   p(x,y),\n   x = y,\n   x = a,\n   y = b.", toString(*a));
 
     std::unique_ptr<AstClause> res = ResolveAliasesTransformer::resolveAliases(*a);
     std::unique_ptr<AstClause> cleaned = ResolveAliasesTransformer::removeTrivialEquality(*res);
 
-    EXPECT_EQ("p(b,b) :- \n   p(b,b),\n   b = b,\n   b = b,\n   b = b @ True.", toString(*res));
-    EXPECT_EQ("p(b,b) :- \n   p(b,b) @ True.", toString(*cleaned));
+    EXPECT_EQ("p(b,b) :- \n   p(b,b),\n   b = b,\n   b = b,\n   b = b.", toString(*res));
+    EXPECT_EQ("p(b,b) :- \n   p(b,b).", toString(*cleaned));
 }
 
 TEST(AstUtils, ResolveGroundedAliases) {
@@ -447,12 +447,12 @@ TEST(AstUtils, ResolveGroundedAliases) {
 
     AstProgram& program = *tu->getProgram();
 
-    EXPECT_EQ("p(a,b) :- \n   p(x,y),\n   r = [x,y],\n   s = r,\n   s = [w,v],\n   [w,v] = [a,b] @ True.",
+    EXPECT_EQ("p(a,b) :- \n   p(x,y),\n   r = [x,y],\n   s = r,\n   s = [w,v],\n   [w,v] = [a,b].",
             toString(*program.getRelation("p")->getClause(0)));
 
     ResolveAliasesTransformer::resolveAliases(program);
 
-    EXPECT_EQ("p(x,y) :- \n   p(x,y) @ True.", toString(*program.getRelation("p")->getClause(0)));
+    EXPECT_EQ("p(x,y) :- \n   p(x,y).", toString(*program.getRelation("p")->getClause(0)));
 }
 
 TEST(AstUtils, ResolveAliasesWithTermsInAtoms) {
@@ -472,14 +472,14 @@ TEST(AstUtils, ResolveAliasesWithTermsInAtoms) {
 
     AstProgram& program = *tu->getProgram();
 
-    EXPECT_EQ("p(x,c) :- \n   p(x,b),\n   p(b,c),\n   c = (b+1),\n   x = (c+2) @ True.",
+    EXPECT_EQ("p(x,c) :- \n   p(x,b),\n   p(b,c),\n   c = (b+1),\n   x = (c+2).",
             toString(*program.getRelation("p")->getClause(0)));
 
     ResolveAliasesTransformer::resolveAliases(program);
 
     EXPECT_EQ(
             "p(((b+1)+2),(b+1)) :- \n   p( _tmp_0,b),\n   p(b, _tmp_1),\n    _tmp_0 = ((b+1)+2),\n    _tmp_1 "
-            "= (b+1) @ True.",
+            "= (b+1).",
             toString(*program.getRelation("p")->getClause(0)));
 }
 

@@ -989,7 +989,7 @@ public:
 
         // enables this iterator core to be printed (for debugging)
         void print(std::ostream& out) const {
-            out << "SparseArrayIter(" << node << " @ " << value << ")";
+            out << "SparseArrayIter(" << node << ")";
         }
 
         friend std::ostream& operator<<(std::ostream& out, const iterator& iter) {
@@ -1264,13 +1264,11 @@ private:
      */
     static Node* findFirst(Node* node, int level) {
         while (level > 0) {
-            bool found = false;
             for (int i = 0; i < NUM_CELLS; i++) {
                 Node* cur = node->cell[i].ptr;
                 if (cur) {
                     node = cur;
                     --level;
-                    found = true;
                     break;
                 }
             }
@@ -1627,7 +1625,7 @@ public:
         }
 
         void print(std::ostream& out) const {
-            out << "SparseBitMapIter(" << iter << " -> " << std::bitset<64>(mask) << " @ " << value << ")";
+            out << "SparseBitMapIter(" << iter << " -> " << std::bitset<64>(mask) << ")";
         }
 
         // enables this iterator core to be printed (for debugging)

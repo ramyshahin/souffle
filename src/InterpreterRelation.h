@@ -19,6 +19,7 @@
 #include "InterpreterIndex.h"
 #include "ParallelUtils.h"
 #include "RamTypes.h"
+#include "RamRecord.h"
 
 #include <deque>
 #include <map>
