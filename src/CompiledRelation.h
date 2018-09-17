@@ -21,6 +21,7 @@
 #include "CompiledTuple.h"
 #include "ParallelUtils.h"
 #include "RamTypes.h"
+#include "RamRecord.h"
 #include "Table.h"
 #include "Util.h"
 #include <iostream>
