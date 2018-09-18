@@ -17,6 +17,7 @@
 
 #pragma once
 
+#include "PresenceCondition.h"
 #include <iostream>
 
 namespace souffle {
@@ -38,6 +39,9 @@ struct Tuple {
 
     // the stored data
     Domain data[arity];
+    
+    // presence condition
+    std::unique_ptr<const PresenceCondition> pc;
 
     // constructores, destructors and assignment are default
 
@@ -56,7 +60,7 @@ struct Tuple {
         for (std::size_t i = 0; i < arity; i++) {
             if (data[i] != other.data[i]) return false;
         }
-        return true;
+        return (*(pc.get()) == *(other.pc.get()));
     }
 
     // inequality comparison
@@ -70,7 +74,7 @@ struct Tuple {
             if (data[i] < other.data[i]) return true;
             if (data[i] > other.data[i]) return false;
         }
-        return false;
+        return (*(pc.get()) < *(other.pc.get()));
     }
 
     // required to put tuples into e.g. a btree container
@@ -79,7 +83,7 @@ struct Tuple {
             if (data[i] > other.data[i]) return true;
             if (data[i] < other.data[i]) return false;
         }
-        return false;
+        return (*(pc.get()) > *(other.pc.get()));
     }
 
     // allow tuples to be printed
@@ -90,7 +94,13 @@ struct Tuple {
             out << tuple.data[i];
             out << ",";
         }
-        return out << tuple.data[arity - 1] << "]";
+        out << tuple.data[arity - 1] << "]";
+
+        if (!tuple.pc->isTrue()) {
+            out << " @ " << *(tuple.pc.get());
+        }
+
+        return out;
     }
 };
 
