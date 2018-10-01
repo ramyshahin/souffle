@@ -97,8 +97,11 @@ void AstClause::print(std::ostream& os) const {
         os << join(getBodyLiterals(), ",\n   ", print_deref<AstLiteral*>());
     }
 
-    os << " @ ";
-    pc.print(os);
+    if (!pc.isTrue()) {
+        os << " @ ";
+        pc.print(os);
+    }
+    
     os << ".";
     if (getExecutionPlan()) {
         getExecutionPlan()->print(os);

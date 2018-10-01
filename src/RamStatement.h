@@ -404,7 +404,7 @@ protected:
     bool equal(const RamNode& node) const override {
         assert(nullptr != dynamic_cast<const RamFact*>(&node));
         const auto& other = static_cast<const RamFact&>(node);
-        return RamRelationStatement::equal(other) && equal_targets(values, other.values) && (*pc == *(other.pc));
+        return RamRelationStatement::equal(other) && equal_targets(values, other.values); // && (*pc == *(other.pc));
     }
 };
 

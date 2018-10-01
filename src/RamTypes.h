@@ -20,7 +20,7 @@
 #include <cassert>
 #include <cstdint>
 
-#include "PresenceCondition.h"
+//#include "PresenceCondition.h"
 
 namespace souffle {
 
@@ -41,6 +41,7 @@ using RamDomain = int64_t;
 using RamDomain = int32_t;
 #endif
 
+/*
 struct RamRecord {
     RamDomain* field;
 
@@ -62,7 +63,7 @@ struct RamRecord {
         return field[index];
     }
 }; //RamRecord
-
+*/
 /** lower and upper boundaries for the ram domain **/
 #define MIN_RAM_DOMAIN (std::numeric_limits<RamDomain>::min())
 #define MAX_RAM_DOMAIN (std::numeric_limits<RamDomain>::max())

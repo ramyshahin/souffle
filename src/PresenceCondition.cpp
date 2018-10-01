@@ -11,8 +11,11 @@ using namespace std;
 namespace souffle {
 
 SymbolTable* PresenceCondition::featSymTab = nullptr;
-DdManager*   PresenceCondition::bddMgr = nullptr;
+DdManager*   PresenceCondition::bddMgr  = nullptr;
+DdNode*      PresenceCondition::TT      = nullptr;
+DdNode*      PresenceCondition::FF      = nullptr;
 
+/*
 void PresenceCondition::init(SymbolTable& st) {
     featSymTab = &st;
 
@@ -49,5 +52,5 @@ bool PresenceCondition::operator==(const PresenceCondition& other) const {
 bool PresenceCondition::isSAT() const {
     return (pcBDD != Cudd_ReadZero(bddMgr));
 }
-
+*/
 } // namespace souffle

@@ -8,6 +8,9 @@ namespace souffle {
 class AstPresenceCondition : public AstNode {
 public:
     virtual DdNode* toBDD(DdManager* bddMgr) const = 0;
+    virtual bool isTrue() const {
+        return false;
+    }
 }; // AstPresenceCondition
 
 class AstPresenceConditionPrimitive : public AstPresenceCondition {
@@ -51,6 +54,10 @@ public:
     /** Print this clause to a given stream */
     void print(std::ostream& os) const override {
         os << (val ? "True" : "False");
+    }
+
+    virtual bool isTrue() const {
+        return val;
     }
 };
 
