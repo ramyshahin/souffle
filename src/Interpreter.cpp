@@ -566,7 +566,7 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
             // write result to environment
             RamDomain tuple[1];
             tuple[0] = res;
-            ctxt[aggregate.getLevel()] = new RamRecord(1, tuple, &ctxt.pc);
+            ctxt[aggregate.getLevel()] = new RamRecord(1, tuple, new PresenceCondition(ctxt.pc));
 
             // check whether result is used in a condition
             auto condition = aggregate.getCondition();
