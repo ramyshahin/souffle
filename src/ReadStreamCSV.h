@@ -20,6 +20,7 @@
 #include "SymbolMask.h"
 #include "SymbolTable.h"
 #include "Util.h"
+#include "PresenceConditionParser.h"
 
 #ifdef USE_LIBZ
 #include "gzfstream.h"
@@ -38,8 +39,9 @@ namespace souffle {
 class ReadStreamCSV : public ReadStream {
 public:
     ReadStreamCSV(std::istream& file, const SymbolMask& symbolMask, SymbolTable& symbolTable,
-            const IODirectives& ioDirectives, const bool provenance = false)
-            : ReadStream(symbolMask, symbolTable, provenance), delimiter(getDelimiter(ioDirectives)),
+            SymbolTable& featSymTable, const IODirectives& ioDirectives, const bool provenance = false)
+            : ReadStream(symbolMask, symbolTable, featSymTable, provenance), 
+              delimiter(getDelimiter(ioDirectives)),
               file(file), lineNumber(0), inputMap(getInputColumnMap(ioDirectives, symbolMask.getArity())) {
         while (this->inputMap.size() < symbolMask.getArity()) {
             int size = this->inputMap.size();
@@ -56,12 +58,12 @@ protected:
      * Returns nullptr if no tuple was readable.
      * @return
      */
-    std::unique_ptr<RamDomain[]> readNextTuple() override {
+    std::unique_ptr<RamRecord> readNextTuple() override {
         if (file.eof()) {
             return nullptr;
         }
         std::string line;
-        std::unique_ptr<RamDomain[]> tuple = std::make_unique<RamDomain[]>(symbolMask.getArity());
+        RamDomain* tuple = new RamDomain[symbolMask.getArity()];
         bool error = false;
 
         if (!getline(file, line)) {
@@ -72,6 +74,8 @@ protected:
             line = line.substr(0, line.length() - 1);
         }
         ++lineNumber;
+
+        AstPresenceCondition* pc = nullptr;
 
         size_t start = 0, end = 0, columnsFilled = 0;
         for (uint32_t column = 0; end < line.length(); column++) {
@@ -95,6 +99,15 @@ protected:
                 element = "n/a";
             }
             start = end + delimiter.size();
+            if (element[0] == '@') {
+                std::string pcStr = element.substr(1);
+                std::cout << pcStr << std::endl;
+                PresenceConditionParser parser(pcStr);
+                pc = parser.parse(featSymTable);
+                pc->print(std::cout);
+                std::cout << std::endl;
+                continue;
+            }
             if (inputMap.count(column) == 0) {
                 continue;
             }
@@ -142,7 +155,8 @@ protected:
             throw std::invalid_argument("cannot parse fact file");
         }
 
-        return tuple;
+        PresenceCondition _pc(*pc);
+        return std::make_unique<RamRecord>(columnsFilled, tuple, &_pc);
     }
 
     std::string getDelimiter(const IODirectives& ioDirectives) const {
@@ -186,9 +200,10 @@ protected:
 
 class ReadFileCSV : public ReadStreamCSV {
 public:
-    ReadFileCSV(const SymbolMask& symbolMask, SymbolTable& symbolTable, const IODirectives& ioDirectives,
+    ReadFileCSV(const SymbolMask& symbolMask, SymbolTable& symbolTable, 
+            SymbolTable& featSymT, const IODirectives& ioDirectives,
             const bool provenance = false)
-            : ReadStreamCSV(fileHandle, symbolMask, symbolTable, ioDirectives, provenance),
+            : ReadStreamCSV(fileHandle, symbolMask, symbolTable, featSymT, ioDirectives, provenance),
               baseName(souffle::baseName(getFileName(ioDirectives))), fileHandle(getFileName(ioDirectives)) {
         if (!ioDirectives.has("intermediate")) {
             if (!fileHandle.is_open()) {
@@ -207,7 +222,7 @@ public:
      * Returns nullptr if no tuple was readable.
      * @return
      */
-    std::unique_ptr<RamDomain[]> readNextTuple() override {
+    std::unique_ptr<RamRecord> readNextTuple() override {
         try {
             return ReadStreamCSV::readNextTuple();
         } catch (std::exception& e) {
@@ -238,8 +253,8 @@ protected:
 class ReadCinCSVFactory : public ReadStreamFactory {
 public:
     std::unique_ptr<ReadStream> getReader(const SymbolMask& symbolMask, SymbolTable& symbolTable,
-            const IODirectives& ioDirectives, const bool provenance) override {
-        return std::make_unique<ReadStreamCSV>(std::cin, symbolMask, symbolTable, ioDirectives, provenance);
+            SymbolTable& featSymT, const IODirectives& ioDirectives, const bool provenance) override {
+        return std::make_unique<ReadStreamCSV>(std::cin, symbolMask, symbolTable, featSymT, ioDirectives, provenance);
     }
     const std::string& getName() const override {
         static const std::string name = "stdin";
@@ -251,8 +266,8 @@ public:
 class ReadFileCSVFactory : public ReadStreamFactory {
 public:
     std::unique_ptr<ReadStream> getReader(const SymbolMask& symbolMask, SymbolTable& symbolTable,
-            const IODirectives& ioDirectives, const bool provenance) override {
-        return std::make_unique<ReadFileCSV>(symbolMask, symbolTable, ioDirectives, provenance);
+            SymbolTable& featSymT, const IODirectives& ioDirectives, const bool provenance) override {
+        return std::make_unique<ReadFileCSV>(symbolMask, symbolTable, featSymT, ioDirectives, provenance);
     }
     const std::string& getName() const override {
         static const std::string name = "file";

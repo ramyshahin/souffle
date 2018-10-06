@@ -83,6 +83,10 @@ protected:
         return translationUnit.getSymbolTable();
     }
 
+    SymbolTable& getFeatSymbolTable() {
+        return translationUnit.getFeatSymbolTable();
+    }
+
     /** Get counter */
     int getCounter() const {
         return counter;

@@ -52,23 +52,23 @@ public:
      * Return a new WriteStream
      */
     std::unique_ptr<WriteStream> getWriter(const SymbolMask& symbolMask, const SymbolTable& symbolTable,
-            const IODirectives& ioDirectives, const bool provenance) const {
+            const SymbolTable& featSymT, const IODirectives& ioDirectives, const bool provenance) const {
         std::string ioType = ioDirectives.getIOType();
         if (outputFactories.count(ioType) == 0) {
             throw std::invalid_argument("Requested output type <" + ioType + "> is not supported.");
         }
-        return outputFactories.at(ioType)->getWriter(symbolMask, symbolTable, ioDirectives, provenance);
+        return outputFactories.at(ioType)->getWriter(symbolMask, symbolTable, featSymT, ioDirectives, provenance);
     }
     /**
      * Return a new ReadStream
      */
     std::unique_ptr<ReadStream> getReader(const SymbolMask& symbolMask, SymbolTable& symbolTable,
-            const IODirectives& ioDirectives, const bool provenance) const {
+            SymbolTable& featSymT, const IODirectives& ioDirectives, const bool provenance) const {
         std::string ioType = ioDirectives.getIOType();
         if (inputFactories.count(ioType) == 0) {
             throw std::invalid_argument("Requested input type <" + ioType + "> is not supported.");
         }
-        return inputFactories.at(ioType)->getReader(symbolMask, symbolTable, ioDirectives, provenance);
+        return inputFactories.at(ioType)->getReader(symbolMask, symbolTable, featSymT, ioDirectives, provenance);
     }
     ~IOSystem() = default;
 
@@ -79,8 +79,8 @@ private:
         registerWriteStreamFactory(std::make_shared<WriteFileCSVFactory>());
         registerWriteStreamFactory(std::make_shared<WriteCoutCSVFactory>());
 #ifdef USE_SQLITE
-        registerReadStreamFactory(std::make_shared<ReadSQLiteFactory>());
-        registerWriteStreamFactory(std::make_shared<WriteSQLiteFactory>());
+        //registerReadStreamFactory(std::make_shared<ReadSQLiteFactory>());
+        //registerWriteStreamFactory(std::make_shared<WriteSQLiteFactory>());
 #endif
     };
     std::map<std::string, std::shared_ptr<WriteStreamFactory>> outputFactories;

@@ -43,8 +43,8 @@ protected:
 class WriteFileCSV : public WriteStreamCSV, public WriteStream {
 public:
     WriteFileCSV(const SymbolMask& symbolMask, const SymbolTable& symbolTable,
-            const IODirectives& ioDirectives, const bool provenance = false)
-            : WriteStream(symbolMask, symbolTable, provenance), delimiter(getDelimiter(ioDirectives)),
+            const SymbolTable& featSymT, const IODirectives& ioDirectives, const bool provenance = false)
+            : WriteStream(symbolMask, symbolTable, featSymT, provenance), delimiter(getDelimiter(ioDirectives)),
               file(ioDirectives.getFileName()) {
         if (ioDirectives.has("headers") && ioDirectives.get("headers") == "true") {
             file << ioDirectives.get("attributeNames") << std::endl;
@@ -124,8 +124,8 @@ protected:
 class WriteGZipFileCSV : public WriteStreamCSV, public WriteStream {
 public:
     WriteGZipFileCSV(const SymbolMask& symbolMask, const SymbolTable& symbolTable,
-            const IODirectives& ioDirectives, const bool provenance = false)
-            : WriteStream(symbolMask, symbolTable, provenance), delimiter(getDelimiter(ioDirectives)),
+            const SymbolTable& featSymT, const IODirectives& ioDirectives, const bool provenance = false)
+            : WriteStream(symbolMask, symbolTable, featSymT, provenance), delimiter(getDelimiter(ioDirectives)),
               file(ioDirectives.getFileName()) {
         if (ioDirectives.has("headers") && ioDirectives.get("headers") == "true") {
             file << ioDirectives.get("attributeNames") << std::endl;
@@ -207,8 +207,8 @@ protected:
 class WriteCoutCSV : public WriteStreamCSV, public WriteStream {
 public:
     WriteCoutCSV(const SymbolMask& symbolMask, const SymbolTable& symbolTable,
-            const IODirectives& ioDirectives, const bool provenance = false)
-            : WriteStream(symbolMask, symbolTable, provenance), delimiter(getDelimiter(ioDirectives)) {
+            const SymbolTable& featSymT, const IODirectives& ioDirectives, const bool provenance = false)
+            : WriteStream(symbolMask, symbolTable, featSymT, provenance), delimiter(getDelimiter(ioDirectives)) {
         std::cout << "---------------\n" << ioDirectives.getRelationName();
         if (ioDirectives.has("headers") && ioDirectives.get("headers") == "true") {
             std::cout << "\n" << ioDirectives.get("attributeNames");
@@ -289,13 +289,13 @@ protected:
 class WriteFileCSVFactory : public WriteStreamFactory {
 public:
     std::unique_ptr<WriteStream> getWriter(const SymbolMask& symbolMask, const SymbolTable& symbolTable,
-            const IODirectives& ioDirectives, const bool provenance) override {
+            const SymbolTable& featSymT, const IODirectives& ioDirectives, const bool provenance) override {
 #ifdef USE_LIBZ
         if (ioDirectives.has("compress")) {
-            return std::make_unique<WriteGZipFileCSV>(symbolMask, symbolTable, ioDirectives, provenance);
+            return std::make_unique<WriteGZipFileCSV>(symbolMask, symbolTable, featSymT, ioDirectives, provenance);
         }
 #endif
-        return std::make_unique<WriteFileCSV>(symbolMask, symbolTable, ioDirectives, provenance);
+        return std::make_unique<WriteFileCSV>(symbolMask, symbolTable, featSymT, ioDirectives, provenance);
     }
     const std::string& getName() const override {
         static const std::string name = "file";
@@ -307,8 +307,8 @@ public:
 class WriteCoutCSVFactory : public WriteStreamFactory {
 public:
     std::unique_ptr<WriteStream> getWriter(const SymbolMask& symbolMask, const SymbolTable& symbolTable,
-            const IODirectives& ioDirectives, const bool provenance) override {
-        return std::make_unique<WriteCoutCSV>(symbolMask, symbolTable, ioDirectives, provenance);
+            const SymbolTable& featSymT, const IODirectives& ioDirectives, const bool provenance) override {
+        return std::make_unique<WriteCoutCSV>(symbolMask, symbolTable, featSymT, ioDirectives, provenance);
     }
     const std::string& getName() const override {
         static const std::string name = "stdout";

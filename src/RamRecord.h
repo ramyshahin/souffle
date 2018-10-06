@@ -22,7 +22,11 @@ struct RamRecord {
         assert(pc);
     }
 
-    RamDomain operator[](std::size_t index) const {
+    ~RamRecord() {
+        delete[] field;
+    }
+
+    const RamDomain& operator[](std::size_t index) const {
 #ifdef DEBUG
         assert(index < size);
 #endif

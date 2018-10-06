@@ -13,7 +13,7 @@
  ***********************************************************************/
 
 #pragma once
-
+#if 0
 #include "SymbolMask.h"
 #include "SymbolTable.h"
 #include "WriteStream.h"
@@ -308,3 +308,4 @@ public:
 };
 
 } /* namespace souffle */
+#endif // 0

@@ -743,7 +743,7 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
                     InterpreterRelation& relation = interpreter.getRelation(load.getRelation());
                     IOSystem::getInstance()
                             .getReader(load.getRelation().getSymbolMask(), interpreter.getSymbolTable(),
-                                    ioDirectives, Global::config().has("provenance"))
+                                    interpreter.getFeatSymbolTable(), ioDirectives, Global::config().has("provenance"))
                             ->readAll(relation);
                 } catch (std::exception& e) {
                     std::cerr << "Error loading data: " << e.what() << "\n";
@@ -756,7 +756,7 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
                 try {
                     IOSystem::getInstance()
                             .getWriter(store.getRelation().getSymbolMask(), interpreter.getSymbolTable(),
-                                    ioDirectives, Global::config().has("provenance"))
+                                    interpreter.getFeatSymbolTable(), ioDirectives, Global::config().has("provenance"))
                             ->writeAll(interpreter.getRelation(store.getRelation()));
                 } catch (std::exception& e) {
                     std::cerr << e.what();

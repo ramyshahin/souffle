@@ -23,8 +23,9 @@ namespace souffle {
 
 class WriteStream {
 public:
-    WriteStream(const SymbolMask& symbolMask, const SymbolTable& symbolTable, const bool prov)
-            : symbolMask(symbolMask), symbolTable(symbolTable), isProvenance(prov) {}
+    WriteStream(const SymbolMask& symbolMask, const SymbolTable& symbolTable, 
+                const SymbolTable& featSymT, const bool prov)
+            : symbolMask(symbolMask), symbolTable(symbolTable), featSymTable(featSymT), isProvenance(prov) {}
     template <typename T>
     void writeAll(const T& relation) {
         auto lease = symbolTable.acquireLock();
@@ -45,13 +46,15 @@ protected:
     }
     const SymbolMask& symbolMask;
     const SymbolTable& symbolTable;
+    const SymbolTable& featSymTable;
     const bool isProvenance;
 };
 
 class WriteStreamFactory {
 public:
     virtual std::unique_ptr<WriteStream> getWriter(const SymbolMask& symbolMask,
-            const SymbolTable& symbolTable, const IODirectives& ioDirectives, const bool provenance) = 0;
+            const SymbolTable& symbolTable, const SymbolTable& featSymT, 
+            const IODirectives& ioDirectives, const bool provenance) = 0;
     virtual const std::string& getName() const = 0;
     virtual ~WriteStreamFactory() = default;
 };

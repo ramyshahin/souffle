@@ -42,13 +42,17 @@ private:
     /* The table of symbols encountered in the input program */
     souffle::SymbolTable& symbolTable;
 
+    souffle::SymbolTable& featSymTable;
+
     ErrorReport& errorReport;
 
     DebugReport& debugReport;
 
 public:
-    RamTranslationUnit(std::unique_ptr<RamProgram> program, SymbolTable& sym, ErrorReport& e, DebugReport& d)
-            : program(std::move(program)), symbolTable(sym), errorReport(e), debugReport(d) {}
+    RamTranslationUnit(std::unique_ptr<RamProgram> program, SymbolTable& sym, 
+                       SymbolTable& featSymT, ErrorReport& e, DebugReport& d)
+            : program(std::move(program)), symbolTable(sym), 
+              featSymTable(featSymT), errorReport(e), debugReport(d) {}
 
     virtual ~RamTranslationUnit() = default;
 
@@ -82,6 +86,10 @@ public:
 
     souffle::SymbolTable& getSymbolTable() const {
         return symbolTable;
+    }
+
+    souffle::SymbolTable& getFeatSymbolTable() const {
+        return featSymTable;
     }
 
     ErrorReport& getErrorReport() {

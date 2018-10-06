@@ -13,7 +13,7 @@
  ***********************************************************************/
 
 #pragma once
-
+#if 0
 #include "RamTypes.h"
 #include "ReadStream.h"
 #include "SymbolMask.h"
@@ -174,3 +174,4 @@ public:
 };
 
 } /* namespace souffle */
+#endif // 0
