@@ -109,7 +109,7 @@ protected:
         }
 
         if (!record->pc->isTrue()) {
-            file << " @ " << *(record->pc.get());
+            file << "\t@ " << *(record->pc.get());
         } 
         
         file << "\n";
