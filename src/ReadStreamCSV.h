@@ -161,7 +161,7 @@ protected:
         } else {
             _pc = new PresenceCondition(PresenceCondition::makeTrue());
         }
-        return std::make_unique<RamRecord>(symbolMask.getArity(), tuple, _pc);
+        return std::make_unique<RamRecord>(symbolMask.getArity(), tuple, _pc, true);
     }
 
     std::string getDelimiter(const IODirectives& ioDirectives) const {
