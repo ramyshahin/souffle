@@ -37,13 +37,27 @@ struct Tuple {
     using value_type = Domain;
     enum { arity = _arity };
 
+private:
     // the stored data
     Domain data[arity];
     
     // presence condition
-    std::unique_ptr<const PresenceCondition> pc;
+    //std::unique_ptr<const PresenceCondition> pc;
+    PresenceCondition pc;
 
+public:
     // constructores, destructors and assignment are default
+    Tuple() : pc(PresenceCondition::makeTrue()) {}
+    
+/*
+    Tuple& operator=(const Tuple& other) {
+        for(size_t i=0; i<arity; i++) {
+            data[i] = other.data[i];
+        }
+        pc.reset(new PresenceCondition(*(other.pc.get())));
+
+        return (*this);
+    } */
 
     // provide access to components
     const Domain& operator[](std::size_t index) const {
@@ -60,7 +74,8 @@ struct Tuple {
         for (std::size_t i = 0; i < arity; i++) {
             if (data[i] != other.data[i]) return false;
         }
-        return (*(pc.get()) == *(other.pc.get()));
+        //return (*(pc.get()) == *(other.pc.get()));
+        return (pc == other.pc);
     }
 
     // inequality comparison
@@ -74,7 +89,8 @@ struct Tuple {
             if (data[i] < other.data[i]) return true;
             if (data[i] > other.data[i]) return false;
         }
-        return (*(pc.get()) < *(other.pc.get()));
+        //return (*(pc.get()) < *(other.pc.get()));
+        return (pc < other.pc);
     }
 
     // required to put tuples into e.g. a btree container
@@ -83,7 +99,8 @@ struct Tuple {
             if (data[i] > other.data[i]) return true;
             if (data[i] < other.data[i]) return false;
         }
-        return (*(pc.get()) > *(other.pc.get()));
+        //return (*(pc.get()) > *(other.pc.get()));
+        return (pc > other.pc);
     }
 
     // allow tuples to be printed
@@ -96,8 +113,8 @@ struct Tuple {
         }
         out << tuple.data[arity - 1] << "]";
 
-        if (!tuple.pc->isTrue()) {
-            out << " @ " << *(tuple.pc.get());
+        if (!tuple.pc.isTrue()) {
+            out << " @ " << tuple.pc; //*(tuple.pc.get());
         }
 
         return out;

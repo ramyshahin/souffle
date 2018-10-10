@@ -80,6 +80,8 @@ class RelationWrapper : public Relation {
 private:
     RelType& relation;
     SymbolTable& symTable;
+    SymbolTable& featSymTable;
+
     std::string name;
     std::array<const char*, Arity> tupleType;
     std::array<const char*, Arity> tupleName;
@@ -114,9 +116,9 @@ private:
     };
 
 public:
-    RelationWrapper(RelType& r, SymbolTable& s, std::string name, const std::array<const char*, Arity>& t,
+    RelationWrapper(RelType& r, SymbolTable& s, SymbolTable& fs, std::string name, const std::array<const char*, Arity>& t,
             const std::array<const char*, Arity>& n)
-            : relation(r), symTable(s), name(std::move(name)), tupleType(t), tupleName(n) {}
+            : relation(r), symTable(s), featSymTable(fs), name(std::move(name)), tupleType(t), tupleName(n) {}
     iterator begin() const override {
         return iterator(new iterator_wrapper(id, this, relation.begin()));
     }

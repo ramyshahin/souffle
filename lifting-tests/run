@@ -1,2 +1,2 @@
-souffle -F. -D. example.dl
+../DebugBuild/src/souffle -F. -D. -oexample example.dl
 
