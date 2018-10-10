@@ -155,8 +155,13 @@ protected:
             throw std::invalid_argument("cannot parse fact file");
         }
 
-        PresenceCondition _pc(*pc);
-        return std::make_unique<RamRecord>(columnsFilled, tuple, &_pc);
+        PresenceCondition* _pc;
+        if (pc) {
+            _pc = new PresenceCondition(*pc);
+        } else {
+            _pc = new PresenceCondition(PresenceCondition::makeTrue());
+        }
+        return std::make_unique<RamRecord>(symbolMask.getArity(), tuple, _pc);
     }
 
     std::string getDelimiter(const IODirectives& ioDirectives) const {

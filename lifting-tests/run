@@ -1,0 +1,2 @@
+souffle -F. -D. example.dl
+

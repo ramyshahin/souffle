@@ -112,12 +112,11 @@ public:
         }
 
         PresenceCondition* newPC = new PresenceCondition(pc);
-        const RamRecord* rec(new RamRecord(arity, newTuple, newPC));
-        records.push_back(std::unique_ptr<const RamRecord>(rec));
-
+        records.push_front(std::make_unique<const RamRecord>(arity, newTuple, newPC));
+        auto rec = records.begin();
         // update all indexes with new tuple
         for (const auto& cur : indices) {
-            cur.second->insert(rec);
+            cur.second->insert(rec->get());
         }
 
         // increment relation size
