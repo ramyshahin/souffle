@@ -32,7 +32,7 @@ public:
         (void)lease;
         while (const auto next = readNextTuple()) {
             RamRecord* rec = next.get();
-            relation.insert(rec->field, *(rec->pc.get()));
+            relation.insert(rec);
         }
     }
 

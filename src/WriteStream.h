@@ -38,11 +38,11 @@ public:
     virtual ~WriteStream() = default;
 
 protected:
-    virtual void writeNextTuple(const RamDomain* record) = 0;
     virtual void writeNextTuple(const RamRecord* record) = 0;
     template <typename Tuple>
     void writeNext(const Tuple tuple) {
-        writeNextTuple(tuple.data);
+        RamRecord rec = tuple.toRecord();
+        writeNextTuple(&rec);
     }
     const SymbolMask& symbolMask;
     const SymbolTable& symbolTable;
@@ -58,11 +58,6 @@ public:
     virtual const std::string& getName() const = 0;
     virtual ~WriteStreamFactory() = default;
 };
-
-template <>
-inline void WriteStream::writeNext(const RamDomain* tuple) {
-    writeNextTuple(tuple);
-}
 
 template <>
 inline void WriteStream::writeNext(const RamRecord* record) {

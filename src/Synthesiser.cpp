@@ -251,7 +251,7 @@ void Synthesiser::emitCode(std::ostream& out, const RamStatement& stmt) {
                 out << "IODirectives ioDirectives(directiveMap);\n";
                 out << "IOSystem::getInstance().getReader(";
                 out << "SymbolMask({" << load.getRelation().getSymbolMask() << "})";
-                out << ", symTable, ioDirectives";
+                out << ", symTable, featSymTable, ioDirectives";
                 out << ", " << Global::config().has("provenance");
                 out << ")->readAll(*" << synthesiser.getRelationName(load.getRelation());
                 out << ");\n";
@@ -275,7 +275,7 @@ void Synthesiser::emitCode(std::ostream& out, const RamStatement& stmt) {
                 out << "IODirectives ioDirectives(directiveMap);\n";
                 out << "IOSystem::getInstance().getWriter(";
                 out << "SymbolMask({" << store.getRelation().getSymbolMask() << "})";
-                out << ", symTable, ioDirectives";
+                out << ", symTable, featSymTable, ioDirectives";
                 out << ", " << Global::config().has("provenance");
                 out << ")->writeAll(*" << synthesiser.getRelationName(store.getRelation()) << ");\n";
                 out << "} catch (std::exception& e) {std::cerr << e.what();exit(1);}\n";
@@ -1324,6 +1324,7 @@ void Synthesiser::generateCode(const RamTranslationUnit& unit, std::ostream& os,
     //                      Auto-Index Generation
     // ---------------------------------------------------------------
     const SymbolTable& symTable = unit.getSymbolTable();
+    const SymbolTable& featSymTable = unit.getFeatSymbolTable();
     const RamProgram& prog = unit.getP();
     auto* idxAnalysis = unit.getAnalysis<IndexSetAnalysis>();
 
@@ -1435,6 +1436,9 @@ void Synthesiser::generateCode(const RamTranslationUnit& unit, std::ostream& os,
         os << ";";
     }
 
+    // feature symbol table
+    os << "SymbolTable featSymTable;\n";
+
     if (Global::config().has("profile")) {
         os << "private:\n";
         size_t numFreq = 0;
@@ -1499,7 +1503,7 @@ void Synthesiser::generateCode(const RamTranslationUnit& unit, std::ostream& os,
             tupleType += "}}";
             tupleName += "}}";
 
-            initCons += ",\nwrapper_" + name + "(" + "*" + name + ",symTable,\"" + raw_name + "\"," +
+            initCons += ",\nwrapper_" + name + "(" + "*" + name + ",symTable, featSymTable, \"" + raw_name + "\"," +
                         tupleType + "," + tupleName + ")";
             registerRel += "addRelation(\"" + raw_name + "\",&wrapper_" + name + "," +
                            std::to_string(rel.isInput()) + "," + std::to_string(rel.isOutput()) + ");\n";
@@ -1656,7 +1660,7 @@ void Synthesiser::generateCode(const RamTranslationUnit& unit, std::ostream& os,
                 os << "IODirectives ioDirectives(directiveMap);\n";
                 os << "IOSystem::getInstance().getWriter(";
                 os << "SymbolMask({" << store->getRelation().getSymbolMask() << "})";
-                os << ", symTable, ioDirectives, " << Global::config().has("provenance");
+                os << ", symTable, featSymTable, ioDirectives, " << Global::config().has("provenance");
                 os << ")->writeAll(*" << getRelationName(store->getRelation()) << ");\n";
 
                 os << "} catch (std::exception& e) {std::cerr << e.what();exit(1);}\n";
@@ -1699,7 +1703,7 @@ void Synthesiser::generateCode(const RamTranslationUnit& unit, std::ostream& os,
             os << "IODirectives ioDirectives(directiveMap);\n";
             os << "IOSystem::getInstance().getReader(";
             os << "SymbolMask({" << load.getRelation().getSymbolMask() << "})";
-            os << ", symTable, ioDirectives";
+            os << ", symTable, featSymTable, ioDirectives";
             os << ", " << Global::config().has("provenance");
             os << ")->readAll(*" << getRelationName(load.getRelation());
             os << ");\n";
@@ -1719,7 +1723,7 @@ void Synthesiser::generateCode(const RamTranslationUnit& unit, std::ostream& os,
         os << "ioDirectives.setRelationName(\"" << name << "\");\n";
         os << "IOSystem::getInstance().getWriter(";
         os << "SymbolMask({" << mask << "})";
-        os << ", symTable, ioDirectives, " << Global::config().has("provenance");
+        os << ", symTable, featSymTable, ioDirectives, " << Global::config().has("provenance");
         os << ")->writeAll(*" << relName << ");\n";
         os << "} catch (std::exception& e) {std::cerr << e.what();exit(1);}\n";
     };

@@ -29,6 +29,15 @@ struct RamRecord {
         }
     }
 
+    RamRecord(const RamRecord& other) : 
+        field(other.field),
+        pc(new PresenceCondition(*(other.pc.get()))),
+        owned(false)
+#ifdef DEBUG
+        , size(other.size)
+#endif
+        {}
+
     const RamDomain& operator[](std::size_t index) const {
 #ifdef DEBUG
         assert(index < size);
