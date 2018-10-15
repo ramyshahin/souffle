@@ -1527,13 +1527,14 @@ void Synthesiser::generateCode(const RamTranslationUnit& unit, std::ostream& os,
         }
     }
     os << "{\n";
+    os << "\tPresenceCondition::init(featSymTable);\n";
     os << registerRel;
     os << "}\n";
     // -- destructor --
 
-    os << "~" << classname << "() {\n";
+    os << "\t~" << classname << "() {\n";
     os << deleteForNew;
-    os << "}\n";
+    os << "\t}\n";
 
     // -- run function --
     os << "private:\ntemplate <bool performIO> void runFunction(std::string inputDirectory = \".\", "
@@ -1809,32 +1810,32 @@ void Synthesiser::generateCode(const RamTranslationUnit& unit, std::ostream& os,
     os << "}\n";
     os << "#else\n";
     os << "}\n";
-    os << "int main(int argc, char** argv)\n{\n";
-    os << "try{\n";
+    os << "\nint main(int argc, char** argv)\n{\n";
+    os << "\ttry{\n";
 
     // parse arguments
-    os << "souffle::CmdOptions opt(";
-    os << "R\"(" << Global::config().get("") << ")\",\n";
-    os << "R\"(.)\",\n";
-    os << "R\"(.)\",\n";
+    os << "\t\tsouffle::CmdOptions opt(";
+    os << "\t\t\tR\"(" << Global::config().get("") << ")\",\n";
+    os << "\t\t\tR\"(.)\",\n";
+    os << "\t\t\tR\"(.)\",\n";
     if (Global::config().has("profile")) {
-        os << "true,\n";
-        os << "R\"(" << Global::config().get("profile") << ")\",\n";
+        os << "\t\t\ttrue,\n";
+        os << "\t\t\tR\"(" << Global::config().get("profile") << ")\",\n";
     } else {
-        os << "false,\n";
-        os << "R\"()\",\n";
+        os << "\t\t\tfalse,\n";
+        os << "\t\t\tR\"()\",\n";
     }
-    os << std::stoi(Global::config().get("jobs")) << ",\n";
-    os << "-1";
+    os << "\t\t\t" << std::stoi(Global::config().get("jobs")) << ",\n";
+    os << "\t\t\t-1";
     os << ");\n";
 
-    os << "if (!opt.parse(argc,argv)) return 1;\n";
+    os << "\t\tif (!opt.parse(argc,argv)) return 1;\n";
 
     os << "#if defined(_OPENMP) \n";
-    os << "omp_set_nested(true);\n";
-    os << "\n#endif\n";
+    os << "\t\tomp_set_nested(true);\n";
+    os << "#endif\n";
 
-    os << "souffle::";
+    os << "\t\tsouffle::";
     if (Global::config().has("profile")) {
         os << classname + " obj(opt.getProfileName());\n";
     } else {
@@ -1844,27 +1845,27 @@ void Synthesiser::generateCode(const RamTranslationUnit& unit, std::ostream& os,
 #ifdef USE_MPI
     if (Global::config().get("engine") == "mpi") {
         os << "\n#ifdef USE_MPI\n";
-        os << "souffle::mpi::init(argc, argv);";
-        os << "int rank = souffle::mpi::commRank();";
-        os << "int stratum = (rank == 0) ? " << std::numeric_limits<int>::max() << " : rank - 1;";
-        os << "obj.runAll(opt.getInputFileDir(), opt.getOutputFileDir(), stratum);\n";
-        os << "souffle::mpi::finalize();";
+        os << "\t\tsouffle::mpi::init(argc, argv);";
+        os << "\t\tint rank = souffle::mpi::commRank();";
+        os << "\t\tint stratum = (rank == 0) ? " << std::numeric_limits<int>::max() << " : rank - 1;";
+        os << "\t\tobj.runAll(opt.getInputFileDir(), opt.getOutputFileDir(), stratum);\n";
+        os << "\t\tsouffle::mpi::finalize();";
         os << "\n#endif\n";
     } else
 #endif
     {
-        os << "obj.runAll(opt.getInputFileDir(), opt.getOutputFileDir(), opt.getStratumIndex());\n";
+        os << "\t\tobj.runAll(opt.getInputFileDir(), opt.getOutputFileDir(), opt.getStratumIndex());\n";
     }
 
     if (Global::config().get("provenance") == "1") {
-        os << "explain(obj, true, false);\n";
+        os << "\t\texplain(obj, true, false);\n";
     } else if (Global::config().get("provenance") == "2") {
-        os << "explain(obj, true, true);\n";
+        os << "\t\texplain(obj, true, true);\n";
     }
-    os << "return 0;\n";
-    os << "} catch(std::exception &e) { souffle::SignalHandler::instance()->error(e.what());}\n";
+    os << "\t\treturn 0;\n";
+    os << "\t} catch(std::exception &e) { souffle::SignalHandler::instance()->error(e.what());}\n";
     os << "}\n";
-    os << "\n#endif\n";
+    os << "#endif\n";
 }
 
 }  // end of namespace souffle

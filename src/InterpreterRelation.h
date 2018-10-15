@@ -123,6 +123,11 @@ public:
         num_tuples++;
     }
 
+    void insert(const RamRecord* rec) {
+        assert(rec);
+        insert(rec->field, *(rec->pc.get()));
+    }
+    
     /** Insert tuple via arguments */
     /*
     template <typename... Args>
