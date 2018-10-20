@@ -191,7 +191,7 @@ protected:
         }
 
         if (!record->pc->isTrue()) {
-            std::cout << " @ " << *(record->pc.get());
+            std::cout << "\t@" << *(record->pc.get());
         }
         std::cout << "\n";
     }

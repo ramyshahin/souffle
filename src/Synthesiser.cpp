@@ -829,11 +829,11 @@ void Synthesiser::emitCode(std::ostream& out, const RamStatement& stmt) {
 
             // create projected tuple
             if (project.getValues().empty()) {
-                out << "Tuple<RamDomain," << arity << "> tuple({{}});\n";
+                out << "Tuple<RamDomain," << arity << "> tuple({});\n";
             } else {
-                out << "Tuple<RamDomain," << arity << "> tuple({{(RamDomain)("
-                    << join(project.getValues(), "),(RamDomain)(", rec) << ")}});\n";
-
+                out << "Tuple<RamDomain," << arity << "> tuple({(RamDomain)("
+                    << join(project.getValues(), "),(RamDomain)(", rec) << ")}, env0.getPC());\n";
+                out << "std::cout << env0.getPC() << std::endl;\n";
                 // check filter
             }
             if (project.hasFilter()) {

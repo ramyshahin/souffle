@@ -101,11 +101,8 @@ protected:
             start = end + delimiter.size();
             if (element[0] == '@') {
                 std::string pcStr = element.substr(1);
-                std::cout << pcStr << std::endl;
                 PresenceConditionParser parser(pcStr);
                 pc = parser.parse(featSymTable);
-                pc->print(std::cout);
-                std::cout << std::endl;
                 continue;
             }
             if (inputMap.count(column) == 0) {

@@ -48,7 +48,8 @@ private:
 public:
     // constructores, destructors and assignment are default
     Tuple() : pc(PresenceCondition::makeTrue()) {}
-    Tuple(std::initializer_list<Domain> f) : pc(PresenceCondition::makeTrue()) {
+    Tuple(std::initializer_list<Domain> f, const PresenceCondition& _pc = PresenceCondition::makeTrue()) : 
+        pc(_pc) {
         assert(f.size() == arity);
         std::copy(f.begin(), f.end(), data);
     }
@@ -65,6 +66,10 @@ public:
 
     souffle::RamRecord toRecord() const {
         return souffle::RamRecord(arity, data, new PresenceCondition(pc));
+    }
+
+    const PresenceCondition& getPC() const {
+        return pc;
     }
     
     // provide access to components
