@@ -89,7 +89,6 @@ public:
 
         if (pcBDD == TT) {
             pcBDD = other.pcBDD;
-            Cudd_Ref(pcBDD);
             text = other.text;
             return;
         }

@@ -47,11 +47,18 @@ private:
 
 public:
     // constructores, destructors and assignment are default
-    Tuple() : pc(PresenceCondition::makeTrue()) {}
+    Tuple() : pc(PresenceCondition::makeTrue()) {assert(false);}
+    Tuple(const PresenceCondition& _pc) : pc(_pc) {}
+
     Tuple(std::initializer_list<Domain> f, const PresenceCondition& _pc = PresenceCondition::makeTrue()) : 
         pc(_pc) {
         assert(f.size() == arity);
         std::copy(f.begin(), f.end(), data);
+    }
+
+    Tuple(Domain f[arity], const PresenceCondition& _pc = PresenceCondition::makeTrue()) : 
+        pc(_pc) {
+        std::copy(f, f + arity, data);
     }
 
 /*
@@ -68,8 +75,8 @@ public:
         return souffle::RamRecord(arity, data, new PresenceCondition(pc));
     }
 
-    const PresenceCondition& getPC() const {
-        return pc;
+    PresenceCondition& getPC() const {
+        return const_cast<Tuple*>(this)->pc;
     }
     
     // provide access to components

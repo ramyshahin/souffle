@@ -250,7 +250,7 @@ struct RelationBase {
         const RamDomain* ramDomain = record->field;
         RamDomain data[arity];
         std::copy(ramDomain, ramDomain + arity, data);
-        const auto& tuple = reinterpret_cast<const tuple_type&>(data, record->pc);
+        const auto& tuple = /*reinterpret_cast<const tuple_type&>*/tuple_type(data, *((record->pc).get()));
         typename Derived::operation_context ctxt;
 
         return static_cast<Derived*>(this)->insert(tuple, ctxt);

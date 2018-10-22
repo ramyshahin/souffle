@@ -579,12 +579,12 @@ void Synthesiser::emitCode(std::ostream& out, const RamStatement& stmt) {
                     // partition outermost relation
                     out << "pfor(auto it = part.begin(); it<part.end(); ++it) \n";
                     out << "try{";
-                    out << "for(const auto& env0 : *it) {\n";
+                    out << "for(auto& env0 : *it) {\n";
                     visitSearch(scan, out);
                     out << "}\n";
                     out << "} catch(std::exception &e) { SignalHandler::instance()->error(e.what());}\n";
                 } else {
-                    out << "for(const auto& env" << level << " : "
+                    out << "for(auto& env" << level << " : "
                         << "*" << relName << ") {\n";
                     visitSearch(scan, out);
                     out << "}\n";
@@ -620,7 +620,7 @@ void Synthesiser::emitCode(std::ostream& out, const RamStatement& stmt) {
                 // make this loop parallel
                 out << "pfor(auto it = part.begin(); it<part.end(); ++it) { \n";
                 out << "try{";
-                out << "for(const auto& env0 : *it) {\n";
+                out << "for(auto& env0 : *it) {\n";
                 visitSearch(scan, out);
                 out << "}\n";
                 out << "} catch(std::exception &e) { SignalHandler::instance()->error(e.what());}\n";
@@ -640,7 +640,7 @@ void Synthesiser::emitCode(std::ostream& out, const RamStatement& stmt) {
                 visitSearch(scan, out);
                 out << "}\n";
             } else {
-                out << "for(const auto& env" << level << " : range) {\n";
+                out << "for(auto& env" << level << " : range) {\n";
                 visitSearch(scan, out);
                 out << "}\n";
             }

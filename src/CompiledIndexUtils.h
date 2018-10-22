@@ -819,9 +819,9 @@ struct aux_order<Pos, First, Rest...> {
 template <unsigned Pos>
 struct aux_order<Pos> {
     template <typename tuple_type>
-    void order_in(tuple_type&, const tuple_type&) const {}
+    void order_in(tuple_type& res, const tuple_type& in) const {(res.getPC()).conjWith(in.getPC());}
     template <typename tuple_type>
-    void order_out(tuple_type&, const tuple_type&) const {}
+    void order_out(tuple_type& res, const tuple_type& in) const {(res.getPC()).conjWith(in.getPC());}
 };
 
 template <typename Index>
