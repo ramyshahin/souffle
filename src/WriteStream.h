@@ -30,8 +30,14 @@ public:
     void writeAll(const T& relation) {
         auto lease = symbolTable.acquireLock();
         (void)lease;
+        size_t count = relation.size();
+        size_t i = 0;
         for (const auto& current : relation) {
+            if (i >= count) {
+                break;
+            }
             writeNext(current);
+            i++;
         }
     }
 

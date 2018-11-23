@@ -204,6 +204,8 @@ private:
         }
     }
 
+    std::string SENTINEL = "SENTINEL";
+
 public:
     /** Empty constructor. */
     SymbolTable() = default;
@@ -292,7 +294,7 @@ public:
     /** Find a symbol in the table by its index, note that this gives an error if the index is out of
      * bounds.
      */
-    const std::string& resolve(const RamDomain index) const {
+    const std::string& unsafeResolve(const RamDomain index) const {
 #ifdef USE_MPI
         if (mpi::commRank() != 0) {
             return cacheResolve(index, RESOLVE);
@@ -304,14 +306,16 @@ public:
             auto pos = static_cast<size_t>(index);
             if (pos >= size()) {
                 // TODO: use different error reporting here!!
-                std::cerr << "Error index out of bounds in call to SymbolTable::resolve.\n";
-                exit(1);
+                //std::cerr << "Error index out of bounds in call to SymbolTable::resolve.\n";
+                //exit(1);
+                // HACK for now
+                return SENTINEL;
             }
             return numToStr[pos];
         }
     }
 
-    const std::string& unsafeResolve(const RamDomain index) const {
+    const std::string& resolve(const RamDomain index) const {
 #ifdef USE_MPI
         if (mpi::commRank() != 0) {
             return cacheResolve(index, UNSAFE_RESOLVE);
