@@ -871,7 +871,8 @@ public:
 
     bool insert(const tuple_type& tuple, operation_hints& ctxt) {
         // the Trie-insert is synchronized internally
-        return data.insert(orderIn(tuple), ctxt);
+        auto orderedTuple = orderIn(tuple);
+        return data.insert(orderedTuple, ctxt);
     }
 
     void insertAll(const TrieIndex& other) {
@@ -984,13 +985,13 @@ public:
 
 private:
     static tuple_type orderIn(const tuple_type& tuple) {
-        tuple_type res;
+        tuple_type res(tuple.getPC());
         order<Index>().order_in(res, tuple);
         return res;
     }
 
     static tuple_type orderOut(const tuple_type& tuple) {
-        tuple_type res;
+        tuple_type res(tuple.getPC());
         order<Index>().order_out(res, tuple);
         return res;
     }

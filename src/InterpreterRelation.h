@@ -139,8 +139,15 @@ public:
     /** Merge another relation into this relation */
     void insert(const InterpreterRelation& other) {
         assert(getArity() == other.getArity());
+        size_t count = other.size();
+        size_t index = 0;
         for (const auto& cur : other) {
+            if (index >= count) {
+                break;
+            }
+            assert(index < count);
             insert(cur->field, *cur->pc);
+            index++;
         }
     }
     
@@ -264,11 +271,11 @@ public:
         }
 
         bool operator==(const iterator& other) const {
-            return tuple->get() == other.tuple->get();
+            return (tuple == other.tuple);
         }
 
         bool operator!=(const iterator& other) const {
-            return (tuple->get() != other.tuple->get());
+            return (tuple != other.tuple);
         }
 
         iterator& operator++() {

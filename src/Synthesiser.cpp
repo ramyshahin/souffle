@@ -115,7 +115,7 @@ const std::string Synthesiser::getOpContextName(const RamRelation& rel) {
 /** Get relation type */
 std::string Synthesiser::getRelationType(const RamRelation& rel, std::size_t arity, const IndexSet& indexes) {
     std::stringstream res;
-    res << "ram::Relation";
+    res << "ram::LiftedRelation";
     res << "<";
 
     if (rel.isBTree()) {
@@ -1425,7 +1425,7 @@ void Synthesiser::generateCode(const RamTranslationUnit& unit, std::ostream& os,
     // declare symbol table
     os << "// -- initialize symbol table --\n";
     {
-        os << "SymbolTable symTable\n";
+        os << "SymbolTable symTable";
         if (symTable.size() > 0) {
             os << "{\n";
             for (size_t i = 0; i < symTable.size(); i++) {
@@ -1435,6 +1435,7 @@ void Synthesiser::generateCode(const RamTranslationUnit& unit, std::ostream& os,
         }
         os << ";";
     }
+    os << "\n";
 
     // feature symbol table
     os << "SymbolTable featSymTable;\n";

@@ -131,6 +131,7 @@ souffle_sources = \
               WriteStream.h                             \
               WriteStreamCSV.h                          \
               PresenceCondition.h PresenceCondition.cpp \
+			  LiftedRelation.h							\
               parser.cc             parser.hh           \
               scanner.cc            stack.hh            \
               $(sqlite_sources)                         \
@@ -186,6 +187,7 @@ soufflepublic_HEADERS = \
                         Logger.h                \
                         ParallelUtils.h         \
                         PresenceCondition.h		\
+						LiftedRelation.h		\
                         ProfileDatabase.h       \
                         ProfileEvent.h          \
                         RamTypes.h              \
