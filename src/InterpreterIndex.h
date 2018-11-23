@@ -166,13 +166,13 @@ protected:
                 }
             }
 
-            if (*(_x->pc.get()) < *(_y->pc.get())) {
-                return -1;
-            }
+            //if (*(_x->pc.get()) < *(_y->pc.get())) {
+            //    return -1;
+            //}
 
-            if (*(_x->pc.get()) > *(_y->pc.get())) {
-                return 1;
-            }
+            //if (*(_x->pc.get()) > *(_y->pc.get())) {
+            //    return 1;
+            //}
 
             return 0;
         }

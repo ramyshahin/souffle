@@ -99,7 +99,7 @@ protected:
                 element = "n/a";
             }
             start = end + delimiter.size();
-            if (element[0] == '@') {
+            if (element[0] == '@' && element.length() > 1) {
                 std::string pcStr = element.substr(1);
                 PresenceConditionParser parser(pcStr);
                 pc = parser.parse(featSymTable);
