@@ -6,13 +6,13 @@ namespace souffle {
 
 struct RamRecord {
     const RamDomain* field; 
-    const std::unique_ptr<const PresenceCondition> pc;
+    const PresenceCondition* pc;
     bool  owned;
 #ifdef DEBUG
     std::size_t size;
 #endif //DEBUG
 
-    RamRecord(std::size_t s, const RamDomain* f, const PresenceCondition* _pc, bool _owned = false) :
+    RamRecord(std::size_t s, const RamDomain* f, const PresenceCondition* _pc = PresenceCondition::makeTrue(), bool _owned = false) :
         field(f)
         , pc(_pc)
         , owned(_owned)
@@ -20,7 +20,10 @@ struct RamRecord {
         , size(s)
 #endif
     {
-        assert(pc);
+        assert(_pc);
+#ifndef NDEBUG
+        _pc->validate();
+#endif
     }
 
     ~RamRecord() {
@@ -31,7 +34,7 @@ struct RamRecord {
 
     RamRecord(const RamRecord& other) : 
         field(other.field),
-        pc(new PresenceCondition(*(other.pc.get()))),
+        pc(other.pc),
         owned(false)
 #ifdef DEBUG
         , size(other.size)

@@ -81,7 +81,7 @@ protected:
         }
 
         if (!record->pc->isTrue()) {
-            file << "\t@ " << *(record->pc.get());
+            file << "\t@ " << *(record->pc);
         } 
         
         file << "\n";
@@ -136,7 +136,7 @@ protected:
         }
 
         if (!record->pc->isTrue()) {
-            file << " @ " << *(record->pc.get());
+            file << " @ " << *(record->pc);
         }
         file << "\n";
     }
@@ -191,7 +191,7 @@ protected:
         }
 
         if (!record->pc->isTrue()) {
-            std::cout << "\t@" << *(record->pc.get());
+            std::cout << "\t@" << *(record->pc);
         }
         std::cout << "\n";
     }

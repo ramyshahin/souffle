@@ -18,6 +18,8 @@ DdManager*   PresenceCondition::bddMgr = nullptr;
 DdNode* PresenceCondition::FF;
 DdNode* PresenceCondition::TT;
 
+std::map<DdNode*, PresenceCondition*> PresenceCondition::pcMap;
+
 #if 0
 
 void PresenceCondition::init(SymbolTable& st) {

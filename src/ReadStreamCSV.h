@@ -154,9 +154,9 @@ protected:
 
         PresenceCondition* _pc;
         if (pc) {
-            _pc = new PresenceCondition(*pc);
+            _pc = PresenceCondition::parse(*pc);
         } else {
-            _pc = new PresenceCondition(PresenceCondition::makeTrue());
+            _pc = PresenceCondition::makeTrue();
         }
         return std::make_unique<RamRecord>(symbolMask.getArity(), tuple, _pc, true);
     }

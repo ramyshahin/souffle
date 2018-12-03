@@ -35,7 +35,7 @@ class InterpreterContext {
     const std::vector<RamDomain>* args = nullptr;
 
 public:
-    PresenceCondition pc;
+    const PresenceCondition* pc;
 
     InterpreterContext(size_t size = 0) : data(size), pc(PresenceCondition::makeTrue()) {}
     virtual ~InterpreterContext() = default;

@@ -525,7 +525,7 @@ std::unique_ptr<RamStatement> AstTranslator::translateClause(const AstClause& cl
 
         // create a fact statement
         return std::make_unique<RamFact>(getRelation(&head), std::move(values), 
-                                         new PresenceCondition(clause.getPC()));
+                                         PresenceCondition::parse(clause.getPC()));
     }
 
     // the rest should be rules

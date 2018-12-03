@@ -115,7 +115,7 @@ const std::string Synthesiser::getOpContextName(const RamRelation& rel) {
 /** Get relation type */
 std::string Synthesiser::getRelationType(const RamRelation& rel, std::size_t arity, const IndexSet& indexes) {
     std::stringstream res;
-    res << "ram::LiftedRelation";
+    res << "ram::Relation";
     res << "<";
 
     if (rel.isBTree()) {
@@ -579,12 +579,12 @@ void Synthesiser::emitCode(std::ostream& out, const RamStatement& stmt) {
                     // partition outermost relation
                     out << "pfor(auto it = part.begin(); it<part.end(); ++it) \n";
                     out << "try{";
-                    out << "for(auto& env0 : *it) {\n";
+                    out << "for(const auto& env0 : *it) {\n";
                     visitSearch(scan, out);
                     out << "}\n";
                     out << "} catch(std::exception &e) { SignalHandler::instance()->error(e.what());}\n";
                 } else {
-                    out << "for(auto& env" << level << " : "
+                    out << "for(const auto& env" << level << " : "
                         << "*" << relName << ") {\n";
                     visitSearch(scan, out);
                     out << "}\n";
@@ -620,7 +620,7 @@ void Synthesiser::emitCode(std::ostream& out, const RamStatement& stmt) {
                 // make this loop parallel
                 out << "pfor(auto it = part.begin(); it<part.end(); ++it) { \n";
                 out << "try{";
-                out << "for(auto& env0 : *it) {\n";
+                out << "for(const auto& env0 : *it) {\n";
                 visitSearch(scan, out);
                 out << "}\n";
                 out << "} catch(std::exception &e) { SignalHandler::instance()->error(e.what());}\n";
@@ -640,7 +640,7 @@ void Synthesiser::emitCode(std::ostream& out, const RamStatement& stmt) {
                 visitSearch(scan, out);
                 out << "}\n";
             } else {
-                out << "for(auto& env" << level << " : range) {\n";
+                out << "for(const auto& env" << level << " : range) {\n";
                 visitSearch(scan, out);
                 out << "}\n";
             }
@@ -829,11 +829,10 @@ void Synthesiser::emitCode(std::ostream& out, const RamStatement& stmt) {
 
             // create projected tuple
             if (project.getValues().empty()) {
-                out << "Tuple<RamDomain," << arity << "> tuple({});\n";
+                out << "Tuple<RamDomain," << arity << "> tuple({{}});\n";
             } else {
-                out << "Tuple<RamDomain," << arity << "> tuple({(RamDomain)("
-                    << join(project.getValues(), "),(RamDomain)(", rec) << ")}, env0.getPC());\n";
-                out << "std::cout << env0.getPC() << std::endl;\n";
+                out << "Tuple<RamDomain," << arity << "> tuple({{(RamDomain)("
+                    << join(project.getValues(), "),(RamDomain)(", rec) << ")}});\n";
                 // check filter
             }
             if (project.hasFilter()) {
@@ -1324,7 +1323,7 @@ void Synthesiser::generateCode(const RamTranslationUnit& unit, std::ostream& os,
     //                      Auto-Index Generation
     // ---------------------------------------------------------------
     const SymbolTable& symTable = unit.getSymbolTable();
-    const SymbolTable& featSymTable = unit.getFeatSymbolTable();
+    //const SymbolTable& featSymTable = unit.getFeatSymbolTable();
     const RamProgram& prog = unit.getP();
     auto* idxAnalysis = unit.getAnalysis<IndexSetAnalysis>();
 

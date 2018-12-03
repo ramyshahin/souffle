@@ -133,14 +133,12 @@ public:
 
     /** Insert tuple */
     void insert(const tuple& t) override {
-        PresenceCondition tt = PresenceCondition::makeTrue();
-        relation.insert(convertTupleToNums(t), tt);
+        relation.insert(convertTupleToNums(t), PresenceCondition::makeTrue());
     }
 
     /** Check whether tuple exists */
     bool contains(const tuple& t) const override {
-        PresenceCondition tt = PresenceCondition::makeTrue();
-        return relation.exists(convertTupleToNums(t), tt);
+        return relation.exists(convertTupleToNums(t), PresenceCondition::makeTrue());
     }
 
     /** Iterator to first tuple */

@@ -66,9 +66,7 @@ RamDomain Interpreter::evalVal(const RamValue& value, const InterpreterContext& 
         }
 
         RamDomain visitElementAccess(const RamElementAccess& access) override {
-            const PresenceCondition& pc = *ctxt[access.getLevel()]->pc.get();
-            const PresenceCondition& ctxtPC = ctxt.pc;
-            const_cast<PresenceCondition&>(ctxtPC).conjWith(pc);
+            //TODO ctxt.pc = ctxt.pc->conjoin(ctxt[access.getLevel()]->pc);
             return ctxt[access.getLevel()]->field[access.getElement()];
         }
 
@@ -253,7 +251,7 @@ bool Interpreter::evalCond(const RamCondition& cond, const InterpreterContext& c
                     tuple[i] = (values[i]) ? interpreter.evalVal(*values[i], ctxt) : MIN_RAM_DOMAIN;
                 }
 
-                if (!(ctxt.pc).isSAT()) {
+                if (!(ctxt.pc)->isSAT()) {
                     return true;
                 }
 
@@ -268,8 +266,8 @@ bool Interpreter::evalCond(const RamCondition& cond, const InterpreterContext& c
                 high[i] = (values[i]) ? low[i] : MAX_RAM_DOMAIN;
             }
 
-            RamRecord* lowRec = new RamRecord(arity, low, new PresenceCondition(interpreter.tt));
-            RamRecord* highRec = new RamRecord(arity, high, new PresenceCondition(interpreter.tt));
+            RamRecord* lowRec = new RamRecord(arity, low);
+            RamRecord* highRec = new RamRecord(arity, high);
 
             // obtain index
             auto idx = rel.getIndex(ne.getKey());
@@ -388,14 +386,14 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
             if (scan.getRangeQueryColumns() == 0) {
                 // if scan is not binding anything => check for emptiness
                 if (scan.isPureExistenceCheck() && !rel.empty()) {
-                    ctxt.pc = interpreter.tt;
+                    ctxt.pc = PresenceCondition::makeTrue();
                     visitSearch(scan);
                     return;
                 }
 
                 // if scan is unrestricted => use simple iterator
                 for (auto cur : rel) {
-                    ctxt.pc = *cur->pc.get();
+                    ctxt.pc = cur->pc;
                     ctxt[scan.getLevel()] = cur;
                     visitSearch(scan);
                 }
@@ -420,8 +418,8 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
             // obtain index
             auto idx = rel.getIndex(scan.getRangeQueryColumns(), nullptr);
 
-            RamRecord* lowRec = new RamRecord(arity, low, new PresenceCondition(interpreter.tt));
-            RamRecord* highRec = new RamRecord(arity, hig, new PresenceCondition(interpreter.tt));
+            RamRecord* lowRec = new RamRecord(arity, low);
+            RamRecord* highRec = new RamRecord(arity, hig);
 
             // get iterator range
             auto range = idx->lowerUpperBound(lowRec, highRec);
@@ -432,7 +430,7 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
             // if this scan is not binding anything ...
             if (scan.isPureExistenceCheck()) {
                 if (range.first != range.second) {
-                    ctxt.pc = interpreter.tt;
+                    ctxt.pc = PresenceCondition::makeTrue();
                     visitSearch(scan);
                 }
                 if (Global::config().has("profile") && !scan.getProfileText().empty()) {
@@ -445,7 +443,7 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
             for (auto ip = range.first; ip != range.second; ++ip) {
                 const RamRecord* data = *(ip);
                 ctxt[scan.getLevel()] = data;
-                ctxt.pc = *data->pc.get();
+                ctxt.pc = data->pc;
                 visitSearch(scan);
             }
         }
@@ -464,7 +462,7 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
             const RamDomain* tuple = unpack(*ref.field, arity);
 
             // save reference to temporary value
-            ctxt[lookup.getLevel()] = new RamRecord(arity, tuple, ref.pc.get());
+            ctxt[lookup.getLevel()] = new RamRecord(arity, tuple, ref.pc);
 
             // run nested part - using base class visitor
             visitSearch(lookup);
@@ -514,8 +512,8 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
             // obtain index
             auto idx = rel.getIndex(aggregate.getRangeQueryColumns());
 
-            RamRecord* lowRec = new RamRecord(arity, low, new PresenceCondition(interpreter.tt));
-            RamRecord* highRec = new RamRecord(arity, hig, new PresenceCondition(interpreter.tt));
+            RamRecord* lowRec = new RamRecord(arity, low);
+            RamRecord* highRec = new RamRecord(arity, hig);
 
             // get iterator range
             auto range = idx->lowerUpperBound(lowRec, highRec);
@@ -534,7 +532,7 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
                 // link tuple
                 const RamRecord* data = *(ip);
                 ctxt[aggregate.getLevel()] = data;
-                ctxt.pc = *data->pc.get();
+                ctxt.pc = data->pc;
 
                 // count is easy
                 if (aggregate.getFunction() == RamAggregate::COUNT) {
@@ -566,7 +564,7 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
             // write result to environment
             RamDomain tuple[1];
             tuple[0] = res;
-            ctxt[aggregate.getLevel()] = new RamRecord(1, tuple, new PresenceCondition(ctxt.pc));
+            ctxt[aggregate.getLevel()] = new RamRecord(1, tuple, ctxt.pc);
 
             // check whether result is used in a condition
             auto condition = aggregate.getCondition();
@@ -590,7 +588,6 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
             auto arity = project.getRelation().getArity();
             const auto& values = project.getValues();
             RamDomain tuple[arity];
-            PresenceCondition pc = PresenceCondition::makeTrue();
 
             for (size_t i = 0; i < arity; i++) {
                 assert(values[i]);

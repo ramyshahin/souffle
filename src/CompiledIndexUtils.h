@@ -819,9 +819,9 @@ struct aux_order<Pos, First, Rest...> {
 template <unsigned Pos>
 struct aux_order<Pos> {
     template <typename tuple_type>
-    void order_in(tuple_type& res, const tuple_type& in) const {(res.getPC()).conjWith(in.getPC());}
+    void order_in(tuple_type&, const tuple_type&) const {}
     template <typename tuple_type>
-    void order_out(tuple_type& res, const tuple_type& in) const {(res.getPC()).conjWith(in.getPC());}
+    void order_out(tuple_type&, const tuple_type&) const {}
 };
 
 template <typename Index>
@@ -871,8 +871,7 @@ public:
 
     bool insert(const tuple_type& tuple, operation_hints& ctxt) {
         // the Trie-insert is synchronized internally
-        auto orderedTuple = orderIn(tuple);
-        return data.insert(orderedTuple, ctxt);
+        return data.insert(orderIn(tuple), ctxt);
     }
 
     void insertAll(const TrieIndex& other) {
@@ -985,13 +984,13 @@ public:
 
 private:
     static tuple_type orderIn(const tuple_type& tuple) {
-        tuple_type res(tuple.getPC());
+        tuple_type res;
         order<Index>().order_in(res, tuple);
         return res;
     }
 
     static tuple_type orderOut(const tuple_type& tuple) {
-        tuple_type res(tuple.getPC());
+        tuple_type res;
         order<Index>().order_out(res, tuple);
         return res;
     }

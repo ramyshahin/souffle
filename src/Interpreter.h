@@ -23,7 +23,6 @@
 #include "RamStatement.h"
 #include "RamTranslationUnit.h"
 #include "RamTypes.h"
-#include "RamRecord.h"
 
 #include <cassert>
 #include <map>
@@ -62,8 +61,6 @@ private:
 
     /** iteration number (in a fix-point calculation) */
     size_t iteration;
-
-    PresenceCondition tt;
 
 protected:
     /** Evaluate value */
@@ -158,7 +155,7 @@ protected:
     }
 
 public:
-    Interpreter(RamTranslationUnit& tUnit) : translationUnit(tUnit), counter(0), iteration(0), tt(PresenceCondition::makeTrue()) {}
+    Interpreter(RamTranslationUnit& tUnit) : translationUnit(tUnit), counter(0), iteration(0) {}
     virtual ~Interpreter() {
         for (auto& x : environment) {
             delete x.second;

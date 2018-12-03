@@ -54,6 +54,7 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include <map>
 
 #if defined(_OPENMP)
 #include <omp.h>
@@ -72,6 +73,7 @@ DdManager*   PresenceCondition::bddMgr = nullptr;
 
 DdNode* PresenceCondition::FF;
 DdNode* PresenceCondition::TT;
+std::map<DdNode*, PresenceCondition*> PresenceCondition::pcMap;
 
 /**
  * Relation wrapper used internally in the generated Datalog program

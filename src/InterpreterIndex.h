@@ -192,8 +192,8 @@ protected:
                     return false;
                 }
             }
-
-            if (*(_x->pc.get()) != *(_y->pc.get())) {
+            // TODO
+            if (*(_x->pc) != *(_y->pc)) {
                 return false;
             }
 

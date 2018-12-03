@@ -3,6 +3,7 @@
 #include <string>
 #include <cassert>
 #include <sstream>
+#include <map>
 #include <cudd.h>
 
 #include "SymbolTable.h"
@@ -16,7 +17,8 @@ private:
     static DdManager*   bddMgr;
     static DdNode* FF;
     static DdNode* TT;
-    
+    static std::map<DdNode*, PresenceCondition*> pcMap;
+
     DdNode* pcBDD;
     std::string text;
 protected:
@@ -40,44 +42,65 @@ public:
 
         FF = Cudd_ReadLogicZero(bddMgr);
         TT = Cudd_ReadOne(bddMgr);
+
+        pcMap[FF] = new PresenceCondition(FF, "False");
+        pcMap[TT] = new PresenceCondition(TT, "True");
     }
 
-    static PresenceCondition makeTrue() {
-        return PresenceCondition(TT, "True");
+    static PresenceCondition* makeTrue() {
+        return pcMap[TT];
     }
 
-    PresenceCondition(const PresenceCondition& other) :
-        pcBDD(other.pcBDD), text(other.text)
-    {
-        Cudd_Ref(pcBDD);
-    }
+    //PresenceCondition(const PresenceCondition& other) :
+    //   pcBDD(other.pcBDD), text(other.text)
+    //{
+    //    Cudd_Ref(pcBDD);
+    //}
 
-    PresenceCondition(const AstPresenceCondition& pc) {
-        pcBDD = pc.toBDD(bddMgr);
+    static PresenceCondition* parse(const AstPresenceCondition& pc) {
+        auto pcBDD = pc.toBDD(bddMgr);
+        auto _pc = pcMap.find(pcBDD);
+        if (_pc != pcMap.end()) {
+            return _pc->second;
+        }
         std::stringstream ostr; 
         pc.print(ostr);
-        text = ostr.str();
+        std::string text = ostr.str();
+        PresenceCondition* newpc = new PresenceCondition(pcBDD, text);
+        pcMap[pcBDD] = newpc;
+        return newpc;
     }
 
-    PresenceCondition& operator=(const PresenceCondition& other) {
-        Cudd_RecursiveDeref(bddMgr, pcBDD);
-        pcBDD = other.pcBDD;
-        Cudd_Ref(pcBDD);
-        text = other.text;
-
-        return *this;
+#ifndef NDEBUG
+    void validate() const {
+        assert (pcBDD);
     }
+#endif
+
+    //PresenceCondition& operator=(const PresenceCondition& other) {
+    //    Cudd_RecursiveDeref(bddMgr, pcBDD);
+    //    pcBDD = other.pcBDD;
+    //    Cudd_Ref(pcBDD);
+    //    text = other.text;
+    //
+    //    return *this;
+    //}
 
     ~PresenceCondition() {
         Cudd_RecursiveDeref(bddMgr, pcBDD);
+        #ifndef NDEBUG
+        pcBDD = nullptr;
+        #endif
     }
 
-    bool conjSat(const PresenceCondition& other) const {
-        DdNode* tmp = Cudd_bddAnd(bddMgr, pcBDD, other.pcBDD);
+    bool conjSat(const PresenceCondition* other) const {
+        assert(other);
+        DdNode* tmp = Cudd_bddAnd(bddMgr, pcBDD, other->pcBDD);
     
-        return tmp != Cudd_ReadZero(bddMgr);
+        return tmp != FF;
     }
 
+/*
     void conjWith(const PresenceCondition& other) {
         if (pcBDD == other.pcBDD) {
             return;
@@ -105,6 +128,7 @@ public:
             text = "(" + text + " /\\ " + other.text + ")";
         }
     }
+*/
 
 #ifndef ULONG
 #define ULONG unsigned long
@@ -118,18 +142,25 @@ public:
         return !(*this == other);
     }
 
-    bool operator<(const PresenceCondition& other) const {
-        return (((ULONG)pcBDD) < ((ULONG)(other.pcBDD)));
-    }
+    //bool operator<(const PresenceCondition& other) const {
+    //    return (((ULONG)pcBDD) < ((ULONG)(other.pcBDD)));
+    //}
     
-    bool operator>(const PresenceCondition& other) const {
-        return (((ULONG)pcBDD) > ((ULONG)(other.pcBDD)));
-    }
+    //bool operator>(const PresenceCondition& other) const {
+    //    return (((ULONG)pcBDD) > ((ULONG)(other.pcBDD)));
+    //}
 
-    PresenceCondition conjoin(const PresenceCondition& other) const {
-        DdNode* tmp = Cudd_bddAnd(bddMgr, pcBDD, other.pcBDD);
+    PresenceCondition* conjoin(const PresenceCondition* other) const {
+        assert(other);
+        DdNode* tmp = Cudd_bddAnd(bddMgr, pcBDD, other->pcBDD);
+        auto cached = pcMap.find(tmp);
+        if (cached != pcMap.end()) {
+            return cached->second;
+        }
         Cudd_Ref(tmp);
-        return PresenceCondition(tmp, "(" + text + " /\\ " + other.text + ")");
+        PresenceCondition *pc = new PresenceCondition(tmp, "(" + text + " /\\ " + other->text + ")");
+        pcMap[tmp] = pc;
+        return pc;
     }
 
     bool isSAT() const {

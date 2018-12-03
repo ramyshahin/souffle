@@ -18,6 +18,7 @@
 #pragma once
 
 #include "PresenceCondition.h"
+#include "RamRecord.h"
 #include <iostream>
 
 namespace souffle {
@@ -37,48 +38,15 @@ struct Tuple {
     using value_type = Domain;
     enum { arity = _arity };
 
-private:
     // the stored data
     Domain data[arity];
-    
-    // presence condition
-    //std::unique_ptr<const PresenceCondition> pc;
-    PresenceCondition pc;
 
-public:
     // constructores, destructors and assignment are default
-    Tuple() : pc(PresenceCondition::makeTrue()) {assert(false);}
-    Tuple(const PresenceCondition& _pc) : pc(_pc) {}
-
-    Tuple(std::initializer_list<Domain> f, const PresenceCondition& _pc = PresenceCondition::makeTrue()) : 
-        pc(_pc) {
-        assert(f.size() == arity);
-        std::copy(f.begin(), f.end(), data);
-    }
-
-    Tuple(Domain f[arity], const PresenceCondition& _pc = PresenceCondition::makeTrue()) : 
-        pc(_pc) {
-        std::copy(f, f + arity, data);
-    }
-
-/*
-    Tuple& operator=(const Tuple& other) {
-        for(size_t i=0; i<arity; i++) {
-            data[i] = other.data[i];
-        }
-        pc.reset(new PresenceCondition(*(other.pc.get())));
-
-        return (*this);
-    } */
 
     souffle::RamRecord toRecord() const {
-        return souffle::RamRecord(arity, data, new PresenceCondition(pc));
+        return souffle::RamRecord(arity, data, PresenceCondition::makeTrue(), false); // TODO (owned or not??)
     }
 
-    PresenceCondition& getPC() const {
-        return const_cast<Tuple*>(this)->pc;
-    }
-    
     // provide access to components
     const Domain& operator[](std::size_t index) const {
         return data[index];
@@ -94,8 +62,7 @@ public:
         for (std::size_t i = 0; i < arity; i++) {
             if (data[i] != other.data[i]) return false;
         }
-        //return (*(pc.get()) == *(other.pc.get()));
-        return (pc == other.pc);
+        return true;
     }
 
     // inequality comparison
@@ -109,8 +76,7 @@ public:
             if (data[i] < other.data[i]) return true;
             if (data[i] > other.data[i]) return false;
         }
-        //return (*(pc.get()) < *(other.pc.get()));
-        return (pc < other.pc);
+        return false;
     }
 
     // required to put tuples into e.g. a btree container
@@ -119,8 +85,7 @@ public:
             if (data[i] > other.data[i]) return true;
             if (data[i] < other.data[i]) return false;
         }
-        //return (*(pc.get()) > *(other.pc.get()));
-        return (pc > other.pc);
+        return false;
     }
 
     // allow tuples to be printed
@@ -131,13 +96,7 @@ public:
             out << tuple.data[i];
             out << ",";
         }
-        out << tuple.data[arity - 1] << "]";
-
-        if (!tuple.pc.isTrue()) {
-            out << " @ " << tuple.pc; //*(tuple.pc.get());
-        }
-
-        return out;
+        return out << tuple.data[arity - 1] << "]";
     }
 };
 

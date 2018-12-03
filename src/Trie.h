@@ -1784,15 +1784,15 @@ public:
         // the iterator core of this level
         using iter_core_t = IterCore<0>;
 
-        // the value currently pointed to
-        entry_type value;
-
         // the wrapped iterator
         iter_core_t iter_core;
 
+        // the value currently pointed to
+        entry_type value;
+
     public:
         // default constructor -- creating an end-iterator
-        iterator() : value(PresenceCondition::makeTrue()) {}
+        iterator() = default;
 
         // a copy constructor
         iterator(const iterator& other) = default;
@@ -2160,7 +2160,7 @@ public:
 
         op_context()
                 : local(), lastNested(nullptr), lastBoundaryLevels(Dim + 1),
-                  lastBoundaryRequest(PresenceCondition::makeTrue()), lastBoundaries(iterator(), iterator()) {}
+                  lastBoundaries(iterator(), iterator()) {}
     };
 
     using base::contains;
