@@ -31,7 +31,7 @@ public:
         auto lease = symbolTable.acquireLock();
         (void)lease;
         while (const auto next = readNextTuple()) {
-            RamRecord* rec = next.get();
+            const RamRecord* rec = next.get();
             relation.insert(rec);
         }
     }

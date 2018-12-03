@@ -21,6 +21,7 @@
 #include "CompiledTuple.h"
 #include "ParallelUtils.h"
 #include "RamTypes.h"
+#include "RamRecord.h"
 #include "PresenceCondition.h"
 #include "Table.h"
 #include "Util.h"
@@ -245,7 +246,12 @@ struct RelationBase {
         return static_cast<Derived*>(this)->insert(reinterpret_cast<const tuple_type&>(data));
     }
 
-    bool insert(const RamDomain* ramDomain, const PresenceCondition& pc) {
+    bool insert(const RamRecord* rec) {
+        assert(rec);
+        return insert(rec->field, rec->pc);
+    }
+
+    bool insert(const RamDomain* ramDomain, const PresenceCondition* pc=nullptr) {
         RamDomain data[arity];
         std::copy(ramDomain, ramDomain + arity, data);
         const auto& tuple = reinterpret_cast<const tuple_type&>(data);
