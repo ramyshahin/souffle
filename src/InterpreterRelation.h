@@ -257,41 +257,56 @@ public:
     /** Iterator for relation */
     
     class iterator : public std::iterator<std::forward_iterator_tag, const RamRecord*> {
-        //const InterpreterRelation* const relation = nullptr;
-        std::list<std::unique_ptr<const RamRecord>>::const_iterator tuple;
+        const InterpreterRelation* const relation = nullptr;
+        using ttype = std::list<std::unique_ptr<const RamRecord>>::const_iterator;
+        ttype tuple_it;
+        const RamRecord* tuple;
 
     public:
         iterator() = default;
 
-        iterator(const std::list<std::unique_ptr<const RamRecord>>::const_iterator& it)
-                : tuple(it) {}
+        iterator(const InterpreterRelation* const rel,
+                 const std::list<std::unique_ptr<const RamRecord>>::const_iterator& it)
+                : relation(rel), tuple_it(it), tuple(relation->arity == 0 ? reinterpret_cast<const RamRecord*>(this) : tuple_it->get()) {}
 
         const RamRecord* operator*() {
-            return tuple->get();
+            return tuple;
         }
 
         bool operator==(const iterator& other) const {
-            return (tuple == other.tuple);
+            return (tuple_it == other.tuple_it);
         }
 
         bool operator!=(const iterator& other) const {
-            return (tuple != other.tuple);
+            return (tuple_it != other.tuple_it);
         }
 
         iterator& operator++() {
-            tuple++;
+            // support 0-arity
+            if (relation->arity == 0) {
+                tuple = nullptr;
+                return *this;
+            }
+
+            tuple_it++;
+            tuple = tuple_it->get();
             return *this;
         }
     };
 
     /** get iterator begin of relation */
     inline iterator begin() const {
-        return iterator(records.begin());
+        // check for emptiness
+        if (empty()) {
+            return end();
+        }
+
+        return iterator(this, records.begin());
     }
 
     /** get iterator begin of relation */
     inline iterator end() const {
-        return iterator(records.end());
+        return iterator(this, records.end());
     }
 
     /** Extend tuple */

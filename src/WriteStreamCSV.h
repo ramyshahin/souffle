@@ -55,7 +55,6 @@ public:
 
 protected:
     void writeNextTuple(const RamRecord* record) override {
-        const RamDomain* tuple = record->field;
         size_t arity = symbolMask.getArity();
         if (isProvenance) {
             arity -= 2;
@@ -66,6 +65,7 @@ protected:
             return;
         }
 
+        const RamDomain* tuple = record->field;
         if (symbolMask.isSymbol(0)) {
             file << symbolTable.unsafeResolve(tuple[0]);
         } else {
@@ -82,8 +82,8 @@ protected:
 
         if (!record->pc->isTrue()) {
             file << "\t@ " << *(record->pc);
-        } 
-        
+        }
+
         file << "\n";
     }
 
