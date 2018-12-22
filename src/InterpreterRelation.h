@@ -55,14 +55,22 @@ private:
     mutable Lock lock;
 
     /** Relation Presence Conditions */
-    std::list<std::unique_ptr<const RamRecord>> records;
+    std::list<const RamRecord*> records;
 
 public:
     InterpreterRelation(size_t relArity) : arity(relArity), num_tuples(0), totalIndex(nullptr) {}
 
     InterpreterRelation(const InterpreterRelation& other) = delete;
 
-    virtual ~InterpreterRelation() = default;
+    virtual ~InterpreterRelation() {
+        if (arity == 0) {
+            return;
+        }
+        
+        for(const auto* r: records) {
+            delete r;
+        }
+    }
 
     /** Get arity of relation */
     size_t getArity() const {
@@ -84,6 +92,7 @@ public:
         // check for null-arity
         if (arity == 0) {
             // set number of tuples to one -- that's it
+            records.push_back(nullptr);
             num_tuples = 1;
             return;
         }
@@ -112,11 +121,11 @@ public:
             newTuple[i] = tuple[i];
         }
 
-        records.push_front(std::make_unique<const RamRecord>(arity, newTuple, pc));
-        auto rec = records.begin();
+        const RamRecord* rec = new RamRecord(arity, newTuple, pc);
+        records.push_back(rec);
         // update all indexes with new tuple
         for (const auto& cur : indices) {
-            cur.second->insert(rec->get());
+            cur.second->insert(rec);
         }
 
         // increment relation size
@@ -254,8 +263,9 @@ public:
     
     // --- iterator ---
 
+    using iterator = std::list<const RamRecord*>::const_iterator;
     /** Iterator for relation */
-    
+    /*
     class iterator : public std::iterator<std::forward_iterator_tag, const RamRecord*> {
         const InterpreterRelation* const relation = nullptr;
         using ttype = std::list<std::unique_ptr<const RamRecord>>::const_iterator;
@@ -267,18 +277,22 @@ public:
 
         iterator(const InterpreterRelation* const rel,
                  const std::list<std::unique_ptr<const RamRecord>>::const_iterator& it)
-                : relation(rel), tuple_it(it), tuple(relation->arity == 0 ? reinterpret_cast<const RamRecord*>(this) : tuple_it->get()) {}
+                : relation(rel), tuple_it(it), tuple(relation->arity == 0 ? reinterpret_cast<const RamRecord*>(this) : tuple_it->get()) {
+                    if (relation->arity != 0 && tuple_it == relation->records.end()) {
+                        tuple = nullptr;
+                    }
+                }
 
         const RamRecord* operator*() {
             return tuple;
         }
 
         bool operator==(const iterator& other) const {
-            return (tuple_it == other.tuple_it);
+            return tuple == other.tuple;
         }
 
         bool operator!=(const iterator& other) const {
-            return (tuple_it != other.tuple_it);
+            return tuple != other.tuple;
         }
 
         iterator& operator++() {
@@ -289,11 +303,16 @@ public:
             }
 
             tuple_it++;
-            tuple = tuple_it->get();
+            if (tuple_it == relation->records.end()) {
+                tuple = nullptr; 
+            } else {
+                tuple = tuple_it->get();
+            }
+
             return *this;
         }
     };
-
+*/
     /** get iterator begin of relation */
     inline iterator begin() const {
         // check for emptiness
@@ -301,12 +320,12 @@ public:
             return end();
         }
 
-        return iterator(this, records.begin());
+        return records.begin();
     }
 
     /** get iterator begin of relation */
     inline iterator end() const {
-        return iterator(this, records.end());
+        return records.end();
     }
 
     /** Extend tuple */
