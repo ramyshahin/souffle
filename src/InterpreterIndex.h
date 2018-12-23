@@ -183,21 +183,8 @@ protected:
         }
 
         /* equal comparison */
-        bool equal(const RamRecord* _x, const RamRecord* _y) const {
-            auto x = _x->field;
-            auto y = _y->field;
-
-            for (size_t i = 0; i < order.size(); i++) {
-                if (x[order[i]] != y[order[i]]) {
-                    return false;
-                }
-            }
-            // TODO
-            if (*(_x->pc) != *(_y->pc)) {
-                return false;
-            }
-
-            return true;
+        bool equal(const RamRecord* x, const RamRecord* y) const {
+            return (operator()(x, y) == 0);
         }
     };
 

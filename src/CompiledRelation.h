@@ -755,6 +755,14 @@ public:
         return insert();
     }
 
+    bool insert(const RamDomain* ramDomain, const PresenceCondition* pc) {
+        return insert();
+    }
+
+    bool insert(const RamRecord* rec) {
+        return insert();
+    }
+    
     bool insert(const tuple_type& = tuple_type(), const operation_context& = operation_context()) {
         bool res = !present;
         present = true;

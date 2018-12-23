@@ -484,7 +484,7 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
                     res = MIN_RAM_DOMAIN;
                     break;
                 case RamAggregate::COUNT:
-                    res = 0;
+                    res = (rel.getArity() == 0) ? rel.size() : 0;
                     break;
                 case RamAggregate::SUM:
                     res = 0;
@@ -512,13 +512,11 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
             // obtain index
             auto idx = rel.getIndex(aggregate.getRangeQueryColumns());
 
-            RamRecord* lowRec = new RamRecord(arity, low);
-            RamRecord* highRec = new RamRecord(arity, hig);
+            RamRecord lowRec(arity, low);
+            RamRecord highRec(arity, hig);
 
             // get iterator range
-            auto range = idx->lowerUpperBound(lowRec, highRec);
-            delete lowRec;
-            delete highRec;
+            auto range = idx->lowerUpperBound(&lowRec, &highRec);
 
             // check for emptiness
             if (aggregate.getFunction() != RamAggregate::COUNT) {

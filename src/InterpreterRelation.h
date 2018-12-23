@@ -63,10 +63,10 @@ public:
     InterpreterRelation(const InterpreterRelation& other) = delete;
 
     virtual ~InterpreterRelation() {
-        if (arity == 0) {
-            return;
-        }
-        
+        //if (arity == 0) {
+        //    return;
+        //}
+
         for(const auto* r: records) {
             delete r;
         }
@@ -92,7 +92,7 @@ public:
         // check for null-arity
         if (arity == 0) {
             // set number of tuples to one -- that's it
-            records.push_back(nullptr);
+            //records.push_back(nullptr);
             num_tuples = 1;
             return;
         }

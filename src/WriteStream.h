@@ -30,10 +30,22 @@ public:
     void writeAll(const T& relation) {
         auto lease = symbolTable.acquireLock();
         (void)lease;
+        size_t arity = symbolMask.getArity();
+        if (isProvenance) {
+            arity -=  2;
+        }
+
+        if (arity == 0 && relation.size()) {
+            writeNullary();
+            return;
+        }
+
         for (const auto& current : relation) {
             writeNext(current);
         }
     }
+
+    virtual void writeNullary() = 0;
 
     virtual ~WriteStream() = default;
 

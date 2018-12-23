@@ -54,15 +54,14 @@ public:
     ~WriteFileCSV() override = default;
 
 protected:
+    void writeNullary() override {
+        file << "()\n";
+    }
+
     void writeNextTuple(const RamRecord* record) override {
         size_t arity = symbolMask.getArity();
         if (isProvenance) {
             arity -= 2;
-        }
-
-        if (arity == 0) {
-            file << "()\n";
-            return;
         }
 
         const RamDomain* tuple = record->field;
@@ -107,6 +106,10 @@ public:
     ~WriteGZipFileCSV() override = default;
 
 protected:
+    void writeNullary() override {
+        file << "()\n";
+    }
+
     void writeNextTuple(const RamRecord* record) override {
         const RamDomain* tuple = record->field;
         size_t arity = symbolMask.getArity();
@@ -114,11 +117,6 @@ protected:
         // do not print last two provenance columns if provenance
         if (isProvenance) {
             arity -= 2;
-        }
-
-        if (arity == 0) {
-            file << "()\n";
-            return;
         }
 
         if (symbolMask.isSymbol(0)) {
@@ -163,17 +161,16 @@ public:
     }
 
 protected:
+    void writeNullary() override {
+        std::cout << "()\n";
+    }
+
     void writeNextTuple(const RamRecord* record) override {
         const RamDomain* tuple = record->field;
         size_t arity = symbolMask.getArity();
 
         if (isProvenance) {
             arity -= 2;
-        }
-
-        if (arity == 0) {
-            std::cout << "()\n";
-            return;
         }
 
         if (symbolMask.isSymbol(0)) {
