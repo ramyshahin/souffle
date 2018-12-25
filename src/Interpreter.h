@@ -113,11 +113,7 @@ protected:
     void createRelation(const RamRelation& id) {
         LiftedInterpreterRelation* res = nullptr;
         assert(environment.find(id.getName()) == environment.end());
-        if (!id.isEqRel()) {
-            res = new LiftedInterpreterRelation(id.getArity());
-        } else {
-            res = new LiftedInterpreterEqRelation(id.getArity());
-        }
+        res = new LiftedInterpreterRelation(id.isEqRel(), id.getArity());
         environment[id.getName()] = res;
     }
 
@@ -141,7 +137,7 @@ protected:
 
     /** Drop relation */
     void dropRelation(const RamRelation& id) {
-        InterpreterRelation& rel = getRelation(id);
+        LiftedInterpreterRelation& rel = getRelation(id);
         environment.erase(id.getName());
         delete &rel;
     }

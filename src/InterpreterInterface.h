@@ -45,7 +45,7 @@ inline RamDomain* convertTupleToNums(const tuple& t) {
 class InterpreterRelInterface : public Relation {
 private:
     /** Wrapped interpreter relation */
-    InterpreterRelation& relation;
+    LiftedInterpreterRelation& relation;
 
     /** Symbol table */
     SymbolTable& symTable;
@@ -125,7 +125,7 @@ protected:
     };
 
 public:
-    InterpreterRelInterface(InterpreterRelation& r, SymbolTable& s, std::string n, std::vector<std::string> t,
+    InterpreterRelInterface(LiftedInterpreterRelation& r, SymbolTable& s, std::string n, std::vector<std::string> t,
             std::vector<std::string> an, bool rInput, bool rOutput, uint32_t i)
             : relation(r), symTable(s), name(std::move(n)), types(std::move(t)), attrNames(std::move(an)),
               relInput(rInput), relOutput(rOutput), id(i) {}
