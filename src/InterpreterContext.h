@@ -17,8 +17,6 @@
 #pragma once
 
 #include "RamTypes.h"
-#include "RamRecord.h"
-
 #include <cassert>
 #include <memory>
 #include <vector>
@@ -29,22 +27,20 @@ namespace souffle {
  * Evaluation context for RAM operations
  */
 class InterpreterContext {
-    std::vector<const RamRecord*> data;
+    std::vector<const RamDomain*> data;
     std::vector<RamDomain>* returnValues = nullptr;
     std::vector<bool>* returnErrors = nullptr;
     const std::vector<RamDomain>* args = nullptr;
 
 public:
-    const PresenceCondition* pc;
-
-    InterpreterContext(size_t size = 0) : data(size), pc(PresenceCondition::makeTrue()) {}
+    InterpreterContext(size_t size = 0) : data(size) {}
     virtual ~InterpreterContext() = default;
 
-    const RamRecord*& operator[](size_t index) {
+    const RamDomain*& operator[](size_t index) {
         return data[index];
     }
 
-    const RamRecord* const& operator[](size_t index) const {
+    const RamDomain* const& operator[](size_t index) const {
         return data[index];
     }
 

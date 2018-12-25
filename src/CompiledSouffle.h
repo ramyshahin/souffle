@@ -136,13 +136,13 @@ public:
         }
         relation.insert(t);
     }
-    bool contains(const tuple& arg) const override {
+    const PresenceCondition* contains(const tuple& arg) const override {
         TupleType t;
         assert(arg.size() == Arity && "wrong tuple arity");
         for (size_t i = 0; i < Arity; i++) {
             t[i] = arg[i];
         }
-        return relation.contains(t);
+        return (relation.contains(t) ? PresenceCondition::makeTrue() : nullptr);
     }
     bool isInput() const override {
         return IsInputRel;

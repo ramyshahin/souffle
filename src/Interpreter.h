@@ -48,7 +48,7 @@ private:
     RamTranslationUnit& translationUnit;
 
     /** relation environment type */
-    using relation_map = std::map<std::string, InterpreterRelation*>;
+    using relation_map = std::map<std::string, LiftedInterpreterRelation*>;
 
     /** relation environment */
     relation_map environment;
@@ -111,18 +111,18 @@ protected:
 
     /** Create relation */
     void createRelation(const RamRelation& id) {
-        InterpreterRelation* res = nullptr;
+        LiftedInterpreterRelation* res = nullptr;
         assert(environment.find(id.getName()) == environment.end());
         if (!id.isEqRel()) {
-            res = new InterpreterRelation(id.getArity());
+            res = new LiftedInterpreterRelation(id.getArity());
         } else {
-            res = new InterpreterEqRelation(id.getArity());
+            res = new LiftedInterpreterEqRelation(id.getArity());
         }
         environment[id.getName()] = res;
     }
 
     /** Get relation */
-    InterpreterRelation& getRelation(const std::string& name) {
+    LiftedInterpreterRelation& getRelation(const std::string& name) {
         // look up relation
         auto pos = environment.find(name);
         assert(pos != environment.end());
@@ -130,7 +130,7 @@ protected:
     }
 
     /** Get relation */
-    inline InterpreterRelation& getRelation(const RamRelation& id) {
+    inline LiftedInterpreterRelation& getRelation(const RamRelation& id) {
         return getRelation(id.getName());
     }
 
@@ -148,8 +148,8 @@ protected:
 
     /** Swap relation */
     void swapRelation(const RamRelation& ramRel1, const RamRelation& ramRel2) {
-        InterpreterRelation* rel1 = &getRelation(ramRel1);
-        InterpreterRelation* rel2 = &getRelation(ramRel2);
+        LiftedInterpreterRelation* rel1 = &getRelation(ramRel1);
+        LiftedInterpreterRelation* rel2 = &getRelation(ramRel2);
         environment[ramRel1.getName()] = rel2;
         environment[ramRel2.getName()] = rel1;
     }

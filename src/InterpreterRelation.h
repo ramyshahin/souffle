@@ -25,7 +25,6 @@
 #include <map>
 #include <memory>
 #include <vector>
-#include <list>
 
 namespace souffle {
 
@@ -54,23 +53,12 @@ private:
     /** Lock for parallel execution */
     mutable Lock lock;
 
-    /** Relation Presence Conditions */
-    std::list<const RamRecord*> records;
-
 public:
     InterpreterRelation(size_t relArity) : arity(relArity), num_tuples(0), totalIndex(nullptr) {}
 
     InterpreterRelation(const InterpreterRelation& other) = delete;
 
-    virtual ~InterpreterRelation() {
-        //if (arity == 0) {
-        //    return;
-        //}
-
-        for(const auto* r: records) {
-            delete r;
-        }
-    }
+    virtual ~InterpreterRelation() = default;
 
     /** Get arity of relation */
     size_t getArity() const {
@@ -88,24 +76,18 @@ public:
     }
 
     /** Insert tuple */
-    virtual void insert(const RamDomain* tuple, const PresenceCondition* pc) {
+    virtual void insert(const RamDomain* tuple) {
         // check for null-arity
         if (arity == 0) {
             // set number of tuples to one -- that's it
-            //records.push_back(nullptr);
             num_tuples = 1;
             return;
         }
 
         assert(tuple);
-        assert(pc);
 
-        if (!pc->isSAT()) {
-            return;
-        }
-        
         // make existence check
-        if (exists(tuple, pc)) {
+        if (exists(tuple)) {
             return;
         }
 
@@ -121,45 +103,30 @@ public:
             newTuple[i] = tuple[i];
         }
 
-        const RamRecord* rec = new RamRecord(arity, newTuple, pc);
-        records.push_back(rec);
         // update all indexes with new tuple
         for (const auto& cur : indices) {
-            cur.second->insert(rec);
+            cur.second->insert(newTuple);
         }
 
         // increment relation size
         num_tuples++;
     }
 
-    void insert(const RamRecord* rec) {
-        assert(rec);
-        insert(rec->field, rec->pc);
-    }
-    
     /** Insert tuple via arguments */
-    /*
     template <typename... Args>
     void insert(RamDomain first, Args... rest) {
         RamDomain tuple[] = {first, RamDomain(rest)...};
         insert(tuple);
     }
-    */
+
     /** Merge another relation into this relation */
     void insert(const InterpreterRelation& other) {
         assert(getArity() == other.getArity());
-        size_t count = other.size();
-        size_t index = 0;
         for (const auto& cur : other) {
-            if (index >= count) {
-                break;
-            }
-            assert(index < count);
-            insert(cur->field, cur->pc);
-            index++;
+            insert(cur);
         }
     }
-    
+
     /** Purge table */
     void purge() {
         blockList.clear();
@@ -247,7 +214,7 @@ public:
     }
 
     /** check whether a tuple exists in the relation */
-    bool exists(const RamDomain* tuple, const PresenceCondition* pc) const {
+    bool exists(const RamDomain* tuple) const {
         // handle arity 0
         if (getArity() == 0) {
             return !empty();
@@ -257,33 +224,25 @@ public:
         if (!totalIndex) {
             totalIndex = getIndex(getTotalIndexKey());
         }
-        RamRecord rec(getArity(), tuple, pc);
-        return totalIndex->exists(&rec);
+        return totalIndex->exists(tuple);
     }
-    
+
     // --- iterator ---
 
-    using iterator = std::list<const RamRecord*>::const_iterator;
     /** Iterator for relation */
-    /*
-    class iterator : public std::iterator<std::forward_iterator_tag, const RamRecord*> {
+    class iterator : public std::iterator<std::forward_iterator_tag, RamDomain*> {
         const InterpreterRelation* const relation = nullptr;
-        using ttype = std::list<std::unique_ptr<const RamRecord>>::const_iterator;
-        ttype tuple_it;
-        const RamRecord* tuple;
+        size_t index = 0;
+        RamDomain* tuple = nullptr;
 
     public:
         iterator() = default;
 
-        iterator(const InterpreterRelation* const rel,
-                 const std::list<std::unique_ptr<const RamRecord>>::const_iterator& it)
-                : relation(rel), tuple_it(it), tuple(relation->arity == 0 ? reinterpret_cast<const RamRecord*>(this) : tuple_it->get()) {
-                    if (relation->arity != 0 && tuple_it == relation->records.end()) {
-                        tuple = nullptr;
-                    }
-                }
+        iterator(const InterpreterRelation* const relation)
+                : relation(relation), tuple(relation->arity == 0 ? reinterpret_cast<RamDomain*>(this)
+                                                                 : &relation->blockList[0][0]) {}
 
-        const RamRecord* operator*() {
+        const RamDomain* operator*() {
             return tuple;
         }
 
@@ -292,7 +251,7 @@ public:
         }
 
         bool operator!=(const iterator& other) const {
-            return tuple != other.tuple;
+            return (tuple != other.tuple);
         }
 
         iterator& operator++() {
@@ -302,17 +261,21 @@ public:
                 return *this;
             }
 
-            tuple_it++;
-            if (tuple_it == relation->records.end()) {
-                tuple = nullptr; 
-            } else {
-                tuple = tuple_it->get();
+            // support all other arities
+            ++index;
+            if (index == relation->num_tuples) {
+                tuple = nullptr;
+                return *this;
             }
 
+            int blockIndex = index / (BLOCK_SIZE / relation->arity);
+            int tupleIndex = (index % (BLOCK_SIZE / relation->arity)) * relation->arity;
+
+            tuple = &relation->blockList[blockIndex][tupleIndex];
             return *this;
         }
     };
-*/
+
     /** get iterator begin of relation */
     inline iterator begin() const {
         // check for emptiness
@@ -320,20 +283,20 @@ public:
             return end();
         }
 
-        return records.begin();
+        return iterator(this);
     }
 
     /** get iterator begin of relation */
     inline iterator end() const {
-        return records.end();
+        return iterator();
     }
 
     /** Extend tuple */
-    virtual std::vector<RamRecord*> extend(const RamDomain* tuple, const PresenceCondition* pc) {
-        std::vector<RamRecord*> newTuples;
+    virtual std::vector<RamDomain*> extend(const RamDomain* tuple) {
+        std::vector<RamDomain*> newTuples;
 
         // A standard relation does not generate extra new knowledge on insertion.
-        newTuples.push_back(new RamRecord(2, new RamDomain[2]{tuple[0], tuple[1]}, pc));
+        newTuples.push_back(new RamDomain[2]{tuple[0], tuple[1]});
 
         return newTuples;
     }
@@ -351,7 +314,7 @@ public:
     InterpreterEqRelation(size_t relArity) : InterpreterRelation(relArity) {}
 
     /** Insert tuple */
-    void insert(const RamDomain* tuple, const PresenceCondition* pc) override {
+    void insert(const RamDomain* tuple) override {
         // TODO: (pnappa) an eqrel check here is all that appears to be needed for implicit additions
         // TODO: future optimisation would require this as a member datatype
         // brave soul required to pass this quest
@@ -364,63 +327,138 @@ public:
         // for now, we just have a naive & extremely slow version, otherwise known as a O(n^2) insertion
         // ):
 
-        for (auto rec : extend(tuple, pc)) {
-            InterpreterRelation::insert(rec->field, rec->pc);
-            delete[] rec->field;
-            delete rec;
+        for (auto* newTuple : extend(tuple)) {
+            InterpreterRelation::insert(newTuple);
+            delete[] newTuple;
         }
     }
 
     /** Find the new knowledge generated by inserting a tuple */
-    std::vector<RamRecord*> extend(const RamDomain* tuple, const PresenceCondition* pc) override {
-        std::vector<RamRecord*> newTuples;
+    std::vector<RamDomain*> extend(const RamDomain* tuple) override {
+        std::vector<RamDomain*> newTuples;
 
-        newTuples.push_back(new RamRecord(2, new RamDomain[2]{tuple[0], tuple[0]}, pc));
-        newTuples.push_back(new RamRecord(2, new RamDomain[2]{tuple[0], tuple[1]}, pc));
-        newTuples.push_back(new RamRecord(2, new RamDomain[2]{tuple[1], tuple[0]}, pc));
-        newTuples.push_back(new RamRecord(2, new RamDomain[2]{tuple[1], tuple[1]}, pc));
+        newTuples.push_back(new RamDomain[2]{tuple[0], tuple[0]});
+        newTuples.push_back(new RamDomain[2]{tuple[0], tuple[1]});
+        newTuples.push_back(new RamDomain[2]{tuple[1], tuple[0]});
+        newTuples.push_back(new RamDomain[2]{tuple[1], tuple[1]});
 
-        std::vector<const RamRecord*> relevantStored;
-        for (auto rec : *this) {
-            if (!pc->conjSat(rec->pc)) {
-                continue;
-            }
-            const RamDomain* vals = rec->field;
+        std::vector<const RamDomain*> relevantStored;
+        for (const RamDomain* vals : *this) {
             if (vals[0] == tuple[0] || vals[0] == tuple[1] || vals[1] == tuple[0] || vals[1] == tuple[1]) {
-                relevantStored.push_back(rec);
+                relevantStored.push_back(vals);
             }
         }
 
-        for (const auto rec : relevantStored) {
-            const RamDomain* vals = rec->field;
-            auto conjunction = pc->conjoin(rec->pc);
-            newTuples.push_back(new RamRecord(2, new RamDomain[2]{vals[0], tuple[0]}, conjunction));
-            newTuples.push_back(new RamRecord(2, new RamDomain[2]{vals[0], tuple[1]}, conjunction));
-            newTuples.push_back(new RamRecord(2, new RamDomain[2]{vals[1], tuple[0]}, conjunction));
-            newTuples.push_back(new RamRecord(2, new RamDomain[2]{vals[1], tuple[1]}, conjunction));
-            newTuples.push_back(new RamRecord(2, new RamDomain[2]{tuple[0], vals[0]}, conjunction));
-            newTuples.push_back(new RamRecord(2, new RamDomain[2]{tuple[0], vals[1]}, conjunction));
-            newTuples.push_back(new RamRecord(2, new RamDomain[2]{tuple[1], vals[0]}, conjunction));
-            newTuples.push_back(new RamRecord(2, new RamDomain[2]{tuple[1], vals[1]}, conjunction));
+        for (const auto vals : relevantStored) {
+            newTuples.push_back(new RamDomain[2]{vals[0], tuple[0]});
+            newTuples.push_back(new RamDomain[2]{vals[0], tuple[1]});
+            newTuples.push_back(new RamDomain[2]{vals[1], tuple[0]});
+            newTuples.push_back(new RamDomain[2]{vals[1], tuple[1]});
+            newTuples.push_back(new RamDomain[2]{tuple[0], vals[0]});
+            newTuples.push_back(new RamDomain[2]{tuple[0], vals[1]});
+            newTuples.push_back(new RamDomain[2]{tuple[1], vals[0]});
+            newTuples.push_back(new RamDomain[2]{tuple[1], vals[1]});
         }
 
         return newTuples;
     }
     /** Extend this relation with new knowledge generated by inserting all tuples from a relation */
     void extend(const InterpreterRelation& rel) override {
-        std::vector<RamRecord*> newTuples;
+        std::vector<RamDomain*> newTuples;
         // store all values that will be implicitly relevant to the those that we will insert
-        for (auto rec : rel) {
-            for (auto* newTuple : extend(rec->field, rec->pc)) {
+        for (const auto* tuple : rel) {
+            for (auto* newTuple : extend(tuple)) {
                 newTuples.push_back(newTuple);
             }
         }
         for (const auto* newTuple : newTuples) {
-            InterpreterRelation::insert(newTuple->field, newTuple->pc);
-            delete[] newTuple->field;
-            delete newTuple;
+            InterpreterRelation::insert(newTuple);
+            delete[] newTuple;
         }
     }
 };
 
-}  // end of namespace souffle
+class LiftedInterpreterRelation: public InterpreterRelation {
+public:
+    LiftedInterpreterRelation(size_t arity) : InterpreterRelation(arity) {}
+
+    using InterpreterRelation::insert;
+    
+    void insert(const RamRecord* rec) {
+        InterpreterRelation::insert(rec->field);
+    }
+}; // LiftedInterpreterRelation
+
+class LiftedInterpreterEqRelation: public LiftedInterpreterRelation {
+public:
+    LiftedInterpreterEqRelation(size_t arity) : LiftedInterpreterRelation(arity) {}
+
+    /** Insert tuple */
+    void insert(const RamDomain* tuple) override {
+        // TODO: (pnappa) an eqrel check here is all that appears to be needed for implicit additions
+        // TODO: future optimisation would require this as a member datatype
+        // brave soul required to pass this quest
+        // // specialisation for eqrel defs
+        // std::unique_ptr<binaryrelation> eqreltuples;
+        // in addition, it requires insert functions to insert into that, and functions
+        // which allow reading of stored values must be changed to accommodate.
+        // e.g. insert =>  eqRelTuples->insert(tuple[0], tuple[1]);
+
+        // for now, we just have a naive & extremely slow version, otherwise known as a O(n^2) insertion
+        // ):
+
+        for (auto* newTuple : extend(tuple)) {
+            InterpreterRelation::insert(newTuple);
+            delete[] newTuple;
+        }
+    }
+
+    /** Find the new knowledge generated by inserting a tuple */
+    std::vector<RamDomain*> extend(const RamDomain* tuple) override {
+        std::vector<RamDomain*> newTuples;
+
+        newTuples.push_back(new RamDomain[2]{tuple[0], tuple[0]});
+        newTuples.push_back(new RamDomain[2]{tuple[0], tuple[1]});
+        newTuples.push_back(new RamDomain[2]{tuple[1], tuple[0]});
+        newTuples.push_back(new RamDomain[2]{tuple[1], tuple[1]});
+
+        std::vector<const RamDomain*> relevantStored;
+        for (const RamDomain* vals : *this) {
+            if (vals[0] == tuple[0] || vals[0] == tuple[1] || vals[1] == tuple[0] || vals[1] == tuple[1]) {
+                relevantStored.push_back(vals);
+            }
+        }
+
+        for (const auto vals : relevantStored) {
+            newTuples.push_back(new RamDomain[2]{vals[0], tuple[0]});
+            newTuples.push_back(new RamDomain[2]{vals[0], tuple[1]});
+            newTuples.push_back(new RamDomain[2]{vals[1], tuple[0]});
+            newTuples.push_back(new RamDomain[2]{vals[1], tuple[1]});
+            newTuples.push_back(new RamDomain[2]{tuple[0], vals[0]});
+            newTuples.push_back(new RamDomain[2]{tuple[0], vals[1]});
+            newTuples.push_back(new RamDomain[2]{tuple[1], vals[0]});
+            newTuples.push_back(new RamDomain[2]{tuple[1], vals[1]});
+        }
+
+        return newTuples;
+    }
+    /** Extend this relation with new knowledge generated by inserting all tuples from a relation */
+    void extend(const InterpreterRelation& rel) override {
+        std::vector<RamDomain*> newTuples;
+        // store all values that will be implicitly relevant to the those that we will insert
+        for (const auto* tuple : rel) {
+            for (auto* newTuple : extend(tuple)) {
+                newTuples.push_back(newTuple);
+            }
+        }
+        for (const auto* newTuple : newTuples) {
+            InterpreterRelation::insert(newTuple);
+            delete[] newTuple;
+        }
+    }
+    //void insert(const RamRecord* rec) {
+    //    InterpreterRelation::insert(rec->field);
+    //}
+}; // LiftedInterpreterRelation
+
+} // end of namespace souffle

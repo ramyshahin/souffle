@@ -66,8 +66,7 @@ RamDomain Interpreter::evalVal(const RamValue& value, const InterpreterContext& 
         }
 
         RamDomain visitElementAccess(const RamElementAccess& access) override {
-            //TODO ctxt.pc = ctxt.pc->conjoin(ctxt[access.getLevel()]->pc);
-            return ctxt[access.getLevel()]->field[access.getElement()];
+            return ctxt[access.getLevel()][access.getElement()];
         }
 
         RamDomain visitAutoIncrement(const RamAutoIncrement&) override {
@@ -219,7 +218,7 @@ bool Interpreter::evalCond(const RamCondition& cond, const InterpreterContext& c
     class ConditionEvaluator : public RamVisitor<bool> {
         Interpreter& interpreter;
         const InterpreterContext& ctxt;
-        
+
     public:
         ConditionEvaluator(Interpreter& interp, const InterpreterContext& ctxt)
                 : interpreter(interp), ctxt(ctxt) {}
@@ -251,11 +250,7 @@ bool Interpreter::evalCond(const RamCondition& cond, const InterpreterContext& c
                     tuple[i] = (values[i]) ? interpreter.evalVal(*values[i], ctxt) : MIN_RAM_DOMAIN;
                 }
 
-                if (!(ctxt.pc)->isSAT()) {
-                    return true;
-                }
-
-                return !rel.exists(tuple, ctxt.pc);
+                return !rel.exists(tuple);
             }
 
             // for partial we search for lower and upper boundaries
@@ -266,15 +261,9 @@ bool Interpreter::evalCond(const RamCondition& cond, const InterpreterContext& c
                 high[i] = (values[i]) ? low[i] : MAX_RAM_DOMAIN;
             }
 
-            RamRecord* lowRec = new RamRecord(arity, low);
-            RamRecord* highRec = new RamRecord(arity, high);
-
             // obtain index
             auto idx = rel.getIndex(ne.getKey());
-            auto range = idx->lowerUpperBound(lowRec, highRec);
-            delete lowRec;
-            delete highRec;
-
+            auto range = idx->lowerUpperBound(low, high);
             return range.first == range.second;  // if there are none => done
         }
 
@@ -358,10 +347,9 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
     class OperationEvaluator : public RamVisitor<void> {
         Interpreter& interpreter;
         InterpreterContext& ctxt;
-        
+
     public:
-        OperationEvaluator(Interpreter& interp, InterpreterContext& ctxt) : 
-            interpreter(interp), ctxt(ctxt) {}
+        OperationEvaluator(Interpreter& interp, InterpreterContext& ctxt) : interpreter(interp), ctxt(ctxt) {}
 
         // -- Operations -----------------------------
 
@@ -386,14 +374,12 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
             if (scan.getRangeQueryColumns() == 0) {
                 // if scan is not binding anything => check for emptiness
                 if (scan.isPureExistenceCheck() && !rel.empty()) {
-                    ctxt.pc = PresenceCondition::makeTrue();
                     visitSearch(scan);
                     return;
                 }
 
                 // if scan is unrestricted => use simple iterator
-                for (auto cur : rel) {
-                    ctxt.pc = cur->pc;
+                for (const RamDomain* cur : rel) {
                     ctxt[scan.getLevel()] = cur;
                     visitSearch(scan);
                 }
@@ -418,19 +404,12 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
             // obtain index
             auto idx = rel.getIndex(scan.getRangeQueryColumns(), nullptr);
 
-            RamRecord* lowRec = new RamRecord(arity, low);
-            RamRecord* highRec = new RamRecord(arity, hig);
-
             // get iterator range
-            auto range = idx->lowerUpperBound(lowRec, highRec);
-
-            delete lowRec;
-            delete highRec;
+            auto range = idx->lowerUpperBound(low, hig);
 
             // if this scan is not binding anything ...
             if (scan.isPureExistenceCheck()) {
                 if (range.first != range.second) {
-                    ctxt.pc = PresenceCondition::makeTrue();
                     visitSearch(scan);
                 }
                 if (Global::config().has("profile") && !scan.getProfileText().empty()) {
@@ -441,33 +420,30 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
 
             // conduct range query
             for (auto ip = range.first; ip != range.second; ++ip) {
-                const RamRecord* data = *(ip);
+                const RamDomain* data = *(ip);
                 ctxt[scan.getLevel()] = data;
-                ctxt.pc = data->pc;
                 visitSearch(scan);
             }
         }
 
         void visitLookup(const RamLookup& lookup) override {
             // get reference
-            auto& ref = ctxt[lookup.getReferenceLevel()][lookup.getReferencePosition()];
+            RamDomain ref = ctxt[lookup.getReferenceLevel()][lookup.getReferencePosition()];
 
             // check for null
-            if (isNull(*ref.field)) {
+            if (isNull(ref)) {
                 return;
             }
 
             // update environment variable
             auto arity = lookup.getArity();
-            const RamDomain* tuple = unpack(*ref.field, arity);
+            const RamDomain* tuple = unpack(ref, arity);
 
             // save reference to temporary value
-            ctxt[lookup.getLevel()] = new RamRecord(arity, tuple, ref.pc);
+            ctxt[lookup.getLevel()] = tuple;
 
             // run nested part - using base class visitor
             visitSearch(lookup);
-
-            delete ctxt[lookup.getLevel()];
         }
 
         void visitAggregate(const RamAggregate& aggregate) override {
@@ -484,7 +460,7 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
                     res = MIN_RAM_DOMAIN;
                     break;
                 case RamAggregate::COUNT:
-                    res = (rel.getArity() == 0) ? rel.size() : 0;
+                    res = 0;
                     break;
                 case RamAggregate::SUM:
                     res = 0;
@@ -512,11 +488,8 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
             // obtain index
             auto idx = rel.getIndex(aggregate.getRangeQueryColumns());
 
-            RamRecord lowRec(arity, low);
-            RamRecord highRec(arity, hig);
-
             // get iterator range
-            auto range = idx->lowerUpperBound(&lowRec, &highRec);
+            auto range = idx->lowerUpperBound(low, hig);
 
             // check for emptiness
             if (aggregate.getFunction() != RamAggregate::COUNT) {
@@ -528,9 +501,8 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
             // iterate through values
             for (auto ip = range.first; ip != range.second; ++ip) {
                 // link tuple
-                const RamRecord* data = *(ip);
+                const RamDomain* data = *(ip);
                 ctxt[aggregate.getLevel()] = data;
-                ctxt.pc = data->pc;
 
                 // count is easy
                 if (aggregate.getFunction() == RamAggregate::COUNT) {
@@ -562,17 +534,16 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
             // write result to environment
             RamDomain tuple[1];
             tuple[0] = res;
-            ctxt[aggregate.getLevel()] = new RamRecord(1, tuple, ctxt.pc);
+            ctxt[aggregate.getLevel()] = tuple;
 
             // check whether result is used in a condition
             auto condition = aggregate.getCondition();
             if (condition && !interpreter.evalCond(*condition, ctxt)) {
-                //return;  // condition not valid => skip nested
-            } else {
-                // run nested part - using base class visitor
-                visitSearch(aggregate);
+                return;  // condition not valid => skip nested
             }
-            delete ctxt[aggregate.getLevel()];
+
+            // run nested part - using base class visitor
+            visitSearch(aggregate);
         }
 
         void visitProject(const RamProject& project) override {
@@ -586,20 +557,19 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
             auto arity = project.getRelation().getArity();
             const auto& values = project.getValues();
             RamDomain tuple[arity];
-
             for (size_t i = 0; i < arity; i++) {
                 assert(values[i]);
                 tuple[i] = interpreter.evalVal(*values[i], ctxt);
             }
 
             // check filter relation
-            if (project.hasFilter() && interpreter.getRelation(project.getFilter()).exists(tuple, ctxt.pc)) {
+            if (project.hasFilter() && interpreter.getRelation(project.getFilter()).exists(tuple)) {
                 return;
             }
 
             // insert in target relation
             InterpreterRelation& rel = interpreter.getRelation(project.getRelation());
-            rel.insert(tuple, ctxt.pc);
+            rel.insert(tuple);
         }
 
         // -- return from subroutine --
@@ -735,7 +705,7 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
         bool visitLoad(const RamLoad& load) override {
             for (IODirectives ioDirectives : load.getIODirectives()) {
                 try {
-                    InterpreterRelation& relation = interpreter.getRelation(load.getRelation());
+                    LiftedInterpreterRelation& relation = interpreter.getRelation(load.getRelation());
                     IOSystem::getInstance()
                             .getReader(load.getRelation().getSymbolMask(), interpreter.getSymbolTable(),
                                     interpreter.getFeatSymbolTable(), ioDirectives, Global::config().has("provenance"))
@@ -770,7 +740,7 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
                 tuple[i] = interpreter.evalVal(*values[i]);
             }
 
-            interpreter.getRelation(fact.getRelation()).insert(tuple, fact.getPC());
+            interpreter.getRelation(fact.getRelation()).insert(tuple);
             return true;
         }
 

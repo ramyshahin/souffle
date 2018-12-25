@@ -27,7 +27,7 @@ public:
                 const SymbolTable& featSymT, const bool prov)
             : symbolMask(symbolMask), symbolTable(symbolTable), featSymTable(featSymT), isProvenance(prov) {}
     template <typename T>
-    void writeAll(const T& relation) {
+    void writeAll(T& relation) {
         auto lease = symbolTable.acquireLock();
         (void)lease;
         size_t arity = symbolMask.getArity();
@@ -40,7 +40,7 @@ public:
             return;
         }
 
-        for (const auto& current : relation) {
+        for (auto current : relation) {
             writeNext(current);
         }
     }
@@ -52,7 +52,7 @@ public:
 protected:
     virtual void writeNextTuple(const RamRecord* record) = 0;
     template <typename Tuple>
-    void writeNext(const Tuple tuple) {
+    void writeNext(Tuple tuple) {
         RamRecord rec = tuple.toRecord();
         writeNextTuple(&rec);
     }
@@ -74,5 +74,11 @@ public:
 template <>
 inline void WriteStream::writeNext(const RamRecord* record) {
     writeNextTuple(record);
+}
+
+template <>
+inline void WriteStream::writeNext(const RamDomain* d) {
+    RamRecord rec(symbolMask.getArity(), d, PresenceCondition::makeTrue());
+    writeNextTuple(&rec);
 }
 } /* namespace souffle */

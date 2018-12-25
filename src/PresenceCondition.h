@@ -163,6 +163,19 @@ public:
         return pc;
     }
 
+    PresenceCondition* disjoin(const PresenceCondition* other) const {
+        assert(other);
+        DdNode* tmp = Cudd_bddOr(bddMgr, pcBDD, other->pcBDD);
+        auto cached = pcMap.find(tmp);
+        if (cached != pcMap.end()) {
+            return cached->second;
+        }
+        Cudd_Ref(tmp);
+        PresenceCondition *pc = new PresenceCondition(tmp, "(" + text + " \\/ " + other->text + ")");
+        pcMap[tmp] = pc;
+        return pc;
+    }
+
     bool isSAT() const {
         return (pcBDD != FF);
     }
