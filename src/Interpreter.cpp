@@ -262,9 +262,20 @@ bool Interpreter::evalCond(const RamCondition& cond, const InterpreterContext& c
             }
 
             // obtain index
-            auto idx = rel.getIndex(ne.getKey());
-            auto range = idx->lowerUpperBound(low, high);
-            return range.first == range.second;  // if there are none => done
+            bool ret = true;
+            auto ranges = rel.getRange(ne.getKey(), low, high);
+            for (auto& range: ranges) {
+                const PresenceCondition* pc;
+                InterpreterIndex::iterator l;
+                InterpreterIndex::iterator h;
+                std::tie(pc, l, h) = range;
+                if (l != h) { // if there are none
+                    ret = false;
+                    break;
+                }
+            }
+
+            return ret;
         }
 
         // -- comparison operators --
@@ -401,15 +412,12 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
                 }
             }
 
-            // obtain index
-            auto idx = rel.getIndex(scan.getRangeQueryColumns(), nullptr);
-
             // get iterator range
-            auto range = idx->lowerUpperBound(low, hig);
+            auto ranges = rel.getRange(scan.getRangeQueryColumns(), nullptr, low, hig);
 
             // if this scan is not binding anything ...
             if (scan.isPureExistenceCheck()) {
-                if (range.first != range.second) {
+                if (!ranges.empty()) {
                     visitSearch(scan);
                 }
                 if (Global::config().has("profile") && !scan.getProfileText().empty()) {
@@ -418,11 +426,17 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
                 return;
             }
 
-            // conduct range query
-            for (auto ip = range.first; ip != range.second; ++ip) {
-                const RamDomain* data = *(ip);
-                ctxt[scan.getLevel()] = data;
-                visitSearch(scan);
+            for(auto& range: ranges) {
+                const PresenceCondition* pc;
+                InterpreterIndex::iterator l;
+                InterpreterIndex::iterator h;
+                std::tie(pc, l, h) = range;
+                // conduct range query
+                for (auto ip = l; ip != h; ++ip) {
+                    const RamDomain* data = *(ip);
+                    ctxt[scan.getLevel()] = data;
+                    visitSearch(scan);
+                }
             }
         }
 
@@ -485,49 +499,53 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
                 }
             }
 
-            // obtain index
-            auto idx = rel.getIndex(aggregate.getRangeQueryColumns());
-
             // get iterator range
-            auto range = idx->lowerUpperBound(low, hig);
+            auto ranges = rel.getRange(aggregate.getRangeQueryColumns(),low, hig);
 
             // check for emptiness
             if (aggregate.getFunction() != RamAggregate::COUNT) {
-                if (range.first == range.second) {
+                if (ranges.empty()) {
                     return;  // no elements => no min/max
                 }
             }
 
             // iterate through values
-            for (auto ip = range.first; ip != range.second; ++ip) {
-                // link tuple
-                const RamDomain* data = *(ip);
-                ctxt[aggregate.getLevel()] = data;
+            for(auto& range: ranges) {
+                const PresenceCondition* pc;
+                InterpreterIndex::iterator l;
+                InterpreterIndex::iterator h;
+                std::tie(pc, l, h) = range;
 
-                // count is easy
-                if (aggregate.getFunction() == RamAggregate::COUNT) {
-                    res++;
-                    continue;
-                }
+                for (auto ip = l; ip != h; ++ip) {
+                    // link tuple
+                    const RamDomain* data = *(ip);
+                    ctxt[aggregate.getLevel()] = data;
 
-                // aggregation is a bit more difficult
+                    // count is easy
+                    if (aggregate.getFunction() == RamAggregate::COUNT) {
+                        res++;
+                        continue;
+                    }
 
-                // eval target expression
-                RamDomain cur = interpreter.evalVal(*aggregate.getTargetExpression(), ctxt);
+                    // aggregation is a bit more difficult
 
-                switch (aggregate.getFunction()) {
-                    case RamAggregate::MIN:
-                        res = std::min(res, cur);
-                        break;
-                    case RamAggregate::MAX:
-                        res = std::max(res, cur);
-                        break;
-                    case RamAggregate::COUNT:
-                        res = 0;
-                        break;
-                    case RamAggregate::SUM:
-                        res += cur;
-                        break;
+                    // eval target expression
+                    RamDomain cur = interpreter.evalVal(*aggregate.getTargetExpression(), ctxt);
+
+                    switch (aggregate.getFunction()) {
+                        case RamAggregate::MIN:
+                            res = std::min(res, cur);
+                            break;
+                        case RamAggregate::MAX:
+                            res = std::max(res, cur);
+                            break;
+                        case RamAggregate::COUNT:
+                            res = 0;
+                            break;
+                        case RamAggregate::SUM:
+                            res += cur;
+                            break;
+                    }
                 }
             }
 
@@ -569,7 +587,7 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
 
             // insert in target relation
             LiftedInterpreterRelation& rel = interpreter.getRelation(project.getRelation());
-            rel.insert(tuple);
+            rel.insert(tuple, PresenceCondition::makeTrue());
         }
 
         // -- return from subroutine --
@@ -740,7 +758,7 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
                 tuple[i] = interpreter.evalVal(*values[i]);
             }
 
-            interpreter.getRelation(fact.getRelation()).insert(tuple);
+            interpreter.getRelation(fact.getRelation()).insert(tuple, PresenceCondition::makeTrue());
             return true;
         }
 

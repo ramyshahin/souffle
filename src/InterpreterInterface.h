@@ -76,11 +76,11 @@ protected:
     class iterator_base : public Relation::iterator_base {
     private:
         const InterpreterRelInterface* ramRelationInterface;
-        InterpreterRelation::iterator it;
+        LiftedInterpreterRelation::iterator it;
         tuple tup;
 
     public:
-        iterator_base(uint32_t arg_id, const InterpreterRelInterface* r, InterpreterRelation::iterator i)
+        iterator_base(uint32_t arg_id, const InterpreterRelInterface* r, LiftedInterpreterRelation::iterator i)
                 : Relation::iterator_base(arg_id), ramRelationInterface(r), it(i), tup(r) {}
         ~iterator_base() override = default;
 
@@ -133,7 +133,7 @@ public:
 
     /** Insert tuple */
     void insert(const tuple& t) override {
-        relation.insert(convertTupleToNums(t)); //, PresenceCondition::makeTrue());
+        relation.insert(convertTupleToNums(t), PresenceCondition::makeTrue());
     }
 
     /** Check whether tuple exists */
