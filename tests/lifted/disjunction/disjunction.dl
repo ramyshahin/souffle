@@ -1,0 +1,9 @@
+// check whether duplicates are filtered out
+.type M
+
+.decl N (n:M)
+.output N ()
+
+N("0")  @ A.
+N("0")  @ !A.
+N("1")  @ B /\ A.

@@ -1,0 +1,12 @@
+# Souffle - A Datalog Compiler
+# Copyright (c) 2017, The Souffle Developers. All rights reserved.
+# Licensed under the Universal Permissive License v 1.0 as shown at:
+# - https://opensource.org/licenses/UPL
+# - <souffle root>/licenses/SOUFFLE-UPL.txt
+
+dnl Positive test cases for evaluating Datalog programs
+
+POSITIVE_TEST([passthrough],[lifted])
+POSITIVE_TEST([conjunction],[lifted])
+POSITIVE_TEST([unsat],[lifted])
+POSITIVE_TEST([disjunction], [lifted])
