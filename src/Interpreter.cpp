@@ -431,12 +431,14 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
                 InterpreterIndex::iterator l;
                 InterpreterIndex::iterator h;
                 std::tie(pc, l, h) = range;
+                ctxt.conjoingPCWith(pc);
                 // conduct range query
                 for (auto ip = l; ip != h; ++ip) {
                     const RamDomain* data = *(ip);
                     ctxt[scan.getLevel()] = data;
                     visitSearch(scan);
                 }
+                ctxt.resetPC();
             }
         }
 
@@ -587,7 +589,7 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
 
             // insert in target relation
             LiftedInterpreterRelation& rel = interpreter.getRelation(project.getRelation());
-            rel.insert(tuple, PresenceCondition::makeTrue());
+            rel.insert(tuple, ctxt.getPC());
         }
 
         // -- return from subroutine --
@@ -758,7 +760,7 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
                 tuple[i] = interpreter.evalVal(*values[i]);
             }
 
-            interpreter.getRelation(fact.getRelation()).insert(tuple, PresenceCondition::makeTrue());
+            interpreter.getRelation(fact.getRelation()).insert(tuple, fact.getPC());
             return true;
         }
 

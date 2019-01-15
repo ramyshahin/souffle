@@ -39,9 +39,9 @@ public:
             writeNullary();
             return;
         }
-
-        for (auto current : relation) {
-            writeNext(current);
+        for (auto it = relation.begin(); it != relation.end(); ++it) {
+            const RamRecord rec(arity, *it, it.getCurPC());
+            writeNext(&rec);
         }
     }
 
@@ -52,10 +52,9 @@ public:
 protected:
     virtual void writeNextTuple(const RamRecord* record) = 0;
     template <typename Tuple>
-    void writeNext(Tuple tuple) {
-        RamRecord rec = tuple.toRecord();
-        writeNextTuple(&rec);
-    }
+    void writeNext(Tuple t); // {
+    //    writeNextTuple(rec);
+    //}
     const SymbolMask& symbolMask;
     const SymbolTable& symbolTable;
     const SymbolTable& featSymTable;

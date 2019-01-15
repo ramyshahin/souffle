@@ -17,6 +17,7 @@
 #pragma once
 
 #include "RamTypes.h"
+#include "PresenceCondition.h"
 #include <cassert>
 #include <memory>
 #include <vector>
@@ -31,6 +32,7 @@ class InterpreterContext {
     std::vector<RamDomain>* returnValues = nullptr;
     std::vector<bool>* returnErrors = nullptr;
     const std::vector<RamDomain>* args = nullptr;
+    const PresenceCondition* pc = PresenceCondition::makeTrue();
 
 public:
     InterpreterContext(size_t size = 0) : data(size) {}
@@ -77,6 +79,18 @@ public:
     RamDomain getArgument(size_t i) const {
         assert(args != nullptr && i < args->size() && "argument out of range");
         return (*args)[i];
+    }
+
+    const PresenceCondition* getPC() const {
+        return pc;
+    }
+
+    void conjoingPCWith(const PresenceCondition* conj) {
+        pc = pc->conjoin(conj);
+    }
+
+    void resetPC() {
+        pc = PresenceCondition::makeTrue();
     }
 };
 

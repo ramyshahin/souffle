@@ -51,6 +51,5 @@ DebugBuild/
 ReleaseBuild/
 
 *.html
-*.csv
 *.facts
 
