@@ -85,12 +85,12 @@ public:
         return pc;
     }
 
-    void conjoingPCWith(const PresenceCondition* conj) {
+    void conjoinPCWith(const PresenceCondition* conj) {
         pc = pc->conjoin(conj);
     }
 
-    void resetPC() {
-        pc = PresenceCondition::makeTrue();
+    void resetPC(const PresenceCondition* _pc) {
+        pc = _pc;
     }
 };
 

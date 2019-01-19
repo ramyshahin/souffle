@@ -405,6 +405,10 @@ public:
     void insert(const RamDomain* tuple, const PresenceCondition* pc) {
         assert(tuple);
         assert(pc);
+        if (!pc->isSAT()) {
+            return;
+        }
+
         auto it = rels.find(pc);
         if (it == rels.end()) {
             InterpreterRelation* r = eqRel ? new InterpreterEqRelation(arity) : new InterpreterRelation(arity);
@@ -467,15 +471,12 @@ public:
     }
 
     /** check whether a tuple exists in the relation */
-    bool exists(const RamDomain* tuple) const {
-        bool ret = false;
-        for (const auto& r: rels) {
-            if (r.second->exists(tuple)) {
-                ret = true;
-                break;
-            }
+    bool exists(const RamDomain* tuple, const PresenceCondition* pc) const {
+        const auto r = rels.find(pc);
+        if (r == rels.end()) {
+            return false;
         }
-        return ret;
+        return (r->second->exists(tuple));
     }
 
     /** Gets the number of contained tuples */

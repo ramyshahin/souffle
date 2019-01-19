@@ -250,7 +250,7 @@ bool Interpreter::evalCond(const RamCondition& cond, const InterpreterContext& c
                     tuple[i] = (values[i]) ? interpreter.evalVal(*values[i], ctxt) : MIN_RAM_DOMAIN;
                 }
 
-                return !rel.exists(tuple);
+                return !rel.exists(tuple, ctxt.getPC());
             }
 
             // for partial we search for lower and upper boundaries
@@ -389,10 +389,14 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
                     return;
                 }
 
+                const PresenceCondition* curPC = ctxt.getPC();
                 // if scan is unrestricted => use simple iterator
-                for (const RamDomain* cur : rel) {
+                for (auto it = rel.begin(); it != rel.end(); ++it) {
+                    const auto cur = *it;
                     ctxt[scan.getLevel()] = cur;
+                    ctxt.conjoinPCWith(it.getCurPC());
                     visitSearch(scan);
+                    ctxt.resetPC(curPC);
                 }
                 return;
             }
@@ -431,14 +435,15 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
                 InterpreterIndex::iterator l;
                 InterpreterIndex::iterator h;
                 std::tie(pc, l, h) = range;
-                ctxt.conjoingPCWith(pc);
+                const PresenceCondition* curPC = ctxt.getPC();
+                ctxt.conjoinPCWith(pc);
                 // conduct range query
                 for (auto ip = l; ip != h; ++ip) {
                     const RamDomain* data = *(ip);
                     ctxt[scan.getLevel()] = data;
                     visitSearch(scan);
                 }
-                ctxt.resetPC();
+                ctxt.resetPC(curPC);
             }
         }
 
@@ -583,7 +588,7 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
             }
 
             // check filter relation
-            if (project.hasFilter() && interpreter.getRelation(project.getFilter()).exists(tuple)) {
+            if (project.hasFilter() && interpreter.getRelation(project.getFilter()).exists(tuple, ctxt.getPC())) {
                 return;
             }
 

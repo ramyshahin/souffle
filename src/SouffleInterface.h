@@ -100,7 +100,7 @@ public:
     virtual void insert(const tuple& t) = 0;
 
     // check whether a tuple exists in the relation
-    virtual const PresenceCondition* contains(const tuple& t) const = 0;
+    virtual bool contains(const tuple& t, const PresenceCondition* pc) const = 0;
 
     // begin and end iterator
     virtual iterator begin() const = 0;

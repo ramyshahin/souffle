@@ -1,9 +1,12 @@
-// check whether duplicates are filtered out
-.type M
+.decl edge(x:number, y:number)
 
-.decl N (n:M)
-.output N ()
+.decl path(x:number, y:number)
+.output path
 
-N("0")  @ A.
-N("0")  @ !A.
-N("1")  @ B /\ A.
+path(x, y) :- edge(x, y).
+path(x, y) :- path(x, z), edge(z, y).
+
+edge(1, 2) @ A.
+edge(2, 3) @ B.
+edge(2, 3) @ !B.
+edge(2, 3) @ B.

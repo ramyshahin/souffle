@@ -244,6 +244,10 @@ bool isValidPermutation(
  * Check whether two clauses are bijectively equivalent.
  */
 bool areBijectivelyEquivalent(const AstClause* left, const AstClause* right) {
+    if (left->getPC() != right->getPC()) {
+        return false;
+    }
+    
     // only check bijective equivalence for a subset of the possible clauses
     auto isValidClause = [&](const AstClause* clause) {
         // check that all body literals are atoms

@@ -137,8 +137,8 @@ public:
     }
 
     /** Check whether tuple exists */
-    const PresenceCondition* contains(const tuple& t) const override {
-        return (relation.exists(convertTupleToNums(t)) ? PresenceCondition::makeTrue() : nullptr);
+    bool contains(const tuple& t, const PresenceCondition* pc) const override {
+        return relation.exists(convertTupleToNums(t), pc);
     }
 
     /** Iterator to first tuple */
