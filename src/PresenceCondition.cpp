@@ -13,12 +13,15 @@ using namespace std;
 namespace souffle {
 
 SymbolTable* PresenceCondition::featSymTab = nullptr;
+
+#ifdef SAT_CHECK
 DdManager*   PresenceCondition::bddMgr = nullptr;
 
 DdNode* PresenceCondition::FF;
 DdNode* PresenceCondition::TT;
+#endif
 
-std::map<DdNode*, PresenceCondition*> PresenceCondition::pcMap;
+std::map<MAP_KEY, PresenceCondition*> PresenceCondition::pcMap;
 
 #if 0
 

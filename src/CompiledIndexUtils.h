@@ -935,6 +935,10 @@ public:
             value = orderOut(*nested);
             return *this;
         }
+
+        const PresenceCondition* getCurPC() const {
+            return PresenceCondition::makeTrue();
+        }
     };
 
     iterator begin() const {
@@ -1118,6 +1122,10 @@ public:
             ++nested;
             value = orderOut(*nested);
             return *this;
+        }
+
+        const PresenceCondition* getCurPC() const {
+            return PresenceCondition::makeTrue();
         }
     };
 
@@ -1542,6 +1550,10 @@ public:
         forward();
         // done
         return *this;
+    }
+
+    const PresenceCondition* getCurPC() const {
+        return PresenceCondition::makeTrue();
     }
 
 private:

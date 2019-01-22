@@ -27,9 +27,9 @@ struct RamRecord {
     }
 
     ~RamRecord() {
-        if (owned) {
-            delete[] field;
-        }
+        //if (owned) {
+        //    delete[] field;
+        //}
     }
 
     RamRecord(const RamRecord& other) : 

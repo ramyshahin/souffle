@@ -110,7 +110,7 @@ protected:
                 }
                 curToken.type = ID;
                 size_t index = 1;
-                while(isalpha(begin[index])) {
+                while(isalnum(begin[index]) || begin[index] == '_') {
                     curToken.length++;
                     index++;
                 }
