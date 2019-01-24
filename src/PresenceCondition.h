@@ -1,6 +1,6 @@
 #pragma once
 
-//#define SAT_CHECK
+#define SAT_CHECK
 
 #include <string>
 #include <cassert>
@@ -26,12 +26,16 @@ namespace souffle {
 
 class PresenceCondition {
 private:
+    enum PropType { ATOM, NEG, CONJ, DISJ };
     static SymbolTable* featSymTab;
 #ifdef SAT_CHECK
     static DdManager*   bddMgr;
     static DdNode* FF;
     static DdNode* TT;
     DdNode* pcBDD;
+    PropType type;
+    const PresenceCondition* sub0;
+    const PresenceCondition* sub1;
 #endif
     static std::map<MAP_KEY, PresenceCondition*> pcMap;
 
@@ -41,11 +45,15 @@ protected:
 
     PresenceCondition(
 #ifdef SAT_CHECK
-        DdNode* bdd, 
+        DdNode* bdd,
+        PropType _type,	const PresenceCondition* s0, const PresenceCondition* s1,
 #endif
         const std::string& t) :
 #ifdef SAT_CHECK
-        pcBDD(bdd), 
+        pcBDD(bdd),
+	type(_type), 
+	sub0(s0),
+	sub1(s1),
 #endif
         text(t)
     {}
@@ -68,12 +76,14 @@ public:
         pcMap[FF] = new PresenceCondition(
 #ifdef SAT_CHECK
             FF, 
+	    ATOM, nullptr, nullptr,
 #endif
             "False");
 
         pcMap[TT] = new PresenceCondition(
 #ifdef SAT_CHECK
             TT, 
+	    ATOM, nullptr, nullptr,
 #endif
             "True");
     }
@@ -90,7 +100,7 @@ public:
 
     static PresenceCondition* parse(const AstPresenceCondition& pc) {
 #ifdef SAT_CHECK
-        auto pcBDD = pc.toBDD(bddMgr);
+        auto pcBDD = const_cast<AstPresenceCondition&>(pc).toBDD(bddMgr);
         auto _pc = pcMap.find(pcBDD);
         if (_pc != pcMap.end()) {
             return _pc->second;
@@ -101,7 +111,8 @@ public:
         std::string text = ostr.str();
         PresenceCondition* newpc = new PresenceCondition(
 #ifdef SAT_CHECK
-            pcBDD, 
+            pcBDD,
+	    ATOM, nullptr, nullptr,
 #endif
             text);
         pcMap[
@@ -216,12 +227,13 @@ public:
         Cudd_Ref(tmp);
 #endif
 
-        std::string newText = "(" + text + " /\\ " + other->text + ")";
+        //std::string newText = "(" + text + " /\\ " + other->text + ")";
         PresenceCondition *pc = new PresenceCondition(
 #ifdef SAT_CHECK
-            tmp, 
+            tmp,
+	    CONJ, this, other, 
 #endif
-            newText);
+            "");
 
         pcMap[
 #ifdef SAT_CHECK
@@ -245,12 +257,13 @@ public:
         Cudd_Ref(tmp);
 #endif
 
-        std::string newText = "(" + text + " \\/ " + other->text + ")";
+        //std::string newText = "(" + text + " \\/ " + other->text + ")";
         PresenceCondition *pc = new PresenceCondition(
 #ifdef SAT_CHECK
-            tmp, 
+            tmp,
+	    DISJ, this, other, 
 #endif
-            newText);
+            "");
         pcMap[
 #ifdef SAT_CHECK
             tmp
@@ -262,7 +275,7 @@ public:
     }
 
     bool isSAT() const {
-#if SAT_CHECK
+#ifdef SAT_CHECK
         return (pcBDD != FF);
 #else
         return true;
@@ -270,7 +283,7 @@ public:
     }
 
     bool isTrue() const {
-#if SAT_CHECK
+#ifdef SAT_CHECK
         return (pcBDD == TT);
 #else
         return (text == TT);
@@ -278,7 +291,18 @@ public:
     }
     
     friend std::ostream& operator<<(std::ostream& out, const PresenceCondition& pc) {
-        out << pc.text;
+	switch(pc.type) {
+		case ATOM:
+		case NEG:
+        		out << pc.text;
+			break;
+		case CONJ:
+			out << "(" << *pc.sub0 << " /\\ " << *pc.sub1 << ")";
+			break;
+		case DISJ:
+			out << "(" << *pc.sub0 << " \\/ " << *pc.sub1 << ")";
+			break;
+	}
         return out;
     }
 }; // PresenceCondition

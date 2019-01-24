@@ -7,7 +7,7 @@ namespace souffle {
 
 class AstPresenceCondition : public AstNode {
 public:
-    virtual DdNode* toBDD(DdManager* bddMgr) const = 0;
+    virtual DdNode* toBDD(DdManager* bddMgr) = 0;
 
     virtual bool isTrue() const {
         return false;
@@ -20,7 +20,7 @@ private:
 
 protected:
     /** Implements the node comparison for this node type */
-    bool equal(const AstNode& node) const override {
+    virtual bool equal(const AstNode& node) const override {
         assert(nullptr != dynamic_cast<const AstPresenceConditionPrimitive*>(&node));
         const auto& other = static_cast<const AstPresenceConditionPrimitive&>(node);
         return (val == other.val);
@@ -29,7 +29,7 @@ protected:
 public:
     AstPresenceConditionPrimitive(bool v) : val(v) {};
 
-    virtual DdNode* toBDD(DdManager* bddMgr) const override {
+    virtual DdNode* toBDD(DdManager* bddMgr) override {
         DdNode* ret = val ? Cudd_ReadOne(bddMgr) : Cudd_ReadZero(bddMgr);
         Cudd_Ref(ret);
         return ret;
@@ -53,7 +53,7 @@ public:
     }
 
     /** Print this clause to a given stream */
-    void print(std::ostream& os) const override {
+    virtual void print(std::ostream& os) const override {
         os << (val ? "True" : "False");
     }
 
@@ -69,7 +69,7 @@ private:
 
 protected:
     /** Implements the node comparison for this node type */
-    bool equal(const AstNode& node) const override {
+    virtual bool equal(const AstNode& node) const override {
         assert(nullptr != dynamic_cast<const AstPresenceConditionFeat*>(&node));
         const auto& other = static_cast<const AstPresenceConditionFeat&>(node);
         return (&st == &other.st && index == other.index);
@@ -79,7 +79,7 @@ public:
     AstPresenceConditionFeat(SymbolTable& _st, const std::string& sym) : 
         st(_st), index(st.lookup(sym)) {}
 
-    virtual DdNode* toBDD(DdManager* bddMgr) const override {
+    virtual DdNode* toBDD(DdManager* bddMgr) override {
         DdNode* ret = Cudd_bddIthVar(bddMgr, index);
         return ret;
     }
@@ -102,7 +102,7 @@ public:
     }
 
     /** Print this clause to a given stream */
-    void print(std::ostream& os) const override {
+    virtual void print(std::ostream& os) const override {
         os << st.resolve(index);
     }
 };
@@ -113,7 +113,7 @@ private:
 
 protected:
     /** Implements the node comparison for this node type */
-    bool equal(const AstNode& node) const override {
+    virtual bool equal(const AstNode& node) const override {
         assert(nullptr != dynamic_cast<const AstPresenceConditionNeg*>(&node));
         const auto& other = static_cast<const AstPresenceConditionNeg&>(node);
         return (pc == other.pc);
@@ -122,7 +122,7 @@ protected:
 public:
     AstPresenceConditionNeg(AstPresenceCondition& _pc) : pc(&_pc) {}
 
-    virtual DdNode* toBDD(DdManager* bddMgr) const override {
+    virtual DdNode* toBDD(DdManager* bddMgr) override {
         DdNode* pcBDD = pc->toBDD(bddMgr);
         DdNode* ret = Cudd_Not(pcBDD);
         return ret;
@@ -150,7 +150,7 @@ public:
     }
 
     /** Print this clause to a given stream */
-    void print(std::ostream& os) const override {
+    virtual void print(std::ostream& os) const override {
         os << "!";
         pc->print(os);
     }
@@ -165,10 +165,10 @@ class AstPresenceConditionBin : public AstPresenceCondition {
 private:
     BIN_OP op;
     std::unique_ptr<AstPresenceCondition> pc1, pc2;
-    
+    bool symmetric = false;
 protected:
     /** Implements the node comparison for this node type */
-    bool equal(const AstNode& node) const override {
+    virtual bool equal(const AstNode& node) const override {
         assert(nullptr != dynamic_cast<const AstPresenceConditionBin*>(&node));
         const auto& other = static_cast<const AstPresenceConditionBin&>(node);
         return (pc1 == other.pc1 && pc2 == other.pc2);
@@ -179,10 +179,15 @@ public:
         BIN_OP _op, AstPresenceCondition& _pc1, AstPresenceCondition& _pc2
         ) : op(_op), pc1(&_pc1), pc2(&_pc2) {};
 
-    virtual DdNode* toBDD(DdManager* bddMgr) const override {
+    virtual DdNode* toBDD(DdManager* bddMgr) override {
         DdNode* ret = nullptr;
         auto bdd1 = pc1->toBDD(bddMgr);
         auto bdd2 = pc2->toBDD(bddMgr);
+
+	if (bdd1 == bdd2) {
+		symmetric = true;
+		return bdd1;
+	}
 
         switch (op) {
             case OP_AND: ret = Cudd_bddAnd(bddMgr, bdd1, bdd2); break;
@@ -217,7 +222,11 @@ public:
     }
 
     /** Print this clause to a given stream */
-    void print(std::ostream& os) const override {
+    virtual void print(std::ostream& os) const override {
+	if (symmetric) {
+		pc1->print(os);
+		return;
+	}
         os << "(";
         pc1->print(os);
         switch (op) {
