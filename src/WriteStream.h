@@ -27,34 +27,22 @@ public:
                 const SymbolTable& featSymT, const bool prov)
             : symbolMask(symbolMask), symbolTable(symbolTable), featSymTable(featSymT), isProvenance(prov) {}
     template <typename T>
-    void writeAll(T& relation) {
+    void writeAll(const T& relation) {
         auto lease = symbolTable.acquireLock();
         (void)lease;
-        size_t arity = symbolMask.getArity();
-        if (isProvenance) {
-            arity -=  2;
-        }
-
-        if (arity == 0 && relation.size()) {
-            writeNullary();
-            return;
-        }
-        for (auto it = relation.begin(); it != relation.end(); ++it) {
-            const RamRecord rec(arity, *it, it.getCurPC());
-            writeNext(&rec);
+        for (const auto& current : relation) {
+            writeNext(current);
         }
     }
-
-    virtual void writeNullary() = 0;
 
     virtual ~WriteStream() = default;
 
 protected:
-    virtual void writeNextTuple(const RamRecord* record) = 0;
+    virtual void writeNextTuple(const RamDomain* tuple) = 0;
     template <typename Tuple>
-    void writeNext(Tuple t); // {
-    //    writeNextTuple(rec);
-    //}
+    void writeNext(const Tuple tuple) {
+        writeNextTuple(tuple.data);
+    }
     const SymbolMask& symbolMask;
     const SymbolTable& symbolTable;
     const SymbolTable& featSymTable;
@@ -71,13 +59,8 @@ public:
 };
 
 template <>
-inline void WriteStream::writeNext(const RamRecord* record) {
-    writeNextTuple(record);
+inline void WriteStream::writeNext(const RamDomain* tuple) {
+    writeNextTuple(tuple);
 }
 
-template <>
-inline void WriteStream::writeNext(const RamDomain* d) {
-    RamRecord rec(symbolMask.getArity(), d, PresenceCondition::makeTrue());
-    writeNextTuple(&rec);
-}
 } /* namespace souffle */

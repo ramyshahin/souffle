@@ -30,6 +30,8 @@ namespace souffle {
  * defining RAM_DOMAIN_TYPE.
  */
 
+#define RAM_DOMAIN_SIZE 64
+
 #ifndef RAM_DOMAIN_SIZE
 #define RAM_DOMAIN_SIZE 32
 #endif

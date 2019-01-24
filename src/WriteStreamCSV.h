@@ -54,17 +54,17 @@ public:
     ~WriteFileCSV() override = default;
 
 protected:
-    void writeNullary() override {
-        file << "()\n";
-    }
-
-    void writeNextTuple(const RamRecord* record) override {
+    void writeNextTuple(const RamDomain* tuple) override {
         size_t arity = symbolMask.getArity();
         if (isProvenance) {
             arity -= 2;
         }
 
-        const RamDomain* tuple = record->field;
+        if (arity == 0) {
+            file << "()\n";
+            return;
+        }
+
         if (symbolMask.isSymbol(0)) {
             file << symbolTable.unsafeResolve(tuple[0]);
         } else {
@@ -79,8 +79,9 @@ protected:
             }
         }
 
-        if (!record->pc->isTrue()) {
-            file << "\t@ " << *(record->pc);
+        const PresenceCondition* pc = (const PresenceCondition*) tuple[arity];
+        if (!pc->isTrue()) {
+            file << "\t@ " << *pc;
         }
 
         file << "\n";
@@ -106,17 +107,17 @@ public:
     ~WriteGZipFileCSV() override = default;
 
 protected:
-    void writeNullary() override {
-        file << "()\n";
-    }
-
-    void writeNextTuple(const RamRecord* record) override {
-        const RamDomain* tuple = record->field;
+    void writeNextTuple(const RamDomain* tuple) override {
         size_t arity = symbolMask.getArity();
 
         // do not print last two provenance columns if provenance
         if (isProvenance) {
             arity -= 2;
+        }
+
+        if (arity == 0) {
+            file << "()\n";
+            return;
         }
 
         if (symbolMask.isSymbol(0)) {
@@ -133,8 +134,9 @@ protected:
             }
         }
 
-        if (!record->pc->isTrue()) {
-            file << " @ " << *(record->pc);
+        const PresenceCondition* pc = (const PresenceCondition*) tuple[arity];
+        if (!pc->isTrue()) {
+            file << "\t@ " << *pc;
         }
         file << "\n";
     }
@@ -161,16 +163,16 @@ public:
     }
 
 protected:
-    void writeNullary() override {
-        std::cout << "()\n";
-    }
-
-    void writeNextTuple(const RamRecord* record) override {
-        const RamDomain* tuple = record->field;
+    void writeNextTuple(const RamDomain* tuple) override {
         size_t arity = symbolMask.getArity();
 
         if (isProvenance) {
             arity -= 2;
+        }
+
+        if (arity == 0) {
+            std::cout << "()\n";
+            return;
         }
 
         if (symbolMask.isSymbol(0)) {
@@ -187,8 +189,9 @@ protected:
             }
         }
 
-        if (!record->pc->isTrue()) {
-            std::cout << "\t@" << *(record->pc);
+        const PresenceCondition* pc = (const PresenceCondition*) tuple[arity];
+        if (!pc->isTrue()) {
+            std::cout << "\t@ " << *pc;
         }
         std::cout << "\n";
     }

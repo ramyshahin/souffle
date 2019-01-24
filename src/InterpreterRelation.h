@@ -232,18 +232,16 @@ public:
 
     /** Iterator for relation */
     class iterator : public std::iterator<std::forward_iterator_tag, RamDomain*> {
-        const InterpreterRelation* relation = nullptr;
+        const InterpreterRelation* const relation = nullptr;
         size_t index = 0;
         RamDomain* tuple = nullptr;
 
     public:
         iterator() = default;
-        iterator& operator=(const iterator&) = default;
 
         iterator(const InterpreterRelation* const relation)
                 : relation(relation), tuple(relation->arity == 0 ? reinterpret_cast<RamDomain*>(this)
-                                                                 : &relation->blockList[0][0]) 
-                                                                 {assert(relation);}
+                                                                 : &relation->blockList[0][0]) {}
 
         const RamDomain* operator*() {
             return tuple;
@@ -383,18 +381,18 @@ public:
 
 class LiftedInterpreterRelation {
 private:
-    std::map<const PresenceCondition*, InterpreterRelation*> rels;
     size_t arity;
     bool   eqRel;
+    InterpreterRelation* rel;
 
 public:
-    LiftedInterpreterRelation(bool _eqRel, size_t _arity) : arity(_arity), eqRel(_eqRel) {
+    LiftedInterpreterRelation(bool _eqRel, size_t _arity) :
+        arity(_arity), eqRel(_eqRel),
+        rel(eqRel ? new InterpreterEqRelation(arity+1) : new InterpreterRelation(arity+1)) {
     }
 
     ~LiftedInterpreterRelation() {
-        for (auto& r: rels) {
-            delete r.second;
-        }
+        delete rel;
     }
 
     bool isEqRel() const {
@@ -405,28 +403,21 @@ public:
     void insert(const RamDomain* tuple, const PresenceCondition* pc) {
         assert(tuple);
         assert(pc);
-        if (!pc->isSAT()) {
-            return;
-        }
 
-        auto it = rels.find(pc);
-        if (it == rels.end()) {
-            InterpreterRelation* r = eqRel ? new InterpreterEqRelation(arity) : new InterpreterRelation(arity);
-            auto ret = rels.emplace(pc, r);
-            assert(ret.second);
-            it = ret.first;
-        }
-        auto& rel = it->second;
-        assert(rel);
+        //if (!pc->isSAT()) {
+        //    return;
+        //}
 
-        rel->insert(tuple);
+        RamDomain* tmp = new RamDomain[arity + 1];
+        for(size_t i=0; i<arity; i++) {
+            tmp[i] = tuple[i];
+        }
+        tmp[arity] = (RamDomain) pc;
+
+        rel->insert(tmp);
+
+        delete[] tmp;
     }
-
-    /** Insert tuple via arguments */
-    //template <typename... Args>
-    //void insert(RamDomain first, Args... rest) {
-    //    rel->insert(first, rest...);
-    //}
 
     void insert(const RamRecord* rec) {
         assert(rec);
@@ -435,22 +426,7 @@ public:
 
     /** Merge another relation into this relation */
     void insert(const LiftedInterpreterRelation& other) {
-        for (const auto& r: other.rels) {
-            const PresenceCondition* pc = r.first;
-
-            auto it = rels.find(pc);
-            if (it == rels.end()) {
-                InterpreterRelation* r = eqRel ? new InterpreterEqRelation(arity) : new InterpreterRelation(arity);
-                auto ret = rels.emplace(pc, r);
-                assert(ret.second);
-                it = ret.first;
-            }
-
-            auto& rel = it->second;
-            assert(rel);
-
-            rel->insert(*(r.second));
-        }
+        rel->insert(*other.rel);
     }
 
     /** Get arity of relation */
@@ -460,158 +436,58 @@ public:
 
     /** Check whether relation is empty */
     bool empty() const {
-        bool empty = true;
-        for(const auto& r: rels) {
-            if (!r.second->empty()) {
-                empty = false;
-                break;
-            }
-        }
-        return empty;
+        return rel->empty();
     }
 
     /** check whether a tuple exists in the relation */
     bool exists(const RamDomain* tuple, const PresenceCondition* pc) const {
-        const auto r = rels.find(pc);
-        if (r == rels.end()) {
-            return false;
+        RamDomain* tmp = new RamDomain[arity + 1];
+        for(size_t i=0; i<arity; i++) {
+            tmp[i] = tuple[i];
         }
-        return (r->second->exists(tuple));
+        tmp[arity] = (RamDomain) pc;
+
+        bool ret = rel->exists(tmp);
+        delete[] tmp;
+
+        return ret;
     }
 
     /** Gets the number of contained tuples */
     size_t size() const {
         // not: size is not lifted (i.e. we don't return different sizes with corresponding presence conditions)
-        size_t size = 0;
-        for(const auto& r: rels) {
-            size += r.second->size();
-        }
-
-        return size;
+        return rel->size();
     }
 
     /** Purge table */
     void purge() {
-        for(const auto& r: rels) {
-            r.second->purge();
-        }
+        rel->purge();
     }
 
     /** Extend tuple */
     std::vector<RamDomain*> extend(const RamDomain* tuple) {
-        for (auto& rel: rels) {
-            return rel.second->extend(tuple);
-        }
+        assert(false);
+        return rel->extend(tuple);
     }
 
     /** Extend relation */
     void extend(const LiftedInterpreterRelation& r) {
-        for (auto& rel: r.rels) {
-            const PresenceCondition* pc = rel.first;
-
-            auto it = rels.find(pc);
-            if (it == rels.end()) {
-                InterpreterRelation* r = eqRel ? new InterpreterEqRelation(arity) : new InterpreterRelation(arity);
-                auto ret = rels.emplace(pc, r);
-                assert(ret.second);
-                it = ret.first;
-            }
-
-            auto& thisRel = it->second;
-            assert(thisRel);
-
-            thisRel->extend(*(rel.second));
-        }
+        rel->extend(*r.rel);
     }
 
-    using IndexRange = std::tuple<const PresenceCondition*, InterpreterIndex::iterator, InterpreterIndex::iterator>;
+    //using IndexRange = std::pair<InterpreterIndex::iterator, InterpreterIndex::iterator>;
 
     /** get index for a given set of keys using a cached index as a helper. Keys are encoded as bits for each
      * column */
-    std::vector<IndexRange> getRange(const SearchColumns& key, InterpreterIndex* cachedIndex, const RamDomain* low, const RamDomain* high) const {
-        std::vector<IndexRange> ret;
-        ret.reserve(rels.size());
-
-        for (const auto& rel: rels) {
-            InterpreterIndex* index = cachedIndex ? rel.second->getIndex(key, cachedIndex) : rel.second->getIndex(key);
-            auto range = index->lowerUpperBound(low, high);
-            
-            // only include non-empty ranges
-            if (range.first != range.second) {
-                ret.push_back(std::make_tuple(rel.first, range.first, range.second));
-            }
-        }
-
-        return ret;
-    }
+    //IndexRange getRange(const SearchColumns& key, InterpreterIndex* cachedIndex, const RamDomain* low, const RamDomain* high) const {
+    //   InterpreterIndex* index = cachedIndex ? rel->getIndex(key, cachedIndex) : rel->getIndex(key);
+    //    return index->lowerUpperBound(low, high);
+    //}
 
     /** get index for a given set of keys. Keys are encoded as bits for each column */
-    std::vector<IndexRange> getRange(const SearchColumns& key, const RamDomain* low, const RamDomain* high) const {
-        return getRange(key, nullptr, low, high);
-    }
-
-    class iterator : public std::iterator<std::forward_iterator_tag, RamDomain*> {
-        std::map<const PresenceCondition*, InterpreterRelation*>::const_iterator mapItr;
-        std::map<const PresenceCondition*, InterpreterRelation*>::const_iterator endItr;
-        const PresenceCondition* curPC;
-        InterpreterRelation::iterator curRelEnd;
-        InterpreterRelation::iterator curItr;
-        bool  end;
-
-        void resetCur(const std::map<const PresenceCondition*, InterpreterRelation*>::const_iterator& itr) {
-            mapItr = itr;
-            if (itr == endItr) {
-                return;
-            }
-
-            curPC = itr->first;
-            assert(curPC);
-            assert(itr->second);
-            curItr = itr->second->begin();
-            curRelEnd = itr->second->end();
-
-            if (curItr == curRelEnd) {
-                resetCur(++mapItr);
-            }
-        }
-
-    public:
-        iterator(const std::map<const PresenceCondition*, InterpreterRelation*>::const_iterator& itr, 
-                 const std::map<const PresenceCondition*, InterpreterRelation*>::const_iterator& eItr)
-                : mapItr(itr), endItr(eItr), end(itr == eItr) 
-        {
-            if (end) {
-                curPC = nullptr;
-            } else {
-                resetCur(itr);
-            }
-        }
-
-        const RamDomain* operator*() {
-            return (*curItr);
-        }
-
-        bool operator==(const iterator& other) const {
-            return (mapItr == other.mapItr && (end || curItr == other.curItr));
-        }
-
-        bool operator!=(const iterator& other) const {
-            return !(*this == other);
-        }
-
-        iterator& operator++() {
-            ++curItr;
-            if (curItr == curRelEnd) {
-                mapItr++;
-                resetCur(mapItr);
-            }
-            return *this;
-        }
-
-        const PresenceCondition* getCurPC() const {
-            return curPC;
-        }
-    };
+    //IndexRange getRange(const SearchColumns& key, const RamDomain* low, const RamDomain* high) const {
+    //    return getRange(key, nullptr, low, high);
+    //}
 
 #if 0 // these functions don't seem to be used anywhere
     /** get index for a given order. Keys are encoded as bits for each column */
@@ -626,13 +502,32 @@ public:
 #endif
 
     /** get iterator begin of relation */
-    inline iterator begin() const {
-        return iterator(rels.cbegin(), rels.cend());
+    inline InterpreterRelation::iterator begin() const {
+        return rel->begin();
     }
 
     /** get iterator end of relation */
-    inline iterator end() const {
-        return iterator(rels.cend(), rels.cend());
+    inline InterpreterRelation::iterator end() const {
+        return rel->end();
+    }
+
+    InterpreterIndex* getIndex(const SearchColumns& key, InterpreterIndex* cachedIndex) const {
+        return rel->getIndex(key, cachedIndex);
+    }
+
+    /** get index for a given set of keys. Keys are encoded as bits for each column */
+    InterpreterIndex* getIndex(const SearchColumns& key) const {
+        return rel->getIndex(key);
+    }
+
+    /** get index for a given order. Keys are encoded as bits for each column */
+    InterpreterIndex* getIndex(const InterpreterIndexOrder& order) const {
+        return rel->getIndex(order);
+    }
+
+    /** Obtains a full index-key for this relation */
+    SearchColumns getTotalIndexKey() const {
+        return rel->getTotalIndexKey();
     }
 }; // LiftedInterpreterRelation
 

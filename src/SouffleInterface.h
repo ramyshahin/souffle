@@ -97,7 +97,7 @@ public:
     };
 
     // insert a new tuple into the relation
-    virtual void insert(const tuple& t) = 0;
+    virtual void insert(const tuple& t, const PresenceCondition*) = 0;
 
     // check whether a tuple exists in the relation
     virtual bool contains(const tuple& t, const PresenceCondition* pc) const = 0;

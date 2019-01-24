@@ -262,20 +262,9 @@ bool Interpreter::evalCond(const RamCondition& cond, const InterpreterContext& c
             }
 
             // obtain index
-            bool ret = true;
-            auto ranges = rel.getRange(ne.getKey(), low, high);
-            for (auto& range: ranges) {
-                const PresenceCondition* pc;
-                InterpreterIndex::iterator l;
-                InterpreterIndex::iterator h;
-                std::tie(pc, l, h) = range;
-                if (l != h) { // if there are none
-                    ret = false;
-                    break;
-                }
-            }
-
-            return ret;
+            auto idx = rel.getIndex(ne.getKey());
+            auto range = idx->lowerUpperBound(low, high);
+            return range.first == range.second;  // if there are none => done
         }
 
         // -- comparison operators --
@@ -380,6 +369,7 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
         void visitScan(const RamScan& scan) override {
             // get the targeted relation
             const LiftedInterpreterRelation& rel = interpreter.getRelation(scan.getRelation());
+            size_t arity = rel.getArity();
 
             // process full scan if no index is given
             if (scan.getRangeQueryColumns() == 0) {
@@ -391,10 +381,10 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
 
                 const PresenceCondition* curPC = ctxt.getPC();
                 // if scan is unrestricted => use simple iterator
-                for (auto it = rel.begin(); it != rel.end(); ++it) {
-                    const auto cur = *it;
+                for (const RamDomain* cur : rel) {
+                    const PresenceCondition* pc = (const PresenceCondition*) cur[arity];
                     ctxt[scan.getLevel()] = cur;
-                    ctxt.conjoinPCWith(it.getCurPC());
+                    ctxt.conjoinPCWith(pc);
                     visitSearch(scan);
                     ctxt.resetPC(curPC);
                 }
@@ -402,7 +392,6 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
             }
 
             // create pattern tuple for range query
-            auto arity = rel.getArity();
             RamDomain low[arity];
             RamDomain hig[arity];
             auto pattern = scan.getRangePattern();
@@ -416,12 +405,15 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
                 }
             }
 
+            // obtain index
+            auto idx = rel.getIndex(scan.getRangeQueryColumns(), nullptr);
+
             // get iterator range
-            auto ranges = rel.getRange(scan.getRangeQueryColumns(), nullptr, low, hig);
+            auto range = idx->lowerUpperBound(low, hig);
 
             // if this scan is not binding anything ...
             if (scan.isPureExistenceCheck()) {
-                if (!ranges.empty()) {
+                if (range.first != range.second) {
                     visitSearch(scan);
                 }
                 if (Global::config().has("profile") && !scan.getProfileText().empty()) {
@@ -430,19 +422,14 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
                 return;
             }
 
-            for(auto& range: ranges) {
-                const PresenceCondition* pc;
-                InterpreterIndex::iterator l;
-                InterpreterIndex::iterator h;
-                std::tie(pc, l, h) = range;
-                const PresenceCondition* curPC = ctxt.getPC();
+            const PresenceCondition* curPC = ctxt.getPC();
+            // conduct range query
+            for (auto ip = range.first; ip != range.second; ++ip) {
+                const RamDomain* data = *(ip);
+                const PresenceCondition* pc = (const PresenceCondition*) data[arity];
                 ctxt.conjoinPCWith(pc);
-                // conduct range query
-                for (auto ip = l; ip != h; ++ip) {
-                    const RamDomain* data = *(ip);
-                    ctxt[scan.getLevel()] = data;
-                    visitSearch(scan);
-                }
+                ctxt[scan.getLevel()] = data;
+                visitSearch(scan);
                 ctxt.resetPC(curPC);
             }
         }
@@ -506,53 +493,49 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
                 }
             }
 
+            // obtain index
+            auto idx = rel.getIndex(aggregate.getRangeQueryColumns());
+
             // get iterator range
-            auto ranges = rel.getRange(aggregate.getRangeQueryColumns(),low, hig);
+            auto range = idx->lowerUpperBound(low, hig);
 
             // check for emptiness
             if (aggregate.getFunction() != RamAggregate::COUNT) {
-                if (ranges.empty()) {
+                if (range.first == range.second) {
                     return;  // no elements => no min/max
                 }
             }
 
             // iterate through values
-            for(auto& range: ranges) {
-                const PresenceCondition* pc;
-                InterpreterIndex::iterator l;
-                InterpreterIndex::iterator h;
-                std::tie(pc, l, h) = range;
+            for (auto ip = range.first; ip != range.second; ++ip) {
+                // link tuple
+                const RamDomain* data = *(ip);
+                ctxt[aggregate.getLevel()] = data;
 
-                for (auto ip = l; ip != h; ++ip) {
-                    // link tuple
-                    const RamDomain* data = *(ip);
-                    ctxt[aggregate.getLevel()] = data;
+                // count is easy
+                if (aggregate.getFunction() == RamAggregate::COUNT) {
+                    res++;
+                    continue;
+                }
 
-                    // count is easy
-                    if (aggregate.getFunction() == RamAggregate::COUNT) {
-                        res++;
-                        continue;
-                    }
+                // aggregation is a bit more difficult
 
-                    // aggregation is a bit more difficult
+                // eval target expression
+                RamDomain cur = interpreter.evalVal(*aggregate.getTargetExpression(), ctxt);
 
-                    // eval target expression
-                    RamDomain cur = interpreter.evalVal(*aggregate.getTargetExpression(), ctxt);
-
-                    switch (aggregate.getFunction()) {
-                        case RamAggregate::MIN:
-                            res = std::min(res, cur);
-                            break;
-                        case RamAggregate::MAX:
-                            res = std::max(res, cur);
-                            break;
-                        case RamAggregate::COUNT:
-                            res = 0;
-                            break;
-                        case RamAggregate::SUM:
-                            res += cur;
-                            break;
-                    }
+                switch (aggregate.getFunction()) {
+                    case RamAggregate::MIN:
+                        res = std::min(res, cur);
+                        break;
+                    case RamAggregate::MAX:
+                        res = std::max(res, cur);
+                        break;
+                    case RamAggregate::COUNT:
+                        res = 0;
+                        break;
+                    case RamAggregate::SUM:
+                        res += cur;
+                        break;
                 }
             }
 
