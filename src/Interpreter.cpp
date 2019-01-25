@@ -232,12 +232,12 @@ bool Interpreter::evalCond(const RamCondition& cond, const InterpreterContext& c
         // -- relation operations --
 
         bool visitEmpty(const RamEmpty& empty) override {
-            const LiftedInterpreterRelation& rel = interpreter.getRelation(empty.getRelation());
+            const InterpreterRelation& rel = interpreter.getRelation(empty.getRelation());
             return rel.empty();
         }
 
         bool visitNotExists(const RamNotExists& ne) override {
-            const LiftedInterpreterRelation& rel = interpreter.getRelation(ne.getRelation());
+            const InterpreterRelation& rel = interpreter.getRelation(ne.getRelation());
 
             // construct the pattern tuple
             auto arity = rel.getArity();
@@ -245,21 +245,23 @@ bool Interpreter::evalCond(const RamCondition& cond, const InterpreterContext& c
 
             // for total we use the exists test
             if (ne.isTotal()) {
-                RamDomain tuple[arity];
+                RamDomain tuple[arity+1];
                 for (size_t i = 0; i < arity; i++) {
                     tuple[i] = (values[i]) ? interpreter.evalVal(*values[i], ctxt) : MIN_RAM_DOMAIN;
                 }
-
-                return !rel.exists(tuple, ctxt.getPC());
+                tuple[arity] = (RamDomain) ctxt.getPC();
+                const RamDomain* out = nullptr;
+                return !rel.exists(tuple, out);
             }
 
             // for partial we search for lower and upper boundaries
-            RamDomain low[arity];
-            RamDomain high[arity];
+            RamDomain low[arity + 1];
+            RamDomain high[arity + 1];
             for (size_t i = 0; i < arity; i++) {
                 low[i] = (values[i]) ? interpreter.evalVal(*values[i], ctxt) : MIN_RAM_DOMAIN;
                 high[i] = (values[i]) ? low[i] : MAX_RAM_DOMAIN;
             }
+            low[arity] = high[arity] = (RamDomain) ctxt.getPC();
 
             // obtain index
             auto idx = rel.getIndex(ne.getKey());
@@ -357,6 +359,9 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
             // check condition
             auto condition = search.getCondition();
             if (!condition || interpreter.evalCond(*condition, ctxt)) {
+                if (search.pc) {
+                    ctxt.conjoinPCWith(search.pc);
+                }
                 // process nested
                 visit(*search.getNestedOperation());
             }
@@ -368,7 +373,7 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
 
         void visitScan(const RamScan& scan) override {
             // get the targeted relation
-            const LiftedInterpreterRelation& rel = interpreter.getRelation(scan.getRelation());
+            const InterpreterRelation& rel = interpreter.getRelation(scan.getRelation());
             size_t arity = rel.getArity();
 
             // process full scan if no index is given
@@ -382,9 +387,9 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
                 const PresenceCondition* curPC = ctxt.getPC();
                 // if scan is unrestricted => use simple iterator
                 for (const RamDomain* cur : rel) {
-                    const PresenceCondition* pc = (const PresenceCondition*) cur[arity];
+                    const PresenceCondition* pc = rel.getPC(cur);
                     ctxt[scan.getLevel()] = cur;
-                    ctxt.conjoinPCWith(pc);
+                    ((RamScan&)scan).pc = pc;
                     visitSearch(scan);
                     ctxt.resetPC(curPC);
                 }
@@ -392,8 +397,8 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
             }
 
             // create pattern tuple for range query
-            RamDomain low[arity];
-            RamDomain hig[arity];
+            RamDomain low[arity + 1];
+            RamDomain hig[arity + 1];
             auto pattern = scan.getRangePattern();
             for (size_t i = 0; i < arity; i++) {
                 if (pattern[i] != nullptr) {
@@ -404,6 +409,7 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
                     hig[i] = MAX_RAM_DOMAIN;
                 }
             }
+            low[arity] = hig[arity] = (RamDomain) ctxt.getPC();
 
             // obtain index
             auto idx = rel.getIndex(scan.getRangeQueryColumns(), nullptr);
@@ -426,8 +432,8 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
             // conduct range query
             for (auto ip = range.first; ip != range.second; ++ip) {
                 const RamDomain* data = *(ip);
-                const PresenceCondition* pc = (const PresenceCondition*) data[arity];
-                ctxt.conjoinPCWith(pc);
+                const PresenceCondition* pc = rel.getPC(data);
+                ((RamScan&)scan).pc = pc;
                 ctxt[scan.getLevel()] = data;
                 visitSearch(scan);
                 ctxt.resetPC(curPC);
@@ -456,7 +462,7 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
 
         void visitAggregate(const RamAggregate& aggregate) override {
             // get the targeted relation
-            const LiftedInterpreterRelation& rel = interpreter.getRelation(aggregate.getRelation());
+            const InterpreterRelation& rel = interpreter.getRelation(aggregate.getRelation());
 
             // initialize result
             RamDomain res = 0;
@@ -480,8 +486,8 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
 
             // get lower and upper boundaries for iteration
             const auto& pattern = aggregate.getPattern();
-            RamDomain low[arity];
-            RamDomain hig[arity];
+            RamDomain low[arity + 1];
+            RamDomain hig[arity + 1];
 
             for (size_t i = 0; i < arity; i++) {
                 if (pattern[i] != nullptr) {
@@ -492,6 +498,7 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
                     hig[i] = MAX_RAM_DOMAIN;
                 }
             }
+            low[arity] = hig[arity] = (RamDomain) ctxt.getPC();
 
             // obtain index
             auto idx = rel.getIndex(aggregate.getRangeQueryColumns());
@@ -564,20 +571,26 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
             // create a tuple of the proper arity (also supports arity 0)
             auto arity = project.getRelation().getArity();
             const auto& values = project.getValues();
-            RamDomain tuple[arity];
+            RamDomain tuple[arity + 1];
             for (size_t i = 0; i < arity; i++) {
                 assert(values[i]);
                 tuple[i] = interpreter.evalVal(*values[i], ctxt);
             }
+            tuple[arity] = (RamDomain) ctxt.getPC();
 
             // check filter relation
-            if (project.hasFilter() && interpreter.getRelation(project.getFilter()).exists(tuple, ctxt.getPC())) {
-                return;
+            const RamDomain* out = nullptr;
+            if (project.hasFilter() && interpreter.getRelation(project.getFilter()).exists(tuple, out)) {
+                assert(out);
+                const PresenceCondition* pcOther = (const PresenceCondition*)out[arity];
+                if (ctxt.getPC()->conjSat(pcOther)) {
+                    return;
+                }
             }
 
             // insert in target relation
-            LiftedInterpreterRelation& rel = interpreter.getRelation(project.getRelation());
-            rel.insert(tuple, ctxt.getPC());
+            InterpreterRelation& rel = interpreter.getRelation(project.getRelation());
+            rel.insert(tuple);
         }
 
         // -- return from subroutine --
@@ -685,7 +698,7 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
         }
 
         bool visitClear(const RamClear& clear) override {
-            LiftedInterpreterRelation& rel = interpreter.getRelation(clear.getRelation());
+            InterpreterRelation& rel = interpreter.getRelation(clear.getRelation());
             rel.purge();
             return true;
         }
@@ -698,13 +711,13 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
         bool visitPrintSize(const RamPrintSize& print) override {
             auto lease = getOutputLock().acquire();
             (void)lease;
-            const LiftedInterpreterRelation& rel = interpreter.getRelation(print.getRelation());
+            const InterpreterRelation& rel = interpreter.getRelation(print.getRelation());
             std::cout << print.getMessage() << rel.size() << "\n";
             return true;
         }
 
         bool visitLogSize(const RamLogSize& print) override {
-            const LiftedInterpreterRelation& rel = interpreter.getRelation(print.getRelation());
+            const InterpreterRelation& rel = interpreter.getRelation(print.getRelation());
             ProfileEventSingleton::instance().makeQuantityEvent(
                     print.getMessage(), rel.size(), interpreter.getIterationNumber());
             return true;
@@ -713,7 +726,7 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
         bool visitLoad(const RamLoad& load) override {
             for (IODirectives ioDirectives : load.getIODirectives()) {
                 try {
-                    LiftedInterpreterRelation& relation = interpreter.getRelation(load.getRelation());
+                    InterpreterRelation& relation = interpreter.getRelation(load.getRelation());
                     IOSystem::getInstance()
                             .getReader(load.getRelation().getSymbolMask(), interpreter.getSymbolTable(),
                                     interpreter.getFeatSymbolTable(), ioDirectives, Global::config().has("provenance"))
@@ -741,14 +754,15 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 
         bool visitFact(const RamFact& fact) override {
             auto arity = fact.getRelation().getArity();
-            RamDomain tuple[arity];
+            RamDomain tuple[arity + 1];
             auto values = fact.getValues();
 
             for (size_t i = 0; i < arity; ++i) {
                 tuple[i] = interpreter.evalVal(*values[i]);
             }
+            tuple[arity] = (RamDomain) fact.getPC();
 
-            interpreter.getRelation(fact.getRelation()).insert(tuple, fact.getPC());
+            interpreter.getRelation(fact.getRelation()).insert(tuple);
             return true;
         }
 
@@ -760,8 +774,8 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
 
         bool visitMerge(const RamMerge& merge) override {
             // get involved relation
-            LiftedInterpreterRelation& src = interpreter.getRelation(merge.getSourceRelation());
-            LiftedInterpreterRelation& trg = interpreter.getRelation(merge.getTargetRelation());
+            InterpreterRelation& src = interpreter.getRelation(merge.getSourceRelation());
+            InterpreterRelation& trg = interpreter.getRelation(merge.getTargetRelation());
 
             if (trg.isEqRel()) {
                 // expand src with the new knowledge generated by insertion.

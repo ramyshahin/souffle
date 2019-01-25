@@ -21,6 +21,7 @@
 #include "RamRelation.h"
 #include "RamTypes.h"
 #include "RamValue.h"
+#include "PresenceCondition.h"
 #include "Util.h"
 #include <cassert>
 #include <cstddef>
@@ -163,6 +164,8 @@ public:
         RamOperation::apply(map);
         nestedOperation = map(std::move(nestedOperation));
     }
+
+    const PresenceCondition* pc = nullptr;
 
 protected:
     /** Check equality */

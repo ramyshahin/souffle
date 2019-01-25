@@ -21,7 +21,7 @@ DdNode* PresenceCondition::FF;
 DdNode* PresenceCondition::TT;
 #endif
 
-std::map<MAP_KEY, PresenceCondition*> PresenceCondition::pcMap;
+std::unordered_map<MAP_KEY, PresenceCondition*> PresenceCondition::pcMap;
 
 #if 0
 

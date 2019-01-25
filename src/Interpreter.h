@@ -48,7 +48,7 @@ private:
     RamTranslationUnit& translationUnit;
 
     /** relation environment type */
-    using relation_map = std::map<std::string, LiftedInterpreterRelation*>;
+    using relation_map = std::map<std::string, InterpreterRelation*>;
 
     /** relation environment */
     relation_map environment;
@@ -111,14 +111,14 @@ protected:
 
     /** Create relation */
     void createRelation(const RamRelation& id) {
-        LiftedInterpreterRelation* res = nullptr;
+        InterpreterRelation* res = nullptr;
         assert(environment.find(id.getName()) == environment.end());
-        res = new LiftedInterpreterRelation(id.isEqRel(), id.getArity());
+        res = new InterpreterRelation(id.getArity(), id.isEqRel());
         environment[id.getName()] = res;
     }
 
     /** Get relation */
-    LiftedInterpreterRelation& getRelation(const std::string& name) {
+    InterpreterRelation& getRelation(const std::string& name) {
         // look up relation
         auto pos = environment.find(name);
         assert(pos != environment.end());
@@ -126,7 +126,7 @@ protected:
     }
 
     /** Get relation */
-    inline LiftedInterpreterRelation& getRelation(const RamRelation& id) {
+    inline InterpreterRelation& getRelation(const RamRelation& id) {
         return getRelation(id.getName());
     }
 
@@ -137,15 +137,15 @@ protected:
 
     /** Drop relation */
     void dropRelation(const RamRelation& id) {
-        LiftedInterpreterRelation& rel = getRelation(id);
+        InterpreterRelation& rel = getRelation(id);
         environment.erase(id.getName());
         delete &rel;
     }
 
     /** Swap relation */
     void swapRelation(const RamRelation& ramRel1, const RamRelation& ramRel2) {
-        LiftedInterpreterRelation* rel1 = &getRelation(ramRel1);
-        LiftedInterpreterRelation* rel2 = &getRelation(ramRel2);
+        InterpreterRelation* rel1 = &getRelation(ramRel1);
+        InterpreterRelation* rel2 = &getRelation(ramRel2);
         environment[ramRel1.getName()] = rel2;
         environment[ramRel2.getName()] = rel1;
     }

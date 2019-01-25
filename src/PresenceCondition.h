@@ -5,7 +5,7 @@
 #include <string>
 #include <cassert>
 #include <sstream>
-#include <map>
+#include <unordered_map>
 
 #ifdef SAT_CHECK
 #include <cudd.h>
@@ -37,7 +37,7 @@ private:
     const PresenceCondition* sub0;
     const PresenceCondition* sub1;
 #endif
-    static std::map<MAP_KEY, PresenceCondition*> pcMap;
+    static std::unordered_map<MAP_KEY, PresenceCondition*> pcMap;
 
     std::string text;
 protected:
@@ -65,7 +65,7 @@ public:
         bddMgr = Cudd_Init(
             featSymTab->size(), 
             0, 
-            CUDD_UNIQUE_SLOTS, 
+            CUDD_CACHE_SLOTS, 
             CUDD_CACHE_SLOTS, 
             0);
         assert(bddMgr);
@@ -216,8 +216,16 @@ public:
     //    return (((ULONG)pcBDD) > ((ULONG)(other.pcBDD)));
     //}
 
-    PresenceCondition* conjoin(const PresenceCondition* other) const {
+    const PresenceCondition* conjoin(const PresenceCondition* other) const {
         assert(other);
+        if (isTrue()) {
+            return other;
+        }
+
+        if (other->isTrue()) {
+            return this;
+        }
+        
 #ifdef SAT_CHECK
         DdNode* tmp = Cudd_bddAnd(bddMgr, pcBDD, other->pcBDD);
         auto cached = pcMap.find(tmp);

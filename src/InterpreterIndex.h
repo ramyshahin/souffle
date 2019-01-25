@@ -208,8 +208,9 @@ public:
     };
 
     /** check whether tuple exists in index */
-    bool exists(const RamDomain* value) {
-        return set.find(value) != set.end();
+    const RamDomain* exists(const RamDomain* value) {
+        auto it = set.find(value);
+        return (it == set.end()) ? nullptr : *it;
     }
 
     /** purge all hashes of index */

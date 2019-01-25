@@ -31,17 +31,17 @@ public:
         auto lease = symbolTable.acquireLock();
         (void)lease;
         for (const auto& current : relation) {
-            writeNext(current);
+            writeNext(current, relation);
         }
     }
 
     virtual ~WriteStream() = default;
 
 protected:
-    virtual void writeNextTuple(const RamDomain* tuple) = 0;
-    template <typename Tuple>
-    void writeNext(const Tuple tuple) {
-        writeNextTuple(tuple.data);
+    virtual void writeNextTuple(const RamDomain* tuple, const InterpreterRelation& rel) = 0;
+    template <typename T, typename Tuple>
+    void writeNext(const Tuple tuple, const T& relation) {
+        writeNextTuple(tuple.data, relation);
     }
     const SymbolMask& symbolMask;
     const SymbolTable& symbolTable;
@@ -59,8 +59,8 @@ public:
 };
 
 template <>
-inline void WriteStream::writeNext(const RamDomain* tuple) {
-    writeNextTuple(tuple);
+inline void WriteStream::writeNext(const RamDomain* tuple, const InterpreterRelation& rel) {
+    writeNextTuple(tuple, rel);
 }
 
 } /* namespace souffle */

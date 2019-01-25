@@ -45,7 +45,7 @@ inline RamDomain* convertTupleToNums(const tuple& t) {
 class InterpreterRelInterface : public Relation {
 private:
     /** Wrapped interpreter relation */
-    LiftedInterpreterRelation& relation;
+    InterpreterRelation& relation;
 
     /** Symbol table */
     SymbolTable& symTable;
@@ -125,20 +125,21 @@ protected:
     };
 
 public:
-    InterpreterRelInterface(LiftedInterpreterRelation& r, SymbolTable& s, std::string n, std::vector<std::string> t,
+    InterpreterRelInterface(InterpreterRelation& r, SymbolTable& s, std::string n, std::vector<std::string> t,
             std::vector<std::string> an, bool rInput, bool rOutput, uint32_t i)
             : relation(r), symTable(s), name(std::move(n)), types(std::move(t)), attrNames(std::move(an)),
               relInput(rInput), relOutput(rOutput), id(i) {}
     ~InterpreterRelInterface() override = default;
 
     /** Insert tuple */
-    void insert(const tuple& t, const PresenceCondition* pc) override {
-        relation.insert(convertTupleToNums(t), pc);
+    void insert(const tuple& t) override {
+        relation.insert(convertTupleToNums(t));
     }
 
     /** Check whether tuple exists */
-    bool contains(const tuple& t, const PresenceCondition* pc) const override {
-        return relation.exists(convertTupleToNums(t), pc);
+    bool contains(const tuple& t) const override {
+        const RamDomain* out = nullptr;
+        return relation.exists(convertTupleToNums(t), out);
     }
 
     /** Iterator to first tuple */

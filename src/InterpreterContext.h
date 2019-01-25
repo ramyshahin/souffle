@@ -86,10 +86,12 @@ public:
     }
 
     void conjoinPCWith(const PresenceCondition* conj) {
+        assert(conj);
         pc = pc->conjoin(conj);
     }
 
     void resetPC(const PresenceCondition* _pc) {
+        assert(_pc);
         pc = _pc;
     }
 };

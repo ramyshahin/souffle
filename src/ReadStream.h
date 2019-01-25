@@ -15,7 +15,7 @@
 #pragma once
 
 #include "IODirectives.h"
-#include "RamRecord.h"
+#include "RamTypes.h"
 #include "SymbolMask.h"
 #include "SymbolTable.h"
 #include <memory>
@@ -31,15 +31,15 @@ public:
         auto lease = symbolTable.acquireLock();
         (void)lease;
         while (const auto next = readNextTuple()) {
-            const RamRecord* rec = next.get();
-            relation.insert(rec);
+            const RamDomain* ramDomain = next.get();
+            relation.insert(ramDomain);
         }
     }
 
     virtual ~ReadStream() = default;
 
 protected:
-    virtual std::unique_ptr<RamRecord> readNextTuple() = 0;
+    virtual std::unique_ptr<RamDomain[]> readNextTuple() = 0;
     const SymbolMask& symbolMask;
     SymbolTable& symbolTable;
     SymbolTable& featSymTable;

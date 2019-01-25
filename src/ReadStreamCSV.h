@@ -40,7 +40,7 @@ class ReadStreamCSV : public ReadStream {
 public:
     ReadStreamCSV(std::istream& file, const SymbolMask& symbolMask, SymbolTable& symbolTable,
             SymbolTable& featSymTable, const IODirectives& ioDirectives, const bool provenance = false)
-            : ReadStream(symbolMask, symbolTable, featSymTable, provenance), 
+            : ReadStream(symbolMask, symbolTable, featSymTable, provenance),
               delimiter(getDelimiter(ioDirectives)),
               file(file), lineNumber(0), inputMap(getInputColumnMap(ioDirectives, symbolMask.getArity())) {
         while (this->inputMap.size() < symbolMask.getArity()) {
@@ -58,12 +58,12 @@ protected:
      * Returns nullptr if no tuple was readable.
      * @return
      */
-    std::unique_ptr<RamRecord> readNextTuple() override {
+    std::unique_ptr<RamDomain[]> readNextTuple() override {
         if (file.eof()) {
             return nullptr;
         }
         std::string line;
-        RamDomain* tuple = new RamDomain[symbolMask.getArity()];
+        std::unique_ptr<RamDomain[]> tuple = std::make_unique<RamDomain[]>(symbolMask.getArity() + 1);
         bool error = false;
 
         if (!getline(file, line)) {
@@ -158,7 +158,9 @@ protected:
         } else {
             _pc = PresenceCondition::makeTrue();
         }
-        return std::make_unique<RamRecord>(symbolMask.getArity(), tuple, _pc, true);
+        tuple[symbolMask.getArity()] = (RamDomain) _pc;
+
+        return tuple;
     }
 
     std::string getDelimiter(const IODirectives& ioDirectives) const {
@@ -202,7 +204,7 @@ protected:
 
 class ReadFileCSV : public ReadStreamCSV {
 public:
-    ReadFileCSV(const SymbolMask& symbolMask, SymbolTable& symbolTable, 
+    ReadFileCSV(const SymbolMask& symbolMask, SymbolTable& symbolTable,
             SymbolTable& featSymT, const IODirectives& ioDirectives,
             const bool provenance = false)
             : ReadStreamCSV(fileHandle, symbolMask, symbolTable, featSymT, ioDirectives, provenance),
@@ -224,7 +226,7 @@ public:
      * Returns nullptr if no tuple was readable.
      * @return
      */
-    std::unique_ptr<RamRecord> readNextTuple() override {
+    std::unique_ptr<RamDomain[]> readNextTuple() override {
         try {
             return ReadStreamCSV::readNextTuple();
         } catch (std::exception& e) {
