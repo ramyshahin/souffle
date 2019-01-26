@@ -98,6 +98,9 @@ public:
     //    Cudd_Ref(pcBDD);
     //}
 
+    static size_t getPCCount() {
+        return pcMap.size();
+    }
     static PresenceCondition* parse(const AstPresenceCondition& pc) {
 #ifdef SAT_CHECK
         auto pcBDD = const_cast<AstPresenceCondition&>(pc).toBDD(bddMgr);

@@ -595,6 +595,8 @@ int main(int argc, char** argv) {
                   << "sec\n";
     }
 
+    std::cout << "pcMap size: " << PresenceCondition::getPCCount() << std::endl;
+
     return 0;
 }
 

@@ -56,9 +56,9 @@ private:
     std::list<Token>    tokens;
 
 protected:
-    void tokenize(const char* begin) {
+    bool tokenize(const char* begin) {
         if (!begin) {
-            return;
+            return false;
         }
 
         Token curToken;
@@ -68,7 +68,7 @@ protected:
         switch (*begin) {
             // end of string
             case '\0':
-                return;
+                return true;
             // whitespaces
             case ' ':
             case '\n':
@@ -90,7 +90,7 @@ protected:
             // AND
             case '/':
                 if (begin[1] != '\\') {
-                    throw "Cannot parse presence condition";
+                    return false;
                 }
                 curToken.type = AND;
                 curToken.length = 2;
@@ -98,7 +98,7 @@ protected:
             // OR
             case '\\':
                 if (begin[1] != '/') {
-                    throw "Cannot parse presence condition";
+                    return false;
                 }
                 curToken.type = OR;
                 curToken.length = 2;
@@ -106,7 +106,7 @@ protected:
             // ID
             default:
                 if (!isalpha(*begin)) {
-                    throw "Cannot parse presence condition";
+                    return false;
                 }
                 curToken.type = ID;
                 size_t index = 1;
@@ -116,7 +116,7 @@ protected:
                 }
         } // switch
         tokens.push_back(curToken);
-        tokenize(begin + curToken.length);
+        return tokenize(begin + curToken.length);
     }
 
 protected:
@@ -186,10 +186,13 @@ protected:
 
 public:
     PresenceConditionParser(const std::string& input) : pcText(input) {
-        tokenize(pcText.c_str());
     }
 
     AstPresenceCondition* parse(SymbolTable& symTable) {
+        if (!tokenize(pcText.c_str())) {
+            return nullptr;
+        }
+
         auto it = tokens.begin();
         AstPresenceCondition *pc = nullptr;
         while (it != tokens.end()) {

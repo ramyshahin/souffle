@@ -103,7 +103,9 @@ protected:
                 std::string pcStr = element.substr(1);
                 PresenceConditionParser parser(pcStr);
                 pc = parser.parse(featSymTable);
-                continue;
+                if (pc) {
+                    continue;
+                }
             }
             if (inputMap.count(column) == 0) {
                 continue;
