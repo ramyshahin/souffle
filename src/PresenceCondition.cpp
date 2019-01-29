@@ -1,6 +1,8 @@
 #include "PresenceCondition.h"
 #include "SymbolTable.h"
 #include "AstPresenceCondition.h"
+#include "WriteStream.h"
+#include "ReadStream.h"
 
 #include <cassert>
 #include <sstream>
@@ -12,11 +14,17 @@ using namespace std;
 
 namespace souffle {
 
+size_t WriteStream::recordCount;
+size_t WriteStream::pcCount;
+
+size_t ReadStream::recordCount;
+size_t ReadStream::pcCount;
+
 SymbolTable* PresenceCondition::featSymTab = nullptr;
 
 #ifdef SAT_CHECK
 DdManager*   PresenceCondition::bddMgr = nullptr;
-
+PresenceCondition* PresenceCondition::fmPC = nullptr;
 DdNode* PresenceCondition::FF;
 DdNode* PresenceCondition::TT;
 #endif

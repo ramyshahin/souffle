@@ -30,7 +30,7 @@ public:
     AstPresenceConditionPrimitive(bool v) : val(v) {};
 
     virtual DdNode* toBDD(DdManager* bddMgr) override {
-        DdNode* ret = val ? Cudd_ReadOne(bddMgr) : Cudd_ReadZero(bddMgr);
+        DdNode* ret = val ? Cudd_ReadOne(bddMgr) : Cudd_ReadLogicZero(bddMgr);
         Cudd_Ref(ret);
         return ret;
     }
@@ -81,6 +81,7 @@ public:
 
     virtual DdNode* toBDD(DdManager* bddMgr) override {
         DdNode* ret = Cudd_bddIthVar(bddMgr, index);
+        Cudd_Ref(ret);
         return ret;
     }
 
@@ -125,6 +126,7 @@ public:
     virtual DdNode* toBDD(DdManager* bddMgr) override {
         DdNode* pcBDD = pc->toBDD(bddMgr);
         DdNode* ret = Cudd_Not(pcBDD);
+        Cudd_Ref(ret);
         return ret;
     }
 
@@ -165,7 +167,7 @@ class AstPresenceConditionBin : public AstPresenceCondition {
 private:
     BIN_OP op;
     std::unique_ptr<AstPresenceCondition> pc1, pc2;
-    bool symmetric = false;
+    //bool symmetric = false;
 protected:
     /** Implements the node comparison for this node type */
     virtual bool equal(const AstNode& node) const override {
@@ -184,10 +186,10 @@ public:
         auto bdd1 = pc1->toBDD(bddMgr);
         auto bdd2 = pc2->toBDD(bddMgr);
 
-	if (bdd1 == bdd2) {
-		symmetric = true;
-		return bdd1;
-	}
+	    //if (bdd1 == bdd2) {
+		//    symmetric = true;
+		//    return bdd1;
+	    //}
 
         switch (op) {
             case OP_AND: ret = Cudd_bddAnd(bddMgr, bdd1, bdd2); break;
@@ -223,10 +225,10 @@ public:
 
     /** Print this clause to a given stream */
     virtual void print(std::ostream& os) const override {
-	if (symmetric) {
-		pc1->print(os);
-		return;
-	}
+	//if (symmetric) {
+	//	pc1->print(os);
+	//	return;
+	//}
         os << "(";
         pc1->print(os);
         switch (op) {

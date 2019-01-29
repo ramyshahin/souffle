@@ -24,6 +24,9 @@ namespace souffle {
 
 class ReadStream {
 public:
+    static size_t recordCount;
+    static size_t pcCount;
+
     ReadStream(const SymbolMask& symbolMask, SymbolTable& symbolTable, SymbolTable& fSymT, const bool prov)
             : symbolMask(symbolMask), symbolTable(symbolTable), featSymTable(fSymT), isProvenance(prov) {}
     template <typename T>
@@ -33,6 +36,7 @@ public:
         while (const auto next = readNextTuple()) {
             const RamDomain* ramDomain = next.get();
             relation.insert(ramDomain);
+            recordCount++;
         }
     }
 

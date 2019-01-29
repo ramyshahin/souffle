@@ -1,3 +1,5 @@
+#pragma once
+
 #include <string>
 #include <algorithm>
 #include <iostream>
@@ -24,7 +26,7 @@ struct Token {
     size_t      length;
 }; // Token
 
-std::ostream& operator<<(std::ostream& out, const Token& t) {
+inline std::ostream& operator<<(std::ostream& out, const Token& t) {
     switch (t.type) {
         case ID:
             out << "ID(" << std::string(t.begin, t.length) << ")";
@@ -105,7 +107,7 @@ protected:
                 break;
             // ID
             default:
-                if (!isalpha(*begin)) {
+                if (!isalpha(*begin) && (*begin != '_')) {
                     return false;
                 }
                 curToken.type = ID;

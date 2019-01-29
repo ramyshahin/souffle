@@ -81,6 +81,7 @@ protected:
 
         const PresenceCondition* pc = rel.getPC(tuple);
         if (!pc->isTrue()) {
+            pcCount++;
             file << "\t@ " << *pc;
         }
 
@@ -136,6 +137,7 @@ protected:
 
         const PresenceCondition* pc = rel.getPC(tuple);
         if (!pc->isTrue()) {
+            pcCount++;
             file << "\t@ " << *pc;
         }
         file << "\n";
@@ -191,6 +193,7 @@ protected:
 
         const PresenceCondition* pc = rel.getPC(tuple);
         if (!pc->isTrue()) {
+            pcCount++;
             std::cout << "\t@ " << *pc;
         }
         std::cout << "\n";

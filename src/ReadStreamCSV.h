@@ -104,6 +104,7 @@ protected:
                 PresenceConditionParser parser(pcStr);
                 pc = parser.parse(featSymTable);
                 if (pc) {
+                    pcCount++;
                     continue;
                 }
             }

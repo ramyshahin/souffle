@@ -5,6 +5,7 @@
 #include <string>
 #include <cassert>
 #include <sstream>
+#include <fstream>
 #include <map>
 
 #ifdef SAT_CHECK
@@ -13,6 +14,7 @@
 
 #include "SymbolTable.h"
 #include "AstPresenceCondition.h"
+#include "PresenceConditionParser.h"
 
 #ifdef SAT_CHECK
 #define MAP_KEY DdNode*
@@ -32,6 +34,7 @@ private:
     static DdManager*   bddMgr;
     static DdNode* FF;
     static DdNode* TT;
+    static PresenceCondition* fmPC;
     DdNode* pcBDD;
     PropType type;
     const PresenceCondition* sub0;
@@ -69,7 +72,20 @@ public:
             CUDD_CACHE_SLOTS, 
             0);
         assert(bddMgr);
+#endif
 
+        std::string fmPath = "/home/ramy/model.prop";
+        std::ifstream in(fmPath.c_str());
+        if (in.good()) {
+            std::string fm;
+            getline(in, fm);
+            std::cout << "Using Feature Model: " << fm << std::endl;
+            PresenceConditionParser parser(fm);
+            auto ast = parser.parse(st);
+            fmPC = parse(*ast);
+        }
+
+#ifdef SAT_CHECK
         FF = Cudd_ReadLogicZero(bddMgr);
         TT = Cudd_ReadOne(bddMgr);
 #endif
@@ -90,7 +106,7 @@ public:
     }
 
     static PresenceCondition* makeTrue() {
-        auto ret = pcMap[TT];
+        auto ret = fmPC ? fmPC : pcMap[TT];
         assert(ret);
 
         return ret;
@@ -265,9 +281,6 @@ public:
         );
 
         assert(pc);
-
-        assert(tmp != "True");
-        assert(tmp != "False");
 
         pcMap[tmp] = pc;
         return pc;

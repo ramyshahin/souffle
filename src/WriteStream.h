@@ -18,11 +18,15 @@
 #include "RamTypes.h"
 #include "SymbolMask.h"
 #include "SymbolTable.h"
+#include "InterpreterRelation.h"
 
 namespace souffle {
 
 class WriteStream {
 public:
+    static size_t recordCount;
+    static size_t pcCount;
+
     WriteStream(const SymbolMask& symbolMask, const SymbolTable& symbolTable,
                 const SymbolTable& featSymT, const bool prov)
             : symbolMask(symbolMask), symbolTable(symbolTable), featSymTable(featSymT), isProvenance(prov) {}
@@ -31,6 +35,7 @@ public:
         auto lease = symbolTable.acquireLock();
         (void)lease;
         for (const auto& current : relation) {
+            recordCount++;
             writeNext(current, relation);
         }
     }
