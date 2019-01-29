@@ -24,10 +24,11 @@ SymbolTable* PresenceCondition::featSymTab = nullptr;
 
 #ifdef SAT_CHECK
 DdManager*   PresenceCondition::bddMgr = nullptr;
-PresenceCondition* PresenceCondition::fmPC = nullptr;
 DdNode* PresenceCondition::FF;
 DdNode* PresenceCondition::TT;
 #endif
+
+PresenceCondition* PresenceCondition::fmPC = nullptr;
 
 std::map<MAP_KEY, PresenceCondition*> PresenceCondition::pcMap;
 

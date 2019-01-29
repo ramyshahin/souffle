@@ -34,12 +34,12 @@ private:
     static DdManager*   bddMgr;
     static DdNode* FF;
     static DdNode* TT;
-    static PresenceCondition* fmPC;
     DdNode* pcBDD;
     PropType type;
     const PresenceCondition* sub0;
     const PresenceCondition* sub1;
 #endif
+    static PresenceCondition* fmPC;
     static std::map<MAP_KEY, PresenceCondition*> pcMap;
 
     std::string text;
@@ -80,9 +80,13 @@ public:
             std::string fm;
             getline(in, fm);
             std::cout << "Using Feature Model: " << fm << std::endl;
+#ifdef SAT_CHECK
             PresenceConditionParser parser(fm);
             auto ast = parser.parse(st);
             fmPC = parse(*ast);
+#else
+            fmPC = new PresenceCondition(fm);
+#endif
         }
 
 #ifdef SAT_CHECK
