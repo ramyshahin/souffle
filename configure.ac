@@ -128,6 +128,7 @@ AS_IF([test "x$enable_host_packaging" = "xyes"], [SOUFFLE_PACKAGING=1],
 )
 
 # check for CUDD
+AC_SEARCH_LIBS([pow], [m])
 AC_CHECK_HEADER(cudd.h,,[AC_MSG_ERROR([required library cudd missing.])])
 AC_CHECK_LIB(cudd, Cudd_Init,,[AC_MSG_ERROR([required library cudd missing.])])
 
