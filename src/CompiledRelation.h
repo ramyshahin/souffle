@@ -281,6 +281,11 @@ struct RelationBase {
         static_cast<const Derived*>(this)->printHintStatistics(out, prefix);
     }
 
+    const PresenceCondition* getPC(const tuple_type& tuple) const {
+        //TODO
+        return PresenceCondition::makeTrue();
+    }
+
 private:
     /* Provides type-save access to the members of the derived class. */
     Derived& asDerived() {

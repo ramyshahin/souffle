@@ -597,11 +597,11 @@ int main(int argc, char** argv) {
                   << "sec\n";
     }
 
-    std::cout << "pcMap size:  "  << PresenceCondition::getPCCount() << std::endl;
-    std::cout << "Facts:       "  << ReadStream::recordCount << std::endl;
-    std::cout << "Facts@PCs:   "  << ReadStream::pcCount << std::endl;
-    std::cout << "Records:     "  << WriteStream::recordCount << std::endl;
-    std::cout << "Records@PCs: "  << WriteStream::pcCount << std::endl;
+    //std::cout << "pcMap size:  "  << PresenceCondition::getPCCount() << std::endl;
+    //std::cout << "Facts:       "  << ReadStream::recordCount << std::endl;
+    //std::cout << "Facts@PCs:   "  << ReadStream::pcCount << std::endl;
+    //std::cout << "Records:     "  << WriteStream::recordCount << std::endl;
+    //std::cout << "Records@PCs: "  << WriteStream::pcCount << std::endl;
     return 0;
 }
 

@@ -17,7 +17,7 @@
 #pragma once
 
 #include "souffle/AstTypes.h"
-#include "souffle/RamRecord.h"
+//#include "souffle/RamRecord.h"
 #include "souffle/CompiledIndexUtils.h"
 #include "souffle/CompiledOptions.h"
 #include "souffle/CompiledRecord.h"
@@ -36,7 +36,7 @@
 #include "souffle/Trie.h"
 #include "souffle/Util.h"
 #include "souffle/WriteStream.h"
-#include "souffle/LiftedRelation.h"
+//#include "souffle/LiftedRelation.h"
 #ifdef USE_MPI
 #include "souffle/Mpi.h"
 #endif
@@ -73,7 +73,13 @@ DdManager*   PresenceCondition::bddMgr = nullptr;
 
 DdNode* PresenceCondition::FF;
 DdNode* PresenceCondition::TT;
+PresenceCondition* PresenceCondition::fmPC;
 std::map<DdNode*, PresenceCondition*> PresenceCondition::pcMap;
+
+size_t WriteStream::recordCount;
+size_t WriteStream::pcCount;
+size_t ReadStream::recordCount;
+size_t ReadStream::pcCount;
 
 /**
  * Relation wrapper used internally in the generated Datalog program
@@ -136,7 +142,7 @@ public:
         }
         relation.insert(t);
     }
-    bool contains(const tuple& arg, const PresenceCondition* pc) const override {
+    bool contains(const tuple& arg) const override {
         TupleType t;
         assert(arg.size() == Arity && "wrong tuple arity");
         for (size_t i = 0; i < Arity; i++) {

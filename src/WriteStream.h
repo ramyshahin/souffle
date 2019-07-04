@@ -18,7 +18,7 @@
 #include "RamTypes.h"
 #include "SymbolMask.h"
 #include "SymbolTable.h"
-#include "InterpreterRelation.h"
+#include "PresenceCondition.h"
 
 namespace souffle {
 
@@ -34,19 +34,21 @@ public:
     void writeAll(const T& relation) {
         auto lease = symbolTable.acquireLock();
         (void)lease;
+
         for (const auto& current : relation) {
             recordCount++;
-            writeNext(current, relation);
+            const PresenceCondition* pc = relation.getPC(current);
+            writeNext(current, pc);
         }
     }
 
     virtual ~WriteStream() = default;
 
 protected:
-    virtual void writeNextTuple(const RamDomain* tuple, const InterpreterRelation& rel) = 0;
-    template <typename T, typename Tuple>
-    void writeNext(const Tuple tuple, const T& relation) {
-        writeNextTuple(tuple.data, relation);
+    virtual void writeNextTuple(const RamDomain* tuple, const PresenceCondition* pc) = 0;
+    template <typename Tuple>
+    void writeNext(const Tuple tuple, const PresenceCondition* pc) {
+        writeNextTuple(tuple.data, pc);
     }
     const SymbolMask& symbolMask;
     const SymbolTable& symbolTable;
@@ -64,8 +66,8 @@ public:
 };
 
 template <>
-inline void WriteStream::writeNext(const RamDomain* tuple, const InterpreterRelation& rel) {
-    writeNextTuple(tuple, rel);
+inline void WriteStream::writeNext(const RamDomain* tuple, const PresenceCondition* pc) {
+    writeNextTuple(tuple, pc);
 }
 
 } /* namespace souffle */

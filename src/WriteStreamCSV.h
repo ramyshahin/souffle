@@ -54,7 +54,7 @@ public:
     ~WriteFileCSV() override = default;
 
 protected:
-    void writeNextTuple(const RamDomain* tuple, const InterpreterRelation& rel) override {
+    void writeNextTuple(const RamDomain* tuple, const PresenceCondition* pc) override {
         size_t arity = symbolMask.getArity();
         if (isProvenance) {
             arity -= 2;
@@ -79,7 +79,6 @@ protected:
             }
         }
 
-        const PresenceCondition* pc = rel.getPC(tuple);
         if (!pc->isTrue()) {
             pcCount++;
             file << "\t@ " << *pc;
@@ -108,7 +107,7 @@ public:
     ~WriteGZipFileCSV() override = default;
 
 protected:
-    void writeNextTuple(const RamDomain* tuple, const InterpreterRelation& rel) override {
+    void writeNextTuple(const RamDomain* tuple, const PresenceCondition* pc) override {
         size_t arity = symbolMask.getArity();
 
         // do not print last two provenance columns if provenance
@@ -135,7 +134,6 @@ protected:
             }
         }
 
-        const PresenceCondition* pc = rel.getPC(tuple);
         if (!pc->isTrue()) {
             pcCount++;
             file << "\t@ " << *pc;
@@ -165,7 +163,7 @@ public:
     }
 
 protected:
-    void writeNextTuple(const RamDomain* tuple, const InterpreterRelation& rel) override {
+    void writeNextTuple(const RamDomain* tuple, const PresenceCondition* pc) override {
         size_t arity = symbolMask.getArity();
 
         if (isProvenance) {
@@ -191,7 +189,6 @@ protected:
             }
         }
 
-        const PresenceCondition* pc = rel.getPC(tuple);
         if (!pc->isTrue()) {
             pcCount++;
             std::cout << "\t@ " << *pc;
