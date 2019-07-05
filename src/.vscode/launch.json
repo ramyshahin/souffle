@@ -8,10 +8,10 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/../DebugBuild/src/souffle",
-            "args": ["-F.", "-D.", "example.dl"],
+            "program": "/mnt/f/code/souffle-lifted/DebugBuild/src/souffle",
+            "args": ["-j8", "-F facts", "-D.", "aggregate2.dl"],
             "stopAtEntry": false,
-            "cwd": "${workspaceFolder}/../lifting-tests/",
+            "cwd": "/mnt/f/code/souffle-lifted/DebugBuild/tests/testsuite.dir/157",
             "environment": [],
             "externalConsole": true,
             "MIMode": "gdb",
@@ -21,7 +21,16 @@
                     "text": "-enable-pretty-printing",
                     "ignoreFailures": true
                 }
-            ]
+            ],
+            "pipeTransport": {
+                "pipeCwd": "",
+                "pipeProgram": "c:\\windows\\sysnative\\bash.exe",
+                "pipeArgs": ["-c"],
+                "debuggerPath": "/usr/bin/gdb"
+            },
+            "sourceFileMap": {
+                "/mnt/f": "f:\\"
+            }
         }
     ]
 }

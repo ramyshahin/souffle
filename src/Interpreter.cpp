@@ -464,6 +464,8 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
             // get the targeted relation
             const InterpreterRelation& rel = interpreter.getRelation(aggregate.getRelation());
 
+            // init temporary tuple for this level
+            auto arity = rel.getArity();
             // initialize result
             RamDomain res = 0;
             switch (aggregate.getFunction()) {
@@ -480,9 +482,6 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
                     res = 0;
                     break;
             }
-
-            // init temporary tuple for this level
-            auto arity = rel.getArity();
 
             // get lower and upper boundaries for iteration
             const auto& pattern = aggregate.getPattern();
