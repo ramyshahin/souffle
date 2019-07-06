@@ -1069,7 +1069,14 @@ component
         delete $1;
         $$->setSrcLoc(@$);
     }
-
+  | component_head LBRACE component_body RBRACE AT presenceCondition {
+        $$ = $3;
+        $$->setComponentType(std::unique_ptr<AstComponentType>($1->getComponentType()->clone()));
+        $$->setPresenceCondition($6);
+        $$->copyBaseComponents($1);
+        delete $1;
+        $$->setSrcLoc(@$);
+  }
 /* Component Instantition */
 comp_init
   : INSTANTIATE IDENT EQUALS comp_type {

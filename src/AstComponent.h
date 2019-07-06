@@ -17,6 +17,7 @@
 #pragma once
 
 #include "AstRelation.h"
+#include "AstPresenceCondition.h"
 
 #include <memory>
 #include <string>
@@ -222,6 +223,8 @@ class AstComponent : public AstNode {
      */
     std::set<std::string> overrideRules;
 
+    std::unique_ptr<const AstPresenceCondition> pc;
+
 public:
     ~AstComponent() override = default;
 
@@ -262,6 +265,10 @@ public:
         relations.push_back(std::move(r));
     }
 
+    void setPresenceCondition(const AstPresenceCondition* _pc) {
+        pc.reset(_pc);
+    }
+    
     std::vector<AstRelation*> getRelations() const {
         return toPtrVector(relations);
     }
