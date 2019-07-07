@@ -272,13 +272,13 @@ protected:
     /** Stores a unique number for each clause in a relation */
     size_t clauseNum = 0;
 
-    const AstPresenceCondition& pc;
+    std::unique_ptr<AstPresenceCondition> pc;
 public:
     /** Construct an empty clause with empty list of literals and
         its head set to NULL */
-    AstClause() : head(nullptr), plan(nullptr), pc(TT) {}
+    AstClause() : head(nullptr), plan(nullptr), pc(TT.clone()) {}
 
-    AstClause(const AstPresenceCondition& _pc) : head(nullptr), plan(nullptr), pc(_pc) {}
+    AstClause(AstPresenceCondition& _pc) : head(nullptr), plan(nullptr), pc(&_pc) {}
 
     ~AstClause() override = default;
 
@@ -391,7 +391,8 @@ public:
 
     /** Creates a clone of this AST sub-structure */
     AstClause* clone() const override {
-        auto res = new AstClause(pc);
+        auto _pc((AstPresenceCondition*)pc->clone());
+        auto res = new AstClause(*_pc);
         res->setSrcLoc(getSrcLoc());
         if (getExecutionPlan()) {
             res->setExecutionPlan(std::unique_ptr<AstExecutionPlan>(plan->clone()));
@@ -427,7 +428,8 @@ public:
 
     /** clone head generates a new clause with the same head but empty body */
     AstClause* cloneHead() const {
-        auto* clone = new AstClause(pc);
+        auto _pc = (AstPresenceCondition*) pc->clone();
+        auto* clone = new AstClause(*_pc);
         clone->setSrcLoc(getSrcLoc());
         clone->setHead(std::unique_ptr<AstAtom>(getHead()->clone()));
         if (getExecutionPlan()) {
@@ -453,9 +455,19 @@ public:
     }
 
     const AstPresenceCondition& getPC() const {
-        return pc;
+        return *pc;
     }
 
+    void conjoinPCWith(const AstPresenceCondition& _other) {
+        auto other(
+            (AstPresenceCondition*)_other.clone()); 
+        auto newPC = new AstPresenceConditionBin(
+           BIN_OP::OP_AND,
+           *pc,
+           *other);
+
+        pc.reset(newPC);
+    }
 protected:
     /** Implements the node comparison for this node type */
     bool equal(const AstNode& node) const override {

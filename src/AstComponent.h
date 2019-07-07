@@ -274,6 +274,7 @@ public:
     }
 
     void addClause(std::unique_ptr<AstClause> c) {
+        c->conjoinPCWith(*pc);
         clauses.push_back(std::move(c));
     }
 
