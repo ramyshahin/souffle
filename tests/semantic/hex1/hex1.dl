@@ -9,4 +9,5 @@
 .output Hexadecimal
 
 Hexadecimal(0x00000000).
-Hexadecimal(0xFFFFFFFF).
+// 64-bit
+Hexadecimal(0xFFFFFFFFFFFFFFFF).
