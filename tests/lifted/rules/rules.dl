@@ -1,0 +1,10 @@
+.decl edge(x:number, y:number)
+
+.decl path(x:number, y:number)
+.output path
+
+path(x, y) :- edge(x, y) @RX.
+path(x, y) :- path(x, z), edge(z, y) @RY.
+
+edge(1, 2) @ A.
+edge(2, 3) @ B.

@@ -1,0 +1,15 @@
+.decl R1(x:number, y:number)
+.decl R2(x:number, y:number)
+.decl R3(x:number, y:number)
+
+.output R1
+.output R2
+.output R3
+
+R1(x,z) :- R2(x,y), R3(y,z).
+
+R2(1,2) @verA.
+R2(1,2) @verB.
+R3(2,3) @verA.
+R3(2,3) @verB.
+
