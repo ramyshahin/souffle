@@ -50,7 +50,7 @@ inline std::ostream& operator<<(std::ostream& out, const Token& t) {
     return out;
 }
 
-#define EXCEPTION_MSG "Cannot parse presence condition"
+#define EXCEPTION_MSG "Cannot parse presence condition: "
 
 class PresenceConditionParser {
 private:
@@ -97,9 +97,23 @@ protected:
                 curToken.type = AND;
                 curToken.length = 2;
                 break;
+            case '&':
+                if (begin[1] != '&') {
+                    return false;
+                }
+                curToken.type = AND;
+                curToken.length = 2;
+                break; 
             // OR
             case '\\':
                 if (begin[1] != '/') {
+                    return false;
+                }
+                curToken.type = OR;
+                curToken.length = 2;
+                break;
+            case '|':
+                if (begin[1] != '|') {
                     return false;
                 }
                 curToken.type = OR;
@@ -133,7 +147,8 @@ protected:
         switch (it->type) {
             case ID: {
                 if (lhs) {
-                    throw EXCEPTION_MSG;
+	            //std::cerr << EXCEPTION_MSG << pcText << std::endl; 	
+                    return nullptr;
                 }
                 std::string id(it->begin, it->length);
                 AstPresenceCondition* cur;
@@ -149,7 +164,8 @@ protected:
             case AND:
             case OR: {
                 if (!lhs) {
-                    throw EXCEPTION_MSG;
+                    //std::cerr << EXCEPTION_MSG << pcText << std::endl;
+                    return nullptr;
                 }
                 auto type = it->type;
                 AstPresenceCondition* rhs = parse_inner(symTable, ++it);
@@ -157,21 +173,24 @@ protected:
             }
             case NOT: {
                 if (lhs) {
-                    throw EXCEPTION_MSG;
+                    //std::cerr << EXCEPTION_MSG << pcText << std::endl;
+                    return nullptr;
                 }
                 AstPresenceCondition* rhs = parse_inner(symTable, ++it);
                 return new AstPresenceConditionNeg(*rhs);
             }
             case LPAREN: {
                 if (lhs) {
-                    throw EXCEPTION_MSG;
+                    //std::cerr << EXCEPTION_MSG << pcText << std::endl;
+                    return nullptr;
                 }
                 bool done = false;
                 AstPresenceCondition* rhs = nullptr;
                 while (!done) {
                     it++;
                     if (it == tokens.end()) {
-                        throw EXCEPTION_MSG;
+                        //std::cerr << EXCEPTION_MSG << pcText << std::endl;
+                        return nullptr;
                     }
                     if (it->type == RPAREN) {
                         done = true;
@@ -182,7 +201,8 @@ protected:
                 return rhs;
             }
             default:
-                throw EXCEPTION_MSG;
+                //std::cerr << EXCEPTION_MSG << pcText << std::endl; 
+                return nullptr;
         } // switch
     } // parse_inner
 

@@ -98,6 +98,7 @@ protected:
                 }
                 element = "n/a";
             }
+            //std::cout << element << std::endl;
             start = end + delimiter.size();
             if (element[0] == '@' && element.length() > 1) {
                 std::string pcStr = element.substr(1);
@@ -106,6 +107,8 @@ protected:
                 if (pc) {
                     pcCount++;
                     continue;
+                } else {
+                    std::cerr << "Invalid PC: " << pcStr << std::endl;
                 }
             }
             if (inputMap.count(column) == 0) {

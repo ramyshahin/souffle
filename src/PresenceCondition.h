@@ -117,6 +117,10 @@ public:
         return ret;
     }
 
+    static size_t getFeatCount() {
+        return featSymTab->size();
+    }
+
     static size_t getPCCount() {
         return pcMap.size();
     }
@@ -211,6 +215,27 @@ public:
 
     bool operator!=(const PresenceCondition& other) const {
         return !(*this == other);
+    }
+
+    const PresenceCondition* negate() const {
+        DdNode* tmp = Cudd_Not(pcBDD);
+        auto cached = pcMap.find(tmp);
+        if (cached != pcMap.end()) {
+            return cached->second;
+        }
+
+        Cudd_Ref(tmp);
+
+        PresenceCondition *pc = new PresenceCondition(
+            tmp,
+            NEG, this, nullptr, ""
+            );
+
+        assert(pc);
+
+        pcMap[tmp] = pc;
+
+        return pc;
     }
 
     const PresenceCondition* conjoin(const PresenceCondition* other) const {
@@ -316,15 +341,13 @@ public:
     std::string getText() const {
 	    switch(type) {
 		    case ATOM:
+                        return text;
 		    case NEG:
-        	    return text;
-			    break;
+        	        return ("!" + sub0->getText());
 		    case CONJ:
 			    return ("(" + sub0->getText() + " /\\ " + sub1->getText() + ")");
-			    break;
 		    case DISJ:
 			    return ("(" + sub0->getText() + " \\/ " + sub1->getText() + ")");
-			    break;
 	    }
         return "";
     }

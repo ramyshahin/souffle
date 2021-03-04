@@ -344,6 +344,52 @@ bool Interpreter::evalCond(const RamCondition& cond, const InterpreterContext& c
     return ConditionEvaluator(*this, ctxt)(cond);
 }
 
+class LiftedAggregate {
+private:
+    std::vector<std::pair<RamDomain, const PresenceCondition*> > vals;
+
+public:
+    LiftedAggregate(RamDomain init) {
+        vals.push_back(std::make_pair(init,PresenceCondition::makeTrue()));
+    }
+
+    void accumulate(RamAggregate::Function f, RamDomain v, const PresenceCondition* pc) {
+        size_t curSize = vals.size();
+        for(size_t i=0; i < curSize; i++) {
+            auto& it = vals[i];
+            const PresenceCondition* cjn = it.second->conjoin(pc);
+            if (!cjn->isSAT()) {
+                continue;
+            }
+            
+            RamDomain newVal = it.first;
+            switch (f) {
+            case RamAggregate::MAX:
+                if (v > newVal) newVal = v;
+                break;
+            case RamAggregate::MIN:
+                if (v < newVal) newVal = v;
+                break;
+            case RamAggregate::COUNT:
+                newVal++;
+                break;
+            case RamAggregate::SUM:
+                newVal += v;
+                break;
+            }
+
+            const PresenceCondition* rmdr = it.second->conjoin(pc->negate());
+            if (rmdr->isSAT()) {
+                // rmdr is satisfiable implies it.second and pc are not identical
+                it.second = rmdr;
+                vals.push_back(std::make_pair(newVal, cjn));
+            } else {
+                it.first = newVal;
+            }
+        }
+    }
+};
+
 /** Evaluate RAM operation */
 void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args) {
     class OperationEvaluator : public RamVisitor<void> {
