@@ -345,7 +345,7 @@ bool Interpreter::evalCond(const RamCondition& cond, const InterpreterContext& c
 }
 
 class LiftedAggregate {
-private:
+public:
     std::vector<std::pair<RamDomain, const PresenceCondition*> > vals;
 
 public:
@@ -365,10 +365,10 @@ public:
             RamDomain newVal = it.first;
             switch (f) {
             case RamAggregate::MAX:
-                if (v > newVal) newVal = v;
+                newVal = std::max(newVal, v);
                 break;
             case RamAggregate::MIN:
-                if (v < newVal) newVal = v;
+                newVal = std::min(newVal, v);
                 break;
             case RamAggregate::COUNT:
                 newVal++;
@@ -528,6 +528,7 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
                     res = 0;
                     break;
             }
+            LiftedAggregate aggr(res);
 
             // get lower and upper boundaries for iteration
             const auto& pattern = aggregate.getPattern();
@@ -563,10 +564,11 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
                 // link tuple
                 const RamDomain* data = *(ip);
                 ctxt[aggregate.getLevel()] = data;
+                const PresenceCondition* pc = (const PresenceCondition*) data[arity];
 
                 // count is easy
                 if (aggregate.getFunction() == RamAggregate::COUNT) {
-                    res++;
+                    aggr.accumulate(RamAggregate::COUNT, 1, pc); 
                     continue;
                 }
 
@@ -575,7 +577,7 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
                 // eval target expression
                 RamDomain cur = interpreter.evalVal(*aggregate.getTargetExpression(), ctxt);
 
-                switch (aggregate.getFunction()) {
+                /*switch (aggregate.getFunction()) {
                     case RamAggregate::MIN:
                         res = std::min(res, cur);
                         break;
@@ -588,22 +590,31 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
                     case RamAggregate::SUM:
                         res += cur;
                         break;
+                }*/
+
+                aggr.accumulate(aggregate.getFunction(), cur, pc);
+            }
+
+            const PresenceCondition* curPC = ctxt.getPC();
+
+            for (auto& it: aggr.vals) {
+                // write result to environment
+                RamDomain tuple[1];
+                tuple[0] = it.first;
+                ctxt[aggregate.getLevel()] = tuple;
+                ctxt.resetPC(it.second);
+
+                // check whether result is used in a condition
+                auto condition = aggregate.getCondition();
+                if (condition && !interpreter.evalCond(*condition, ctxt)) {
+                    return;  // condition not valid => skip nested
                 }
+
+                // run nested part - using base class visitor
+                visitSearch(aggregate);
             }
 
-            // write result to environment
-            RamDomain tuple[1];
-            tuple[0] = res;
-            ctxt[aggregate.getLevel()] = tuple;
-
-            // check whether result is used in a condition
-            auto condition = aggregate.getCondition();
-            if (condition && !interpreter.evalCond(*condition, ctxt)) {
-                return;  // condition not valid => skip nested
-            }
-
-            // run nested part - using base class visitor
-            visitSearch(aggregate);
+            ctxt.resetPC(curPC);
         }
 
         void visitProject(const RamProject& project) override {

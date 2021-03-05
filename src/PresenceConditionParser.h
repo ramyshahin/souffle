@@ -147,7 +147,7 @@ protected:
         switch (it->type) {
             case ID: {
                 if (lhs) {
-	            //std::cerr << EXCEPTION_MSG << pcText << std::endl; 	
+	            std::cerr << EXCEPTION_MSG << pcText << std::endl; 	
                     return nullptr;
                 }
                 std::string id(it->begin, it->length);
@@ -164,7 +164,7 @@ protected:
             case AND:
             case OR: {
                 if (!lhs) {
-                    //std::cerr << EXCEPTION_MSG << pcText << std::endl;
+                    std::cerr << EXCEPTION_MSG << pcText << std::endl;
                     return nullptr;
                 }
                 auto type = it->type;
@@ -173,7 +173,7 @@ protected:
             }
             case NOT: {
                 if (lhs) {
-                    //std::cerr << EXCEPTION_MSG << pcText << std::endl;
+                    std::cerr << EXCEPTION_MSG << pcText << std::endl;
                     return nullptr;
                 }
                 AstPresenceCondition* rhs = parse_inner(symTable, ++it);
@@ -181,7 +181,7 @@ protected:
             }
             case LPAREN: {
                 if (lhs) {
-                    //std::cerr << EXCEPTION_MSG << pcText << std::endl;
+                    std::cerr << EXCEPTION_MSG << pcText << std::endl;
                     return nullptr;
                 }
                 bool done = false;
@@ -189,7 +189,7 @@ protected:
                 while (!done) {
                     it++;
                     if (it == tokens.end()) {
-                        //std::cerr << EXCEPTION_MSG << pcText << std::endl;
+                        std::cerr << EXCEPTION_MSG << pcText << std::endl;
                         return nullptr;
                     }
                     if (it->type == RPAREN) {
@@ -201,7 +201,7 @@ protected:
                 return rhs;
             }
             default:
-                //std::cerr << EXCEPTION_MSG << pcText << std::endl; 
+                std::cerr << EXCEPTION_MSG << pcText << std::endl; 
                 return nullptr;
         } // switch
     } // parse_inner
