@@ -117,6 +117,10 @@ public:
         return ret;
     }
 
+    static PresenceCondition* makeFalse() {
+        return pcMap[FF];
+    }
+
     static size_t getFeatCount() {
         return featSymTab->size();
     }

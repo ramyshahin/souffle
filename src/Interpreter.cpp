@@ -214,8 +214,8 @@ RamDomain Interpreter::evalVal(const RamValue& value, const InterpreterContext& 
 }
 
 /** Evaluate RAM Condition */
-bool Interpreter::evalCond(const RamCondition& cond, const InterpreterContext& ctxt) {
-    class ConditionEvaluator : public RamVisitor<bool> {
+const PresenceCondition* Interpreter::evalCond(const RamCondition& cond, const InterpreterContext& ctxt) {
+    class ConditionEvaluator : public RamVisitor<const PresenceCondition*> {
         Interpreter& interpreter;
         const InterpreterContext& ctxt;
 
@@ -225,18 +225,24 @@ bool Interpreter::evalCond(const RamCondition& cond, const InterpreterContext& c
 
         // -- connectors operators --
 
-        bool visitAnd(const RamAnd& a) override {
-            return visit(a.getLHS()) && visit(a.getRHS());
+        const PresenceCondition* visitAnd(const RamAnd& a) override {
+            //const PresenceCondition* pc = ctxt.getPC();
+            const PresenceCondition* ret = PresenceCondition::makeFalse();
+            if (visit(a.getLHS()) && visit(a.getRHS())) {
+                ret = ctxt.getPC();
+            }
+            //ctxt.resetPC(pc);
+            return ret;
         }
 
         // -- relation operations --
 
-        bool visitEmpty(const RamEmpty& empty) override {
+        const PresenceCondition* visitEmpty(const RamEmpty& empty) override {
             const InterpreterRelation& rel = interpreter.getRelation(empty.getRelation());
-            return rel.empty();
+            return rel.empty() ? ctxt.getPC() : PresenceCondition::makeFalse();
         }
 
-        bool visitNotExists(const RamNotExists& ne) override {
+        const PresenceCondition* visitNotExists(const RamNotExists& ne) override {
             const InterpreterRelation& rel = interpreter.getRelation(ne.getRelation());
 
             // construct the pattern tuple
@@ -251,7 +257,8 @@ bool Interpreter::evalCond(const RamCondition& cond, const InterpreterContext& c
                 }
                 tuple[arity] = (RamDomain) ctxt.getPC();
                 const RamDomain* out = nullptr;
-                return !rel.exists(tuple, out);
+                const PresenceCondition* ex = rel.exists(tuple, out);
+                return ex->negate();
             }
 
             // for partial we search for lower and upper boundaries
@@ -266,26 +273,28 @@ bool Interpreter::evalCond(const RamCondition& cond, const InterpreterContext& c
             // obtain index
             auto idx = rel.getIndex(ne.getKey());
             auto range = idx->lowerUpperBound(low, high);
-            return range.first == range.second;  // if there are none => done
+            return (range.first == range.second) ? PresenceCondition::makeTrue() : ctxt.getPC();  // if there are none => done
         }
 
         // -- comparison operators --
-        bool visitBinaryRelation(const RamBinaryRelation& relOp) override {
+        const PresenceCondition* visitBinaryRelation(const RamBinaryRelation& relOp) override {
             RamDomain lhs = interpreter.evalVal(*relOp.getLHS(), ctxt);
             RamDomain rhs = interpreter.evalVal(*relOp.getRHS(), ctxt);
+            PresenceCondition* tt = PresenceCondition::makeTrue();
+            PresenceCondition* ff = PresenceCondition::makeFalse();
             switch (relOp.getOperator()) {
                 case BinaryConstraintOp::EQ:
-                    return lhs == rhs;
+                    return lhs == rhs ? tt : ff;
                 case BinaryConstraintOp::NE:
-                    return lhs != rhs;
+                    return lhs != rhs ? tt : ff;
                 case BinaryConstraintOp::LT:
-                    return lhs < rhs;
+                    return lhs < rhs ? tt : ff;
                 case BinaryConstraintOp::LE:
-                    return lhs <= rhs;
+                    return lhs <= rhs ? tt : ff;
                 case BinaryConstraintOp::GT:
-                    return lhs > rhs;
+                    return lhs > rhs ? tt : ff;
                 case BinaryConstraintOp::GE:
-                    return lhs >= rhs;
+                    return lhs >= rhs ? tt : ff;
                 case BinaryConstraintOp::MATCH: {
                     RamDomain l = interpreter.evalVal(*relOp.getLHS(), ctxt);
                     RamDomain r = interpreter.evalVal(*relOp.getRHS(), ctxt);
@@ -298,7 +307,7 @@ bool Interpreter::evalCond(const RamCondition& cond, const InterpreterContext& c
                         std::cerr << "warning: wrong pattern provided for match(\"" << pattern << "\",\""
                                   << text << "\").\n";
                     }
-                    return result;
+                    return result ? tt : ff;
                 }
                 case BinaryConstraintOp::NOT_MATCH: {
                     RamDomain l = interpreter.evalVal(*relOp.getLHS(), ctxt);
@@ -312,31 +321,31 @@ bool Interpreter::evalCond(const RamCondition& cond, const InterpreterContext& c
                         std::cerr << "warning: wrong pattern provided for !match(\"" << pattern << "\",\""
                                   << text << "\").\n";
                     }
-                    return result;
+                    return result ? tt : ff;
                 }
                 case BinaryConstraintOp::CONTAINS: {
                     RamDomain l = interpreter.evalVal(*relOp.getLHS(), ctxt);
                     RamDomain r = interpreter.evalVal(*relOp.getRHS(), ctxt);
                     const std::string& pattern = interpreter.getSymbolTable().resolve(l);
                     const std::string& text = interpreter.getSymbolTable().resolve(r);
-                    return text.find(pattern) != std::string::npos;
+                    return text.find(pattern) != std::string::npos ? tt : ff;
                 }
                 case BinaryConstraintOp::NOT_CONTAINS: {
                     RamDomain l = interpreter.evalVal(*relOp.getLHS(), ctxt);
                     RamDomain r = interpreter.evalVal(*relOp.getRHS(), ctxt);
                     const std::string& pattern = interpreter.getSymbolTable().resolve(l);
                     const std::string& text = interpreter.getSymbolTable().resolve(r);
-                    return text.find(pattern) == std::string::npos;
+                    return text.find(pattern) == std::string::npos ? tt : ff;
                 }
                 default:
                     assert(false && "unsupported operator");
-                    return false;
+                    return ff; //false;
             }
         }
-        bool visitNode(const RamNode& node) override {
+        const PresenceCondition* visitNode(const RamNode& node) override {
             std::cerr << "Unsupported node type: " << typeid(node).name() << "\n";
             assert(false && "Unsupported Node Type!");
-            return false;
+            return PresenceCondition::makeFalse(); //false;
         }
     };
 
@@ -402,12 +411,17 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
         // -- Operations -----------------------------
 
         void visitSearch(const RamSearch& search) override {
+            auto curPC = ctxt.getPC();
+            if (search.pc) {
+                ctxt.conjoinPCWith(search.pc);
+            }
             // check condition
             auto condition = search.getCondition();
-            if (!condition || interpreter.evalCond(*condition, ctxt)) {
-                if (search.pc) {
-                    ctxt.conjoinPCWith(search.pc);
-                }
+            const PresenceCondition* condPC = condition ? interpreter.evalCond(*condition, ctxt) : nullptr;
+            if (condPC && condPC != PresenceCondition::makeFalse()) {
+                ctxt.conjoinPCWith(condPC);
+            }
+            if (!condition || condPC != PresenceCondition::makeFalse()) {    
                 // process nested
                 visit(*search.getNestedOperation());
             }
@@ -415,6 +429,7 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
             if (Global::config().has("profile") && !search.getProfileText().empty()) {
                 interpreter.frequencies[search.getProfileText()][interpreter.getIterationNumber()]++;
             }
+            ctxt.resetPC(curPC);
         }
 
         void visitScan(const RamScan& scan) override {
@@ -606,8 +621,12 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
 
                 // check whether result is used in a condition
                 auto condition = aggregate.getCondition();
-                if (condition && !interpreter.evalCond(*condition, ctxt)) {
-                    return;  // condition not valid => skip nested
+                if (condition) {
+                    auto condPC = interpreter.evalCond(*condition, ctxt);
+                    if (condPC == PresenceCondition::makeFalse()) {
+                        return;  // condition not valid => skip nested
+                    }
+                    ctxt.conjoinPCWith(condPC);
                 }
 
                 // run nested part - using base class visitor
@@ -620,8 +639,13 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
         void visitProject(const RamProject& project) override {
             // check constraints
             RamCondition* condition = project.getCondition();
-            if (condition && !interpreter.evalCond(*condition, ctxt)) {
-                return;  // condition violated => skip insert
+            auto curPC = ctxt.getPC();
+            if (condition) { 
+                auto condPC = interpreter.evalCond(*condition, ctxt); 
+                if (condPC == PresenceCondition::makeFalse()) {
+                    return;  // condition not valid => skip nested
+                }
+                ctxt.conjoinPCWith(condPC);
             }
 
             // create a tuple of the proper arity (also supports arity 0)
@@ -636,7 +660,8 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
 
             // check filter relation
             const RamDomain* out = nullptr;
-            if (project.hasFilter() && interpreter.getRelation(project.getFilter()).exists(tuple, out)) {
+            const PresenceCondition* ff = PresenceCondition::makeFalse();
+            if (project.hasFilter() && interpreter.getRelation(project.getFilter()).exists(tuple, out) != ff) {
                 assert(out);
                 const PresenceCondition* pcOther = (const PresenceCondition*)out[arity];
                 if (ctxt.getPC()->conjSat(pcOther)) {
@@ -647,6 +672,7 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
             // insert in target relation
             InterpreterRelation& rel = interpreter.getRelation(project.getRelation());
             rel.insert(tuple);
+            ctxt.resetPC(curPC);
         }
 
         // -- return from subroutine --
@@ -730,7 +756,7 @@ void Interpreter::evalStmt(const RamStatement& stmt) {
         }
 
         bool visitExit(const RamExit& exit) override {
-            return !interpreter.evalCond(exit.getCondition());
+            return interpreter.evalCond(exit.getCondition()) == PresenceCondition::makeFalse();
         }
 
         bool visitLogTimer(const RamLogTimer& timer) override {

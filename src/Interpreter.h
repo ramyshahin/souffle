@@ -70,7 +70,7 @@ protected:
     void evalOp(const RamOperation& op, const InterpreterContext& args = InterpreterContext());
 
     /** Evaluate conditions */
-    bool evalCond(const RamCondition& cond, const InterpreterContext& ctxt = InterpreterContext());
+    const PresenceCondition* evalCond(const RamCondition& cond, const InterpreterContext& ctxt = InterpreterContext());
 
     /** Evaluate statement */
     void evalStmt(const RamStatement& stmt);

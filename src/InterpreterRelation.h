@@ -97,7 +97,9 @@ public:
 
         // make existence check
         const RamDomain* out = nullptr;
-        if (exists(tuple, out)) {
+        const PresenceCondition* ff = PresenceCondition::makeFalse();
+
+        if (exists(tuple, out) != ff) {
             assert(out);
             PresenceCondition* pc = (PresenceCondition*) out[pcIndex];
             // check PCs
@@ -230,10 +232,13 @@ public:
     }
 
     /** check whether a tuple exists in the relation */
-    bool exists(const RamDomain* tuple, const RamDomain*& out) const {
-        // handle arity 0
+    const PresenceCondition* exists(const RamDomain* tuple, const RamDomain*& out) const {
+        const PresenceCondition* tt = PresenceCondition::makeTrue();
+        const PresenceCondition* ff = PresenceCondition::makeFalse();
+
+	// handle arity 0
         if (isNullary()) {
-            return !empty();
+            return empty() ? ff : tt;
         }
 
         // handle all other arities
@@ -247,7 +252,7 @@ public:
             out = d;
         }
 
-        return (d != nullptr);
+        return (d != nullptr) ? (const PresenceCondition*) d[arity-1] : ff;
     }
 
     // --- iterator ---
@@ -487,7 +492,7 @@ public:
     }
 
     /** check whether a tuple exists in the relation */
-    bool exists(const RamDomain* tuple, const RamDomain* out) const {
+    const PresenceCondition* exists(const RamDomain* tuple, const RamDomain* out) const {
         return rel->exists(tuple, out);
     }
 
