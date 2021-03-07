@@ -1,0 +1,13 @@
+.decl a(x:number)
+
+.decl s(x:number)
+s(x) :- x = sum y : {a(y)}.
+.output s
+
+a(1)	@ B.
+a(2)	@ A.
+a(3)	@ !A.
+a(4)	@ A /\ B.
+a(5)	@ (!A /\ B).
+a(6)	@ (A /\ !B).
+a(7)	@ (!A /\ !B).
