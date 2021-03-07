@@ -399,6 +399,15 @@ public:
     }
 };
 
+std::ostream& operator<<(std::ostream& out, const LiftedAggregate& a) {
+    out << "{";
+    for (const auto& v: a.vals) {
+        out << "(" << v.first << ", " << v.second->getText() << "), ";
+    }
+    out << "}";
+    return out;
+}
+
 /** Evaluate RAM operation */
 void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args) {
     class OperationEvaluator : public RamVisitor<void> {
@@ -592,21 +601,6 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
                 // eval target expression
                 RamDomain cur = interpreter.evalVal(*aggregate.getTargetExpression(), ctxt);
 
-                /*switch (aggregate.getFunction()) {
-                    case RamAggregate::MIN:
-                        res = std::min(res, cur);
-                        break;
-                    case RamAggregate::MAX:
-                        res = std::max(res, cur);
-                        break;
-                    case RamAggregate::COUNT:
-                        res = 0;
-                        break;
-                    case RamAggregate::SUM:
-                        res += cur;
-                        break;
-                }*/
-
                 aggr.accumulate(aggregate.getFunction(), cur, pc);
             }
 
@@ -617,7 +611,7 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
                 RamDomain tuple[1];
                 tuple[0] = it.first;
                 ctxt[aggregate.getLevel()] = tuple;
-                ctxt.resetPC(it.second);
+                ctxt.conjoinPCWith(it.second);
 
                 // check whether result is used in a condition
                 auto condition = aggregate.getCondition();
@@ -631,9 +625,9 @@ void Interpreter::evalOp(const RamOperation& op, const InterpreterContext& args)
 
                 // run nested part - using base class visitor
                 visitSearch(aggregate);
+                ctxt.resetPC(curPC);
             }
 
-            ctxt.resetPC(curPC);
         }
 
         void visitProject(const RamProject& project) override {
