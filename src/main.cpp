@@ -595,14 +595,13 @@ int main(int argc, char** argv) {
         auto souffle_end = std::chrono::high_resolution_clock::now();
         std::cout << "Total Time: " << std::chrono::duration<double>(souffle_end - souffle_start).count()
                   << "sec\n";
+        std::cout << "Features:    "  << PresenceCondition::getFeatCount() << std::endl;
+        std::cout << "pcMap size:  "  << PresenceCondition::getPCCount() << std::endl;
+        std::cout << "Facts:       "  << ReadStream::recordCount << std::endl;
+        std::cout << "Facts@PCs:   "  << ReadStream::pcCount << std::endl;
+        std::cout << "Records:     "  << WriteStream::recordCount << std::endl;
+        std::cout << "Records@PCs: "  << WriteStream::pcCount << std::endl;
     }
-
-    std::cout << "Features:    "  << PresenceCondition::getFeatCount() << std::endl;
-    std::cout << "pcMap size:  "  << PresenceCondition::getPCCount() << std::endl;
-    std::cout << "Facts:       "  << ReadStream::recordCount << std::endl;
-    std::cout << "Facts@PCs:   "  << ReadStream::pcCount << std::endl;
-    std::cout << "Records:     "  << WriteStream::recordCount << std::endl;
-    std::cout << "Records@PCs: "  << WriteStream::pcCount << std::endl;
     return 0;
 }
 
