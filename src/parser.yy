@@ -203,7 +203,6 @@
 %precedence BW_NOT L_NOT
 %precedence NEG
 %left CARET
-%precedence EXCLAMATION
 %left LOGICOR
 %left LOGICAND
 
@@ -827,25 +826,25 @@ literal
 
 /* Presence Condition */
 presenceCondition
-  : IDENT {
-        $$ = new AstPresenceConditionFeat(driver.getFeatureSymbolTable(), $1);
-        $$->setSrcLoc(@$);
-    }
-  | EXCLAMATION presenceCondition {
-      $$ = new AstPresenceConditionNeg(*$2);
-      $$->setSrcLoc(@$);
-    }
-  | LPAREN presenceCondition RPAREN {
-      $$ = $2;
-    } 
-  | presenceCondition LOGICOR presenceCondition {
+  : presenceCondition LOGICOR presenceCondition {
       $$ = new AstPresenceConditionBin(OP_OR, *$1, *$3);
       $$->setSrcLoc(@$);
     }   
   | presenceCondition LOGICAND presenceCondition {
       $$ = new AstPresenceConditionBin(OP_AND, *$1, *$3);
       $$->setSrcLoc(@$);
+    }
+  | EXCLAMATION presenceCondition %prec LOGICAND {
+      $$ = new AstPresenceConditionNeg(*$2);
+      $$->setSrcLoc(@$);
     } 
+  | LPAREN presenceCondition RPAREN {
+      $$ = $2;
+    }
+  | IDENT {
+        $$ = new AstPresenceConditionFeat(driver.getFeatureSymbolTable(), $1);
+        $$->setSrcLoc(@$);
+    }
 /* Fact */
 fact
   : atom DOT {
