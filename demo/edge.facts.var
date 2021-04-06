@@ -1,0 +1,5 @@
+A	B
+B	C	@ X 
+B	D	@ Y
+C	E	@ !(X /\ Y)
+D	E	@ X /\ Y
